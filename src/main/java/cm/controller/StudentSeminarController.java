@@ -40,7 +40,7 @@ public class StudentSeminarController {
         seminarService.setCourse();
         seminarService.setKlass();
         //String--RoundName
-        List<Map<String, SeminarVO>> maps=ro   undService.findRoundAndSeminars(courseID,klassID);
+        List<Map<String, SeminarVO>> maps=roundService.findRoundAndSeminars(courseID,klassID);
         model.addAttribute("roundAndSeminarList",maps);
         return "student_seminarList";
     }
