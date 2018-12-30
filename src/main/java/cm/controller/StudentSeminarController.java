@@ -6,6 +6,9 @@ import cm.entity.Klass;
 import cm.entity.Seminar;
 import cm.service.RoundService;
 import cm.service.SeminarService;
+import cm.vo.CourseVO;
+import cm.vo.KlassVO;
+import cm.vo.SeminarVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +29,7 @@ public class StudentSeminarController {
     //////student course List
     @RequestMapping(value = "/seminarEntrance",method = RequestMethod.GET)
     public String studentSeminarEntrance(Model model){
-        List<Map<Course, Klass>> maps=seminarService.findCourseAndKlass();
+        List<Map<CourseVO, KlassVO>> maps=seminarService.findCourseAndKlass();
         model.addAttribute("courseAndKlassList",maps);
         return "student_seminar_entrance";
     }
@@ -36,8 +39,9 @@ public class StudentSeminarController {
     public String studentSeminarList(long courseID,long klassID,Model model){
         seminarService.setCourse();
         seminarService.setKlass();
-        List<Map<>>
-        model.addAttribute("roundAndSeminarList",roundService.findRoundAndSeminars(courseID,klassID));
+        //String--RoundName
+        List<Map<String, SeminarVO>> maps=roundService.findRoundAndSeminars(courseID,klassID);
+        model.addAttribute("roundAndSeminarList",maps);
         return "student_seminarList";
     }
 
@@ -45,7 +49,7 @@ public class StudentSeminarController {
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String studentSeminarInfo(long klassID,long seminarID,Model model){
         model.addAttribute("courseName",seminarService.getCourse().getName());
-        model.addAttribute("roundName",)
+        model.addAttribute("Seminar",seminarService.findSeminarById(seminarID))
         return "studnet_seminar_info";
     }
 
