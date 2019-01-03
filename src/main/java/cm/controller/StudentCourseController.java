@@ -19,7 +19,7 @@ public class StudentCourseController {
     @Autowired
     private CourseService courseService;
 
-    UserVO student= UserController.userVO;
+    UserVO student;
 
     ///////student course list get
     @RequestMapping(value = "",method= RequestMethod.GET)

@@ -1,9 +1,6 @@
 package cm.controller;
 
-import cm.service.CourseService;
-import cm.service.KlassService;
-import cm.service.RoundService;
-import cm.service.SeminarService;
+import cm.service.*;
 import cm.vo.CourseDetailVO;
 import cm.vo.RoundVO;
 import cm.vo.SeminarInfoVO;
@@ -30,6 +27,8 @@ public class TeacherSeminarController {
     private CourseService courseService;
     @Autowired
     private KlassService klassService;
+    @Autowired
+    private TeacherService teacherService;
 
     CourseDetailVO courseDetailVO;
     SeminarInfoVO seminarInfoVO;
@@ -37,9 +36,9 @@ public class TeacherSeminarController {
     ////////讨论课管理
     ///////////讨论课列表
     @RequestMapping(value = "",method = RequestMethod.POST)
-    public String teacherSeminar(Long courseId,Model model){
+    public String teacherSeminar(Long courseId,String account,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
-        userVO= UserController.userVO;
+        userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("roundList",roundService.listRoundByCourseId(courseId));
         model.addAttribute("klassList",klassService.listKlassByCourseId(courseId));
         model.addAttribute("courseName",courseDetailVO.getCourseName());
@@ -48,8 +47,8 @@ public class TeacherSeminarController {
 
     ///////////讨论课
     @RequestMapping(value ="/course",method = RequestMethod.GET)
-    public String teacherSeminarCourseList(Model model){
-        userVO= UserController.userVO;
+    public String teacherSeminarCourseList(Model model,String account){
+        userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList",courseService.listCourseByTeacherId(userVO));
         model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
         return "teacher_seminar_courseList";
@@ -143,7 +142,7 @@ public class TeacherSeminarController {
     @RequestMapping(value = "/progressing/end",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherSeminarProcessingScore(Map<BigDecimal, Map<Long,BigDecimal>> score){
-        //seminarService.scoreSeminar(score,seminarInfoVO);
+        seminarService.scoreSeminar(score,seminarInfoVO);
         return new ResponseEntity(HttpStatus.OK);
     }
 

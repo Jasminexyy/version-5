@@ -2,6 +2,7 @@ package cm.controller;
 
 import cm.service.CourseService;
 import cm.service.KlassService;
+import cm.service.TeacherService;
 import cm.service.TeamService;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,15 @@ public class TeacherCourseController {
     private TeamService teamService;
     @Autowired
     private KlassService klassService;
+    @Autowired
+            private TeacherService teacherService;
 
     CourseDetailVO courseDetailVO;
     UserVO userVO;
     //课程管理
     @RequestMapping(method= RequestMethod.GET)
-    public String teacherCourseManage(Model model) {
-        userVO= UserController.userVO;
+    public String teacherCourseManage(Model model,String account) {
+        userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
         return "teacher_courseList";
     }
@@ -81,6 +84,13 @@ public class TeacherCourseController {
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
+    }
+
+    ///////////共享情况
+    @RequestMapping(value = "/share",method = RequestMethod.GET)
+    public String teacherShare(Model model){
+        model.addAttribute("shareCourseList",courseService.listShareCourseVOByCourseId(courseDetailVO.getId()));
+        return "teacher_share";
     }
 
     ///////////创建共享

@@ -2,14 +2,17 @@ package cm.controller;
 
 import cm.service.CourseService;
 import cm.service.KlassService;
+import cm.service.StudentService;
 import cm.service.TeamService;
 import cm.vo.CourseDetailVO;
 import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,15 +29,17 @@ public class StudentTeamController {
     private CourseService courseService;
     @Autowired
     private KlassService klassService;
+    @Autowired
+    private StudentService studentService;
 
     UserVO student;
     CourseDetailVO courseDetailVO;
 
     //////student team list
-    @RequestMapping(value="",method= RequestMethod.POST)
-    public String studentTeam(Long courseId, Model model){
+    @RequestMapping(value="/{account}",method= RequestMethod.POST)
+    public String studentTeam(Long courseId, @PathVariable  String account,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
-        student= UserController.userVO;
+        student= studentService.getUserVOByAccount(account);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         model.addAttribute("studentsNotInTeam",teamService.listStudentsNotInTeam(courseId));
         return "student_teams";

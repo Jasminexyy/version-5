@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,20 +27,21 @@ public class TeacherController {
 
     @RequestMapping(value = "/activation", method = RequestMethod.POST)
     public String teacherActivationSubmit(String password, String password1) {
-        if (teacherService.activate(password, password1,UserController.userVO)) {
-            return "redirect:/cm/teacher/index";
+        if (teacherService.activate(password, password1,teacher)) {
+            return "redirect:/cm/teacher/index/${teacher.account}";
         }
         else
             return "redirect:/cm/teacher/activation";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String teacherIndex(Model model) {
+    public String teacherIndex(Model model,String account) {
         System.out.println("teacherIndex");
-        if (teacherService.getIs_active(UserController.userVO) == 0)
+        System.out.println(account);
+        teacher=teacherService.getUserVOByAccount(account);
+        if (teacherService.getIs_active(teacher) == 0)
             return "redirect:/cm/teacher/activation";
         else {
-            teacher=UserController.userVO;
             model.addAttribute("curTeacher", teacher);
             return "teacher_index";
         }
@@ -54,7 +56,8 @@ public class TeacherController {
 
     //修改邮箱按钮
     @RequestMapping(value = "/setting/modifyEmail", method = RequestMethod.GET)
-    public String teacherModifyEmail() {
+    public String teacherModifyEmail(Model model) {
+        model.addAttribute("teacher",teacher);
         return "modify_email";
     }
 
@@ -70,7 +73,9 @@ public class TeacherController {
 
     /////////////////////////////////修改账户密码按钮
     @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.GET)
-    public String teacherModifyPwd() {
+    public String teacherModifyPwd(Model model)
+    {
+        model.addAttribute("teacher",teacher);
         return "modify_pwd";
     }
 

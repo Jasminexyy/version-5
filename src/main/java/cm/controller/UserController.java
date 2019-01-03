@@ -21,7 +21,6 @@ public class UserController {
 	@Autowired
 	private TeacherService teacherService;
 
-	public static UserVO userVO;
 
 	//登录
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -30,20 +29,21 @@ public class UserController {
 	}
 
 	//登录提交表单
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/cm/login", method = RequestMethod.GET)
 	public String LoginSubmit(String account, String password) throws IOException {
+		System.out.println("login submit");
 		if (account.length() == 11) {
 			if (studentService.vertify(account, password)) {
-				userVO=studentService.getUserVOByAccount(account);
-				return "redirect:/cm/student/index";
-			} else {
-				if (teacherService.vertify(account, password)) {
-					userVO=teacherService.getUserVOByAccount(account);
-					return "redirect:/cm/teacher/index";
-				}
+				return "redirect:/cm/student/index?account="+account;
 			}
-			return "userlogin";
 		}
-		else return "redirect:/cm/teacher/index";
+		else {
+			if (teacherService.vertify(account, password)) {
+				System.out.println("verify teacher successfully");
+				return "redirect:/cm/teacher/index?account="+account;
+			}
+			System.out.println("verify teacher fail");
+		}
+		return "userlogin";
 	}
 }
