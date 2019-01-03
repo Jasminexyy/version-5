@@ -6,7 +6,7 @@
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 		<link href="/css/userlogin.css" type="text/css" rel="stylesheet">
-		<title>教师个人页面</title>
+		<title>学生个人页面</title>
 	</head>
 	<body class="body1">
 		<center>

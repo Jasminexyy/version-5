@@ -133,6 +133,7 @@ public class TeacherSeminarController {
     //////讨论课报告打分页
     @RequestMapping(value = "/finished",method = RequestMethod.POST)
     @ResponseBody
+    //attendanceId和reportscore
     public ResponseEntity teacherSeminarReportScoreSubmit(Map<Long,BigDecimal> attendanceId_score_map){
         seminarService.scoreReport(attendanceId_score_map,seminarInfoVO);
         return new ResponseEntity(HttpStatus.OK);
@@ -142,7 +143,7 @@ public class TeacherSeminarController {
     @RequestMapping(value = "/progressing/end",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherSeminarProcessingScore(Map<BigDecimal, Map<Long,BigDecimal>> score){
-        seminarService.scoreSeminar(score,seminarInfoVO);
+        seminarService.scoreSeminar(score,seminarInfoVO);//presentationscore,questionvo.id,questionscore
         return new ResponseEntity(HttpStatus.OK);
     }
 
