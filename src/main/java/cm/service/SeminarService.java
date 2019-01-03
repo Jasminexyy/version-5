@@ -99,22 +99,19 @@ public class SeminarService {
 
 
     public Map<String, KlassVO> listCourseAndKlass(UserVO student) {
+        //通过学生id获得所有选课
         List<Course> courses=courseDAO.listByStudentId(student.getId());
-        Map<String, KlassVO> map=new HashMap<CourseVO, KlassVO>();
+        Map<String, KlassVO> map=new HashMap<String, KlassVO>();
         for(int i=0;i<courses.size();i++)
         {
+            //获得当前选课的班级
             Klass k=klassDAO.getByCourseIdAndStudentId(courses.get(i).getId(),student.getId());
             KlassVO klassVO=new KlassVO();
             klassVO.setKlassId(k.getId());
             klassVO.setKlassName(k.getGrade(),k.getKlassSerial());
-            CourseVO courseVO=new CourseVO();
-            courseVO.setId(courses.get(i).getId());
-            courseVO.setName(courses.get(i).getCourseName());
-
-            map.put(courseVO,klassVO);
+            map.put(courses.get(i).getCourseName(),klassVO);
         }
         return map;
-
     }
 
     public SeminarInfoVO getKlassSeminarByEachId(Long klassId, Long seminarId) {
@@ -296,16 +293,17 @@ public class SeminarService {
     return klassSeminarVO;
     }
 
+    //attendanceId和reportscore
     public void scoreReport(Map<Long,BigDecimal> attendanceId_score_map,SeminarInfoVO seminarInfoVO) {
-        KlassSeminarVO tmp=getKlassSeminarVO(seminarInfoVO.getKlassId(),seminarInfoVO.getSeminarId());
-        List<Attendance> attendanceList=attendanceDAO.listByKlassSeminarId(tmp.getId());
-        for(int i=0;i<attendanceList.size();i++) {
-            //获取展示的所有小组
-            Team team=teamDAO.getByAttendanceId(attendanceList.get(i).getId());
-            //得到所有当前分数
-            SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(tmp.getId(),team.getId());
-            seminarScoreDAO.updateSeminarScore(seminarScore, tmp.getId(),team.getId());
-        }
+        for(Long key :attendanceId_score_map.keySet())
+{
+    //获得当前team
+    Team team=teamDAO.getByAttendanceId(key);
+    SeminarScore seminarScore=new SeminarScore();
+    seminarScore.setReportScore(attendanceId_score_map.get(key));
+    KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(seminarInfoVO.getSeminarId(),seminarInfoVO.getKlassId());
+    seminarScoreDAO.updateSeminarScore(seminarScore,klassSeminar.getId(),team.getId());
+}
     }
 
     public boolean uploadPPT(Long klassSeminarId, MultipartFile file,AttendanceVO attendanceVO) {
@@ -315,4 +313,10 @@ public class SeminarService {
         }else
             return false;
     }
+
+    //将展示分数存入数据库
+    // presentationscore,questionvo.id,questionscore
+//    public void scoreSeminar(Map<BigDecimal, Map<Long, BigDecimal>> score, SeminarInfoVO seminarInfoVO) {
+//
+//    }
 }

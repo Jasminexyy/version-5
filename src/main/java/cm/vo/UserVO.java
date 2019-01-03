@@ -12,6 +12,7 @@ public class UserVO {
 
     private Long id;
     private String account;
+    private String password;
     private String role;
     private String name;
     private String email;

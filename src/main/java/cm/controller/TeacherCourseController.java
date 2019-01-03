@@ -97,7 +97,7 @@ public class TeacherCourseController {
     ///////////创建共享
     @RequestMapping(value = "/shareCreate",method = RequestMethod.GET)
     public String teacherShareCreate(Model model){
-        //model.addAttribute("courseList",courseService.listAllCourse());
+        model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_create_share";
     }
 

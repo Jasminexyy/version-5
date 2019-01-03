@@ -33,12 +33,12 @@
 		<tr><td class="c2">教工号：</td><td class="c5">${curUser.account}</td><td class="c2"></td></tr>
 		<tr><td class="c10">联系方式(邮箱)：</td><td class="c4">${curUser.email}</td><td class="c10"><u class="u1">修改</u></td></tr>
 		<tr><td class="c2">账户密码：</td><td class="c5">${curUser.password}</td><td class="c2"><span class="right">></span></td></tr>
-		<tr><td class="c10">管理员邮箱：</td><td class="c4">${adminEmail}</td><td class="c10"></td></tr>
+		<tr><td class="c10">管理员邮箱：</td><td class="c4">123456@admin.com</td><td class="c10"></td></tr>
 	</table>
 </center>
 <center>
 	<!--	<form th:action="@{/logout}" method="post"> -->
-	<a href="cm/login"><button class="button8">退出登录</button></a></br>
+	<a href="/login"><button class="button8">退出登录</button></a></br>
 	</form>
 
 </center>
