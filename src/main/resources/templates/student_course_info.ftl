@@ -16,10 +16,8 @@
 	            <span1>
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
-						<li class="main" onclick="javascrtpt:window.location.href='/cm/student/index">
-							个人页</li>
-						<li class="main" onclick="javascrtpt:window.location.href='/cm/student/seminar/student_seminar_entrance'">
-							讨论课</li>
+                        <a href="/cm/student/index"><li class="main">个人页</li></a>
+                        <a href="/cm/student/course/seminar"><li class="main">讨论课</li></a>
 				    </ul>
 					</li>               
 					
