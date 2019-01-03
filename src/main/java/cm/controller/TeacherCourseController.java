@@ -3,10 +3,7 @@ package cm.controller;
 import cm.service.CourseService;
 import cm.service.KlassService;
 import cm.service.TeamService;
-import cm.vo.CourseDetailVO;
-import cm.vo.KlassVO;
-import cm.vo.SeminarScoreVO;
-import cm.vo.UserVO;
+import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -85,6 +82,22 @@ public class TeacherCourseController {
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
     }
+
+    ///////////创建共享
+    @RequestMapping(value = "/shareCreate",method = RequestMethod.GET)
+    public String teacherShareCreate(Model model){
+        model.addAttribute("courseList",courseService.listAllCourse());
+        return "teacher_create_share";
+    }
+
+    @RequestMapping(value = "/shareCreate",method=RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity teacherShareCreateSubmit(ShareCourseVO shareCourseVO){
+        courseService.createShare(shareCourseVO);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+
 
     //////学生成绩
     @RequestMapping(value = "/grade",method = RequestMethod.POST)
