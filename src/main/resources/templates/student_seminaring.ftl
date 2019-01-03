@@ -52,9 +52,9 @@
             stompClient.subscribe('/topic/broadcast', function(nextAttendance){
                 showGreeting2(JSON.parse(nextAttendance.body).teamNumber,
                     JSON.parse(nextAttendance.body).teamOrder,
-                    JSON.parse(SelectedQuestion.body).klassSeminarId,
-                    JSON.parse(SelectedQuestion.body).teamId,
-                    JSON.parse(SelectedQuestion.body).status
+                    JSON.parse(nextAttendance.body).klassSeminarId,
+                    JSON.parse(nextAttendance.body).teamId,
+                    JSON.parse(nextAttendance.body).status
                 );
             });
         });
@@ -63,7 +63,7 @@
     function send_klassSeminarId_attendanceId_teamId_studentId(klassSeminarId,attendanceId,teamId,studentId) {
         var name = document.getElementById('name').value;
         stompClient.send("/teacher/select/"+klassSeminarId+"/"+attendanceId+"/"+teamId+"/"+studentId, {}, JSON.stringify({ 'klassSeminarId':klassSeminarId},
-            {'attendanceId',attendanceId},{'teamId',teamId},{'studentId',studentId}));
+            {'attendanceId':attendanceId},{'teamId':teamId},{'studentId':studentId}));
     }
 
     function showGreeting(studentAccount,studentName,teamNumber,status) {
