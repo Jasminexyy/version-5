@@ -12,7 +12,7 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        OOAD 2016-(1)
+				${myTeam.courseKlass.courseName} ${myTeam.courseKlass.klassName}
 	            <span1>
 	                <b><li class="dao li1">+
 	                <ul class="sub sub1">
