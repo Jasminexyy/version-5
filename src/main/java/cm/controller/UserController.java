@@ -38,7 +38,7 @@ public class UserController {
 				return "redirect:/cm/student/index";
 			} else {
 				if (teacherService.vertify(account, password)) {
-					teacherService.getUserVOByAccount(account);
+					userVO=teacherService.getUserVOByAccount(account);
 					return "redirect:/cm/teacher/index";
 				}
 			}

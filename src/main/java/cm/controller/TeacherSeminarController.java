@@ -64,7 +64,7 @@ public class TeacherSeminarController {
     }
 
     //////////////////修改轮次设置
-    @RequestMapping(value = "/setting",method = RequestMethod.PATCH,consumes = "application/json")
+    @RequestMapping(value = "/setting",method = RequestMethod.PATCH)
     @ResponseBody
     public ResponseEntity teacherSeminarSettingSubmit(@RequestBody RoundVO round) {
         roundService.updateRound(round);
@@ -134,8 +134,8 @@ public class TeacherSeminarController {
     //////讨论课报告打分页
     @RequestMapping(value = "/finished",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherSeminarReportScoreSubmit(List<BigDecimal> score){
-        seminarService.scoreReport(score,seminarInfoVO);
+    public ResponseEntity teacherSeminarReportScoreSubmit(Map<Long,BigDecimal> attendanceId_score_map){
+        seminarService.scoreReport(attendanceId_score_map,seminarInfoVO);
         return new ResponseEntity(HttpStatus.OK);
     }
 
