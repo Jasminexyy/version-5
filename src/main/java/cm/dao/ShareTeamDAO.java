@@ -34,4 +34,7 @@ public class ShareTeamDAO {
     public int updateStatusByShareTeamId(Byte status,Long id){
         return shareTeamApplicationMapper.updateStatusById(status, id);
     }
+    public int createShareTeamApplication(Long mainCourseId,Long subCourseId,Long subCourseTeacherId,Byte status){
+        return shareTeamApplicationMapper.createShareTeamApplication(mainCourseId, subCourseId, subCourseTeacherId, status);
+    }
 }

@@ -72,4 +72,8 @@ public interface KlassStudentMapper {
     @Select("select team_id from klass_student where student_id=#{studentId} and klass_id=#{klassId}")
     Long getTeamIdByStudentIdAndKlassId(@Param("studentId") Long studentId,
                                         @Param("klassId") Long klassId);
+
+    @Select("select klass_id from klass_student where student_id=#{studentId} and course_id=#{courseId}")
+    Long getKlassIdByStudentIdAndCourseId(@Param("studentId") Long studentId,
+                                          @Param("courseId") Long courseId);
 }

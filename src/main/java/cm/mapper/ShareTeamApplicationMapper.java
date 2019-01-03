@@ -72,4 +72,11 @@ public interface ShareTeamApplicationMapper {
     int updateStatusById(@Param("status") Byte status,
                          @Param("id") Long id);
 
+    @Insert("insert into share_team_application(main_course_id,sub_course_id,sub_course_teacher_id,status)" +
+            "value(#{mainCourseId},#{subCourseId},#{subCourseTeacherId},#{status})")
+    int createShareTeamApplication(@Param("mainCourseId") Long mainCourseId,
+                                   @Param("subCourseId") Long subCourseId,
+                                   @Param("subCourseTeacherId") Long subCourseTeacherId,
+                                   @Param("status") Byte status);
+
 }
