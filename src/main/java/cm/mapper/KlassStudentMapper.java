@@ -2,7 +2,6 @@ package cm.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @Author: Yunfeng Huang

@@ -11,8 +11,8 @@
         <span>X</span>
         <center>课堂管理系统登录</center>
     </div>
-    <form action="/cm/login" method="post">
-    <input type="text" name="id" value="用户名" onfocus="this.value='';this.onfocus='';"/><br/>
+    <form action="/index" method="post">
+    <input type="text" name="account" value="用户名" onfocus="this.value='';this.onfocus='';"/><br/>
     <input type="password" name="password" value="登录密码" onfocus="this.value='';this.onfocus='';"/><br/>
     <button type="submit">登 录</button></br>
     </form>

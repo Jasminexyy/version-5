@@ -5,8 +5,6 @@ import cm.mapper.SeminarScoreMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
-
 /**
  * @Author: Yunfeng Huang
  * @Description:
@@ -21,7 +19,7 @@ public class SeminarScoreDAO {
         return seminarScoreMapper.getByKlassSeminarIdAndTeamId(klassSeminarId, teamId);
     }
 
-    public SeminarScore getBySeminarIdAndKlassIdAndTeamId(Long seminarId,Long klassId,Long teamId){
+    public SeminarScore getBySeminarIdAndKlassIdAndTeamId(Long seminarId, Long klassId, Long teamId){
         return seminarScoreMapper.getBySeminarIdAndKlassIdAndTeamId(seminarId, klassId, teamId);
     }
 
@@ -29,7 +27,7 @@ public class SeminarScoreDAO {
         return seminarScoreMapper.deleteByKlassSeminarId(klassSeminarId);
     }
 
-    public void updateSeminarScore(SeminarScore seminarScore,Long klassSeminarId,Long teamId){
+    public void updateSeminarScore(SeminarScore seminarScore, Long klassSeminarId, Long teamId){
         seminarScoreMapper.updateSeminarScore(seminarScore,klassSeminarId,teamId);
     }
 }

@@ -23,15 +23,6 @@ public class StrategyDAO {
 
 
     @Autowired
-    private TeamStrategyMapper teamStrategyMapper;
-
-    @Autowired
-    private TeamAndStrategyMapper teamAndStrategyMapper;
-
-    @Autowired
-    private TeamOrStrategyMapper teamOrStrategyMapper;
-
-    @Autowired
     private ConflictCourseStrategyMapper conflictCourseStrategyMapper;
 
     @Autowired
@@ -39,6 +30,15 @@ public class StrategyDAO {
 
     @Autowired
     private CourseMemberLimitStrategyMapper courseMemberLimitStrategyMapper;
+
+    @Autowired
+    private TeamStrategyMapper teamStrategyMapper;
+
+    @Autowired
+    private TeamAndStrategyMapper teamAndStrategyMapper;
+
+    @Autowired
+    private TeamOrStrategyMapper teamOrStrategyMapper;
 
     /**
      * 总判断入口
@@ -169,15 +169,15 @@ public class StrategyDAO {
         return  courseMemberLimitStrategyMapper.createCourseMemberLimitStrategy(courseMemberLimitStrategy);
     }
 
-    public int createMemberLimitStrategy(MemberLimitStrategy memberLimitStrategy){
-        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-    }
-
-    public int createTeamAndStrategy(MemberLimitStrategy memberLimitStrategy){
-        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-    }
-
-    public int createTeamOrStrategy(MemberLimitStrategy memberLimitStrategy){
-        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-    }
+//    public int createMemberLimitStrategy(MemberLimitStrategy memberLimitStrategy){
+//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
+//    }
+//
+//    public int createTeamAndStrategy(MemberLimitStrategy memberLimitStrategy){
+//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
+//    }
+//
+//    public int createTeamOrStrategy(MemberLimitStrategy memberLimitStrategy){
+//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
+//    }
 }

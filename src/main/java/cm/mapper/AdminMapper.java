@@ -24,7 +24,7 @@ public interface AdminMapper {
             @Result(property = "account",column = "account"),
             @Result(property = "password",column = "password")
     })
-    Admin getByAdminId(@Param("adminId")String adminId);
+    Admin getByAdminId(@Param("adminId") String adminId);
 
     /**
      * 根据AdminAccount获得admin 判断管理员是否登录

@@ -33,7 +33,7 @@ public interface KlassRoundMapper {
             @Result(property = "roundId",column = "round_id"),
             @Result(property = "enrollNumber",column = "enroll_number")
     })
-    List<KlassRound> listByRoundId(@Param("roundId")Long roundId);
+    List<KlassRound> listByRoundId(@Param("roundId") Long roundId);
 
     /**
      * 根据RoundId与KlassId获得EnrollNumber
@@ -45,6 +45,17 @@ public interface KlassRoundMapper {
     Byte getEnrollNumberByRoundIdAndKlassId(@Param("klassId") Long klassId,
                                             @Param("roundId") Long roundId);
     /**
+     * 根据RoundId与KlassId更新EnrollNumber
+     * @param enrollNumber
+     * @param klassId
+     * @param roundId
+     * @return int
+     */
+    @Update("update klass_round set enroll_number=#{enrollNumber} where klass_id=#{klassId} and round_id=#{roundId}")
+    int updateEnrollNumberByRoundIdAndKlassId(@Param("enrollNumber") Byte enrollNumber,
+                                              @Param("klassId") Long klassId,
+                                              @Param("roundId") Long roundId);
+    /**
      * 根据RoundId获得KlassRound
      * @param roundId
      * @return java.util.List<cm.entity.KlassRound>
@@ -55,5 +66,5 @@ public interface KlassRoundMapper {
             @Result(property = "roundId",column = "round_id"),
             @Result(property = "enrollNumber",column = "enroll_number")
     })
-    List<KlassRound> listKlassRoundsByRoundId(@Param("roundId")Long roundId);
+    List<KlassRound> listKlassRoundsByRoundId(@Param("roundId") Long roundId);
 }

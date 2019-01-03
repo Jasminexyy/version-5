@@ -1,10 +1,10 @@
 package cm.dao;
 
-import cm.entity.Course;
 import cm.entity.Klass;
-import cm.entity.KlassRound;
 import cm.entity.Student;
-import cm.mapper.*;
+import cm.mapper.KlassMapper;
+import cm.mapper.KlassRoundMapper;
+import cm.mapper.KlassStudentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,11 +31,11 @@ public class KlassDAO {
         return klassMapper.listByCourseId(courseId);
     }
 
-    public Klass getByCourseIdAndStudentId(Long courseId,Long studentId){
+    public Klass getByCourseIdAndStudentId(Long courseId, Long studentId){
         return klassMapper.getByCourseIdAndStudentId(courseId,studentId);
     }
 
-    public int createByCourseId(Klass klass,Long courseId){
+    public int createByCourseId(Klass klass, Long courseId){
         try {
             return klassMapper.createByCourseId(klass, courseId);
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class KlassDAO {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void createKlassStudentListByStudentListAndKlassIdAndCourseId(List<Student>studentList,Long klassId,Long courseId){
+    public void createKlassStudentListByStudentListAndKlassIdAndCourseId(List<Student>studentList, Long klassId, Long courseId){
         klassStudentMapper.deleteByKlassId(klassId);
         for (Student student:studentList) {
             klassStudentMapper.createByKlassIdAndStudentIdAndCourseId(klassId,
@@ -57,7 +57,7 @@ public class KlassDAO {
         return  klassMapper.getByKlassId(klassId);
     }
 
-    public Klass getByKlassIdAndTeacherId(Long klassId,Long teacherId){
+    public Klass getByKlassIdAndTeacherId(Long klassId, Long teacherId){
         return klassMapper.getByKlassIdAndTeacherId(klassId, teacherId);
     }
 
@@ -78,5 +78,17 @@ public class KlassDAO {
 
     public Byte getEnrollNumberByRoundIdAndKlassId(Long klassId, Long roundId){
         return klassRoundMapper.getEnrollNumberByRoundIdAndKlassId(klassId,roundId);
+    }
+    //public Long getCourseIdByKlassId(Long klassId){
+    //   return klassMapper.getCourseIdByKlassId(klassId);
+    //}
+    public int updateEnrollNumberByRoundIdAndKlassId(Byte enrollNumber, Long klassId, Long roundId){
+        return klassRoundMapper.updateEnrollNumberByRoundIdAndKlassId(enrollNumber, klassId,roundId);
+    }
+    public Long getKlassIdByCourseIdAndKlassSerial(Long courseId, Long klassSerial){
+        return klassMapper.getKlassIdByCourseIdAndKlassSerial(courseId,klassSerial);
+    }
+    public Long getCourseIdByKlassId(Long klassId){
+        return klassMapper.getCourseIdByKlassId(klassId);
     }
 }

@@ -24,36 +24,43 @@ public class AttendanceDAO {
     @Autowired
     private QuestionMapper questionMapper;
 
-    @Value("${pptPathInServer}")
-    private String pptPathInServer;
-
-    @Value("${reportPathInServer}")
-    private String reportPathInServer;
 
     public Attendance getByKlassSeminarIdAndKlassIdAndStudentId(Long klassSeminarId, Long klassId, Long studentId){
+
         return attendanceMapper.getByKlassSeminarIdAndKlassIdAndStudentId(klassSeminarId, klassId, studentId);
     }
 
     public Attendance getBySeminarIdAndKlassIdAndStudentId(Long seminarId, Long klassId, Long studentId){
+
         return attendanceMapper.getBySeminarIdAndKlassIdAndStudentId(seminarId, klassId, studentId);
     }
 
     public Attendance getByKlassSeminarIdAndTeamId(Long klassSeminarId,Long teamId){
+
         return attendanceMapper.getByKlassSeminarIdAndTeamId(klassSeminarId, teamId);
+    }
+    public Attendance getByKlassSeminarIdAndTeamOrder(Long klassSeminarId,Integer teamOrder){
+
+        return attendanceMapper.getByKlassSeminarIdAndTeamOrder(klassSeminarId, teamOrder);
     }
 
     public Attendance getByAttendanceId(Long attendanceId){
+
         return attendanceMapper.getByAttendanceId(attendanceId);
     }
 
     public Attendance getByAttendanceIdAndStudentId(Long attendanceId,Long studentId){
+
         return attendanceMapper.getByAttendanceIdAndStudentId(attendanceId, studentId);
     }
+
     public int updatePptByAttendanceId(Long attendanceId,String pptName,String pptUrl){
+
         return attendanceMapper.updatePptByAttendanceId(attendanceId,pptName,pptUrl);
     }
 
     public int updateReportByAttendanceId(Long attendanceId,String reportName,String reportUrl){
+
         return attendanceMapper.updateReportByAttendanceId(attendanceId,reportName,reportUrl);
     }
 
@@ -75,34 +82,48 @@ public class AttendanceDAO {
     }
 
     public List<Attendance>listByTeamId(Long teamId){
+
         return attendanceMapper.listByTeamId(teamId);
     }
 
     public Long getTeamIdByAttendanceId(Long attendanceId){
+
         return  attendanceMapper.getTeamIdByAttendanceId(attendanceId);
     }
 
     public Long getKlassSeminarIdByAttendanceId(Long attendanceId){
+
         return attendanceMapper.getKlassSeminarIdByAttendanceId(attendanceId);
     }
 
     public String getReportUrlByAttendanceId(Long attendanceId){
+
         return  attendanceMapper.getReportUrlByAttendanceId(attendanceId);
     }
 
     public String getPptUrlByAttendanceId(Long attendanceId){
+
         return attendanceMapper.getPptUrlByAttendanceId(attendanceId);
     }
 
     public int startAttendance(Long attendanceId){
+
         return attendanceMapper.startAttendanceById(attendanceId);
     }
 
     public int endAttendance(Long attendanceId){
-        return  attendanceMapper.endAttendanceById(attendanceId);
+
+        return attendanceMapper.endAttendanceById(attendanceId);
     }
 
     public List<Attendance> listByRoundIdAndTeamId(Long roundId,Long teamId){
+
         return attendanceMapper.listByRoundIdAndTeamId(roundId,teamId);
     }
+
+    @Value("${pptPathInServer}")
+    private String pptPathInServer;
+
+    @Value("${reportPathInServer}")
+    private String reportPathInServer;
 }

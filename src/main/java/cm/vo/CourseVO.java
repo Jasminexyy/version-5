@@ -18,5 +18,4 @@ public class CourseVO {
     private Boolean isShareSeminar;
 
     List<RoundVO> roundVOList;
-
 }

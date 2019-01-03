@@ -1,7 +1,6 @@
 package cm.entity;
 
 import lombok.Data;
-import org.springframework.stereotype.Repository;
 
 /**
  * @Author: Yunfeng Huang

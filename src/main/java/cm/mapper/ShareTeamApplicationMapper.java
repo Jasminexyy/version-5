@@ -1,6 +1,5 @@
 package cm.mapper;
 
-import cm.entity.ShareSeminarApplication;
 import cm.entity.ShareTeamApplication;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;

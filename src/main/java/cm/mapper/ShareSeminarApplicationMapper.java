@@ -2,7 +2,6 @@ package cm.mapper;
 
 import cm.entity.ShareSeminarApplication;
 import org.apache.ibatis.annotations.*;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

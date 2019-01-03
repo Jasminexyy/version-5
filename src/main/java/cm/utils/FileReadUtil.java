@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class FileReadUtil {
 
-    public static List<Student> excelToStudentList(MultipartFile multipartFile) {
+    public static List<Student> listStudentByExcel(MultipartFile multipartFile) {
         List<Student> result=new ArrayList<>();
         XSSFWorkbook workbook=null;
         try {

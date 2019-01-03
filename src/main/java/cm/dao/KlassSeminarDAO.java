@@ -22,11 +22,11 @@ public class KlassSeminarDAO {
         return  klassSeminarMapper.createByKlassIdAndSeminarId(klassId,seminarId);
     }
 
-    public KlassSeminar getBySeminarIdAndCourseIdAndStudentId(Long seminarId,Long courseId,Long studentId){
+    public KlassSeminar getBySeminarIdAndCourseIdAndStudentId(Long seminarId, Long courseId, Long studentId){
         return klassSeminarMapper.getBySeminarIdAndCourseIdAndStudentId(seminarId, courseId, studentId);
     }
 
-    public KlassSeminar getBySeminarIdAndKlassId(Long seminarId,Long klassId){
+    public KlassSeminar getBySeminarIdAndKlassId(Long seminarId, Long klassId){
         return klassSeminarMapper.getBySeminarIdAndKlassId(seminarId, klassId);
     }
 
@@ -36,6 +36,10 @@ public class KlassSeminarDAO {
 
     public List<KlassSeminar>listByKlassId(Long klassId){
         return klassSeminarMapper.listByKlassId(klassId);
+    }
+
+    public KlassSeminar getByKlassSeminarId(Long klassSeminarId){
+        return klassSeminarMapper.getByKlassSeminarId(klassSeminarId);
     }
 
     public int deleteByKlassSeminarId(Long klassSeminarId){

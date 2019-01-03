@@ -30,8 +30,8 @@ public interface KlassSeminarMapper {
             @Result(property = "status",column = "status")
     })
     KlassSeminar getBySeminarIdAndCourseIdAndStudentId(@Param("seminarId") Long seminarId,
-                                                        @Param("courseId") Long courseId,
-                                                        @Param("studentId") Long studentId);
+                                                       @Param("courseId") Long courseId,
+                                                       @Param("studentId") Long studentId);
     /**
      * 根据seminarId得到所有KlassSeminar
      * @param seminarId
@@ -72,7 +72,7 @@ public interface KlassSeminarMapper {
     KlassSeminar getByKlassSeminarId(@Param("klassSeminarId") Long klassSeminarId);
 
     /**
-     * 根据seminarId和klassI获得klassSeminar
+     * 根据seminarId和klassId获得klassSeminar
      * @param seminarId
      * @param klassId
      * @return cm.entity.KlassSeminar

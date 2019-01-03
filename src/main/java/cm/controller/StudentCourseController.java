@@ -1,26 +1,30 @@
 package cm.controller;
 
-import cm.entity.*;
 import cm.service.CourseService;
-import cm.service.StudentService;
+import cm.vo.CourseVO;
+import cm.vo.KlassVO;
+import cm.vo.SeminarScoreVO;
+import cm.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/cm/student/course")
 public class StudentCourseController {
-    CourseService courseService=new CourseService();
+    @Autowired
+    private CourseService courseService;
+
+    UserVO student= UserController.userVO;
 
     ///////student course list get
     @RequestMapping(value = "",method= RequestMethod.GET)
     public String studentCourse(Model model){
-        List<Map<Course, Klass>> maps=courseService.findCourseAndKlassByStudentId(studentId);
+        Map<CourseVO, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
         return "studentCourse";
     }
@@ -28,14 +32,14 @@ public class StudentCourseController {
     ///////student course info post
     @RequestMapping(value = "/info",method = RequestMethod.POST)
     public String studentCourseInfo(long courseId,Model model){
-        model.addAttribute("curCourse",courseService.findCourseById(courseId));
+        model.addAttribute("curCourse",courseService.getCourseById(courseId));
         return "student_course_info";
     }
 
     ///////student course score Map<RoundName,SeminarScore>
     @RequestMapping(value = "/score",method = RequestMethod.POST)
     public String studentScore(long courseId,long klassId,Model model){
-        List<Map<String,SeminarScore>> maps=courseService.findScoreForStudent(courseId,klassId,studentId);
+        Map<String, SeminarScoreVO> maps=courseService.listScoreForStudent(courseId,klassId,student.getId());
         model.addAttribute("scoreDetails",maps);
         return "studentScore";
     }

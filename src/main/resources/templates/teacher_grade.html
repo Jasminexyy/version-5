@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head style="font-size:35px;">
+<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+
+		<link href="../static/css/details.css" type="text/css" rel="stylesheet"/>
+		<title>教师-查看成绩</title>
+	</head>
+
+<body>
+<center>
+<div id="header1" style="background-color:#ffffff;">
+	            <span>
+	                <b><</b>
+	            </span>
+	        学生成绩
+	            <span1>
+	                <b><li class="dao li1">+
+	                <ul class="sub sub1">
+						<li class="main">代办</li>
+						<li class="main">个人页</li>
+						<li class="main">讨论课</li>
+				    </ul>
+					</li>               
+					</b>
+					</span1>	            
+	        </div> 			</center>
+
+<center>
+<div>
+<details>
+<!--好多轮次-->
+	<#list roundNameAndSeminarScore?keys as key>
+<summary  id="sumbackground">第${key}轮</summary>
+    <details>
+		<#list roundNameAndSeminarScore.get(key) as seminarscore>
+	<summary id="sumbackground-summary"><!--好多小组，小组当轮次的分数-->
+		${seminarscore.className}-${seminarscore.teamOrder}
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		${seminarscore.simpleSeminarScoreVO.totalScore}
+	</summary>
+		<#list roundNameAndSeminarScore.get(key) as singleseminarscore>
+		<#if seminarscore.className==singleseminarscore.className&&
+		seminarscore.teamOrder==singleseminarscore.teamOrder>
+	<div  id="backcolor">
+		<span>${singleseminarscore.simpleSeminarScoreVO.seminarName}</span>
+	<table>
+	<tr>
+	<!--分数按照讨论课名字去读-->
+    <td>展示：<font color="#9ACD32">${singleseminarscore.simpleSeminarScoreVO.presentationScore}</font></td>
+    <td>提问：<font color="#9ACD32">${singleseminarscore.simpleSeminarScoreVO.questionScore}</font></td>
+    <td>书面报告：<font color="#9ACD32">${singleseminarscore.simpleSeminarScoreVO.reportScore}</font></td>
+  </tr>
+</table>
+	</div>
+	</#if>
+		</#list>
+
+		</br>
+		</#list>
+	</details>
+	</#list>
+</details>
+
+</div>
+</center>
+
+
+</body>
+</html>

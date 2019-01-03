@@ -1,6 +1,7 @@
 package cm.entity;
 
 import lombok.Data;
+
 import java.math.BigDecimal;
 
 /**
@@ -14,6 +15,7 @@ public class SeminarScore {
     private BigDecimal presentationScore=new BigDecimal(0);
     private BigDecimal questionScore=new BigDecimal(0);
     private BigDecimal reportScore=new BigDecimal(0);
+
     public void setTotalScore(Byte presentationPercentage,Byte questionPercentage,Byte reportPercentage){
         Double d1=presentationScore.doubleValue()*presentationPercentage/100,
                 d2=questionScore.doubleValue()*questionPercentage/100,

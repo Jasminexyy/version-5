@@ -3,6 +3,8 @@ package cm.vo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author: Yunfeng Huang
  * @Description:
@@ -10,6 +12,16 @@ import lombok.Data;
  */
 @Data
 public class KlassVO {
+    private Integer grade;
+
+    private Byte klassSerial;
+
+    @JsonProperty("time")
+    private String klassTime;
+
+    @JsonProperty("location")
+    private String klassLocation;
+
     @JsonProperty("id")
     private Long klassId;
 
@@ -19,4 +31,6 @@ public class KlassVO {
     public void setKlassName(Integer grade, Byte klassSerial) {
         this.klassName = String.valueOf(grade)+"(" +String.valueOf(klassSerial)+")";
     }
+
+    private List<UserVO> studentVOList;
 }

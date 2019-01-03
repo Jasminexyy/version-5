@@ -1,7 +1,6 @@
 package cm.dao;
 
 import cm.entity.Course;
-import cm.entity.CourseMemberLimitStrategy;
 import cm.mapper.CourseMapper;
 import cm.mapper.CourseMemberLimitStrategyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,11 +41,11 @@ public class CourseDAO {
         return courseMapper.listByTeamMainCourseId(teamMainCourseId);
     }
 
-    public Course getByCourseIdAndTeacherId(Long courseId,Long teacherId){
+    public Course getByCourseIdAndTeacherId(Long courseId, Long teacherId){
         return courseMapper.getByCourseIdAndTeacherId(courseId, teacherId);
     }
 
-    public Course getByKlassIdAndTeacherId(Long klassId,Long teacherId){
+    public Course getByKlassIdAndTeacherId(Long klassId, Long teacherId){
         return courseMapper.getByKlassIdAndTeacherId(klassId, teacherId);
     }
 
@@ -58,7 +57,7 @@ public class CourseDAO {
         return courseMapper.deleteByCourseId(courseId);
     }
 
-    public int createCourse(Long teacherId,Course course){
+    public int createCourse(Long teacherId, Course course){
         return courseMapper.createCourse(teacherId,course);
     }
 }

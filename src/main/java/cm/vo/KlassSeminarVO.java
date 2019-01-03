@@ -3,8 +3,6 @@ package cm.vo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-import java.sql.Timestamp;
-
 /**
  * @Author: Yunfeng Huang
  * @Description:
@@ -16,8 +14,8 @@ public class KlassSeminarVO {
     private Long id;
     private String topic;
     private String intro;
-    private Byte status;
-    private Byte order;
+    private Byte isVisible;
+    private Byte roundSerial;
     private Byte teamNumLimit;
     private String reportDDL;
 

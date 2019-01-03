@@ -15,7 +15,7 @@ public class RoundScoreDAO {
     @Autowired
     private RoundScoreMapper roundScoreMapper;
 
-    public RoundScore getByRoundIdAndTeamId(Long roundId,Long teamId){
+    public RoundScore getByRoundIdAndTeamId(Long roundId, Long teamId){
         return roundScoreMapper.getByRoundIdAndTeamId(roundId, teamId);
     }
 }

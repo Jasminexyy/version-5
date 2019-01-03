@@ -21,6 +21,7 @@ public class LoginUser implements UserDetails {
     private String passWord;
     private Byte isActive;
     private String userRole;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();

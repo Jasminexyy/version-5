@@ -3,7 +3,6 @@ package cm.mapper;
 import cm.entity.LoginUser;
 import cm.entity.Teacher;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

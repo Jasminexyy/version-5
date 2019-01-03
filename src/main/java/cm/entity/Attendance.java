@@ -10,7 +10,9 @@ import lombok.Data;
 @Data
 public class Attendance {
     private Long id;
-    private Byte teamOrder;
+    private Long klassSeminarId;
+    private Long teamId;
+    private Integer teamOrder;
     private Byte isPresent=0;
     private String reportName;
     private String reportUrl;

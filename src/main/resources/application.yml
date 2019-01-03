@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: QWERasdf1234
+    url: jdbc:mysql://47.107.254.129:3306/standard_seminar_system?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+pptPath: /ooad/ppt/
+pptPathInServer: E://ooadFile//ppt//
+reportPath: /ooad/report/
+reportPathInServer: E://ooadFile//report//
+defaultUrl: http://localhost:8081/#
+defaultPcUrl: http://localhost:8082

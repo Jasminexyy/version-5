@@ -3,6 +3,7 @@ package cm.mapper;
 import cm.entity.Question;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -58,8 +59,8 @@ public interface QuestionMapper {
             "#{question.teamId},#{question.studentId},#{question.isSelected}) ")
     @Options(useGeneratedKeys = true,keyProperty = "question.id")
     int createQuestion(@Param("klassSeminarId") Long klassSeminarId,
-                       @Param("attendanceId")Long attendanceId,
-                       @Param("question")Question question);
+                       @Param("attendanceId") Long attendanceId,
+                       @Param("question") Question question);
 
 
     /**
@@ -69,8 +70,8 @@ public interface QuestionMapper {
      * @return int
      */
     @Update("update question set score=#{score},is_selected=1 where id=#{questionId}")
-    int scoreQuestion(@Param("questionId")Long questionId,
-                      @Param("score")BigDecimal score);
+    int scoreQuestion(@Param("questionId") Long questionId,
+                      @Param("score") BigDecimal score);
 
 
     /**

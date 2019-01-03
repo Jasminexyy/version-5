@@ -1,38 +1,49 @@
 package cm.controller;
 
-import cm.entity.Course;
 import cm.service.CourseService;
 import cm.service.KlassService;
-import cm.service.RoundService;
 import cm.service.TeamService;
+import cm.vo.CourseDetailVO;
+import cm.vo.KlassVO;
+import cm.vo.SeminarScoreVO;
+import cm.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/cm/teacher/course")
 public class TeacherCourseController {
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private TeamService teamService;
+    @Autowired
+    private KlassService klassService;
 
-    CourseService courseService=new CourseService();
-    TeamService teamService=new TeamService();
-    RoundService roundService=new RoundService();
-    KlassService klassService=new KlassService();
-
+    CourseDetailVO courseDetailVO;
+    UserVO userVO;
     //课程管理
     @RequestMapping(method= RequestMethod.GET)
     public String teacherCourseManage(Model model) {
-        model.addAttribute("courseList", courseService.findCoursesByTeacher(teacher));
+        userVO= UserController.userVO;
+        model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
         return "teacher_courseList";
     }
 
     /////////////////////////////////////课程详情页
-    @RequestMapping(value="/info")
-    public String teacherCourseInfo(Model model){
-        long courseId;
-        model.addAttribute("curCourse",courseService.findCourseById(courseId));
+    @RequestMapping(value="/info",method = RequestMethod.POST)
+    public String teacherCourseInfo(Long courseId,Model model){
+        courseDetailVO=courseService.getCourseById(courseId);
+        model.addAttribute("curCourse",courseDetailVO);
+        //model.addAttribute("TeamNeedVO",courseService.getTeamNeedVO(courseId));
         return "teacher_courseInfo";
     }
 
@@ -41,67 +52,88 @@ public class TeacherCourseController {
     public String teacherCourseCreate(){
         return "teacher_course_create";
     }
-
+////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.PUT,consumes ="application/json" )
     @ResponseBody
-    public void teacherCourseCreateSubmit(HttpServletResponse response, @RequestBody Course course)throws IOException {
-        if(courseService.addCourse(course)){
-            response.setStatus(200);
-            response.getWriter().append("创建成功");
-        }
-        else{
-            response.setStatus(409);
-            response.getWriter().append("因课程重名而失败");
-        }
+    public ResponseEntity teacherCourseCreateSubmit(@RequestBody CourseDetailVO course){
+        if(courseService.addCourse(course,userVO))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.CONFLICT);
     }
 
-    @RequestMapping(value = "/{courseID}",method = RequestMethod.DELETE)
+    //////////////////////////////删除课程
+    @RequestMapping(value = "/{courseId}",method = RequestMethod.DELETE)
     @ResponseBody
-    public void teacherCourseDelete(HttpServletResponse response, @PathVariable long courseID)throws IOException {
-        if(courseService.deleteCourseById(courseID)) {
-            response.setStatus(200);
-            response.getWriter().append("删除成功！");
-        }
+    public ResponseEntity teacherCourseDelete(@PathVariable long courseId){
+        courseService.deleteCourseById(courseId);
+            return new ResponseEntity(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "",method = RequestMethod.PATCH,consumes = "application/json")
-    @ResponseBody
-    public void teacherCourseUpdate(HttpServletResponse response,@RequestBody Course course)throws IOException{
-        long courseId;
-        if(courseService.updateCourse(courseId,course)){
-            response.setStatus(200);
-            response.getWriter().append("修改成功");
-        }
-    }
+//    //////////////////修改课程
+//    @RequestMapping(value = "",method = RequestMethod.PATCH)
+//    @ResponseBody
+//    public ResponseEntity teacherCourseUpdate(@RequestBody CourseVO course){
+//        courseService.updateCourse(course);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 
-    @RequestMapping(value="/teamList",method = RequestMethod.GET)
-    public String teacherTeamList(Model model){
-        long courseId;
-        model.addAttribute("teamList",teamService.findTeamsByCourseId(courseId));
+    //////////////学生组队
+    @RequestMapping(value="/teamList",method = RequestMethod.POST)
+    public String teacherTeamList(Long courseId,Model model){
+        courseDetailVO=courseService.getCourseById(courseId);
+        model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
     }
 
-    @RequestMapping(value = "/grade",method = RequestMethod.GET)
-    public String teacherGrade(Model model){
-        long courseId;
-        model.addAttribute("roundScores",roundService.findRoundScoreByCourseId(courseId));
-        return "teacher_grade";
+    //////学生成绩
+    @RequestMapping(value = "/grade",method = RequestMethod.POST)
+    public String teacherGrade(Long courseId,Model model){
+        courseDetailVO=courseService.getCourseById(courseId);
+        Map<String, List<SeminarScoreVO>> maps=courseService.listScoreForTeacher(courseId);
+        model.addAttribute("roundNameAndSeminarScore",maps);
+        return "teacher_grade.html";
     }
 
     ////////班级管理
     @RequestMapping(value="/klassList",method = RequestMethod.POST)
-    public String teacherKlassManage(Model model){
-        long course_id;//此处应从security获取当前课程
-        model.addAttribute("klassList",klassService.findKlassesByCourseId(course_id));
+    public String teacherKlassManage(Long course_id,Model model){
+        courseDetailVO=courseService.getCourseById(course_id);
+        model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
         return "teacher_klassList";
+    }
+
+    //////////创建班级
+    @RequestMapping(value = "/klass/create",method = RequestMethod.GET)
+    public String teacherKlassCreate(){
+        return "teacher_klass_create";
+    }
+
+    @RequestMapping(value = "/klass/create",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO){
+        if(klassService.addKlass(klassVO,courseDetailVO))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.CONFLICT);
     }
 
     ////////删除班级
     @RequestMapping(value = "/klass/{klassId}",method = RequestMethod.DELETE)
     @ResponseBody
-    public void teacherKlassDelete(HttpServletResponse response,@PathVariable long klassId)throws IOException{
-        if(klassService.deleteKlassById(klassId)){
-            response.setStatus(200);
-            response.getWriter().append("删除成功");
+    public ResponseEntity teacherKlassDelete(@PathVariable long klassId) {
+        klassService.deleteKlassById(klassId);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    ///////提交学生名单
+    @RequestMapping(value = "/klass",method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity teacherKlassStudentListUpload(Long klassId, MultipartFile fileUpload){
+        if(klassService.uploadStudentList(klassId,fileUpload)){
+            return new ResponseEntity(HttpStatus.OK);
         }
+        else
+            return new ResponseEntity(HttpStatus.CONFLICT);
+    }
 }

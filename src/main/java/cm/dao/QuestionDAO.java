@@ -28,7 +28,7 @@ public class QuestionDAO {
     }
 
     public Question getByQuestionId(Long questionId){
-        return  questionMapper.getByQuestionId(questionId);
+        return questionMapper.getByQuestionId(questionId);
     }
 
     public List<Question> listUnSelectedQuestion(Long attendanceId){

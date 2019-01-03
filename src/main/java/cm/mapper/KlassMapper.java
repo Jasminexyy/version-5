@@ -119,4 +119,21 @@ public interface KlassMapper {
     Long getKlassIdByCourseIdAndStudentId(@Param("courseId") Long courseId,
                                           @Param("studentId") Long studentId);
 
+    /**
+     * 根据klassId得到courseId
+     * @param klassId
+     * @return java.lang.Long
+     */
+    @Select("select course_id from klass where id=#{klassId}")
+    Long getCourseIdByKlassId(@Param("klassId") Long klassId);
+
+    /**
+     * 根据klassSerial和courseId得到klassId
+     * @param courseId
+     * @param klassSerial
+     * @return
+     */
+    @Select("select klass_id from klass where course_id=#{courseId} and klass_serial=#{klassSerial}")
+    Long getKlassIdByCourseIdAndKlassSerial(@Param("courseId") Long courseId,
+                                            @Param("klassSerial") Long klassSerial);
 }

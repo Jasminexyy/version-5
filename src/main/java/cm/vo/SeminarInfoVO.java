@@ -18,6 +18,8 @@ public class SeminarInfoVO {
     @JsonProperty("classId")
     private Long klassId;
 
+    private Byte isVisible;
+
     private Byte roundSerial;
 
     private String seminarName;
@@ -30,11 +32,8 @@ public class SeminarInfoVO {
 
     private Byte teamNumLimit;
 
-    /**
-     * AttendanceVO表示报名情况
-     */
     @JsonProperty("attendance")
-    private AttendanceVO attendanceVO;
+    private AttendanceListVO attendanceListVO;
 
     @JsonProperty("registerStartTime")
     private String enrollStartTime;

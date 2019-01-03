@@ -1,6 +1,7 @@
 package cm.entity;
 
 import lombok.Data;
+
 import java.math.BigDecimal;
 
 /**

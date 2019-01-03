@@ -1,37 +1,33 @@
 package cm.controller;
 
-import cm.entity.Course;
-import cm.service.CourseService;
-import cm.service.RoundService;
-import cm.service.SeminarService;
-import cm.service.StudentService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/cm/pc/student")
 public class StudentPCController {
+/*
+    @Autowired
+    StudentService studentService;
+    @Autowired
+    RoundService roundService;
+    @Autowired
+    SeminarService seminarService;
+    @Autowired
+    CourseService courseService;
 
-    StudentService studentService=new StudentService();
-    CourseService courseService=new CourseService();
-    RoundService roundService=new RoundService();
-    SeminarService seminarService=new SeminarService();
-
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    ///////////index
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String studentPcIndex(Model model){
-        model.addAttribute("courseList",courseService.findCoursesByStudentId(studentID));
+        SecurityContext ctx = SecurityContextHolder.getContext();
+        Authentication auth = ctx.getAuthentication();
+        User user = (User) auth.getPrincipal();
+        studentService.setStudent(user);
+        model.addAttribute("courseList",courseService.listCourseAndKlassByStudentId(studentService.getStudent().getId()));
         return "pc_student_index";
     }
 
+    //////
     @RequestMapping(value = "/course",method = RequestMethod.POST)
     public String studentPCCourse(long courseId,Model model){
         model.addAttribute("curCourse",courseService.findCourseById(courseId));
@@ -90,5 +86,5 @@ public class StudentPCController {
         else
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
-
+*/
 }

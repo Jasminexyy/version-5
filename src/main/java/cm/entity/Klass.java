@@ -1,6 +1,7 @@
 package cm.entity;
 
 import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -17,4 +18,5 @@ public class Klass {
     private String klassLocation;
     private List<Team>teams;
     private List<Student>students;
+
 }

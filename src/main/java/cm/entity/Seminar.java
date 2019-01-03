@@ -1,6 +1,7 @@
 package cm.entity;
 
 import lombok.Data;
+
 import java.sql.Timestamp;
 
 /**
@@ -18,6 +19,7 @@ public class Seminar {
     private Byte maxTeam;
     private Byte isVisible;
     private Byte seminarSerial;
-    private Timestamp enrollStartTime;
+    private Timestamp enrollStartTime;//报名
     private Timestamp enrollEndTime;
+
 }

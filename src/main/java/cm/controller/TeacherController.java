@@ -1,90 +1,92 @@
 package cm.controller;
 
-import cm.entity.*;
-import cm.service.*;
+import cm.service.TeacherService;
+import cm.vo.UserVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/cm/teacher")
 public class TeacherController {
-    TeacherService teacherService=new TeacherService();
+    @Autowired
+    TeacherService teacherService;
 
-    @RequestMapping(value = "/activation",method = RequestMethod.GET)
+    UserVO teacher;
+
+    @RequestMapping(value = "/activation", method = RequestMethod.GET)
     public String teacherActivation() {
         return "teacher_activation";
     }
 
-    @RequestMapping(value = "/activation",method = RequestMethod.POST)
-    public String teacherActivationSubmit() {
-        teacherService.activate()
-        return "redirect:cm/teacher/index";
+    @RequestMapping(value = "/activation", method = RequestMethod.POST)
+    public String teacherActivationSubmit(String password, String password1) {
+        if (teacherService.activate(password, password1,UserController.userVO)) {
+            return "redirect:/cm/teacher/index";
+        }
+        else
+            return "redirect:/cm/teacher/activation";
     }
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String teacherIndex(Model model) {
-        if(teacher.getIs_active()==0)
+        System.out.println("teacherIndex");
+        if (teacherService.getIs_active(UserController.userVO) == 0)
             return "redirect:/cm/teacher/activation";
-        return "teacher_main";
+        else {
+            teacher=UserController.userVO;
+            model.addAttribute("curTeacher", teacher);
+            return "teacher_index";
+        }
     }
+
     //////////////////////////////////////账户设置
-    @RequestMapping(value="/setting",method= RequestMethod.GET)
+    @RequestMapping(value = "/setting", method = RequestMethod.GET)
     public String teacherAccountSet(Model model) {
-        model.addAttribute("curUser",teacher);
+        model.addAttribute("curUser", teacher);
         return "teacher_setting";
     }
 
     //修改邮箱按钮
-    @RequestMapping(value="/setting/modifyEmail",method=RequestMethod.GET)
-    public String teacherModifyEmail(){
+    @RequestMapping(value = "/setting/modifyEmail", method = RequestMethod.GET)
+    public String teacherModifyEmail() {
         return "modify_email";
     }
 
     ////////////////////////////修改邮箱提交待修改
-    @RequestMapping(value="/setting/modifyEmail",method=RequestMethod.POST)
+    @RequestMapping(value = "/setting/modifyEmail", method = RequestMethod.POST)
     @ResponseBody
-    public String teacherModifyEmailSubmit(String email){
-        if(teacherService.modifyEmail(teacher,email))
-            return "修改成功 HttpStatus(200)";
+    public ResponseEntity teacherModifyEmailSubmit(String email) {
+        if (teacherService.modifyEmail(email,teacher))
+            return new ResponseEntity(HttpStatus.OK);
         else
-            return "修改失败 HttpStatus(400)";
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     /////////////////////////////////修改账户密码按钮
-    @RequestMapping(value="/setting/modifyPwd",method = RequestMethod.GET)
-    public String teacherModifyPwd(){
+    @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.GET)
+    public String teacherModifyPwd() {
         return "modify_pwd";
     }
 
     ////////////////////////////////修改账户密码提交
-    @RequestMapping(value="/setting/modifyPwd",method=RequestMethod.POST)
+    @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.POST)
     @ResponseBody
-    public void teacherModifyPwdSubmit(HttpServletResponse response, String password)throws IOException {
-        if(teacherService.modifyPwd(teacher,password)){
-            response.setStatus(200);
-            response.getWriter().append("修改成功");
-        }
-        else{
-            response.setStatus(409);
-            response.getWriter().append("修改失败");
-        }
+    public ResponseEntity teacherModifyPwdSubmit(String password) {
+        if (teacherService.modifyPwd(password,teacher))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.CONFLICT);
     }
 
     /////////////////////////////////////通知页面
-    @RequestMapping(value="/notification",method = RequestMethod.GET)
-    public String teacherNotification(){
+    @RequestMapping(value = "/notification", method = RequestMethod.GET)
+    public String teacherNotification() {
         return "teacher_notification";
     }
-
-
-    }
-
-
-
-
 }

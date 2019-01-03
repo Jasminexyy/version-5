@@ -15,4 +15,6 @@ public class KlassSeminar {
     private Long klassId;
     private Timestamp reportDdl;
     private Byte status=0;
+    private Long seminarId;
+
 }

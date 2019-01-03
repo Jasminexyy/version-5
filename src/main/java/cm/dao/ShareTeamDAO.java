@@ -1,8 +1,6 @@
 package cm.dao;
 
-import cm.entity.ShareSeminarApplication;
 import cm.entity.ShareTeamApplication;
-import cm.mapper.ShareSeminarApplicationMapper;
 import cm.mapper.ShareTeamApplicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +27,7 @@ public class ShareTeamDAO {
         return shareTeamApplicationMapper.listBySubCourseTeacherId(subCourseTeacherId);
     }
     public ShareTeamApplication getByShareTeamIdAndTeacherId(Long id,
-                                                              Long subCourseTeacherId){
+                                                             Long subCourseTeacherId){
         return shareTeamApplicationMapper.getByIdAndSubCourseTeacherId(id,subCourseTeacherId);
     }
 

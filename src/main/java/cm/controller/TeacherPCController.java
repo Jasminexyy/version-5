@@ -1,21 +1,12 @@
 package cm.controller;
 
-import cm.service.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/cm/pc/teacher")
 public class TeacherPCController {
+    /*
     TeacherService teacherService=new TeacherService();
     CourseService courseService=new CourseService();
     KlassService klassService=new KlassService();
@@ -24,7 +15,7 @@ public class TeacherPCController {
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String teacherPCIndex(Model model){
-        long teacherID;
+        long teacherId;
         model.addAttribute("courseList",courseService.findCoursesByTeacherId());
         return "pc_teacher_index";
     }
@@ -89,4 +80,5 @@ public class TeacherPCController {
         model.addAttribute("scoreList",maps);
         return "pc_teacher_score";
     }
+    */
 }

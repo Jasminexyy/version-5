@@ -27,7 +27,7 @@ public interface RoundScoreMapper {
             @Result(property = "reportScore",column = "report_score")
     })
     RoundScore getByRoundIdAndTeamId(@Param("roundId") Long roundId,
-                                      @Param("teamId") Long teamId);
+                                     @Param("teamId") Long teamId);
 
     /**
      * 根据teamId删除所有轮成绩

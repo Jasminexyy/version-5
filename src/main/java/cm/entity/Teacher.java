@@ -1,7 +1,6 @@
 package cm.entity;
 
 import lombok.Data;
-import java.util.List;
 
 /**
  * @Author: Yunfeng Huang
@@ -14,6 +13,7 @@ public class Teacher {
     private String account;
     private String password;
     private String teacherName;
-    private Byte isActive=1;
+    private Byte isActive=0;
     private String email;
+
 }

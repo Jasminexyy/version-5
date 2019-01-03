@@ -2,12 +2,10 @@ package cm.mapper;
 
 import cm.entity.LoginUser;
 import cm.entity.Student;
-import cm.entity.Teacher;
-import cm.vo.UserVO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
@@ -127,9 +125,9 @@ public interface StudentMapper {
      */
     @Update("update student set password=#{password},email=#{email},is_active=0 " +
             "where id=#{studentId}")
-    Integer activateByStudentId(@Param("password")String password,
-                                @Param("email")String email,
-                                @Param("studentId")Long studentId);
+    Integer activateByStudentId(@Param("password") String password,
+                                @Param("email") String email,
+                                @Param("studentId") Long studentId);
 
     /**
      * 修改信息
@@ -240,6 +238,23 @@ public interface StudentMapper {
             @Result(property = "email",column = "email"),
             @Result(property = "courseIdList", column = "id", many=@Many(select="cm.mapper.CourseMapper.listCourseIdByStudentId",fetchType = FetchType.LAZY))
     })
-    List<Student> listNoTeamStudentsByCourseId(@Param("courseId")Long courseId);
+    List<Student> listNoTeamStudentsByCourseId(@Param("courseId") Long courseId);
 
+    /**
+     * 根据klassId获得班级下未组队学生
+     * @param klassId
+     * @return java.util.List<cm.entity.Student>
+     */
+    @Select("select * from student where id in (select student_id from klass_student where klass_id=#{klassId})" +
+            "and id not in (select student_id from team_student where team_id in(select id from team where klass_id=#{klassId}))")
+    @Results({
+            @Result(property = "id",column = "id"),
+            @Result(property = "account",column = "account"),
+            @Result(property = "password",column = "password"),
+            @Result(property = "isActive",column = "is_active"),
+            @Result(property = "studentName",column = "student_name"),
+            @Result(property = "email",column = "email"),
+            @Result(property = "courseIdList", column = "id", many=@Many(select="cm.mapper.CourseMapper.listCourseIdByStudentId",fetchType = FetchType.LAZY))
+    })
+    List<Student> listNoTeamStudentsByKlassId(@Param("klassId") Long klassId);
 }

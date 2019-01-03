@@ -3,6 +3,7 @@ package cm.mapper;
 import cm.entity.Attendance;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 /**
@@ -83,8 +84,8 @@ public interface AttendanceMapper {
             @Result(property = "pptUrl",column = "ppt_url")
     })
     Attendance getByKlassSeminarIdAndKlassIdAndStudentId(@Param("klassSeminarId") Long klassSeminarId,
-                                                          @Param("klassId") Long klassId,
-                                                          @Param("studentId") Long studentId);
+                                                         @Param("klassId") Long klassId,
+                                                         @Param("studentId") Long studentId);
     /**
      * 根据SeminarId，KlassId和StudentId获得attendance 得到某学生在某课程某讨论课报名展示
      * @param seminarId
@@ -105,8 +106,8 @@ public interface AttendanceMapper {
             @Result(property = "pptUrl",column = "ppt_url")
     })
     Attendance getBySeminarIdAndKlassIdAndStudentId(@Param("seminarId") Long seminarId,
-                                                     @Param("klassId") Long klassId,
-                                                     @Param("studentId") Long studentId);
+                                                    @Param("klassId") Long klassId,
+                                                    @Param("studentId") Long studentId);
     /**
      * 根据TeamId和KlassSeminarId获得attendance 得到某小组在某课程讨论课报名展示
      * @param klassSeminarId
@@ -124,8 +125,26 @@ public interface AttendanceMapper {
             @Result(property = "pptUrl",column = "ppt_url")
     })
     Attendance getByKlassSeminarIdAndTeamId(@Param("klassSeminarId") Long klassSeminarId,
-                                             @Param("teamId") Long teamId);
+                                            @Param("teamId") Long teamId);
 
+    /**
+     * 根据TeamId和KlassSeminarId获得attendance 得到某小组在某课程讨论课报名展示
+     * @param klassSeminarId
+     * @param teamOrder
+     * @return cm.entity.Attendance
+     */
+    @Select("select * from attendance where klass_seminar_id=#{klassSeminarId} and team_order=#{teamOrder}")
+    @Results({
+            @Result(property = "id",column = "id"),
+            @Result(property = "teamOrder",column = "team_order"),
+            @Result(property = "isPresent",column = "is_present"),
+            @Result(property = "reportName",column = "report_name"),
+            @Result(property = "reportUrl",column = "report_url"),
+            @Result(property = "pptName",column = "ppt_name"),
+            @Result(property = "pptUrl",column = "ppt_url")
+    })
+    Attendance getByKlassSeminarIdAndTeamOrder(@Param("klassSeminarId") Long klassSeminarId,
+                                               @Param("teamOrder") Integer teamOrder);
     /**
      * 根据AttendanceId与StudentId获得attendance 得到该小组成员已报名的展示
      * @param attendanceId
@@ -188,8 +207,8 @@ public interface AttendanceMapper {
             "values(#{klassSeminarId},#{teamId},#{attendance.teamOrder},#{attendance.isPresent})")
     @Options(useGeneratedKeys = true, keyProperty = "attendance.id")
     int addAttendance(@Param("attendance") Attendance attendance,
-                      @Param("klassSeminarId")Long klassSeminarId,
-                      @Param("teamId")Long teamId);
+                      @Param("klassSeminarId") Long klassSeminarId,
+                      @Param("teamId") Long teamId);
 
     /**
      * 根据AttendanceId获得TeamId
@@ -197,7 +216,7 @@ public interface AttendanceMapper {
      * @return java.lang.Long
      */
     @Select("select team_id from attendance where id=#{attendanceId}")
-    Long getTeamIdByAttendanceId(@Param("attendanceId")Long attendanceId);
+    Long getTeamIdByAttendanceId(@Param("attendanceId") Long attendanceId);
 
 
     /**
@@ -206,7 +225,7 @@ public interface AttendanceMapper {
      * @return java.lang.Long
      */
     @Select("select klass_seminar_id from attendance where id=#{attendanceId}")
-    Long getKlassSeminarIdByAttendanceId(@Param("attendanceId")Long attendanceId);
+    Long getKlassSeminarIdByAttendanceId(@Param("attendanceId") Long attendanceId);
 
 
     /**
@@ -215,7 +234,7 @@ public interface AttendanceMapper {
      * @return java.lang.String
      */
     @Select("select report_url from attendance where id=#{attendanceId}")
-    String getReportUrlByAttendanceId(@Param("attendanceId")Long attendanceId);
+    String getReportUrlByAttendanceId(@Param("attendanceId") Long attendanceId);
 
     /**
      * 根据AttendanceId获得PptUrl
@@ -223,7 +242,7 @@ public interface AttendanceMapper {
      * @return java.lang.String
      */
     @Select("select ppt_url from attendance where id=#{attendanceId}")
-    String getPptUrlByAttendanceId(@Param("attendanceId")Long attendanceId);
+    String getPptUrlByAttendanceId(@Param("attendanceId") Long attendanceId);
 
 
     /**
@@ -232,7 +251,7 @@ public interface AttendanceMapper {
      * @return int
      */
     @Update("update attendance set is_present=1 where id=#{attendanceId}")
-    int startAttendanceById(@Param("attendanceId")Long attendanceId);
+    int startAttendanceById(@Param("attendanceId") Long attendanceId);
 
     /**
      * 结束展示
@@ -240,7 +259,7 @@ public interface AttendanceMapper {
      * @return int
      */
     @Update("update attendance set is_present=0 where id=#{attendanceId}")
-    int endAttendanceById(@Param("attendanceId")Long attendanceId);
+    int endAttendanceById(@Param("attendanceId") Long attendanceId);
 
     /**
      * 根据RoundId与TeamId获得attendance
@@ -262,4 +281,6 @@ public interface AttendanceMapper {
     })
     List<Attendance> listByRoundIdAndTeamId(@Param("roundId") Long roundId,
                                             @Param("teamId") Long teamId);
+
+
 }

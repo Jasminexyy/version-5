@@ -1,6 +1,7 @@
 package cm.vo;
 
 import lombok.Data;
+
 /**
  * @Author: Yunfeng Huang
  * @Description:

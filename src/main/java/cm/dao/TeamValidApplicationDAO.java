@@ -13,7 +13,8 @@ import java.util.List;
  * @Date: Created in 2018/12/24
  */
 @Component
-public class TeamValidApplicationDAO {
+public class
+TeamValidApplicationDAO {
     @Autowired
     private TeamValidApplicationMapper teamValidApplicationMapper;
 

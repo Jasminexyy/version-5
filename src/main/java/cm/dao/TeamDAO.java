@@ -51,10 +51,9 @@ public class TeamDAO {
         return teamMapper.getByTeamId(teamId);
     }
 
-    public Team getByIdAndLeaderId(Long teamId,Long leaderId){
+    public Team getByIdAndLeaderId(Long teamId, Long leaderId){
         return teamMapper.getByIdAndLeaderId(teamId, leaderId);
     }
-
     public int deleteTeamById(Long teamId){
         questionMapper.deleteByTeamId(teamId);
         seminarScoreMapper.deleteByTeamId(teamId);
@@ -65,7 +64,7 @@ public class TeamDAO {
         return teamMapper.deleteById(teamId);
     }
 
-    public Team getByCourseIdAndStudentId(Long courseId,Long studentId){
+    public Team getByCourseIdAndStudentId(Long courseId, Long studentId){
         return  teamMapper.getByCourseIdAndStudentId(courseId,studentId);
     }
 
@@ -82,11 +81,13 @@ public class TeamDAO {
         return teamMapper.getTeamIdByStudentIdAndKlassId(studentId,klassId);
     }
 
-    public Long findKlassIdByTeamId(Long teamId){
+    public Long getKlassIdByTeamId(Long teamId){
         return  teamMapper.getKlassIdByTeamId(teamId);
     }
 
-    public Team findByAttendanceId(Long attendanceId){
+    public Team getByAttendanceId(Long attendanceId){
         return teamMapper.getByAttendanceId(attendanceId);
     }
+
+    //public List<KlassRound> listKlassRoundByTeamIdAnd
 }
