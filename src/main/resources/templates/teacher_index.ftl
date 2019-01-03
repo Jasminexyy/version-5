@@ -5,7 +5,7 @@
 <html>
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-		<link href="/css/userlogin.css" type="text/css" rel="stylesheet">
+		<link href="/css/login.css" type="text/css" rel="stylesheet">
 		<title>教师个人页面</title>
 	</head>
 	<body class="body1">
@@ -36,8 +36,8 @@
 	    </div>
 	    <div id="wrap">
 	    
-	        <a href="/cm/teacher/course"><li class="l">我的课程<span class="right">></span></li></a>
-	        <a href="/cm/teacher/setting"><li class="l">
+	        <a href="/cm/teacher/course/${curTeacher.account}"><li class="l">我的课程<span class="right">></span></li></a>
+	        <a href="/cm/teacher/setting/${curTeacher.account}"><li class="l">
 				账户与设置
 				<span class="right">></span></li></a>
 	

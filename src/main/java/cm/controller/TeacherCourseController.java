@@ -32,8 +32,8 @@ public class TeacherCourseController {
     UserVO userVO;
 
     //课程管理
-    @RequestMapping(method= RequestMethod.GET)
-    public String teacherCourseManage(Model model,String account) {
+    @RequestMapping(value = "/{account}"method= RequestMethod.GET)
+    public String teacherCourseManage(Model model,@PathVariable String account) {
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
         return "teacher_courseList";
@@ -44,13 +44,14 @@ public class TeacherCourseController {
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("curCourse",courseDetailVO);
-        //model.addAttribute("TeamNeedVO",courseService.getTeamNeedVO(courseId));
+        model.addAttribute("TeamNeedVO",courseService.getTeamNeedVO(courseId));
         return "teacher_courseInfo";
     }
 
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
-    public String teacherCourseCreate(){
+    public String teacherCourseCreate(Model model){
+        //model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
 ////////////////////////////////创建课程
@@ -97,7 +98,7 @@ public class TeacherCourseController {
     ///////////创建共享
     @RequestMapping(value = "/shareCreate",method = RequestMethod.GET)
     public String teacherShareCreate(Model model){
-        model.addAttribute("courseList",courseService.listAllCourse());
+        //model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_create_share";
     }
 

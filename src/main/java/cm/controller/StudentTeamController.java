@@ -5,6 +5,7 @@ import cm.service.KlassService;
 import cm.service.StudentService;
 import cm.service.TeamService;
 import cm.vo.CourseDetailVO;
+import cm.vo.TeamVO;
 import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,9 +49,13 @@ public class StudentTeamController {
     //////student my team
     @RequestMapping(value = "/myteam",method = RequestMethod.GET)
     public String studentMyTeam(Model model){
-        model.addAttribute("myTeam",teamService.getMyTeam(courseDetailVO.getId(),student.getId()));
+        TeamVO tmp=teamService.getMyTeam(courseDetailVO.getId(),student.getId());
+        model.addAttribute("myTeam",tmp);
         model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
-        return "student_myteam";
+        if(student.getId()==tmp.getLeader().getId())
+            return "student_myteam_leader";
+        else
+            return "studnet_myteam_member";
     }
 
 
