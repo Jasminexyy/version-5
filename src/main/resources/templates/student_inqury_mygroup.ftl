@@ -10,7 +10,7 @@
 		<center>		
 			<div id="header1" style="background-color:#ffffff;">
 	            <span>
-	                <b><</b>
+	                <a href="/cm/student/course/team/student_teams"><b><</b></a>
 	            </span>
 				${myTeam.courseKlass.courseName} ${myTeam.courseKlass.klassName}
 	            <span1>

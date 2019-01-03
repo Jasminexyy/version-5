@@ -27,6 +27,7 @@ public class TeacherCourseController {
 
     CourseDetailVO courseDetailVO;
     UserVO userVO;
+
     //课程管理
     @RequestMapping(method= RequestMethod.GET)
     public String teacherCourseManage(Model model) {

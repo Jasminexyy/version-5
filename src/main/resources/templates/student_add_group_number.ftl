@@ -43,13 +43,9 @@ function del() {
 	            </span>
 	        ${myTeam.courseKlass.courseName} ${myTeam.courseKlass.klassName}
 	            <span1>
-	                <b><li class="dao li1">+
-	                <ul class="sub sub1">
-						<li class="main">¸öÈËÒ³</li>
-						<li class="main" onclick="javascrtpt:window.location.href='/cm/student/seminar/student_seminar_entrance'">
-							ÌÖÂÛ¿Î</li>
-				    </ul>
-					</li>               
+					<b><li class="dao li1">
+							&nbsp;
+						</li>
 					</b>
 					</span1>	            
 	        </div> 
