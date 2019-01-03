@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,19 +30,19 @@ public class StudentController {
     /////////////student activation submit
     @RequestMapping(value="/activation",method = RequestMethod.POST)
     public String studentActivationSubmit(String password,String password1,String email){
-        if(studentService.active(password,password1,email,UserController.userVO))
-            return "redirect:/cm/student/index";
+        if(studentService.active(password,password1,email,student))
+            return "redirect:/cm/student/index/${student.account}";
         else
             return "redirect:/cm/student/activation";
     }
 
     //////////////student index get
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public String studentIndex(Model model){
-        if (studentService.getIs_active(UserController.userVO)==0)
+    @RequestMapping(value = "/index/{account}",method = RequestMethod.GET)
+    public String studentIndex(Model model, @PathVariable String account){
+        student=studentService.getUserVOByAccount(account);
+        if (studentService.getIs_active(student)==0)
                 return "redirect:/cm/student/activation";
         else{
-            student=UserController.userVO;
             model.addAttribute("curStudent",student);
             return "student_index";
         }
@@ -56,7 +57,8 @@ public class StudentController {
 
     //////////student setting modifypwd get
     @RequestMapping(value="/setting/modifyPwd",method = RequestMethod.GET)
-    public String studentModifyPwd(){
+    public String studentModifyPwd(Model model){
+        model.addAttribute("student",student);
         return "modify_pwd";
     }
 
@@ -70,7 +72,8 @@ public class StudentController {
 
     ///////student setting modifyEmail get
     @RequestMapping(value = "/setting/modifyEmail",method = RequestMethod.GET)
-    public String studentModifyEmail(){
+    public String studentModifyEmail(Model model){
+        model.addAttribute("student",student);
         return "modify_email";
     }
 

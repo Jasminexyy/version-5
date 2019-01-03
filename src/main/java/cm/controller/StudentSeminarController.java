@@ -1,15 +1,13 @@
 package cm.controller;
 
-import cm.service.CourseService;
-import cm.service.RoundService;
-import cm.service.SeminarService;
-import cm.service.TeamService;
+import cm.service.*;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,26 +26,28 @@ public class StudentSeminarController {
     private CourseService courseService;
     @Autowired
     private TeamService teamService;
+    @Autowired
+            private StudentService studentService;
 
     UserVO student;
 
     public static CourseDetailVO courseDetailVO;
 
         //////student course List
-    @RequestMapping(value = "/seminarEntrance",method = RequestMethod.GET)
-    public String studentSeminarEntrance(Model model){
-        student= UserController.userVO;
-        Map<CourseVO, KlassVO>maps=seminarService.listCourseAndKlass(student);
+    @RequestMapping(value = "/seminarEntrance/{account}",method = RequestMethod.GET)
+    public String studentSeminarEntrance(Model model, @PathVariable String account){
+        student= studentService.getUserVOByAccount(account);
+        Map<String, KlassVO>maps=seminarService.listCourseAndKlass(student);
         model.addAttribute("courseAndKlassList",maps);
         return "student_seminar_entrance";
     }
 
     /////////student seminar List
     @RequestMapping(value = "/List",method=RequestMethod.GET)
-    public String studentSeminarList(Long courseId,Long klassId,Model model){
-        courseDetailVO=courseService.getCourseById(courseId);
+    public String studentSeminarList(Long klassId,Model model){
+        courseDetailVO=courseService.getCourseByKlassId(klassId);
         //String--RoundName
-        Map<String, SeminarListVO>maps=roundService.listRoundNameAndSeminar(courseId,klassId);
+        Map<String, SeminarListVO>maps=roundService.listRoundNameAndSeminar(courseDetailVO.getId(),klassId);
         model.addAttribute("roundAndSeminarList",maps);
         return "student_seminarList";
     }
