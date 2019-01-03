@@ -32,7 +32,7 @@ public class TeacherCourseController {
     UserVO userVO;
 
     //课程管理
-    @RequestMapping(value = "/{account}"method= RequestMethod.GET)
+    @RequestMapping(value = "/{account}",method= RequestMethod.GET)
     public String teacherCourseManage(Model model,@PathVariable String account) {
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
@@ -44,7 +44,6 @@ public class TeacherCourseController {
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("curCourse",courseDetailVO);
-        model.addAttribute("TeamNeedVO",courseService.getTeamNeedVO(courseId));
         return "teacher_courseInfo";
     }
 
