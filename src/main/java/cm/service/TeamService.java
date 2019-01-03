@@ -75,7 +75,9 @@ public class TeamService {
 	}
 
 	public void quitTeam(long teamId,long studentId){
+
 		teamDAO.deleteMemberByTeamIdAndStudentId(teamId,studentId);
+		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
 	public void createTeam(String teamName,long classId,List<String> studentNum){
@@ -91,6 +93,7 @@ public class TeamService {
 
 	public void deleteMember(Long studentId,Long teamId,String studentNum){
 		teamDAO.deleteMemberByTeamIdAndStudentId(teamId,studentDAO.getByStudentAccount(studentNum).getId());
+	strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
 	public void addMember(long studentId,long teamId,List<String> studentNum){
