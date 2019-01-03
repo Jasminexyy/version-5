@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="../static/seminar.css" charset="GB2312"/>
+    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
+    <script src="../static/js/jquery_min.js" type="text/javascript"></script>
     <title>课程信息</title>
 </head>
 <body>
@@ -21,8 +22,8 @@
                 <b><li class="dao li1">+
                         <ul class="sub sub1">
                             <a href="/cm/teacher/notification"><li class="main">代办</li></a>
-                            <a href="/cm/teacher/index"><li class="main">个人页</li></a>
-                            <a href="/cm/teacher/course/seminar/"><li class="main">讨论课</li></a>
+                            <a href="/cm/teacher/person"><li class="main">个人页</li></a>
+                            <a href="/cm/teacher/seminar/"><li class="main">讨论课</li></a>
                         </ul>
                     </li>
                 </b>

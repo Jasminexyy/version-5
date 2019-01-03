@@ -5,25 +5,28 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="seminar.css" charset="GB2312"/>
+    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
+    <script src="../static/js/jquery_min.js" type="text/javascript"></script>
     <title>轮次设置</title>
 </head>
 <body>
 <center>
+    <#assign  RoundVO=Round?key/>
+    <#assign KlassVOList=Round?value/>
     <div id="header1">
         <span><</span>
-        第${SeminarInfoList.roundSerial}轮
+        第${RoundVO.roundNumber}轮
     </div>
     <div class="div2">
         <p class="p2">讨论课：</p>
         <table class="table_d2" cellspacing="" cellpadding="">
-            <#list SeminarInfoList as seminar>
-                <tr><td class="c">${seminar.seminarName}</td></tr>
+            <#list RoundVO.seminarVOList as seminar>
+                <tr><td class="c">${seminar.seminarTopic}</td></tr>
             </#list>
         </table>
         </br>
     </div>
-    <form action="/cm/teacher/course/setting" method="post" name="setRound">
+    <form method="post" id="setRound">
         <div class="div2">
             <p class="p2">成绩设置:</p>
             <table class="table_d2" cellspacing="" cellpadding="">
@@ -59,10 +62,10 @@
         <div class="div2">
             <p class="p2">本轮讨论课报名次数:</p>
             <table class="table_d2" cellspacing="" cellpadding="">
-                <#list SeminarInfoList as seminar>
-                    <tr><td class="c">${seminar.klassId}班：</td>
+                <#list KlassVOList as klass>
+                    <tr><td class="c">${klass.klassName}</td>
                         <td class="c">
-                            <select id="${seminar.klassId}">
+                            <select id="round_num">
                             </select></td></tr>
                 </#list>
             </table>
@@ -72,22 +75,43 @@
     </form>
 </center>
 <script type="text/javascript">
-    var objSelectNow=document.getElementById("${seminar.klassId}");
+    var list=new Array();
+    var i=0;
+    <#list RoundVO.seminarVOList as seminar>
+    var objSelectNow=document.getElementById("round_num");
     var inner="<option value='1'>1(默认)</option>";
     objSelectNow.innerHTML=inner;
     var objOption = document.createElement("OPTION");
-    objOption.text= 2;
-    objOption.value=2;
+    objOption.text= i;
+    objOption.value=i;
     objSelectNow.options.add(objOption);
-    var list=new Array();
+    var value=objSelectNow.options[objSelectNow.selectedIndex].value;
+    i++;
+    list.push(value);
+    </#list>
+    <#--var objSelectNow=document.getElementById("${klass.klassVOList.klassName}");-->
+    // var inner="<option value='1'>1(默认)</option>";
+    // objSelectNow.innerHTML=inner;
+    // var objOption = document.createElement("OPTION");
+    // objOption.text= 2;
+    // objOption.value=2;
+    // objSelectNow.options.add(objOption);
 
     function modify(){
-        var index=objSelectNow.selectedIndex;
-        var value=objSelectNow.options[index].value;
-        list.push(value);
-        document.setRound.onsubmit;
+        jQuery.ajax({
+            type:"POST",
+            url:"/cm/teacher/course/setting",
+            headers:{"contentType":"application/json"},
+            processData:false,
+            // data:$('#setRound').serialize(),
+            data:{"roundset":list,"RoundVO":${RoundVO}},
+            dataType:"json",
+            complete:function(data){
+                if(data.status==200)
+                    window.location="/cm/teacher/course/setting";
+            }
+        })
         confirm("修改轮次成功！");
-        window.location.replace("/cm/teacher/course/setting");
     }
 </script>
 </body>

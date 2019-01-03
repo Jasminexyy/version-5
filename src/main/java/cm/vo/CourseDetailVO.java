@@ -2,6 +2,8 @@ package cm.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @Author: Yunfeng Huang
  * @Description:
@@ -17,4 +19,9 @@ public class CourseDetailVO {
     private Byte reportPercentage;
     private String teamStartTime;
     private String teamEndTime;
+    private Byte teamMaxNum;
+    private Byte teamMinNum;
+
+    private List<ConflictCourseStrategyVO> conflictCourseStrategyVOList;
+    private List<CourseMemberLimitStrategyVO> courseMemberLimitStrategyVOList;
 }

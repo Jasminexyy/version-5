@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="seminar.css" charset="GB2312"/>
-    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
+    <script src="../static/js/jquery_min.js" type="text/javascript"></script>
     <title>新建课程</title>
 </head>
 <body>
@@ -84,14 +84,22 @@
     var list_3=new Array();
     var list_or=new Array();
     var list_and=new Array();
+    var i=1;
     function add_options(e1) {
-        var texts=["teacher","teacher","teacher","teacher"];
-        for(var i=0;i<texts.length;i++){
-            var newOption=document.createElement("option");
-            newOption.text=texts[i];
-            newOption.value="i";
-            e1.options.add(newOption);
-        }
+        <#list courseList as courseVO>
+        var newOption=document.createElement("option");
+        newOption.text=${courseVO.name};
+        newOption.value=i;
+        e1.options.add(newOption);
+        i++;
+        </#list>
+        // var texts=["teacher","teacher","teacher","teacher"];
+        // for(var i=0;i<texts.length;i++){
+        //     var newOption=document.createElement("option");
+        //     newOption.text=texts[i];
+        //     newOption.value="i";
+        //     e1.options.add(newOption);
+        // }
     }
     function addRow() {
         var table = $("table_new");
@@ -159,31 +167,31 @@
         div.appendChild(e);
         list_and.push(list_or);
     }
+    var courseName=document.getElementById("course_name");
+    var introduction=document.getElementById("course_ask");
+    var presentationPercentage=document.getElementById("pre_pec");
+    var questionPercentage=document.getElementById("que_pec");
+    var reportPercentage=document.getElementById("rep_pec");
+    var teamStartTime=document.getElementById("start_time");
+    var teamEndTime=document.getElementById("end");
+    var teamMaxNum=document.getElementById("team_max");
+    var teamMinNum=document.getElementById("team_min");
+    //选修课程的人数
+    //一个List<List>
+    var CourseMemberLimitStrategyList=new Array();
+    for(var i=0;i<list_3.length;i+=3){
+        var tmp=new Array();
+        var courseId=list_3[i];
+        var minMember=list_3[i+1];
+        var maxMember=list_3[i+2];
+        tmp.push(courseId,minMember,maxMember);
+        CourseMemberLimitStrategyList.push(tmp);
+    }
+    //冲突课程，一个List<List>,外与里或
+    var ConflictCourseStrategyList=list_and;
     function checkPost() {
-        var courseName=document.getElementById("course_name");
-        var introduction=document.getElementById("course_ask");
-        var presentationPercentage=document.getElementById("pre_pec");
-        var questionPercentage=document.getElementById("que_pec");
-        var reportPercentage=document.getElementById("rep_pec");
-        var teamStartTime=document.getElementById("start_time");
-        var teamEndTime=document.getElementById("end");
-        var =document.getElementById("team_max");
-        var =document.getElementById("team_min");
-        //选修课程的人数
-        //一个List<List>
-        var CourseMemberLimitStrategyList=new Array();
-        for(var i=0;i<list_3.length;i+=3){
-            var tmp=new Array();
-            var courseId=list_3[i];
-            var minMember=list_3[i+1];
-            var maxMember=list_3[i+2];
-            tmp.push(courseId,minMember,maxMember);
-            CourseMemberLimitStrategyList.push(tmp);
-        }
-        //冲突课程，一个List<List>,外与里或
-        var ConflictCourseStrategyList=list_and;
         if(courseName.value==''|presentationPercentage.value==''|questionPercentage.value==''|reportPercentage.value==''|
-        teamStartTime.value==''|teamEndTime.value==''){
+        teamStartTime.value==''|teamEndTime.value==''|teamMaxNum==''|teamMinNum==''){
             alert("有项目为空!");
             return false;
         }
@@ -198,8 +206,12 @@
                 url:"/cm/teacher/course/create",
                 headers:{"contentType":"application/json"},
                 processData:false,
-                data:$('#addForm').serialize(),
-                data:{"preScores":preScores,"queScores":queScores,"reportSubmitTime":reportSubmitTime},
+                // data:$('#addForm').serialize(),
+                data:{"courseName":courseName,"introduction":introduction,"presentationPercentage":presentationPercentage,"questionPercentage":questionPercentage
+                "reportPercentage":reportPercentage,"teamStartTime":teamStartTime,"teamEndTime":teamEndTime,"teamMaxNum":teamMaxNum
+                ,"teamMinNum":teamMinNum,"conflictCourseStrategyVOList":ConflictCourseStrategyList,
+                "courseMemberLimitStrategyVOList":CourseMemberLimitStrategyList},
+                // data:{"preScores":preScores,"queScores":queScores,"reportSubmitTime":reportSubmitTime},
                 dataType:"json",
                 complete:function(data){
                     if(data.status==200)

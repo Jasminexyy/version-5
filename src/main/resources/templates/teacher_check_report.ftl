@@ -14,8 +14,7 @@ for(var i=0;i<score.length;i++){
 	map.put( ${seminarInfoVO.AttendanceListVO[i].attendenceId},score[i].value);
 }
 
-send_score()
-{
+function send_score() {
 	$.ajax({
 		url: "",
 		type: "post",
