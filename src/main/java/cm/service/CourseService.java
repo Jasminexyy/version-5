@@ -232,6 +232,11 @@ public class CourseService {
 return map;
 	}
 
+	public CourseDetailVO getCourseByKlassId(Long klassId) {
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
+		return getCourseById(courseId);
+	}
+
 //	public void updateCourse(CourseVO course) {
 //		Course course1=new Course();
 //

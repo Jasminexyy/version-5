@@ -1,105 +1,45 @@
-<!--课程信息-->
 <!DOCTYPE html>
-<html lang="ch">
-<head style="font-size: 35px">
-	<meta name="viewport"
-		  content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
-		  charset="GB2312">
-	<link rel="stylesheet" href="../static/seminar.css" charset="GB2312"/>
-	<title>课程信息</title>
-</head>
-<body>
-<center>
-	<!--头都用这一个，不要改了-->
-	<div id="header1">
+<html>
+	<head style="font-size:35px">
+	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	    <link href="login.css" type="text/css" rel="stylesheet"/> 
+		<title>学生课程信息</title>
+	</head>
+	<body>
 		<center>
+	        <div id="header1">
+	        <center>
 	            <span>
-	                <b><</b>
+	                <
 	            </span>
-			${curCourse.courseName}
-			<span1>
-				<b><li class="dao li1">+
-						<ul class="sub sub1">
-							<a href="/cm/student/notification"><li class="main">代办</li></a>
-							<a href="/cm/student/index"><li class="main">个人页</li></a>
-							<a href="/cm/student/course/seminar/"><li class="main">讨论课</li></a>
-						</ul>
-					</li>
-				</b>
-			</span1>
-		</center>
-	</div>
-	<div class="div3">
-		课程要求
-	</div>
-	<div class="div2">
-		<p4>成绩计算规则</p4>
-		<table class="table_d2" cellspacing="" cellpadding="">
-			<tr>
-				<td class="c">课堂展示</td>
-				<td class="c"></td>
-				<td class="c">${curCourse.presentationPercentage}</td>
-			</tr>
-			<tr>
-				<td class="c">课堂提问</td>
-				<td class="c"></td>
-				<td class="c">${curCourse.questionPercentage}</td>
-			</tr>
-			<tr>
-				<td class="c">书面报告</td>
-				<td class="c"></td>
-				<td class="c">${curCourse.reportPercentage}</td>
-			</tr>
-		</table>
-	</div>
-	<div class="div3">
-		<p4>组员基本要求</p4>
-	</div>
-	<div class="div2">
-		<table class="table_d2"cellspacing=""cellpadding="">
-			<tr>
-				<td class="c">小组总人数(含组长)</td>
-				<td class="c"></td>
-				<td class="c">${TeamNeedVO.teamMemberLimitStrategy.minMember}-${TeamNeedVO.teamMemberLimitStrategy.maxMember}</td>
-			</tr>
-			<tr><td class="c">组内选修课程人数</td></tr>
-			<#list TeamNeedVO.CourseMemberLimitStrategyList as course>
-				<tr>
-					<td class="c">${course.courseId}</td>
-					<td class="c"></td>
-					<td class="c">${course.minMember}-${course.maxMember}</td></tr>
-			</#list>
-		</table>
-	</div>
-	<div class="div3"><p4>冲突课程</p4></div>
-	<div class="div2">
-		<#list TeamNeedVO.ConflictCourseStrategyList as courses>
-			<div style="border: 1px solid #e8e8e8">
-				<table class="table_d2" cellspacing="" cellpadding="">
-					<tr>
-						<#list courses as course>
-							<td class="c">${course.courseId}</td>
-						</#list>
-					</tr>
-				</table>
-			</div>
-		</#list>
-		</br>
-	</div>
-	<div class="div2">
-		<table class="table_d2" cellpadding="" cellspacing="">
-			<tr><td class="c">组队开始时间</td>
-				<td class="c"></td>
-				<td class="c">${curCourse.teamStartTime}</td>
-			</tr>
-			<tr><td class="c">组队截止时间</td>
-				<td class="c"></td>
-				<td class="c">${curCourse.teamEndTime}</td>
-			</tr>
-		</table>
-	</div>
-
-</center>
-
-</body>
+	        OOAD
+	            <span1>
+	                <li class="dao li1">+
+	                <ul class="sub sub1">
+                        <a href="/cm/student/index"><li class="main">个人页</li></a>
+                        <a href="/cm/student/course/seminar"><li class="main">讨论课</li></a>
+				    </ul>
+					</li>               
+					
+					</span1>
+	        </center>	            
+	        </div> 
+	    
+	    <p class="p12">课程简介</p><p class="p7">${curCourse.introduction}</p>
+	    <table class="table0" cellspacing="0" cellpadding="0">
+	        
+	        <tr><td class="c6">成绩计算规则：</td><td class="c6">课堂展示：</td><td class="c6">${curCourse.presentationPercentage}%</td></tr>
+	        <tr><td class="c6"></td><td class="c6">课堂提问：</td><td class="c6">${curCourse.questionPercentage}%</td></tr>
+	        <tr><td class="c6"></td><td class="c6">书面报告：</td><td class="c6">${curCourse.reportPercentage}%</td></tr>
+	        <tr><td class="c6"></td><td class="c6"></td><td class="c6"></td></tr>
+			<tr><td class="c6">组队开始时间：</td><td class="c6">${curCourse.teanStartTime}</td><td class="c6"></td></tr>
+	        <tr><td class="c6">组队截止时间：</td><td class="c6">${curCourse.teamEndTime}</td><td class="c6"></td></tr>
+	        <tr><td class="c6"></td><td class="c6"></td><td class="c6"></td></tr>
+	        <tr><td class="c2">组队要求</td><td class="c2"></td><td class="c13"><span class="right">></span></td></tr>
+	        
+	    </table>
+	    
+	   
+	    </center>
+	</body>
 </html>

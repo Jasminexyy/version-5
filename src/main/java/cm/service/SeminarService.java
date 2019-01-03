@@ -98,9 +98,9 @@ public class SeminarService {
     }
 
 
-    public Map<CourseVO, KlassVO> listCourseAndKlass(UserVO student) {
+    public Map<String, KlassVO> listCourseAndKlass(UserVO student) {
         List<Course> courses=courseDAO.listByStudentId(student.getId());
-        Map<CourseVO, KlassVO> map=new HashMap<CourseVO, KlassVO>();
+        Map<String, KlassVO> map=new HashMap<CourseVO, KlassVO>();
         for(int i=0;i<courses.size();i++)
         {
             Klass k=klassDAO.getByCourseIdAndStudentId(courses.get(i).getId(),student.getId());
@@ -296,7 +296,7 @@ public class SeminarService {
     return klassSeminarVO;
     }
 
-    public void scoreReport(List<BigDecimal> score,SeminarInfoVO seminarInfoVO) {
+    public void scoreReport(Map<Long,BigDecimal> attendanceId_score_map,SeminarInfoVO seminarInfoVO) {
         KlassSeminarVO tmp=getKlassSeminarVO(seminarInfoVO.getKlassId(),seminarInfoVO.getSeminarId());
         List<Attendance> attendanceList=attendanceDAO.listByKlassSeminarId(tmp.getId());
         for(int i=0;i<attendanceList.size();i++) {

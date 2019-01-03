@@ -44,12 +44,11 @@ public class StudentService {
 
     public boolean modifyStudentEmail(String email,UserVO student){
         studentDAO.modifyEmailByStudentId(email,student.getId());
-        student.setEmail(email);
         return true;
     }
 
     public boolean modifyStudentPwd(String password,UserVO student){
-        studentDAO.modifyEmailByStudentId(password,student.getId());
+        studentDAO.modifyPasswordByStudentId(password,student.getId());
         return true;
     }
 
@@ -91,5 +90,10 @@ public class StudentService {
     public List<Student> getStudentNotInTeam(Long courseId,Long studentId) {
         Long klassId=klassDAO.getKlassIdByCourseIdAndKlassSerial(courseId,studentId);
         return studentDAO.listNoTeamStudentByKlassId(klassId);//班级id
+    }
+
+    public List<Student> getStudentNotInTeamByCourseId(Long courseId)
+    {
+        return studentDAO.listNoTeamStudentByCourseId(courseId);
     }
 }
