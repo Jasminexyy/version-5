@@ -12,7 +12,7 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        OOAD 2016-(1)
+				${myTeam.courseKlass.courseName} ${myTeam.courseKlass.klassName}
 	            <span1>
 	                <b><li class="dao li1">
 	                &nbsp;
@@ -25,40 +25,32 @@
 			
 			<div class="sumbackgroudw">		
 			<!--查看自己组的成员-->
-				<font size="5" color="#9ACD32">1-1 HHHH</font>
+				<font size="5" color="#9ACD32">${myTeam.teamNumber} ${myTeam.teamName}</font>
 				
 				<div style="border-style:none">
 				<table>
 				<tr>
 				<!--组长组员、学号、名字、课程名字-->
-				<td class="fontgreen">组长：</td>
-				<td>1111111111</td>
-				<td>王二</td>
-				<td class="fontgreen">J2EE</td>
+					<td class="fontgreen">组长：</td>
+					<td>${myTeam.leader.account}</td>
+					<td class="fontred">我</td>
 				</tr>
-				<tr>
-				<td class="fontgreen">组员：</td>
-				<td>1111111111</td>
-				<td class="fontred">我</td>
-				<td></td>
-				</tr>
-				<tr>
-				<td></td>
-				<td>1111111111</td>
-				<td>王二</td>
-				<td class="fontgreen"></td>
-				</tr>
+					<#list myTeam.students as student>
+						<tr>
+							<td class="fontgreen">组员：</td>
+							<td>${student.account}</td>
+							<td onclick="del()">${student.studentName}</td>
+
+						</tr>
+					</#list>
+
 				</table>
 				</div>
 		
 			</div>
 		
-			<div style="height:5rem;background-color:#e8e8e8;border-style:none;"></div>	
-			
-		
-			<input type="submit" value="退组" class="subr"/>
-			
-			<input type="submit" value="确认" class="subr" style="background-color:#9ACD32"/>
+			<div style="height:5rem;background-color:#e8e8e8;border-style:none;"></div>
+			<input type="submit" value="退组" class="subr" onclick="/cm/student/course/team/myteam/quit"/>
 		</center>
 
 

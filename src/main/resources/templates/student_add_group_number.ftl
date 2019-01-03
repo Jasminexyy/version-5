@@ -67,7 +67,7 @@ function del() {
 				<tr>
 				<!--组长组员、学号、名字、课程名字-->
 				<td class="fontgreen">组长：</td>
-				<td>${myId}</td>
+				<td>${myTeam.leader.account}</td>
 				<td class="fontred">我</td>
 
 				</tr>

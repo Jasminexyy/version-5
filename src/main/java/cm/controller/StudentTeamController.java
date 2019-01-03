@@ -2,6 +2,7 @@ package cm.controller;
 
 import cm.service.CourseService;
 import cm.service.KlassService;
+import cm.service.StudentService;
 import cm.service.TeamService;
 import cm.vo.CourseDetailVO;
 import cm.vo.UserVO;
@@ -26,6 +27,8 @@ public class StudentTeamController {
     private CourseService courseService;
     @Autowired
     private KlassService klassService;
+    @Autowired
+            private StudentService studentService;
 
     UserVO student;
     CourseDetailVO courseDetailVO;
@@ -36,7 +39,7 @@ public class StudentTeamController {
         courseDetailVO=courseService.getCourseById(courseId);
         student= UserController.userVO;
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
-        model.addAttribute("studentsNotInTeam",teamService.listStudentsNotInTeam(courseId));
+        model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeamByCourseId(courseId));
         return "student_teams";
     }
 
@@ -44,7 +47,7 @@ public class StudentTeamController {
     @RequestMapping(value = "/myteam",method = RequestMethod.GET)
     public String studentMyTeam(Model model){
         model.addAttribute("myTeam",teamService.getMyTeam(courseDetailVO.getId(),student.getId()));
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         return "student_myteam";
     }
 
