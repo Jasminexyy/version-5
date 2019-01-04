@@ -2,8 +2,8 @@
 <html>
 <head style="font-size:35px;">
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-	<link href="../static/css/details.css" type="text/css" rel="stylesheet"/>
-	<script src="/static/js/jquery.min.js"></script>
+	<link href="/css/details.css" type="text/css" rel="stylesheet"/>
+	<script src="/js/jquery.min.js"></script>
 	<title>ÎÒµÄ³É¼¨</title>
 </head>
 <body>
