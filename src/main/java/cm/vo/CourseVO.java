@@ -16,6 +16,6 @@ public class CourseVO {
     private String name;
     private Boolean isShareTeam;
     private Boolean isShareSeminar;
-
+    private String teacherName;
     List<RoundVO> roundVOList;
 }

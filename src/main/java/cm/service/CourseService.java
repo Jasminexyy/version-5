@@ -61,6 +61,7 @@ public class CourseService {
 		course1.setRounds(roundDAO.listByCourseId(course.getId()));
 		course1.setTeamEndTime(Timestamp.valueOf(course.getTeamEndTime()));
 		course1.setTeamStartTime(Timestamp.valueOf(course.getTeamStartTime()));
+		course1.setTeacherId(teacher.getId());
 		//默认为主课程
 		course1.setTeamMainCourseId(course.getId());
 		courseDAO.createCourse(teacher.getId(),course1);
@@ -131,37 +132,41 @@ public class CourseService {
         List<RoundScoreVO> roundScoreVOList=new LinkedList<RoundScoreVO>();
         //获取课程所有讨论课轮次
         List<Round> roundList=roundDAO.listByCourseId(courseId);
-
+		RoundScoreVO roundScoreVO=new RoundScoreVO();
 		//当前学生小组
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
 		for(int i=0;i<roundList.size();i++)
 		{
+			//每一轮的所有讨论课的分数
+			List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<SimpleSeminarScoreVO>();
+			//当前round
 			Round round=roundList.get(i);
-			//map,key
+			RoundScore roundScore=roundScoreDAO.getByRoundIdAndTeamId(round.getId(),team.getId());
+
+			//map,key,roundName,设置讨论课轮次
 			String roundName=round.getRoundSerial().toString();
-
-            RoundScoreVO roundScoreVO=new RoundScoreVO();
-            //设置讨论课轮次
-            roundScoreVO.setRoundNumber(new Byte(roundName));
-            RoundScore roundScore=roundScoreDAO.getByRoundIdAndTeamId(round.getId(),team.getId());
-
-            //当前的总分数
+			roundScoreVO.setRoundNumber(new Byte(roundName));
+			//获得当轮的总分数
             roundScoreVO.setTotalScore(roundScore.getTotalScore());
-
+            //获得当轮的所有讨论课的
 			List<Seminar> seminarList=round.getSeminars();
-
-			for(int j=0;j<seminarList.size();j++)
+			//把所有的seminar的分数传到list中
+            for(int j=0;j<seminarList.size();j++)
 			{
-				//获取单个讨论课
-				Seminar seminar=seminarList.get(j);
-				//获取讨论课的班级
-				KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(seminar.getId(),klassId);
-				//获取班级讨论课下学生班级的 成绩
-				SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),studentId);
-				//
-
+				//通过seminarid和klassid得到当前讨论课的班级
+				KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(
+						seminarList.get(i).getId(),klassId);
+				SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),team.getId());
+				SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
+				simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
+				simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
+				simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
+				simpleSeminarScoreVOList.add(simpleSeminarScoreVO);
 			}
+			roundScoreVO.setSimpleSeminarScoreVOList(simpleSeminarScoreVOList);
+			roundScoreVOList.add(roundScoreVO);
 		}
+		return roundScoreVOList;
 	}
 
     public List<Course> findCoursesByStudentId(Long studentId)
@@ -234,6 +239,7 @@ return map;
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
 		courseVO.setId(course.getId());
+		courseVO.setTeacherName(teacherDAO.getByCourseId(course.getId()).getTeacherName());
 		return courseVO;
 	}
 

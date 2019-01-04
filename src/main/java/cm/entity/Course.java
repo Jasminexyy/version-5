@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 public class Course {
     private Long id;
+    private Long teacherId;
     private String courseName;
     private String introduction;
     private Byte presentationPercentage;
@@ -25,5 +26,4 @@ public class Course {
     private Long seminarMainCourseId;
     private List<Round>rounds;
     private List<Klass>klasses;
-
 }
