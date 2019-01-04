@@ -55,13 +55,20 @@
 				</#list>
 			</div>
 			<#if !myteam>
+				<a href="/cm/student/course/team/create">
 			<div class="header" style="background-color:#9ACD32;color:#ffffff">
 				+创建小组
 				<span class="right">></span>
+			</div>
+			</a>
 				<br/>
-				</#if>
 				<#else>
-					${myTeam.teamNumber} ${myTeam.teamName}
+					<a href="/cm/student/course/team/myteam/${myTeam.teamId}">
+					<div class="header" style="background-color:#9ACD32;color:#ffffff">
+						${myTeam.teamNumber} ${myTeam.teamName}
+						<span class="right">></span>
+					</div>
+					</a>
 					<br/>
 					</#if>
 		</center>

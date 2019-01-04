@@ -133,8 +133,8 @@ public class TeamService {
 		teamDAO.deleteTeamById(id);
 	}
 
-	public Team getByTeamId(Long teamId)
+	public TeamVO getByTeamId(Long teamId)
 	{
-		return teamDAO.getByTeamId(teamId);
+		return teamToTeamVO(teamDAO.getByTeamId(teamId));
 	}
 }
