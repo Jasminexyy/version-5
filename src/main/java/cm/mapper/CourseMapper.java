@@ -36,7 +36,7 @@ public interface CourseMapper {
             @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
             @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
     })
-    List<Course> getAllCourse();
+    List<Course> listAllCourse();
 
     /**
      * 根据StudentId获得该学生的所有Course
