@@ -11,6 +11,7 @@ public class KlassSeminarService {
     @Autowired
     private KlassSeminarDAO klassSeminarDAO;
 
+
     public void deleteByKlassSeminarId(long klassSeminarId){
         klassSeminarDAO.deleteByKlassSeminarId(klassSeminarId);
     }
