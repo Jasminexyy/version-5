@@ -1,5 +1,6 @@
 package cm.vo;
 
+import cm.entity.TeamAndStrategy;
 import lombok.Data;
 
 import java.util.List;
@@ -11,7 +12,6 @@ import java.util.List;
  */
 @Data
 public class TeamNeedVO {
-    private CourseMemberLimitStrategyVO teamMemberLimitStrategy;
-    private List<CourseMemberLimitStrategyVO> CourseMemberLimitStrategyList;
-    private List<ConflictCourseStrategyVO> ConflictCourseStrategyList;
+    private List<TeamAndStrategyVO> teamAndStrategyVOList;
+    private List<ConflictCourseStrategyVO> conflictCourseStrategyVOList;
 }
