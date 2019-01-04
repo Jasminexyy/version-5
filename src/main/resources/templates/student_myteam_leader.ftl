@@ -14,7 +14,7 @@
 				alert("申请提交成功");
 			}
 		}
-function del() { 
+		function del() {
         if (!confirm("将${student.name}移出小组？")) { 
             window.event.returnValue = false; 
         }else
