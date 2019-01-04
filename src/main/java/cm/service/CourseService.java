@@ -68,18 +68,6 @@ public class CourseService {
 		return true;
 	}
 
-	public List<Map<Course, List<Klass>>> findCourseAndKlassByStudentId(Long studentId){
-		List<Course> courses=courseDAO.listByStudentId(studentId);
-		Map<Course,List<Klass>> ck=new HashMap<>();
-		List<Map<Course, List<Klass>>> temp=new ArrayList<>();
-		for(int i=0;i<courses.size();i++){
-			List<Klass> klasses=klassDAO.getByCourseId(courses.get(i).getId());
-			ck.put(courses.get(i),klasses);
-			temp.add(ck);
-		}
-		return temp;
-	}
-
 	public Map<RoundScore,List<SeminarScore>> findScoreForStudent(Long courseId, Long klassId, Long studentId){
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
 //		该学生该课程下（一个队）的所有讨论课成绩
@@ -108,21 +96,15 @@ public class CourseService {
 		return maps;
 	}
 
-	public Map<CourseVO, KlassVO> listCourseAndKlassByStudentId(Long studentId)
+	//courseName
+	public Map<String, KlassVO> listCourseAndKlassByStudentId(Long studentId)
 	{
         List<Course> courses=courseDAO.listByStudentId(studentId);
-        Map<CourseVO, KlassVO> map=new HashMap<CourseVO, KlassVO>();
+        Map<String, KlassVO> map=new HashMap<String, KlassVO>();
         for(int i=0;i<courses.size();i++)
         {
             Klass k=klassDAO.getByCourseIdAndStudentId(courses.get(i).getId(),studentId);
-            KlassVO klassVO=new KlassVO();
-            klassVO.setKlassId(k.getId());
-            klassVO.setKlassName(k.getGrade(),k.getKlassSerial());
-            CourseVO courseVO=new CourseVO();
-            courseVO.setId(courses.get(i).getId());
-            courseVO.setName(courses.get(i).getCourseName());
-
-            map.put(courseVO,klassVO);
+            map.put(courses.get(i).getCourseName(),KlassService.klassToKlassVO(k));
         }
         return map;
 	}

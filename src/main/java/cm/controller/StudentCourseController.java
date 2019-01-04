@@ -24,7 +24,7 @@ public class StudentCourseController {
     ///////student course list get
     @RequestMapping(value = "",method= RequestMethod.GET)
     public String studentCourse(Model model){
-        Map<CourseVO, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
+        Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
         return "studentCourse";
     }

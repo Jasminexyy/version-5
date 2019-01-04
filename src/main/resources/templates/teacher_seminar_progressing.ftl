@@ -16,14 +16,15 @@
     <!--头都用这一个，不要改了-->
     <div id="header1">
         <center>
-            <span><b><</b></span>讨论课
-            <span1><b><li class="dao li1">+
+            <span><b><</b></span>${seminarInfo.courseName}-讨论课
+            <span1>
+                <b><li class="dao li1">+
                         <ul class="sub sub1">
-                            <li class="main">代办</li>
-                            <li class="main">个人页</li>
-                            <li class="main">讨论课</li>
-                        </ul>
-                    </li></b></span1>
+                            <a href="/cm/teacher/notification"><li class="main">代办</li></a>
+                            <a href="/cm/teacher/person"><li class="main">个人页</li></a>
+                            <a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
+                        </ul></li></b>
+            </span1>
         </center>
     </div>
     <div class="header1">
@@ -86,22 +87,22 @@
         console.log("Disconnected");
     }
     function connect() {
-        var socket = new SockJS("http://localhost:8080/springmvc/hello");
+        var socket = new SockJS("http://localhost:8080/springmvc/hello");//??
         stompClient = Stomp.over(socket);
         stompClient.connect({}, function(frame) {
             setConnected(true);
             console.log('Connected: ' + frame);
-            stompClient.subscribe('/topic/broadcast', function(SelectedQuestion){
-                showSelectedQuestion(JSON.parse(SelectedQuestion.body).studentAccount,
-                    JSON.parse(SelectedQuestion.body).studentName,
-                    JSON.parse(SelectedQuestion.body).teamNumber
+            stompClient.subscribe('/topic/broadcast', function(selectTempQuestion){
+                showSelectedQuestion(JSON.parse(selectTempQuestion.body).studentAccount,
+                    JSON.parse(selectTempQuestion.body).studentName,
+                    JSON.parse(selectTempQuestion.body).teamNumber
                 );
             });
-            stompClient.subscribe('/topic/broadcast', function(NextAttendance){
-                showNextAttendance(JSON.parse(NextAttendance.body).teamNumber,
-                    JSON.parse(NextAttendance.body).teamOrder,
-                    JSON.parse(NextAttendance.body).klassSeminarId,
-                    JSON.parse(NextAttendance.body).teamId
+            stompClient.subscribe('/topic/broadcast', function(nextAttendance){
+                showNextAttendance(JSON.parse(nextAttendance.body).teamNumber,
+                    JSON.parse(nextAttendance.body).teamOrder,
+                    JSON.parse(nextAttendance.body).klassSeminarId,
+                    JSON.parse(nextAttendance.body).teamId
                 );
             });
         });
@@ -135,7 +136,7 @@
         stompClient.send("/teacher/select/"+curKlassSeminarId+"/"+curAttendanceId, {}, JSON.stringify({ 'name': name }));
         var curScore=prompt("请输入当前提问小组的成绩！","");
         if(curScore.value>queScores[curQuestionTeamInfo])
-            queScores[curQuestionTeamInfo]=curScore.value;//前端给的提问小组id
+            queScores[curQuestionTeamInfo]=curScore.value;//提问小组id
     }
     //下组展示
     function nextAttendance() {
@@ -160,15 +161,15 @@
     //    数据传输
         jQuery.ajax({
             type:"POST",
-            url:"/cm/pc/admin/addTeacher",
+            url:"/cm/teacher/course/seminar/progressing/end",
             headers:{"contentType":"application/json"},
             processData:false,
             // data:$('#myform').serialize(),
-            data:{"preScores":preScores,"queScores":queScores,"reportSubmitTime":reportSubmitTime},
+            data:{"preScores":preScores.value,"queScores":queScores.value,"reportSubmitTime":reportSubmitTime.value},
             dataType:"json",
             complete:function(data){
                 if(data.status==200)
-                    window.location="/cm/pc/admin/teacherList";
+                    window.location="/cm/teacher/course/seminar";
             }
         })
     }

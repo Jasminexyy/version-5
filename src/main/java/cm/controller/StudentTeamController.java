@@ -41,17 +41,18 @@ public class StudentTeamController {
     public String studentTeam(Long courseId, @PathVariable  String account,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         student= studentService.getUserVOByAccount(account);
+        model.addAttribute("myTeam",teamService.getMyTeam(courseId,student.getId()));
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
-        model.addAttribute("studentsNotInTeam",teamService.listStudentsNotInTeam(courseId));
+        model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeam(courseId,student.getId()));
         return "student_teams";
     }
 
     //////student my team
-    @RequestMapping(value = "/myteam",method = RequestMethod.GET)
-    public String studentMyTeam(Model model){
-        TeamVO tmp=teamService.getMyTeam(courseDetailVO.getId(),student.getId());
+    @RequestMapping(value = "/myteam/{id}",method = RequestMethod.GET)
+    public String studentMyTeam(Model model,@PathVariable Long id){
+        TeamVO tmp=teamService.getByTeamId(id);
         model.addAttribute("myTeam",tmp);
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId()==tmp.getLeader().getId())
             return "student_myteam_leader";
         else
@@ -71,16 +72,16 @@ public class StudentTeamController {
 
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String studentTeamCreate(Model model){
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
-        model.addAttribute("klassList",klassService.listKlassByCourseId(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
+        model.addAttribute("klassId",klassService.getKlassByStudentIdCourseId(student.getId(),courseDetailVO.getId()));
         return "student_team_create";
     }
 
     ///////student create team
     @RequestMapping(value="/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity studentTeamCreate(String teamName, Long classId, List<String> studentNum){
-        teamService.createTeam(teamName,classId,studentNum);
+    public ResponseEntity studentTeamCreate(String teamName, List<String> studentNum,Long klassId){
+        teamService.createTeam(teamName,klassId,studentNum);
         return new ResponseEntity(HttpStatus.OK);
     }
 

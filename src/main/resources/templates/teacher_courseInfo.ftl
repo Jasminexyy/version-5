@@ -56,15 +56,17 @@
     <div class="div3">
         <p4>组员基本要求</p4>
     </div>
+    <#assign courseMemberLimitStrategyVOS=curCourse.courseMemberLimitStrategyVOList/>
+    <#assign conflictCourseStrategyVOS=curCourse.conflictCourseStrategyVOList/>
     <div class="div2">
         <table class="table_d2"cellspacing=""cellpadding="">
             <tr>
                 <td class="c">小组总人数(含组长)</td>
                 <td class="c"></td>
-                <td class="c">${TeamNeedVO.teamMemberLimitStrategy.minMember}-${TeamNeedVO.teamMemberLimitStrategy.maxMember}</td>
+                <td class="c">${curCourse.teamMinNum}-${curCourse.teamMaxNum}</td>
             </tr>
             <tr><td class="c">组内选修课程人数</td></tr>
-            <#list TeamNeedVO.CourseMemberLimitStrategyList as course>
+            <#list courseMemberLimitStrategyVOS as course>
                 <tr>
                     <td class="c">${course.courseId}</td>
                     <td class="c"></td>
@@ -74,12 +76,12 @@
     </div>
     <div class="div3"><p4>冲突课程</p4></div>
     <div class="div2">
-        <#list TeamNeedVO.ConflictCourseStrategyList as courses>
+        <#list conflictCourseStrategyVOS as courses>
             <div style="border: 1px solid #e8e8e8">
                 <table class="table_d2" cellspacing="" cellpadding="">
                     <tr>
                         <#list courses as course>
-                            <td class="c">${course.courseId}</td>
+                            <td class="c">${course.courseName}</td>
                         </#list>
                     </tr>
                 </table>
@@ -99,13 +101,25 @@
             </tr>
         </table>
     </div>
-    <form action="/cm/teacher/course/${curCourse.courseId}" name="deleteCourse" method="post">
+    <form name="deleteCourse" method="post">
         <button class="button5" id="delete_course" onclick="deleteCourse()">删除该课程</button>
     </form>
 </center>
 <script type="text/javascript">
     function deleteCourse() {
-        document.deleteCourse.onsubmit;
+        jQuery.ajax({
+            type:"POST",
+            url:"/cm/teacher/course/${curCourse.id}",
+            headers:{"contentType":"application/json"},
+            processData:false,
+            // data:$('#myform').serialize(),
+            data:{"courseId":${curCourse.id}},
+            dataType:"json",
+            complete:function(data){
+                if(data.status==200)
+                    window.location="/cm/teacher/course";
+            }
+        })
     }
 </script>
 </body>

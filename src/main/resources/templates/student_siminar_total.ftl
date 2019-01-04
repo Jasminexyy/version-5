@@ -29,12 +29,12 @@
 
 <center>
 
-    <#assign keys=courseAndKlassList?keys>
+    <#assign keys=courseAndKlassList?keys />
 <#list keys as key>
     <div class="div1">
         <!--是链接其他页面的超链接，从数据库中读取课程--->
-        <span>${key.courseName} ${courseAndKlassList[key].KlassName}</span>
-        <a href="/cm/student/seminar/List/${key.courseId}/${courseAndKlassList[key].KlassId}"<span class="right">></span></a>
+        <span>${key} ${courseAndKlassList.get(key).KlassName}</span>
+        <a href="/cm/student/seminar/List/${courseAndKlassList.get(key).KlassId}"<span class="right">></span></a>
     </div>
 </#list>
 

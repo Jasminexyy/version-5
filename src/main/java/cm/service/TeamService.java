@@ -30,10 +30,6 @@ public class TeamService {
 		return teamDAO.listByCourseId(courseId);
 	}
 
-	public List<Team> listStudentsNotInTeam(long courseId){
-		return teamDAO.listByCourseId(courseId);
-	}
-
 	public TeamVO getMyTeam(long courseId, long studentId){
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
 		return teamToTeamVO(team);
@@ -124,9 +120,14 @@ public class TeamService {
 
 	}
 
-    public List<Team> listTeamByCourseId(Long courseId) {
+    public List<TeamVO> listTeamByCourseId(Long courseId) {
 		List<Team> teams=teamDAO.listByCourseId(courseId);
-		return teams;
+		List<TeamVO> teamVOList=new LinkedList<TeamVO>();
+		for(int i=0;i<teams.size();i++)
+		{
+			teamVOList.add(teamToTeamVO(teams.get(i)));
+		}
+		return teamVOList;
     }
 
 	public void deleteTeam(Long id) {
@@ -137,8 +138,8 @@ public class TeamService {
 		teamDAO.deleteTeamById(id);
 	}
 
-	public Team getByTeamId(Long teamId)
+	public TeamVO getByTeamId(Long teamId)
 	{
-		return teamDAO.getByTeamId(teamId);
+		return teamToTeamVO(teamDAO.getByTeamId(teamId));
 	}
 }

@@ -26,11 +26,11 @@
 			
 			<div style="height:0.5rem;background-color:#e8e8e8"></div>
 			
-			<div>		
+			<div>
+				<#list teamList as team>
 			<details>
 				<summary  class="sumbackgroundw">
-				<!--我的小组一定要标识，其他小组读就完了-->
-				<font color="#9ACD32">1-1 HHHH</font></summary>
+				<font color="#9ACD32">${team.teamNumber} ${team.teamName}</font></summary>
 				<div style="border-style:none">
 				<table>
 				<tr>
@@ -49,13 +49,26 @@
 
 				</table>
 				</div>
-			</details>			
+			</details>
+				<div style="height:0.5rem;background-color:#e8e8e8"></div>
+				</#list>
 			</div>
-		<div style="height:0.5rem;background-color:#e8e8e8"></div>	
-
+			<#if !myteam>
+				<a href="/cm/student/course/team/create">
+			<div class="header" style="background-color:#9ACD32;color:#ffffff">
+				+创建小组<span class="right">></span>
+			</div>
+			</a>
+				<br/>
+				<#else>
+					<a href="/cm/student/course/team/myteam/${myTeam.teamId}">
+					<div class="header" style="background-color:#9ACD32;color:#ffffff">
+						${myTeam.teamNumber} ${myTeam.teamName}
+						<span class="right">></span>
+					</div>
+					</a>
+					<br/>
+					</#if>
 		</center>
-
-
-
 	</body>
 </html>
