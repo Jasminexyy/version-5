@@ -129,28 +129,19 @@ public class CourseService {
 		return courseDetailVO;
 	}
 
-	//string是roundname，传给前端
-	public List<RoundScoreVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
-        List<RoundScoreVO> roundScoreVOList=new LinkedList<RoundScoreVO>();
+	//string是roundname
+	public Map<String, SeminarListVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
         //获取课程所有讨论课轮次
-        List<Round> roundList=roundDAO.listByCourseId(courseId);
-
-		//当前学生小组
-		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
+		List<Round> roundList=roundDAO.listByCourseId(courseId);
+		SeminarListVO seminarListVO=new SeminarListVO();
+		List<SeminarVO> seminarVOList=new LinkedList<SeminarVO>();
+		//获取每个轮次下的roundname和seminars
+		Map<String, SeminarListVO> map=new HashMap<String, SeminarListVO>();
 		for(int i=0;i<roundList.size();i++)
 		{
+			String roundName=roundList.get(i).getRoundSerial().toString();
+			//虎丘当前轮次的所有讨论课
 			Round round=roundList.get(i);
-			//map,key
-			String roundName=round.getRoundSerial().toString();
-
-            RoundScoreVO roundScoreVO=new RoundScoreVO();
-            //设置讨论课轮次
-            roundScoreVO.setRoundNumber(new Byte(roundName));
-            RoundScore roundScore=roundScoreDAO.getByRoundIdAndTeamId(round.getId(),team.getId());
-
-            //当前的总分数
-            roundScoreVO.setTotalScore(roundScore.getTotalScore());
-
 			List<Seminar> seminarList=round.getSeminars();
 
 			for(int j=0;j<seminarList.size();j++)
@@ -232,12 +223,16 @@ return map;
 		return getCourseById(courseId);
 	}
 
+	SimpleSeminarScoreVO seminarAndSeminarscoreTosimpleSeminarScoreVO{
+
+	}
+
 	CourseVO courseToCourseVO(Course course)
 	{
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
 		courseVO.setId(course.getId());
-		return courseVO;
+		courseVO.setIsShareSeminar(courseDAO.);ipoiopjpoj
 	}
 
 	public List<CourseVO> listAllCourse() {
@@ -251,9 +246,10 @@ return map;
 		return courseVOList;
 	}
 
-	public void createShare(Long shareCourseId,Long courseId) {
+	public void createShare(Long shareCourseId) {
 		Long subteacherId=teacherDAO.getByCourseId(shareCourseId).getId();
-		shareTeamDAO.createShareTeamApplication(courseId,shareCourseId,subteacherId,(byte)0x0000001);
+
+		shareTeamDAO.createShareTeamApplication()
 
 	}
 
