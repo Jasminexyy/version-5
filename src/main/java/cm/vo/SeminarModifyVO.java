@@ -27,7 +27,6 @@ public class SeminarModifyVO {
 
     private Long seminarId;
 
-    @JsonProperty("classId")
     private Long klassId;
 
     private Byte teamNumLimit;

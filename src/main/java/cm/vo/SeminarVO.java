@@ -15,7 +15,6 @@ public class SeminarVO{
 
     private Long seminarId;
 
-    @JsonProperty("topic")
     private String seminarTopic;
 
     private Byte seminarOrder;

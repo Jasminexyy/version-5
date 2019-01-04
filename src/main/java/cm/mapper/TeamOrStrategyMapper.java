@@ -27,4 +27,14 @@ public interface TeamOrStrategyMapper {
     })
     List<TeamOrStrategy> listByStrategyId(@Param("strategyId") Long strategyId);
 
+
+    /**
+     * 创建或策略
+     * @param teamOrStrategy
+     * @return cm.entity.teamAndStrategy
+     */
+    @Insert("insert into team_or_strategy(min_member,max_member) " +
+            "values(#{teamOrStrategy.minMember},#{teamOrStrategy.maxMember})")
+    @Options(useGeneratedKeys = true, keyProperty = "teamOrStrategy.id")
+    int createTeamOrStrategy(@Param("teamOrStrategy") TeamOrStrategy teamOrStrategy);
 }

@@ -19,7 +19,6 @@ public class SimpleSeminarScoreVO {
 
     private String seminarName;
 
-    @JsonProperty("seminarOrder")
     private Byte seminarSerial;
 
     private String introduction;
@@ -29,7 +28,6 @@ public class SimpleSeminarScoreVO {
 
     private BigDecimal totalScore;
 
-    @JsonProperty("preScore")
     private BigDecimal presentationScore;
 
     private BigDecimal questionScore;

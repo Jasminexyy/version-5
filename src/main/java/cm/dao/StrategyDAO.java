@@ -146,6 +146,7 @@ public class StrategyDAO {
         }
         return true;
     }
+
     private Boolean judgeByCourseMemberLimitStrategy(Long strategyId, Team team){
         CourseMemberLimitStrategy courseMemberLimitStrategy=courseMemberLimitStrategyMapper.getByStrategyId(strategyId);
         Integer count=0;
@@ -169,15 +170,15 @@ public class StrategyDAO {
         return  courseMemberLimitStrategyMapper.createCourseMemberLimitStrategy(courseMemberLimitStrategy);
     }
 
-//    public int createMemberLimitStrategy(MemberLimitStrategy memberLimitStrategy){
-//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-//    }
-//
-//    public int createTeamAndStrategy(MemberLimitStrategy memberLimitStrategy){
-//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-//    }
-//
-//    public int createTeamOrStrategy(MemberLimitStrategy memberLimitStrategy){
-//        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
-//    }
+    public int createMemberLimitStrategy(MemberLimitStrategy memberLimitStrategy){
+        return  memberLimitStrategyMapper.createMemberLimitStrategy(memberLimitStrategy);
+    }
+
+    public int createTeamAndStrategy(TeamAndStrategy teamAndStrategy){
+        return  teamAndStrategyMapper.createTeamAndStrategy(teamAndStrategy);
+    }
+
+    public int createTeamOrStrategy(TeamOrStrategy teamOrStrategy){
+        return  teamOrStrategyMapper.createTeamOrStrategy(teamOrStrategy);
+    }
 }

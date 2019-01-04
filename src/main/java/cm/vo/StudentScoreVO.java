@@ -16,10 +16,8 @@ public class StudentScoreVO {
 
     private String courseName;
 
-    @JsonProperty("className")
     private String klassName;
 
-    @JsonProperty("rounds")
     private List<RoundScoreVO<SimpleSeminarScoreVO>> roundScoreVOList;
 
     public void setKlassName(Integer grade, Byte klassSerial) {

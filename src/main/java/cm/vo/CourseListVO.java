@@ -13,6 +13,5 @@ import java.util.List;
 @Data
 public class CourseListVO<T> {
 
-    @JsonProperty("course")
     private List<T> courseVOList;
 }

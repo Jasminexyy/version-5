@@ -13,10 +13,8 @@ public class AttendanceVO {
 
     private Long attendanceId;
 
-    @JsonProperty("className")
     private String klassName;
 
-    @JsonProperty("enrollOrder")
     private Byte teamOrder;
 
     private String teamName;

@@ -15,6 +15,5 @@ public class TeacherScoreVO {
 
     private Long courseId;
 
-    @JsonProperty("rounds")
     private List<RoundVO> roundScoreVOList;
 }

@@ -10,7 +10,6 @@ import lombok.Data;
  */
 @Data
 public class KlassRoundVO {
-    @JsonProperty("classId")
     private Long klassId;
 
     private Byte classSerial;

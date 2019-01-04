@@ -89,11 +89,12 @@ public class TeamService {
 
 	public void deleteMember(Long studentId,Long teamId,String studentNum){
 		teamDAO.deleteMemberByTeamIdAndStudentId(teamId,studentDAO.getByStudentAccount(studentNum).getId());
-	strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
+		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
 	public void addMember(long studentId,long teamId,List<String> studentNum){
 		teamDAO.addTeamMemberByTeamIdAndStudentId(teamId,studentId);
+		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
 	public void teamDisband(Long teamId,List<String> studentNum){

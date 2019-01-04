@@ -34,4 +34,7 @@ public class QuestionDAO {
     public List<Question> listUnSelectedQuestion(Long attendanceId){
         return questionMapper.listUnSelectedQuestionsByAttendanceId(attendanceId);
     }
+    public Long getTeamIdByQuestionId(Long questionId){
+        return questionMapper.getTeamIdByQuestionId(questionId);
+    }
 }

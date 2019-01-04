@@ -13,6 +13,5 @@ import java.util.List;
 @Data
 public class UserListVO {
 
-    @JsonProperty("user")
     private List<UserVO> userVOList;
 }

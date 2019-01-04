@@ -15,7 +15,6 @@ public class SeminarInfoVO {
 
     private Long seminarId;
 
-    @JsonProperty("classId")
     private Long klassId;
 
     private Byte isVisible;
@@ -32,12 +31,9 @@ public class SeminarInfoVO {
 
     private Byte teamNumLimit;
 
-    @JsonProperty("attendance")
     private AttendanceListVO attendanceListVO;
 
-    @JsonProperty("registerStartTime")
     private String enrollStartTime;
 
-    @JsonProperty("registerEndTime")
     private String enrollEndTime;
 }

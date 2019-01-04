@@ -10,7 +10,6 @@ import lombok.Data;
  */
 @Data
 public class KlassSeminarVO {
-    @JsonProperty("classSeminarId")
     private Long id;
     private String topic;
     private String intro;

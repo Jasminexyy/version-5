@@ -13,12 +13,9 @@ import java.util.List;
 @Data
 public class RequestTypeVO {
 
-    @JsonProperty("teamshare")
     List<SimpleRequestVO>teamRequestVOList;
 
-    @JsonProperty("seminarshare")
     List<SimpleRequestVO>seminarRequestVOList;
 
-    @JsonProperty("teamvalid")
     List<SimpleRequestVO>validRequestVOList;
 }

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class KlassSeminarReportDDLVO {
 
-    @JsonProperty("className")
     private String klassName;
 
     private Long klassId;

@@ -12,11 +12,5 @@ public class AttendanceController {
     @Autowired
     private static AttendanceService attendanceService;
 
-    /*@MessageMapping("/nextAttendance")
-    @SendTo("/topic/broadcast")
-    public WebSocketVO nextAttendance(@RequestBody SeminarInfoVO seminarInfoVO) {
-        WebSocketVO webSocketVO=attendanceService.nextAttendance(seminarInfoVO.getSeminarId(),
-                seminarInfoVO.getKlassId());
-        return webSocketVO;
-    }*/
+
 }

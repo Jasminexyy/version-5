@@ -251,12 +251,4 @@ public interface CourseMapper {
     @Options(useGeneratedKeys = true, keyProperty = "course.id")
     int createCourse(@Param("teacherId") Long teacherId,
                      @Param("course") Course course);
-
-    /**
-     * 根据StudentId获得CourseId
-     * @param studentId
-     * @return java.util.List<java.lang.Long>
-     */
-    @Select("select distinct course_id from klass_student where student_id=#{studentId}")
-    List<Long> listCourseIdByStudentId(@Param("studentId") Long studentId);
 }

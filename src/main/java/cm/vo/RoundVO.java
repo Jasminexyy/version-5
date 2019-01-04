@@ -12,22 +12,17 @@ import java.util.List;
  */
 @Data
 public class RoundVO {
-    @JsonProperty("id")
     private Long roundId;
 
-    @JsonProperty("order")
     private Byte roundNumber;
 
     private Byte presentationScoreMethod;
     private Byte reportScoreMethod;
     private Byte questionScoreMethod;
 
-    @JsonProperty("seminars")
     private List<SeminarVO> seminarVOList;
 
-    @JsonProperty("classRounds")
     private List<KlassRoundVO> klassRoundVOList;
 
-    @JsonProperty("teamScores")
     private List<TeamScoreVO> teamScoreVOList;
 }

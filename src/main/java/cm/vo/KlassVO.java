@@ -16,16 +16,12 @@ public class KlassVO {
 
     private Byte klassSerial;
 
-    @JsonProperty("time")
     private String klassTime;
 
-    @JsonProperty("location")
     private String klassLocation;
 
-    @JsonProperty("id")
     private Long klassId;
 
-    @JsonProperty("name")
     private String klassName;
 
     public void setKlassName(Integer grade, Byte klassSerial) {

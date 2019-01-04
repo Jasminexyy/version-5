@@ -15,10 +15,8 @@ public class RoundListVO<T> {
 
     private String courseName;
 
-    @JsonProperty("className")
     private String klassName;
 
-    @JsonProperty("rounds")
     private List<RoundVO> roundVOList;
 
     public void setKlassName(Integer grade, Byte klassSerial) {

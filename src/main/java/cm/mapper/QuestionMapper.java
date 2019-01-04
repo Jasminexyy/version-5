@@ -89,4 +89,12 @@ public interface QuestionMapper {
             @Result(property = "score",column = "score")
     })
     List<Question> listUnSelectedQuestionsByAttendanceId(@Param("attendanceId") Long attendanceId);
+
+    /**
+     * 根据QuestionId获得TeamId
+     * @param questionId
+     * @return
+     */
+    @Select("select team_id from question where question_id=#{questionId}")
+    Long getTeamIdByQuestionId(@Param("questionId") Long questionId);
 }

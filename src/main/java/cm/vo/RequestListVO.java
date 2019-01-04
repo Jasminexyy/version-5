@@ -11,9 +11,7 @@ import lombok.Data;
 @Data
 public class RequestListVO {
 
-    @JsonProperty("request")
     private RequestTypeVO requestTypeVO;
 
-    @JsonProperty("historyRequest")
     private RequestTypeVO historyRequestTypeVO;
 }

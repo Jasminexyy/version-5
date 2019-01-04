@@ -15,10 +15,8 @@ public class CourseKlassVO {
 
     private String courseName;
 
-    @JsonProperty("classId")
     private Long klassId;
 
-    @JsonProperty("className")
     private String klassName;
 
     public void setKlassName(Integer grade, Byte klassSerial) {

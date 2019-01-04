@@ -18,14 +18,12 @@ public class SeminarScoreVO {
     /**
      * klass
      */
-    @JsonProperty("className")
     private String klassName;
     /**
      * attendance
      */
     private Byte teamOrder;
 
-    @JsonProperty("seminarScore")
     private SimpleSeminarScoreVO simpleSeminarScoreVO;
 
     public void setKlassName(Integer grade, Byte klassSerial) {

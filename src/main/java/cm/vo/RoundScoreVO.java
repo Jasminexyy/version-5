@@ -12,19 +12,15 @@ import java.util.List;
  * @Date: Created in 2018/12/21
  */
 @Data
-public class RoundScoreVO<T> {
-    @JsonProperty("id")
+public class RoundScoreVO<SimpleSeminarScoreVO> {
     private Long roundId;
 
-    @JsonProperty("order")
     private Byte roundNumber;
 
     /**
      * 此轮分数
      */
-    @JsonProperty("roundScore")
     private BigDecimal totalScore;
 
-    @JsonProperty("seminars")
-    private List<T> seminarVOList;
+    private List<SimpleSeminarScoreVO> SimpleSeminarScoreVOList;
 }
