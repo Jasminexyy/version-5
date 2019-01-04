@@ -296,14 +296,14 @@ public class SeminarService {
     //attendanceId和reportscore
     public void scoreReport(Map<Long,BigDecimal> attendanceId_score_map,SeminarInfoVO seminarInfoVO) {
         for(Long key :attendanceId_score_map.keySet())
-{
+        {
     //获得当前team
     Team team=teamDAO.getByAttendanceId(key);
     SeminarScore seminarScore=new SeminarScore();
     seminarScore.setReportScore(attendanceId_score_map.get(key));
     KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(seminarInfoVO.getSeminarId(),seminarInfoVO.getKlassId());
     seminarScoreDAO.updateSeminarScore(seminarScore,klassSeminar.getId(),team.getId());
-}
+        }
     }
 
     public boolean uploadPPT(Long klassSeminarId, MultipartFile file,AttendanceVO attendanceVO) {

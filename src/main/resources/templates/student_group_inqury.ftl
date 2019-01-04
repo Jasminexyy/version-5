@@ -26,7 +26,8 @@
 			
 			<div style="height:0.5rem;background-color:#e8e8e8"></div>
 			
-			<div>		
+			<div>
+				<#list >
 			<details>
 				<summary  class="sumbackgroundw">
 				<!--我的小组一定要标识，其他小组读就完了-->
@@ -49,9 +50,11 @@
 
 				</table>
 				</div>
-			</details>			
+			</details>
+				<div style="height:0.5rem;background-color:#e8e8e8"></div>
+				</#list>
 			</div>
-		<div style="height:0.5rem;background-color:#e8e8e8"></div>	
+
 
 		</center>
 

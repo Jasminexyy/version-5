@@ -42,7 +42,7 @@ public class StudentTeamController {
         courseDetailVO=courseService.getCourseById(courseId);
         student= studentService.getUserVOByAccount(account);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
-        model.addAttribute("studentsNotInTeam",teamService.listStudentsNotInTeam(courseId));
+        model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeamByCourseId(courseId));
         return "student_teams";
     }
 
@@ -51,7 +51,7 @@ public class StudentTeamController {
     public String studentMyTeam(Model model){
         TeamVO tmp=teamService.getMyTeam(courseDetailVO.getId(),student.getId());
         model.addAttribute("myTeam",tmp);
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId()==tmp.getLeader().getId())
             return "student_myteam_leader";
         else
@@ -71,8 +71,7 @@ public class StudentTeamController {
 
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String studentTeamCreate(Model model){
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
-        model.addAttribute("klassList",klassService.listKlassByCourseId(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         return "student_team_create";
     }
 
