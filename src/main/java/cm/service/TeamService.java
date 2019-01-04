@@ -30,10 +30,6 @@ public class TeamService {
 		return teamDAO.listByCourseId(courseId);
 	}
 
-	public List<Team> listStudentsNotInTeam(long courseId){
-		return teamDAO.listByCourseId(courseId);
-	}
-
 	public TeamVO getMyTeam(long courseId, long studentId){
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
 		return teamToTeamVO(team);

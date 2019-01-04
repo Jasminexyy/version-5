@@ -11,4 +11,5 @@ import lombok.Data;
 public class ConflictCourseStrategyVO {
     private Long id;
     private Long courseId;
+    private String courseName;
 }

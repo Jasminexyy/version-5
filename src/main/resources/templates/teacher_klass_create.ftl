@@ -5,7 +5,8 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="seminar.css" charset="GB2312"/>
+    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
+    <script src="../static/js/jquery_min.js" type="text/javascript"></script>
     <title>新建班级</title>
 </head>
 <body>
@@ -14,7 +15,7 @@
         <span><</span>
         <center>新建班级</center>
     </div>
-    <form action="/cm/teacher/course/klass/create" name="addForm" method="post">
+    <form name="addForm" method="post">
         <div class="div6">
             <table class="table_d6" cellpadding="" cellspacing="">
                 <tr>
@@ -35,11 +36,11 @@
                     <td class="c"><form id="uploadFile" class="upload" action="/cm/teacher/course/klass" method="post"
                                         enctype="multipart/form-data">
                             <p>
-                                选择文件:<input type="file" name="multipartFile"/>
+                                选择文件:<input id="studentList" type="file" name="multipartFile"/>
                             </p>
                             <p></p>
                             <p style="margin-top: 20px;">
-                                <input style="" type="submit" value="上传"/>
+                                <input style="" value="上传"/>
                             </p>
                         </form>
                     </td>
@@ -51,11 +52,12 @@
     </form>
 </center>
 <script type="text/javascript">
+    var grade=document.getElementById("grade");
+    var klass=document.getElementById("klass");
+    var time=document.getElementById("time");
+    var location=document.getElementById("location");
+    var studentList=document.getElementById("studentList");
     function checkForm() {
-        var grade=document.getElementById("grade");
-        var klass=document.getElementById("klass");
-        var time=document.getElementById("time");
-        var location=document.getElementById("location");
         if(grade.value==''|klass.value==''|time.value==''|location.value==''){
             alert("有项目为空!");
             return false;
@@ -65,9 +67,21 @@
     }
     function save() {
         if(checkForm()){
-            document.addForm.onsubmit;
+            jQuery.ajax({
+                type:"POST",
+                url:"/cm/teacher/course/klass/create",
+                headers:{"contentType":"application/json"},
+                processData:false,
+                // data:$('#myform').serialize(),
+                data:{"grade":grade.value,"klassSerial":klass.value,"klassTime":time.value,"klassLocation":location.value,
+                    "studentVOList":studentList.value},
+                dataType:"json",
+                complete:function(data){
+                    if(data.status==200)
+                        window.location="/cm/teacher/course/klassList/teacher_klassList";
+                }
+            })
             confirm("创建成功！");
-            window.location.href="/cm/teacher/course/klassList/teacher_klassList";
         }
     }
 </script>

@@ -1,11 +1,12 @@
-<!--新建讨论课-->
+<#--新建讨论课-->
 <!DOCTYPE html>
 <html lang="ch">
 <head style="font-size: 35px">
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="/seminar.css" charset="GB2312"/>
+    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
+    <script src="../static/js/jquery_min.js" type="text/javascript"></script>
     <title>新建讨论课</title>
 </head>
 <body>
@@ -13,11 +14,8 @@
     <div id="header1">
         <span>X</span>
         <center>
-            ${}
+            新建讨论课
         </center>
-    </div>
-    <div class="div4">
-        <p6>新建讨论课</p6>
     </div>
     <form action="/cm/teacher/course/seminar/create" method="post" name="SeminarCreate">
         <input class="input_for_course" id="seminar_name" type="text" placeholder="主题" onfocus="this.value='';this.onfocus='';">

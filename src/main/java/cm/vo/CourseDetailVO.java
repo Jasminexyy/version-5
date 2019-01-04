@@ -22,6 +22,6 @@ public class CourseDetailVO {
     private Byte teamMaxNum;
     private Byte teamMinNum;
 
-    private List<ConflictCourseStrategyVO> conflictCourseStrategyVOList;
+    private List<List<ConflictCourseStrategyVO>> conflictCourseStrategyVOList;
     private List<CourseMemberLimitStrategyVO> courseMemberLimitStrategyVOList;
 }
