@@ -23,29 +23,24 @@
 					</span1>	            
 	        </div> 
 </center>
-<#assign roundNames=scoreDetails?keys/>
 <center>
 <div style="width:80%">
-	<#list roundNames as roundName>
-		<#assign seminarScoreVO=scoreDetails[roundName]/>
-		<#assign seminarScore=seminarScoreVO.simpleSeminarScoreVO/>
+	<#list scoreDetails as roundScore>
 		<details>
 			<!--好多轮次的讨论课-->
-			<summary  id="sumbackground">${roundName}</summary>
+			<summary  id="sumbackground">第${roundScore.roundNumber}轮-${roundScore.totalScore}</summary>
 			<details>
 				<!--每轮不同讨论课名字和分数-->
-				<#list seminarScore as seminar>
-					<summary id="sumbackground-summary">${seminar.seminarName}</summary>
+				<#list roundScore.simpleSeminarScoreVOList as seminarScore>
+					<summary id="sumbackground-summary">${seminarScore.seminarName}</summary>
 					<div  id="backcolor">
 						<table>
 							<tr>
-								<td>展示：<font color="#9ACD32">5.0</font></td>
-								<td>提问：<font color="#9ACD32">5.0</font></td>
-								<td>书面报告：<font color="#9ACD32">5.0</font></td>
-								<td><font color="#FF0000">5.0</font></td>
+								<td>展示：<font color="#9ACD32">${seminarScore.presentationScore}</font></td>
+								<td>提问：<font color="#9ACD32">${seminarScore.questionScore}</font></td>
+								<td>书面报告：<font color="#9ACD32">${seminarScore.reportScore}</font></td>
 							</tr>
 						</table>
-						<span class="right" style="margin-right:15%"> 本轮成绩：<font color="#FF0000">5.0</font></span>
 						<br/>
 					</div>
 				</#list>
@@ -53,8 +48,7 @@
 		</details>
 	</#list>
 </div>
-	<button type="submit" class="submit">导出成绩</button>
+	<button class="submit">导出成绩</button>
 </center>
-
 </body>
 </html>
