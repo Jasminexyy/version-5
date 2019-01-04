@@ -4,8 +4,8 @@
 	<head style="font-size:35px;">
 		<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 		<title>老师共享设置</title>
-		<link href="../static/css/share.css" type="text/css" rel="stylesheet"/>
-		<script src="/static/js/jquery.min.js"></script>
+		<link href="/css/share.css" type="text/css" rel="stylesheet"/>
+		<script src="/js/jquery.min.js"></script>
 	</head>
 	<body>
 	<center>

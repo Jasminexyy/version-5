@@ -3,7 +3,7 @@
 <head style="font-size:35px;">
     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 
-    <link href="seminar_total.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/seminar_total.css" type="text/css" rel="stylesheet"/>
     <title>教师-讨论课-总界面</title>
 </head>
 <body>

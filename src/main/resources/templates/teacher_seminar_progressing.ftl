@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <script src="/static/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
 
     <title>展示</title>
 </head>

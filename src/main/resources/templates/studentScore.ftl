@@ -2,9 +2,9 @@
 <html>
 <head style="font-size:35px;">
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-	<link href="../static/css/details.css" type="text/css" rel="stylesheet"/>
-	<script src="/static/js/jquery.min.js"></script>
-	<title>ÎÒµÄ³É¼¨</title>
+	<link href="/css/details.css" type="text/css" rel="stylesheet"/>
+	<script src="/js/jquery.min.js"></script>
+	<title>ï¿½ÒµÄ³É¼ï¿½</title>
 </head>
 <body>
 <center>
@@ -12,12 +12,12 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        ÎÒµÄ³É¼¨
+	        ï¿½ÒµÄ³É¼ï¿½
 	            <span1>
 	                <b><li class="dao li1">+
 							<ul class="sub sub1">
-								<a href="/cm/student/person"><li class="main">¸öÈËÒ³</li></a>
-								<a href="/cm/student/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+								<a href="/cm/student/person"><li class="main">ï¿½ï¿½ï¿½ï¿½Ò³</li></a>
+								<a href="/cm/student/seminar"><li class="main">ï¿½ï¿½ï¿½Û¿ï¿½</li></a>
 							</ul></li>
 					</b>
 					</span1>	            
@@ -30,22 +30,22 @@
 		<#assign seminarScoreVO=scoreDetails[roundName]/>
 		<#assign seminarScore=seminarScoreVO.simpleSeminarScoreVO/>
 		<details>
-			<!--ºÃ¶àÂÖ´ÎµÄÌÖÂÛ¿Î-->
+			<!--ï¿½Ã¶ï¿½ï¿½Ö´Îµï¿½ï¿½ï¿½ï¿½Û¿ï¿½-->
 			<summary  id="sumbackground">${roundName}</summary>
 			<details>
-				<!--Ã¿ÂÖ²»Í¬ÌÖÂÛ¿ÎÃû×ÖºÍ·ÖÊý-->
+				<!--Ã¿ï¿½Ö²ï¿½Í¬ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ÖºÍ·ï¿½ï¿½ï¿½-->
 				<#list seminarScore as seminar>
 					<summary id="sumbackground-summary">${seminar.seminarName}</summary>
 					<div  id="backcolor">
 						<table>
 							<tr>
-								<td>Õ¹Ê¾£º<font color="#9ACD32">5.0</font></td>
-								<td>ÌáÎÊ£º<font color="#9ACD32">5.0</font></td>
-								<td>ÊéÃæ±¨¸æ£º<font color="#9ACD32">5.0</font></td>
+								<td>Õ¹Ê¾ï¿½ï¿½<font color="#9ACD32">5.0</font></td>
+								<td>ï¿½ï¿½ï¿½Ê£ï¿½<font color="#9ACD32">5.0</font></td>
+								<td>ï¿½ï¿½ï¿½æ±¨ï¿½æ£º<font color="#9ACD32">5.0</font></td>
 								<td><font color="#FF0000">5.0</font></td>
 							</tr>
 						</table>
-						<span class="right" style="margin-right:15%"> ±¾ÂÖ³É¼¨£º<font color="#FF0000">5.0</font></span>
+						<span class="right" style="margin-right:15%"> ï¿½ï¿½ï¿½Ö³É¼ï¿½ï¿½ï¿½<font color="#FF0000">5.0</font></span>
 						<br/>
 					</div>
 				</#list>
@@ -53,7 +53,7 @@
 		</details>
 	</#list>
 </div>
-	<button type="submit" class="submit">µ¼³ö³É¼¨</button>
+	<button type="submit" class="submit">ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½</button>
 </center>
 
 </body>
