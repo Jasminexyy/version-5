@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 
 		<title>老师共享设置</title>
-		<link href="share.css" type="text/css" rel="stylesheet"/> 
+		<link href="/css/share.css" type="text/css" rel="stylesheet"/>
 
 	</head>
 	<body>

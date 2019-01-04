@@ -6,7 +6,7 @@
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
     <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
-    <script src="/static/js/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <title>修改讨论课</title>
 </head>
 <body>

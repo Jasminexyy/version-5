@@ -12,7 +12,7 @@ import java.util.List;
  * @Date: Created in 2018/12/21
  */
 @Data
-public class RoundScoreVO<SimpleSeminarScoreVO> {
+public class RoundScoreVO{
     private Long roundId;
 
     private Byte roundNumber;
