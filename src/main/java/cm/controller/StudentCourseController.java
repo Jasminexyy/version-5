@@ -1,10 +1,7 @@
 package cm.controller;
 
 import cm.service.CourseService;
-import cm.vo.CourseVO;
-import cm.vo.KlassVO;
-import cm.vo.SeminarScoreVO;
-import cm.vo.UserVO;
+import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +36,7 @@ public class StudentCourseController {
     ///////student course score Map<RoundName,SeminarScore>
     @RequestMapping(value = "/score",method = RequestMethod.POST)
     public String studentScore(long courseId,long klassId,Model model){
-        Map<String, SeminarScoreVO> maps=courseService.listScoreForStudent(courseId,klassId,student.getId());
+        Map<String, SeminarListVO> maps=courseService.listScoreForStudent(courseId,klassId,student.getId());
         model.addAttribute("scoreDetails",maps);
         return "studentScore";
     }

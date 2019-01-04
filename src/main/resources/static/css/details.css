@@ -100,7 +100,7 @@ background-color:#ffffff;
 line-height:40px;
 }
 
-#sumbackgroundw-summary{
+.sumbackgroundw-summary{
 	height:30px;
 	text-align:center;
 	display: table-cell;
@@ -127,7 +127,7 @@ line-height:40px;
 background-color:#e8e8e8;
 }
 
-#backcolor1
+.backcolor1
 {
 background-color:#e8e8e8;
 height:40px;

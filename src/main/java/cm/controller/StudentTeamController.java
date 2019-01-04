@@ -61,10 +61,10 @@ public class StudentTeamController {
 
 
     ///////student my team quit
-    @RequestMapping(value="/myteam/quit",method = RequestMethod.POST)
+    @RequestMapping(value="/myteam/quit/{teamId}",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity studentTeamQuit(Long teamId,Long studentId){
-        teamService.quitTeam(teamId,studentId);
+    public ResponseEntity studentTeamQuit(@PathVariable Long teamId){
+        teamService.quitTeam(teamId,student.getId());
         return new ResponseEntity(HttpStatus.OK);
     }
 

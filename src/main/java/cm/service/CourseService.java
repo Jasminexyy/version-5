@@ -32,6 +32,10 @@ public class CourseService {
 
 	@Autowired
     TeacherService teacherService;
+	@Autowired
+	private ShareTeamDAO shareTeamDAO;
+	@Autowired
+	private TeacherDAO teacherDAO;
 
 	public List<Course> findCoursesByTeacherId(Long teacherId){
 		return courseDAO.listByTeacherId(teacherId);
@@ -123,35 +127,32 @@ public class CourseService {
 	}
 
 	//string是roundname
-	public Map<String, SeminarScoreVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
-        //获取所有该班级下所有讨论课成绩，semimarid
-        List<KlassSeminar> klassSeminars = klassSeminarDAO.listByKlassId(klassId);
-        //获取小组id
-        Team team = teamDAO.getByKlassIdAndStudentId(klassId, studentId);
-        Map<String, SeminarScoreVO> map = new HashMap<String, SeminarScoreVO>();
-        SeminarScore seminarScore;
-        SeminarScoreVO seminarScoreVO=new SeminarScoreVO();
-        //遍历查找所有讨论课，如果是该班级下的讨论课，就读一下该组的成绩
-        for (int i = 0; i < klassSeminars.size(); i++) {
-                //某班级讨论课下某个班的讨论课分数
-                seminarScore = seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminars.get(i).getId(), team.getId());
-            //通过courseid设置coursename
-                seminarScoreVO.setCourseName(courseDAO.getByCourseId(courseId).getCourseName());
-                seminarScoreVO.setKlassName(klassDAO.getKlassNameByKlassId(klassId));
-                SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
-                //获得当前讨论课
-                Seminar seminar=seminarDAO.getBySeminarId(klassSeminars.get(i).getSeminarId());
-                //获得roundname/roundseries toString
-                String s=roundDAO.getByRoundId(seminar.getRoundId()).getRoundSerial().toString();
-                simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
-                simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
-                simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
-                simpleSeminarScoreVO.setTotalScore(seminarScore.getTotalScore());
-                simpleSeminarScoreVO.setSeminarName(seminar.getSeminarName());
-                seminarScoreVO.setSimpleSeminarScoreVO(simpleSeminarScoreVO);
-                map.put(s,seminarScoreVO);
-        }
-    return map;
+	public Map<String, SeminarListVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
+        //获取课程所有讨论课轮次
+		List<Round> roundList=roundDAO.listByCourseId(courseId);
+		SeminarListVO seminarListVO=new SeminarListVO();
+		List<SeminarVO> seminarVOList=new LinkedList<SeminarVO>();
+		//获取每个轮次下的roundname和seminars
+		Map<String, SeminarListVO> map=new HashMap<String, SeminarListVO>();
+		for(int i=0;i<roundList.size();i++)
+		{
+			String roundName=roundList.get(i).getRoundSerial().toString();
+			//虎丘当前轮次的所有讨论课
+			Round round=roundList.get(i);
+			List<Seminar> seminarList=round.getSeminars();
+
+			for(int j=0;j<seminarList.size();j++)
+			{
+				//获取单个讨论课
+				Seminar seminar=seminarList.get(j);
+				//获取讨论课的班级
+				KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(seminar.getId(),klassId);
+				//获取班级讨论课下学生班级的 成绩
+				SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),studentId);
+				//
+
+			}
+		}
 	}
 
     public List<Course> findCoursesByStudentId(Long studentId)
@@ -217,6 +218,36 @@ return map;
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
 		return getCourseById(courseId);
+	}
+
+	SimpleSeminarScoreVO seminarAndSeminarscoreTosimpleSeminarScoreVO{
+
+	}
+
+	CourseVO courseToCourseVO(Course course)
+	{
+		CourseVO courseVO=new CourseVO();
+		courseVO.setName(course.getCourseName());
+		courseVO.setId(course.getId());
+		courseVO.setIsShareSeminar(courseDAO.);ipoiopjpoj
+	}
+
+	public List<CourseVO> listAllCourse() {
+		List<Course> courseList=courseDAO.listAllCourse();
+		List<CourseVO> courseVOList=new LinkedList<CourseVO>();
+		for(int i=0;i<courseList.size();i++)
+		{
+			CourseVO courseVO=courseToCourseVO(courseList.get(i));
+			courseVOList.add(courseVO);
+		}
+		return courseVOList;
+	}
+
+	public void createShare(Long shareCourseId) {
+		Long subteacherId=teacherDAO.getByCourseId(shareCourseId).getId();
+
+		shareTeamDAO.createShareTeamApplication()
+
 	}
 
 //	public void updateCourse(CourseVO course) {

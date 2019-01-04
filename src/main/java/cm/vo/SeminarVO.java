@@ -20,4 +20,6 @@ public class SeminarVO{
     private Byte seminarOrder;
 
     private List<KlassVO> klassVOList;
+
+
 }

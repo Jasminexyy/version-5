@@ -1,9 +1,6 @@
 package cm.controller;
 
-import cm.service.CourseService;
-import cm.service.KlassService;
-import cm.service.TeacherService;
-import cm.service.TeamService;
+import cm.service.*;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +24,8 @@ public class TeacherCourseController {
     private KlassService klassService;
     @Autowired
             private TeacherService teacherService;
+    @Autowired
+            private ShareService shareService;
 
     CourseDetailVO courseDetailVO;
     UserVO userVO;
@@ -90,7 +89,7 @@ public class TeacherCourseController {
     ///////////共享情况
     @RequestMapping(value = "/share",method = RequestMethod.GET)
     public String teacherShare(Model model){
-        model.addAttribute("shareCourseList",courseService.listShareCourseVOByCourseId(courseDetailVO.getId()));
+        model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(courseDetailVO.getId()));
         return "teacher_share";
     }
 
@@ -103,8 +102,8 @@ public class TeacherCourseController {
 
     @RequestMapping(value = "/shareCreate",method=RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherShareCreateSubmit(Integer shareType,Long shareCourseId){
-        courseService.createShare(shareType,shareCourseId);
+    public ResponseEntity teacherShareCreateSubmit(Long shareCourseId){
+        courseService.createShare(shareCourseId,courseDetailVO.getId(),userVO.getId());
         return new ResponseEntity(HttpStatus.OK);
     }
 
