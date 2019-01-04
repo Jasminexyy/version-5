@@ -22,7 +22,7 @@
                 url: "/cm/teacher/setting/modifyPwd",
                 headers: {"contentType": "application/json"},
                 processData: false,
-                data: {"new_password":p1},
+                data: {"password":p1},
                 dataType: "json",
                 complete: function (data) {
                     if (data.status == 200)

@@ -14,7 +14,7 @@
 				 url: "/cm/teacher/setting/modifyEmail",
 				 headers: {"contentType": "application/json"},
 				 processData: false,
-				 data: {"new_email":email},
+				 data: {"email":email},
 				 dataType: "json",
 				 complete: function (data) {
 					 if (data.status == 200)

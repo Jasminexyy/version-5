@@ -35,11 +35,11 @@ scale=1.0,minimum-scale=1.0">
 		<details>
 			<!--好多课程还有自己的班级-->
 			<#assign index=0>
-			<#assign keys=courseAndKlassList?keys>
+			<#assign keys=courseAndKlassList?keys />
 			<#list keys as key>
 				<summary
-						class="sumbackgroundw">${key.courseName}
-					${courseAndKlassList[key].grade} ${courseAndKlassList[key].KlassName}</summary>
+						class="sumbackgroundw">${key}
+					${courseAndKlassList.get(key).grade} ${courseAndKlassList.get(key).KlassName}</summary>
 				<a href="/cm/student/course/grade">
 					<div id="backcolor">
 						我的成绩
