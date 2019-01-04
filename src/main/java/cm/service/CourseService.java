@@ -32,6 +32,10 @@ public class CourseService {
 
 	@Autowired
     TeacherService teacherService;
+	@Autowired
+	private ShareTeamDAO shareTeamDAO;
+	@Autowired
+	private TeacherDAO teacherDAO;
 
 	public List<Course> findCoursesByTeacherId(Long teacherId){
 		return courseDAO.listByTeacherId(teacherId);
@@ -237,6 +241,13 @@ return map;
 			courseVOList.add(courseVO);
 		}
 		return courseVOList;
+	}
+
+	public void createShare(Long shareCourseId) {
+		Long subteacherId=teacherDAO.getByCourseId(shareCourseId).getId();
+
+		shareTeamDAO.createShareTeamApplication()
+
 	}
 
 //	public void updateCourse(CourseVO course) {

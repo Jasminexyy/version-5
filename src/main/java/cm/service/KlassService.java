@@ -185,4 +185,7 @@ public static KlassVO klassToKlassVO(Klass k)
         return true;
     }
 
+    public Long getKlassByStudentIdCourseId(Long id, Long id1) {
+        return klassDAO.getByCourseIdAndStudentId(id,id1).getId();
+    }
 }
