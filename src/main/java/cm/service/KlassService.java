@@ -115,13 +115,6 @@ public class KlassService {
         return true;
     }
 
-    public boolean isStudentTeamed(Long studentId,Long courseId){
-       KlassStudent tmp=klassDAO.getKlassStudentByCourseIdStudentId(courseId,studentId);
-       if(tmp.getTeamId()!=null)
-           return true;
-       return false;
-    }
-
     public void deleteByKlass(Klass klass){
 
         List<KlassSeminar>klassSeminarList=klassSeminarDAO.listByKlassId(klass.getId());

@@ -50,7 +50,7 @@ public class StudentTeamController {
     //////student my team
     @RequestMapping(value = "/myteam/{id}",method = RequestMethod.GET)
     public String studentMyTeam(Model model,@PathVariable Long id){
-        TeamVO tmp=teamService.getByTeamId(id);
+        TeamVO tmp=teamService.getVOByTeamId(id);
         model.addAttribute("myTeam",tmp);
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId()==tmp.getLeader().getId())

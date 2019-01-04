@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -36,8 +37,8 @@ public class StudentCourseController {
     ///////student course score Map<RoundName,SeminarScore>
     @RequestMapping(value = "/score",method = RequestMethod.POST)
     public String studentScore(long courseId,long klassId,Model model){
-        Map<String, SeminarListVO> maps=courseService.listScoreForStudent(courseId,klassId,student.getId());
-        model.addAttribute("scoreDetails",maps);
+        List<RoundScoreVO> roundScoreVOList=courseService.listScoreForStudent(courseId,klassId,student.getId());
+        model.addAttribute("scoreDetails",roundScoreVOList);
         return "studentScore";
     }
 }
