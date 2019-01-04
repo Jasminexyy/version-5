@@ -72,7 +72,7 @@ public class StudentTeamController {
 
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String studentTeamCreate(Model model){
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         model.addAttribute("klassList",klassService.listKlassByCourseId(courseDetailVO.getId()));
         return "student_team_create";
     }
