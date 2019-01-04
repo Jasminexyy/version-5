@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -83,7 +82,7 @@ public class TeacherSeminarController {
     public String teacherSeminar(long klassId,long seminarId,Model model){
         seminarInfoVO=seminarService.getSeminarInfo(klassId,seminarId);
         model.addAttribute("Seminar",seminarInfoVO);
-        return "teacher_seminarInfo";
+        return "teacher_seminar_modify";
     }
 
     @RequestMapping(value = "/modify",method = RequestMethod.GET)
