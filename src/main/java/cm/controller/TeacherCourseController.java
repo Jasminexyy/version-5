@@ -50,7 +50,7 @@ public class TeacherCourseController {
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String teacherCourseCreate(Model model){
-        //model.addAttribute("courseList",courseService.listAllCourse());
+        model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
 ////////////////////////////////创建课程
