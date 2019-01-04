@@ -29,21 +29,22 @@ public class UserController {
 	}
 
 	//登录提交表单
-	@RequestMapping(value = "/cm/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/cm/login", method = RequestMethod.POST)
 	public String LoginSubmit(String account, String password) throws IOException {
-		System.out.println("login submit");
-		if (account.length() == 11) {
+		System.out.println(account);
+		if (account.length()>0) {
 			if (studentService.vertify(account, password)) {
 				return "redirect:/cm/student/index?account="+account;
 			}
-		}
-		else {
-			if (teacherService.vertify(account, password)) {
-				System.out.println("verify teacher successfully");
-				return "redirect:/cm/teacher/index?account="+account;
+			else {
+				if (teacherService.vertify(account, password)) {
+					System.out.println("verify teacher successfully");
+					return "redirect:/cm/teacher/index?account="+account;
+				}
+				System.out.println("verify teacher fail");
 			}
-			System.out.println("verify teacher fail");
 		}
+		System.out.println("我败了");
 		return "userlogin";
 	}
 }

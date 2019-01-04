@@ -18,8 +18,6 @@ public class StudentScoreVO {
 
     private String klassName;
 
-    private List<RoundScoreVO<SimpleSeminarScoreVO>> roundScoreVOList;
-
     public void setKlassName(Integer grade, Byte klassSerial) {
         this.klassName = String.valueOf(grade)+"(" +String.valueOf(klassSerial)+")";
     }

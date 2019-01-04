@@ -12,10 +12,10 @@
         <span>X</span>
         <center>课堂管理系统登录</center>
     </div>
-    <form id="myform" method="post">
+    <form action="/cm/login" method="post">
         <input type="text" name="account" value="用户名" onfocus="this.value='';this.onfocus='';"/><br/>
         <input type="password" name="password" value="登录密码" onfocus="this.value='';this.onfocus='';"/><br/>
-        <button id="login" onclick="submit();">登 录</button></br>
+        <button id="login" type="submit" >登 录</button></br>
     </form>
     <p>忘记密码</p>
     <div id="bottom">
@@ -26,17 +26,18 @@
     function submit() {
         jQuery.ajax({
             type:"POST",
-            url:"/cm/",//怎么定向？教师or学生
+            url:"/cm/login",//怎么定向？教师or学生
             headers:{"contentType":"application/json"},
             processData:false,
-            data:$('#myform').serialize(),
+            data:$(#"myform").serialize(),
             dataType:"json",
             complete:function(data){
                 if(data.status==200)
                     window.location="";//
             }
-        })
-    }
+        });
+        return false;
+    };
 </script>
 </body>
 </html>

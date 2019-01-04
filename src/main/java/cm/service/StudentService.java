@@ -35,9 +35,13 @@ public class StudentService {
     }
 
     public boolean vertify(String account, String password){
-        Student tmp=studentDAO.getByStudentAccount(account);
-        if(tmp.getPassword().equals(password))
-            return true;
+        Student student=new Student();
+        if(studentDAO.getByStudentAccount(account)!=null) {
+            student = studentDAO.getByStudentAccount(account);
+            if (student.getPassword().equals(password))
+                return true;
+            else return false;
+        }
         else
             return false;
     }
