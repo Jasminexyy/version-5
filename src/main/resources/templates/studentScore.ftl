@@ -2,9 +2,9 @@
 <html>
 <head style="font-size:35px;">
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-	<link href="/css/details.css" type="text/css" rel="stylesheet"/>
-	<script src="/js/jquery.min.js"></script>
-	<title>ï¿½ÒµÄ³É¼ï¿½</title>
+	<link href="../static/css/details.css" type="text/css" rel="stylesheet"/>
+	<script src="/static/js/jquery.min.js"></script>
+	<title>ÎÒµÄ³É¼¨</title>
 </head>
 <body>
 <center>
@@ -12,40 +12,35 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        ï¿½ÒµÄ³É¼ï¿½
+	        ÎÒµÄ³É¼¨
 	            <span1>
 	                <b><li class="dao li1">+
 							<ul class="sub sub1">
-								<a href="/cm/student/person"><li class="main">ï¿½ï¿½ï¿½ï¿½Ò³</li></a>
-								<a href="/cm/student/seminar"><li class="main">ï¿½ï¿½ï¿½Û¿ï¿½</li></a>
+								<a href="/cm/student/person"><li class="main">¸öÈËÒ³</li></a>
+								<a href="/cm/student/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
 							</ul></li>
 					</b>
 					</span1>	            
 	        </div> 
 </center>
-<#assign roundNames=scoreDetails?keys/>
 <center>
 <div style="width:80%">
-	<#list roundNames as roundName>
-		<#assign seminarScoreVO=scoreDetails[roundName]/>
-		<#assign seminarScore=seminarScoreVO.simpleSeminarScoreVO/>
+	<#list scoreDetails as roundScore>
 		<details>
-			<!--ï¿½Ã¶ï¿½ï¿½Ö´Îµï¿½ï¿½ï¿½ï¿½Û¿ï¿½-->
-			<summary  id="sumbackground">${roundName}</summary>
+			<!--ºÃ¶àÂÖ´ÎµÄÌÖÂÛ¿Î-->
+			<summary  id="sumbackground">µÚ${roundScore.roundNumber}ÂÖ-${roundScore.totalScore}</summary>
 			<details>
-				<!--Ã¿ï¿½Ö²ï¿½Í¬ï¿½ï¿½ï¿½Û¿ï¿½ï¿½ï¿½ï¿½ÖºÍ·ï¿½ï¿½ï¿½-->
-				<#list seminarScore as seminar>
-					<summary id="sumbackground-summary">${seminar.seminarName}</summary>
+				<!--Ã¿ÂÖ²»Í¬ÌÖÂÛ¿ÎÃû×ÖºÍ·ÖÊý-->
+				<#list roundScore.simpleSeminarScoreVOList as seminarScore>
+					<summary id="sumbackground-summary">${seminarScore.seminarName}</summary>
 					<div  id="backcolor">
 						<table>
 							<tr>
-								<td>Õ¹Ê¾ï¿½ï¿½<font color="#9ACD32">5.0</font></td>
-								<td>ï¿½ï¿½ï¿½Ê£ï¿½<font color="#9ACD32">5.0</font></td>
-								<td>ï¿½ï¿½ï¿½æ±¨ï¿½æ£º<font color="#9ACD32">5.0</font></td>
-								<td><font color="#FF0000">5.0</font></td>
+								<td>Õ¹Ê¾£º<font color="#9ACD32">${seminarScore.presentationScore}</font></td>
+								<td>ÌáÎÊ£º<font color="#9ACD32">${seminarScore.questionScore}</font></td>
+								<td>ÊéÃæ±¨¸æ£º<font color="#9ACD32">${seminarScore.reportScore}</font></td>
 							</tr>
 						</table>
-						<span class="right" style="margin-right:15%"> ï¿½ï¿½ï¿½Ö³É¼ï¿½ï¿½ï¿½<font color="#FF0000">5.0</font></span>
 						<br/>
 					</div>
 				</#list>
@@ -53,8 +48,7 @@
 		</details>
 	</#list>
 </div>
-	<button type="submit" class="submit">ï¿½ï¿½ï¿½ï¿½ï¿½É¼ï¿½</button>
+	<button class="submit">µ¼³ö³É¼¨</button>
 </center>
-
 </body>
 </html>
