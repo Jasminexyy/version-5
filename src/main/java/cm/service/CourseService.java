@@ -61,6 +61,7 @@ public class CourseService {
 		course1.setRounds(roundDAO.listByCourseId(course.getId()));
 		course1.setTeamEndTime(Timestamp.valueOf(course.getTeamEndTime()));
 		course1.setTeamStartTime(Timestamp.valueOf(course.getTeamStartTime()));
+		course1.setTeacherId(teacher.getId());
 		//默认为主课程
 		course1.setTeamMainCourseId(course.getId());
 		courseDAO.createCourse(teacher.getId(),course1);
@@ -233,12 +234,12 @@ return map;
 		return getCourseById(courseId);
 	}
 
-	CourseVO courseToCourseVO(Course course,String teacherName)
+	CourseVO courseToCourseVO(Course course)
 	{
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
 		courseVO.setId(course.getId());
-		courseVO.setTeacherName(teacherName);
+		courseVO.setTeacherName(teacherDAO.getByCourseId(course.getId()).getTeacherName());
 		return courseVO;
 	}
 
