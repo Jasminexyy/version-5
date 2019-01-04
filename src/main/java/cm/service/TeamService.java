@@ -120,9 +120,14 @@ public class TeamService {
 
 	}
 
-    public List<Team> listTeamByCourseId(Long courseId) {
+    public List<TeamVO> listTeamByCourseId(Long courseId) {
 		List<Team> teams=teamDAO.listByCourseId(courseId);
-		return teams;
+		List<TeamVO> teamVOList=new LinkedList<TeamVO>();
+		for(int i=0;i<teams.size();i++)
+		{
+			teamVOList.add(teamToTeamVO(teams.get(i)));
+		}
+		return teamVOList;
     }
 
 	public void deleteTeam(Long id) {
