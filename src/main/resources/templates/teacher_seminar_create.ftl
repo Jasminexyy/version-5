@@ -17,7 +17,7 @@
             新建讨论课
         </center>
     </div>
-    <form action="/cm/teacher/course/seminar/create" method="post" name="SeminarCreate">
+    <form method="post" name="SeminarCreate">
         <input class="input_for_course" id="seminar_name" type="text" placeholder="主题" onfocus="this.value='';this.onfocus='';">
         </br>
         <textarea class="textarea_for_course" id="seminar_ask" placeholder="讨论课具体要求" onfocus="this.value='';this.onfocus='';"></textarea>
@@ -34,7 +34,7 @@
             </table>
         </div>
         <div class="div5">
-            <form action="" method="post" id="basic_info">
+            <form method="post" id="basic_info">
                 <table class="table_d5" cellspacing="" cellpadding="">
                     <tr>
                         <td class="c">展示报名开始时间：</td>
@@ -56,6 +56,10 @@
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
                             </select></td>
                     </tr>
                 </table>
@@ -65,29 +69,41 @@
     </form>
 </center>
 <script type="text/javascript">
+    var seminarName=document.getElementById("seminar_name");
+    var introduction=document.getElementById("seminar_ask");
+    var iv=document.getElementById("isVisible");
+    var seminarStatus=iv.options[iv.selectedIndex].value;
+    var enrollStartTime=document.getElementById("start_time");
+    var enrollEndTime=document.getElementById("end_time");
+    var teamNumLimit=document.getElementById("team_num");
+    var round_serial=document.getElementById("round_serial");
+    var roundSerial=round_serial.options[round_serial.selectedIndex].value;
     function checkPost() {
-        var seminarName=document.getElementById("seminar_name");
-        var introduction=document.getElementById("seminar_ask");
-        var iv=document.getElementById("isVisible");
-        var seminarStatus=iv.options[iv.selectedIndex].value;
-        var enrollStartTime=document.getElementById("start_time");
-        var enrollEndTime=document.getElementById("end_time");
-        var teamNumLimit=document.getElementById("team_num");
-        var round_serial=document.getElementById("round_serial");
-        var roundSerial=round_serial.options[round_serial.selectedIndex].value;
         if(seminarName.value==''|enrollEndTime.value==''|enrollStartTime.value==''|teamNumLimit.value==''){
             alert("有项目为空！");
             return false;
         }
-        else
-            return true;
+        else return true;
     }
     function create(){
         if(checkPost()){
-            confirm("创建成功！");
-            document.SeminarCreate.onsubmit;
-            window.location.replace("/cm/teacher/course/seminar");
+            jQuery.ajax({
+                type:"POST",
+                url:"/cm/teacher/course/seminar/create",
+                headers:{"contentType":"application/json"},
+                processData:false,
+                // data:$('#myform').serialize(),
+                data:{"seminarName":seminarName.value,"introduction":introduction.value,"seminarStatus":seminarStatus.value,
+                "enrollStartTime":enrollStartTime.value,"enrollEndTime":enrollEndTime.value,
+                    "teamNumLimit":teamNumLimit.value,"roundSerial":roundSerial.value},
+                dataType:"json",
+                complete:function(data){
+                    if(data.status==200)
+                        window.location="/cm/teacher/course/seminar";
+                }
+            })
         }
+        confirm("创建成功！");
     }
 </script>
 </body>
