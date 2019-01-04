@@ -26,14 +26,14 @@
     function submit() {
         jQuery.ajax({
             type:"POST",
-            url:"/cm/",//怎么定向？教师or学生
+            url:"/login",//怎么定向？教师or学生
             headers:{"contentType":"application/json"},
             processData:false,
             data:$('#myform').serialize(),
             dataType:"json",
             complete:function(data){
                 if(data.status==200)
-                    window.location="";//
+                    window.location="/cm/teacher/index";//
             }
         })
     }
