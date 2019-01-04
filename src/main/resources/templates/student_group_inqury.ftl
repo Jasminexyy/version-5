@@ -54,8 +54,16 @@
 				<div style="height:0.5rem;background-color:#e8e8e8"></div>
 				</#list>
 			</div>
-
-
+			<#if !myteam>
+			<div class="header" style="background-color:#9ACD32;color:#ffffff">
+				+创建小组
+				<span class="right">></span>
+				<br/>
+				</#if>
+				<#else>
+					${myTeam.teamNumber} ${myTeam.teamName}
+					<br/>
+					</#if>
 		</center>
 
 
