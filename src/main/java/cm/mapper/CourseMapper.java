@@ -64,6 +64,15 @@ public interface CourseMapper {
     List<Course> listByStudentId(@Param("studentId") Long studentId);
 
     /**
+     * 根据StudentId获得该学生的所有Course
+     * @param studentId
+     * @return java.util.List<cm.entity.Course>
+     */
+    @Select("select course_id from course where id " +
+            "in(select course_id from klass_student where student_id=#{studentId})")
+    List<Long> listCourseIdByStudentId(@Param("studentId") Long studentId);
+
+    /**
      * 根据TeacherId获得老师的所有Course
      * @param teacherId
      * @return java.util.List<cm.entity.Course>

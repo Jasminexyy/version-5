@@ -2,6 +2,7 @@ package cm.service;
 
 import cm.dao.KlassDAO;
 import cm.dao.StudentDAO;
+import cm.entity.LoginUser;
 import cm.entity.Student;
 import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ public class StudentService {
     }
 
     public boolean vertify(String account, String password){
-        Student student=new Student();
-        if(studentDAO.getByStudentAccount(account)!=null) {
-            student = studentDAO.getByStudentAccount(account);
+        LoginUser student=new LoginUser();
+        if(studentDAO.getUserByStudentAccount(account)!=null) {
+            student = studentDAO.getUserByStudentAccount(account);
             if (student.getPassword().equals(password))
                 return true;
             else return false;

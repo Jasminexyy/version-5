@@ -42,7 +42,7 @@ public interface StudentMapper {
     @Select("select id,account,password,is_active from student where account=#{userAccount}")
     @Results({
             @Result(property = "userId",column = "id"),
-            @Result(property = "account",column = "account"),
+            @Result(property = "userAccount",column = "account"),
             @Result(property = "passWord",column = "password"),
             @Result(property = "isActive",column = "is_active")
     })
