@@ -49,11 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/cm/student/**").hasRole("student")
                 .antMatchers("/cm/teacher/**").permitAll()
                 .anyRequest()
-                .authenticated()
+                .authenticated();
 
-                .and()
-                .cors()
-                .and()
+
+        http
+                .cors();
+        http
                 .csrf().disable();
 
     }
@@ -70,5 +71,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/css/*.css","/js/*.js");
+
     }
 }
