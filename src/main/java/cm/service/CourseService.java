@@ -37,6 +37,9 @@ public class CourseService {
 	@Autowired
 	private TeacherDAO teacherDAO;
 
+	@Autowired
+	private StrategyDAO strategyDAO;
+
 	public List<Course> findCoursesByTeacherId(Long teacherId){
 		return courseDAO.listByTeacherId(teacherId);
 	}
@@ -253,5 +256,32 @@ return map;
 //	public void updateCourse(CourseVO course) {
 //		Course course1=new Course();
 //
+//	}
+
+//	public TeamNeedVO getTeamStrategyByCourseId(Long courseId){
+//		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrateByCourseId(courseId);
+//		for(TeamStrategy teamStrategy:teamStrategyList) {
+//			if(teamStrategy.getStrategyName()=="TeamAndStrategy") {
+//				Long strategyId = teamStrategy.getStrategyId();
+//				List<TeamAndStrategy> teamAndStrategyList = strategyDAO.listTeamAndStrateByStrategyId(strategyId);
+//				for(TeamAndStrategy teamAndStrategy:teamAndStrategyList) {
+//					if(teamAndStrategy.getStrategyName()=="MemberLimitStrategy") {
+//						MemberLimitStrategy memberLimitStrategy = strategyDAO.getMemberLimitStrategyById(strategyId);
+//					}
+//					if(teamAndStrategy.getStrategyName()=="TeamOrStrategy") {
+//						List<TeamOrStrategy> teamOrStrategyList = strategyDAO.listTeamOrStrateByStrategyId(strategyId);
+//						for(TeamOrStrategy teamOrStrategy:teamOrStrategyList) {
+//							if(teamOrStrategy.getStrategyName()=="CourseMemberLimitStrategy") {
+//								CourseMemberLimitStrategy courseMemberLimitStrategy = strategyDAO.getCourseMemberLimitStrategyById(strategyId);
+//
+//							}
+//						}
+//					}
+//				}
+//			}
+//			if(teamStrategy.getStrategyName()=="ConflictCourseStrategy"){
+//
+//			}
+//		}
 //	}
 }

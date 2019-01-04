@@ -24,6 +24,7 @@ public interface CourseMapper {
     @Select("select * from course")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -47,6 +48,7 @@ public interface CourseMapper {
             "in(select course_id from klass_student where student_id=#{studentId})")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -69,6 +71,7 @@ public interface CourseMapper {
     @Select("select * from course where teacher_id=#{teacherId}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -91,6 +94,7 @@ public interface CourseMapper {
     @Select("select * from course where id=#{courseId}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -113,6 +117,7 @@ public interface CourseMapper {
     @Select("select * from course where team_main_course_id=#{courseId}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -135,6 +140,7 @@ public interface CourseMapper {
     @Select("select * from course where seminar_main_course_id=#{courseId}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -158,6 +164,7 @@ public interface CourseMapper {
     @Select("select * from course where id=#{courseId} and teacher_id=#{teacherId}")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -182,6 +189,7 @@ public interface CourseMapper {
     @Select("select * from course where teacher_id=#{teacherId} and id " + "in(select course_id from klass where id =#{klassId})")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),
@@ -206,6 +214,7 @@ public interface CourseMapper {
             "in(select course_id from klass where id =#{klassId})")
     @Results({
             @Result(property = "id", column = "id"),
+            @Result(property = "teacherId", column = "teacher_id"),
             @Result(property = "courseName", column = "course_name"),
             @Result(property = "introduction", column = "introduction"),
             @Result(property = "presentationPercentage", column = "presentation_percentage"),

@@ -181,4 +181,5 @@ public class StrategyDAO {
     public int createTeamOrStrategy(TeamOrStrategy teamOrStrategy){
         return  teamOrStrategyMapper.createTeamOrStrategy(teamOrStrategy);
     }
+
 }
