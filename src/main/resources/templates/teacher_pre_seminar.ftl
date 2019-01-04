@@ -21,7 +21,6 @@
 						<a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
 					</ul>
 				</li>
-
 			</span1>
 		</center>
 	</div>
