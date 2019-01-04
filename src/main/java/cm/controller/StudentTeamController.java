@@ -41,8 +41,9 @@ public class StudentTeamController {
     public String studentTeam(Long courseId, @PathVariable  String account,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         student= studentService.getUserVOByAccount(account);
+        model.addAttribute("isTeamed",klassService.isStudentTeamed(student.getId(),courseId));
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
-        model.addAttribute("studentsNotInTeam",teamService.listStudentsNotInTeam(courseId));
+        model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeam(courseId,student.getId()));
         return "student_teams";
     }
 
@@ -51,7 +52,7 @@ public class StudentTeamController {
     public String studentMyTeam(Model model){
         TeamVO tmp=teamService.getMyTeam(courseDetailVO.getId(),student.getId());
         model.addAttribute("myTeam",tmp);
-        model.addAttribute("studentList",teamService.listStudentsNotInTeam(courseDetailVO.getId()));
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId()==tmp.getLeader().getId())
             return "student_myteam_leader";
         else
