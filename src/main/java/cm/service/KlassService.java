@@ -142,21 +142,24 @@ public class KlassService {
         return klassVO;
     }
 
+public static KlassVO klassToKlassVO(Klass k)
+{
+    KlassVO klassVO=new KlassVO();
+    klassVO.setKlassId(k.getId());
+    klassVO.setKlassName(k.getGrade(),k.getKlassSerial());
+    klassVO.setGrade(k.getGrade());
+    klassVO.setKlassLocation(k.getKlassLocation());
+    klassVO.setKlassSerial(k.getKlassSerial());
+    klassVO.setKlassTime(k.getKlassTime());
+    return klassVO;
+}
 
     public List<KlassVO> listKlassByCourseId(Long course_id) {
         List<Klass> klasses=klassDAO.getByCourseId(course_id);
         List<KlassVO> klassVOS=new LinkedList<KlassVO>();
         for(int i=0;i<klasses.size();i++)
         {
-            Klass k=klasses.get(i);
-            KlassVO klassVO=new KlassVO();
-            klassVO.setKlassId(k.getId());
-            klassVO.setKlassName(k.getGrade(),k.getKlassSerial());
-            klassVO.setGrade(k.getGrade());
-            klassVO.setKlassLocation(k.getKlassLocation());
-            klassVO.setKlassSerial(k.getKlassSerial());
-            klassVO.setKlassTime(k.getKlassTime());
-            klassVOS.add(klassVO);
+            klassVOS.add(klassToKlassVO(klasses.get(i)));
         }
         return klassVOS;
     }

@@ -16,6 +16,28 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CourseMapper {
+
+    /**
+     * 获得该学生的所有Course
+     * @return java.util.List<cm.entity.Course>
+     */
+    @Select("select * from course")
+    @Results({
+            @Result(property = "id", column = "id"),
+            @Result(property = "courseName", column = "course_name"),
+            @Result(property = "introduction", column = "introduction"),
+            @Result(property = "presentationPercentage", column = "presentation_percentage"),
+            @Result(property = "questionPercentage", column = "question_percentage"),
+            @Result(property = "reportPercentage", column = "report_percentage"),
+            @Result(property = "teamStartTime", column = "team_start_time"),
+            @Result(property = "teamEndTime", column = "team_end_time"),
+            @Result(property = "teamMainCourseId", column = "team_main_course_id"),
+            @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+    })
+    List<Course> listAllCourse();
+
     /**
      * 根据StudentId获得该学生的所有Course
      * @param studentId

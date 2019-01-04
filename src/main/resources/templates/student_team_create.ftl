@@ -35,18 +35,13 @@
 			
 				<div>
 				<table>
+				<#list >
 				<tr>
 				<!--学号、名字、课程名字-->
 				<td><input name="stuname" type="checkbox" value="" />1111111111</td>
 				<td>王二</td>
-				<td class="fontgreen">J2EE</td>
 				</tr>
-				<tr>
-				<td><input name="stuname" type="checkbox" value="" />1111111111</td>
-				<td>王二</td>
-				<td></td>
-				</tr>
-				
+				</#list>
 				</table>
 				</div>
 				

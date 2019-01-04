@@ -29,6 +29,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -47,6 +48,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -67,6 +69,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -78,8 +81,8 @@ public interface TeamMapper {
      * @param team
      * @return int
      */
-    @Insert("insert into team(klass_id,course_id,leader_id,team_name,team_serial,status)" +
-            " values(#{team.klassId},#{team.courseId},#{team.leaderId},#{team.teamName},#{team.teamSerial},#{team.status})")
+    @Insert("insert into team(klass_id,course_id,leader_id,team_name,team_serial,klass_serial,status)" +
+            " values(#{team.klassId},#{team.courseId},#{team.leaderId},#{team.teamName},#{team.teamSerial},#{team.klass_serial},#{team.status})")
     @Options(useGeneratedKeys = true, keyProperty = "team.id")
     int createTeam(@Param("team") Team team);
 
@@ -96,6 +99,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -115,6 +119,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -145,6 +150,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })
@@ -185,6 +191,7 @@ public interface TeamMapper {
             @Result(property = "leaderId",column = "leader_id"),
             @Result(property = "teamName",column = "team_name"),
             @Result(property = "teamSerial",column = "team_serial"),
+            @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "status",column = "status"),
             @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByTeamId",fetchType = FetchType.LAZY))
     })

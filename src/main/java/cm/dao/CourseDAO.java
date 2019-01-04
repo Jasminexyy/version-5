@@ -60,5 +60,9 @@ public class CourseDAO {
     public int createCourse(Long teacherId, Course course){
         return courseMapper.createCourse(teacherId,course);
     }
+
+    public List<Course> listAllCourse() {
+        return courseMapper.listAllCourse();
+    }
 }
 

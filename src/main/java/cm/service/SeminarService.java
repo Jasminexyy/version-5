@@ -315,8 +315,6 @@ public class SeminarService {
     }
 
     //将展示分数存入数据库
-    // presentationscore,questionvo.id,questionscore
-//    public void scoreSeminar(Map<BigDecimal, Map<Long, BigDecimal>> score, SeminarInfoVO seminarInfoVO) {
-//
-//    }
+    //presentationscore,questionvo.id,questionscore
+
 }

@@ -48,9 +48,9 @@ public class StudentTeamController {
     }
 
     //////student my team
-    @RequestMapping(value = "/myteam",method = RequestMethod.GET)
-    public String studentMyTeam(Model model){
-        TeamVO tmp=teamService.getMyTeam(courseDetailVO.getId(),student.getId());
+    @RequestMapping(value = "/myteam/{id}",method = RequestMethod.GET)
+    public String studentMyTeam(Model model,@PathVariable Long id){
+        TeamVO tmp=teamService.getByTeamId(id);
         model.addAttribute("myTeam",tmp);
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId()==tmp.getLeader().getId())
@@ -73,15 +73,15 @@ public class StudentTeamController {
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String studentTeamCreate(Model model){
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
-        model.addAttribute("klassList",klassService.listKlassByCourseId(courseDetailVO.getId()));
+        model.addAttribute("klassId",klassService.getKlassByStudentIdCourseId(student.getId(),courseDetailVO.getId()));
         return "student_team_create";
     }
 
     ///////student create team
     @RequestMapping(value="/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity studentTeamCreate(String teamName, Long classId, List<String> studentNum){
-        teamService.createTeam(teamName,classId,studentNum);
+    public ResponseEntity studentTeamCreate(String teamName, List<String> studentNum,Long klassId){
+        teamService.createTeam(teamName,klassId,studentNum);
         return new ResponseEntity(HttpStatus.OK);
     }
 

@@ -37,8 +37,8 @@ public class StudentSeminarController {
     @RequestMapping(value = "/seminarEntrance/{account}",method = RequestMethod.GET)
     public String studentSeminarEntrance(Model model, @PathVariable String account){
         student= studentService.getUserVOByAccount(account);
-        //Map<String, KlassVO>maps=seminarService.listCourseAndKlass(student);
-       // model.addAttribute("courseAndKlassList",maps);
+        Map<String, KlassVO>maps=seminarService.listCourseAndKlass(student);
+        model.addAttribute("courseAndKlassList",maps);
         return "student_seminar_entrance";
     }
 

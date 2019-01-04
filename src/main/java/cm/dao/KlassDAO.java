@@ -52,6 +52,10 @@ public class KlassDAO {
         }
     }
 
+    public Long getKlassIdByStudentIdAndCourseId(Long studentId, Long courseId){
+        return klassStudentMapper.getKlassIdByStudentIdAndCourseId(studentId, courseId);
+    }
+
 
     public Klass getByKlassId(Long klassId){
         return  klassMapper.getByKlassId(klassId);

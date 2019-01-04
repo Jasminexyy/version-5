@@ -43,8 +43,9 @@ public class TeamDAO {
     }
 
     public int createTeam(Team team){
+        teamMapper.createTeam(team);
         klassTeamMapper.createByKlassIdAndTeamId(team.getKlassId(),team.getId());
-        return  teamMapper.createTeam(team);
+        return 1;
     }
 
     public Team getByTeamId(Long teamId){

@@ -11,9 +11,11 @@
     var temp=0;
     var count=0;
 
-    for(var i=0;i<${seminarInfoVO.attendanceListVO.length()};i++) {
-        if (attendanceListVO[i].teamOrder == 1)
+    for(var i=0;i<${seminarInfo.attendanceListVO.length()};i++) {
+        if (attendanceListVO[i].teamOrder == 1) {
             count = AttendanceListVO[i].attendanceId;
+            document.getElementById("teamN").value=AttendanceListVO[i].teamName;
+        }
     }
     $(document).ready(function(){
         connect();
@@ -85,7 +87,7 @@
 	            <span>
 	                <
 	            </span>
-            ${seminarInfoVO.courseName}-讨论课
+            ${seminarInfo.courseName}-讨论课
             <span1>
                 <li class="dao li1">+
                     <ul class="sub sub1">
@@ -98,14 +100,14 @@
         </center>
 
     </div>
-    <p class="p1">${seminarInfoVO.seminarName}</p>
-    <p class="p2" id="teamNum">第${team.teamNumber}组 展示</p>
+    <p class="p1">${seminarInfo.seminarName}</p>
+    <p class="p2" id="teamNum">第 组 展示</p>
 
     <#assign index=1>
 
     <table class="table0" cellspacing="0" cellpadding="0">
 
-        <#list seminarInfoVO.AttendanceListVO as attendanceVO>
+        <#list seminarInfo.AttendanceListVO as attendanceVO>
             >
             <#if index%2==1>
                 <tr><td class="c10">第${index}组：</td><td class="c4">${attendanceVO.teamName}</td>
