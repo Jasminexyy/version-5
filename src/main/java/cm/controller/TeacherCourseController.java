@@ -103,7 +103,7 @@ public class TeacherCourseController {
     @RequestMapping(value = "/shareCreate",method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherShareCreateSubmit(Long shareCourseId){
-        courseService.createShare(shareCourseId,courseDetailVO.getId());
+        courseService.createShare(shareCourseId,courseDetailVO.getId(),userVO.getId());
         return new ResponseEntity(HttpStatus.OK);
     }
 
