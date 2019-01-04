@@ -229,7 +229,7 @@ public class CourseService {
 			}
 
 		}
-return map;
+		return map;
 	}
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
@@ -237,11 +237,7 @@ return map;
 		return getCourseById(courseId);
 	}
 
-<<<<<<< Updated upstream
-	CourseVO courseToCourseVO(Course course)
-=======
 	public CourseVO courseToCourseVO(Course course,String teacherName)
->>>>>>> Stashed changes
 	{
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
