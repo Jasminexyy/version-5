@@ -41,7 +41,7 @@ public class StudentTeamController {
     public String studentTeam(Long courseId, @PathVariable  String account,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         student= studentService.getUserVOByAccount(account);
-        model.addAttribute("isTeamed",klassService.isStudentTeamed(student.getId(),courseId));
+        model.addAttribute("myTeam",teamService.getMyTeam(courseId,student.getId()));
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeam(courseId,student.getId()));
         return "student_teams";
