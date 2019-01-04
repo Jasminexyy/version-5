@@ -220,16 +220,12 @@ return map;
 		return getCourseById(courseId);
 	}
 
-	SimpleSeminarScoreVO seminarAndSeminarscoreTosimpleSeminarScoreVO{
-
-	}
-
 	CourseVO courseToCourseVO(Course course)
 	{
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
 		courseVO.setId(course.getId());
-		courseVO.setIsShareSeminar(courseDAO.);ipoiopjpoj
+		return courseVO;
 	}
 
 	public List<CourseVO> listAllCourse() {
@@ -243,10 +239,9 @@ return map;
 		return courseVOList;
 	}
 
-	public void createShare(Long shareCourseId) {
+	public void createShare(Long shareCourseId,Long courseId) {
 		Long subteacherId=teacherDAO.getByCourseId(shareCourseId).getId();
-
-		shareTeamDAO.createShareTeamApplication()
+		shareTeamDAO.createShareTeamApplication(courseId,shareCourseId,subteacherId,(byte)0x0000001);
 
 	}
 
