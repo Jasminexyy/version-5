@@ -9,7 +9,7 @@
 <script type="text/javascript">
 
 var score=document.getElementById("scores");
-var map{};
+var map=new HushMap();
 for(var i=0;i<score.length;i++){
 	map.put( ${seminarInfoVO.AttendanceListVO[i].attendenceId},score[i].value);
 }

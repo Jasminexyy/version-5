@@ -7,6 +7,9 @@
 		<title>Enter your title here</title>
 	</head>
 	<body>
+	<script type="text/javascript">
+
+	</script>
 		<center>		
 			<div id="header1" style="background-color:#ffffff;">
 	            <span>
@@ -33,13 +36,13 @@
 				<!--组长组员、学号、名字、课程名字-->
 					<td class="fontgreen">组长：</td>
 					<td>${myTeam.leader.account}</td>
-					<td class="fontred">我</td>
+					<td class="fontred">${myTeam.leader.name}</td>
 				</tr>
-					<#list myTeam.students as student>
+					<#list myTeam.members as student>
 						<tr>
 							<td class="fontgreen">组员：</td>
 							<td>${student.account}</td>
-							<td onclick="del()">${student.studentName}</td>
+							<td >${student.name}</td>
 
 						</tr>
 					</#list>
@@ -48,9 +51,9 @@
 				</div>
 		
 			</div>
-		
+
 			<div style="height:5rem;background-color:#e8e8e8;border-style:none;"></div>
-			<input type="submit" value="退组" class="subr" onclick="/cm/student/course/team/myteam/quit"/>
+			<a href="cm/student/course/team/myteam/quit/${myTeam.teamId}"><input type="submit" value="退组" class="subr" />
 		</center>
 
 
