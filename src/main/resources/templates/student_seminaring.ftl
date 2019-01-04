@@ -91,7 +91,6 @@
             <span1>
                 <li class="dao li1">+
                     <ul class="sub sub1">
-                        <a href="/cm/student/notification"><li class="main">代办</li></a>
                         <a href="/cm/student/person"><li class="main">个人页</li></a>
                         <a href="/cm/student/seminar"><li class="main">讨论课</li></a>
                     </ul>

@@ -68,7 +68,6 @@ public class TeacherService {
         teacher.setId(id);
         teacher.setTeacherName(teacherName);
         teacher.setEmail(email);
-
         teacherDAO.modifyTeacher(teacher);
     }
 
