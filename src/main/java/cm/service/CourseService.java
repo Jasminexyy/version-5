@@ -37,6 +37,9 @@ public class CourseService {
 	@Autowired
 	private TeacherDAO teacherDAO;
 
+    @Autowired
+    private StrategyDAO strategyDAO;
+
 	public List<Course> findCoursesByTeacherId(Long teacherId){
 		return courseDAO.listByTeacherId(teacherId);
 	}
@@ -61,6 +64,7 @@ public class CourseService {
 		course1.setRounds(roundDAO.listByCourseId(course.getId()));
 		course1.setTeamEndTime(Timestamp.valueOf(course.getTeamEndTime()));
 		course1.setTeamStartTime(Timestamp.valueOf(course.getTeamStartTime()));
+		course1.setTeacherId(teacher.getId());
 		//默认为主课程
 		course1.setTeamMainCourseId(course.getId());
 		courseDAO.createCourse(teacher.getId(),course1);
@@ -233,12 +237,16 @@ return map;
 		return getCourseById(courseId);
 	}
 
-	CourseVO courseToCourseVO(Course course,String teacherName)
+<<<<<<< Updated upstream
+	CourseVO courseToCourseVO(Course course)
+=======
+	public CourseVO courseToCourseVO(Course course,String teacherName)
+>>>>>>> Stashed changes
 	{
 		CourseVO courseVO=new CourseVO();
 		courseVO.setName(course.getCourseName());
 		courseVO.setId(course.getId());
-		courseVO.setTeacherName(teacherName);
+		courseVO.setTeacherName(teacherDAO.getByCourseId(course.getId()).getTeacherName());
 		return courseVO;
 	}
 
@@ -263,4 +271,76 @@ return map;
 //		Course course1=new Course();
 //
 //	}
+
+    public TeamNeedVO getTeamStrategyByCourseId(Long courseId){
+	    TeamNeedVO teamNeedVO = new TeamNeedVO();
+		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
+		for(TeamStrategy teamStrategy:teamStrategyList) {
+
+            Long strategyId = teamStrategy.getStrategyId();
+			if(teamStrategy.getStrategyName().equals("TeamAndStrategy")) {
+
+                List<TeamAndStrategyVO> teamAndStrategyVOList = new ArrayList<>();
+				List<TeamAndStrategy> teamAndStrategyList = strategyDAO.listTeamAndStrategyByStrategyId(strategyId);
+				for(TeamAndStrategy teamAndStrategy:teamAndStrategyList) {
+
+                    TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
+                    if(teamAndStrategy.getStrategyName().equals("MemberLimitStrategy")) {
+
+                        MemberLimitStrategyVO memberLimitStrategyVO = new MemberLimitStrategyVO();
+                        MemberLimitStrategy memberLimitStrategy = strategyDAO.getMemberLimitStrategyById(strategyId);
+
+                        memberLimitStrategyVO.setMaxMember(memberLimitStrategy.getMaxMember());
+                        memberLimitStrategyVO.setMinMember(memberLimitStrategy.getMinMember());
+
+                        teamAndStrategyVO.setMemberLimitStrategyVO(memberLimitStrategyVO);
+                    }
+                    if(teamAndStrategy.getStrategyName().equals("TeamOrStrategy")) {
+
+                        List<TeamOrStrategyVO> teamOrStrategyVOList = new ArrayList<>();
+                        List<TeamOrStrategy> teamOrStrategyList = strategyDAO.listTeamOrStrategyByStrategyId(strategyId);
+                        for(TeamOrStrategy teamOrStrategy:teamOrStrategyList) {
+
+                            TeamOrStrategyVO teamOrStrategyVO = new TeamOrStrategyVO();
+                            List<CourseMemberLimitStrategyVO> courseMemberLimitStrategyVOList = new ArrayList<>();
+                            if(teamOrStrategy.getStrategyName().equals("CourseMemberLimitStrategy")) {
+
+                                CourseMemberLimitStrategyVO courseMemberLimitStrategyVO = new CourseMemberLimitStrategyVO();
+                                CourseMemberLimitStrategy courseMemberLimitStrategy = strategyDAO.getCourseMemberLimitStrategyById(strategyId);
+
+                                courseMemberLimitStrategyVO.setCourseId(courseMemberLimitStrategy.getCourseId());
+                                courseMemberLimitStrategyVO.setMaxMember(courseMemberLimitStrategy.getMaxMember());
+                                courseMemberLimitStrategyVO.setMinMember(courseMemberLimitStrategy.getMinMember());
+
+                                courseMemberLimitStrategyVOList.add(courseMemberLimitStrategyVO);
+                            }
+
+                            teamOrStrategyVO.setCourseMemberLimitStrategyVOList(courseMemberLimitStrategyVOList);
+                            teamOrStrategyVOList.add(teamOrStrategyVO);
+                        }
+                        teamAndStrategyVO.setTeamOrStrategyVOList(teamOrStrategyVOList);
+                    }
+
+                    teamAndStrategyVOList.add(teamAndStrategyVO);
+                }
+                teamNeedVO.setTeamAndStrategyVOList(teamAndStrategyVOList);
+			}
+			if(teamStrategy.getStrategyName().equals("ConflictCourseStrategy")){
+
+                List<ConflictCourseStrategyVO> conflictCourseStrategyVOList = new ArrayList<>();
+                List<ConflictCourseStrategy> conflictCourseStrategyList = strategyDAO.listConflictCourseStrategyByStrategyId(strategyId);
+                for(ConflictCourseStrategy conflictCourseStrategy:conflictCourseStrategyList) {
+
+                    ConflictCourseStrategyVO conflictCourseStrategyVO = new ConflictCourseStrategyVO();
+
+                    conflictCourseStrategyVO.setCourseId(conflictCourseStrategy.getCourseId());
+                    //课程名
+                    conflictCourseStrategyVO.setCourseName(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getCourseName());
+                    conflictCourseStrategyVOList.add(conflictCourseStrategyVO);
+                }
+                teamNeedVO.setConflictCourseStrategyVOList(conflictCourseStrategyVOList);
+			}
+		}
+		return teamNeedVO;
+	}
 }
