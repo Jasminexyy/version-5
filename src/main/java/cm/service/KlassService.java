@@ -115,7 +115,6 @@ public class KlassService {
         return true;
     }
 
-
     public void deleteByKlass(Klass klass){
 
         List<KlassSeminar>klassSeminarList=klassSeminarDAO.listByKlassId(klass.getId());

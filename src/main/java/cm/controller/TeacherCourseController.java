@@ -89,7 +89,7 @@ public class TeacherCourseController {
     ///////////共享情况
     @RequestMapping(value = "/share",method = RequestMethod.GET)
     public String teacherShare(Model model){
-        model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(courseDetailVO.getId()));
+        model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(userVO.getId(),courseDetailVO.getId()));
         return "teacher_share";
     }
 
@@ -103,7 +103,7 @@ public class TeacherCourseController {
     @RequestMapping(value = "/shareCreate",method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherShareCreateSubmit(Long shareCourseId){
-        courseService.createShare(shareCourseId,courseDetailVO.getId(),userVO.getId());
+        courseService.createShare(shareCourseId,courseDetailVO.getId());
         return new ResponseEntity(HttpStatus.OK);
     }
 

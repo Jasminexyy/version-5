@@ -33,6 +33,8 @@ public class SeminarService {
     private RoundDAO roundDAO;
     @Autowired
     private TeamDAO teamDAO;
+    @Autowired
+    private QuestionDAO questionDAO;
 
 
     public KlassSeminar findKlassSeminarById(Long klassId, Long seminarId){
@@ -318,7 +320,30 @@ public class SeminarService {
 
     //将展示分数存入数据库
     //presentationscore,questionvo.id,questionscore
-//    public void scoreSeminar(Map<BigDecimal, Map<Long, BigDecimal>> score, SeminarInfoVO seminarInfoVO) {
-//
-//    }
+    public void scoreSeminar(Map<BigDecimal, Map<Long, BigDecimal>> score, SeminarInfoVO seminarInfoVO) {
+        BigDecimal presentationscore;
+        Long questionId=new Long(0);
+        BigDecimal questionscore=new BigDecimal(0);
+        SeminarScore seminarScore=new SeminarScore();
+        Long klassId=seminarInfoVO.getKlassId();
+        Long seminarId=seminarInfoVO.getSeminarId();
+        Long klassSeminarId=klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId).getId();
+
+        for (Map.Entry<BigDecimal, Map<Long, BigDecimal>> entry : score.entrySet()) {
+                presentationscore=entry.getKey();
+                seminarScore.setPresentationScore(presentationscore);
+                for(Map.Entry<Long, BigDecimal> question : entry.getValue().entrySet())
+                {
+                    //如果分数更高，更新提问分数
+                   if(question.getValue().intValue()>questionscore.intValue())
+                   {
+                       questionscore=question.getValue();
+                       questionId=question.getKey();
+                   }
+                }
+                seminarScore.setQuestionScore(questionscore);
+                Long teamId=questionDAO.getTeamIdByQuestionId(questionId);
+                seminarScoreDAO.updateSeminarScore(seminarScore,klassSeminarId,teamId);
+        }
+    }
 }
