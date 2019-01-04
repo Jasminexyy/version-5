@@ -1,11 +1,11 @@
 body {
-     width:80%;
+     width:100%;
      background-color:#ffffff;
      color: #000000;
      margin:auto;
 }
  .body1{
-     width:80%;
+     width:100%;
      background-color:#e8e8e8;
      color: #000000;
      margin:auto;
@@ -139,7 +139,6 @@ body {
      width:7.5rem;
 }
  .p5{
-     float:center;
      font-size:0.9375rem;
 }
  .p6{
@@ -160,7 +159,6 @@ body {
 }
 .p9{
      color:red;
-     float:center;
      font-size:1.5rem;
 }
  .p10{
@@ -194,7 +192,6 @@ body {
  .table0 {
      width:80%;
      font-size:1.25rem;
-     a
 }
  .table0 .c1 {
      text-align: left;
