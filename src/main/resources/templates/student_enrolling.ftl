@@ -12,7 +12,7 @@
 	            <span>
 	                <
 	            </span>
-			${seminarInfoVO.courseName}-讨论课
+			${seminarInfo.courseName}-讨论课
 			<span1>
 				<li class="dao li1">+
 					<ul class="sub sub1">
@@ -32,7 +32,7 @@
 	<table class="table0" cellspacing="0" cellpadding="0">
 		<#assign flag=0>
 		<#assign index=1 >
-		<#list seminarInfoVO.AttendanceListVO as attendanceVO>
+		<#list seminarInfo.AttendanceListVO as attendanceVO>
 		<#if "${attendanceVO.teamName}"=="${team.teamNumber}">
 			<#assign flag=1>
 		</#if>
@@ -59,8 +59,8 @@
 <div id="target_1" class="fade">
 	<div class="popupWindow">
 		<p class="p9">确认报名</p>
-		<p class="p5">${seminarInfoVO.courseName} 2018.10.08</p>
-		<p class="p5">$${seminarInfoVO.courseName}讨论课</p>
+		<p class="p5">${seminarInfo.courseName}</p>
+		<p class="p5">$${seminarInfo.courseName}讨论课</p>
 		<p class="p5">第${index}组</p>
 		<div class="but">
 			<a href="#">CANCLE</a>
@@ -71,8 +71,8 @@
 <div id="target_2" class="fade">
 	<div class="popupWindow">
 		<p class="p9">取消报名讨论课?</p>
-		<p class="p5">${seminarInfoVO.courseName} 2018.10.08</p>
-		<p class="p5">${seminarInfoVO.courseName}讨论课</p>
+		<p class="p5">${seminarInfo.courseName}</p>
+		<p class="p5">${seminarInfo.courseName}讨论课</p>
 		<p class="p5">第${attedance.teamOrder}组</p>
 		<div class="but">
 			<a href="#">CANCLE</a>
