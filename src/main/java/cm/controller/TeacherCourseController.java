@@ -29,6 +29,7 @@ public class TeacherCourseController {
 
     CourseDetailVO courseDetailVO;
     UserVO userVO=new UserVO();
+    TeamNeedVO teamNeedVO;
 
     //课程管理
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
@@ -43,6 +44,8 @@ public class TeacherCourseController {
     @RequestMapping(value="/info",method = RequestMethod.GET)
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
+        teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
+        model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseDetailVO);
         return "teacher_courseInfo";
     }

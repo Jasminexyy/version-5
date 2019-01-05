@@ -38,13 +38,13 @@ public class StudentCourseController {
         int min;
         int max;
         TeamNeedVO teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
-        List<TeamAndStrategyVO> teamAndStrategyVOList=teamNeedVO.getTeamAndStrategyVOList();
-        for(TeamAndStrategyVO teamAndStrategyVO:teamAndStrategyVOList){
+        TeamAndStrategyVO teamAndStrategyVO=teamNeedVO.getTeamAndStrategyVO();
+
           if(teamAndStrategyVO.getMemberLimitStrategyVO().getMinMember()!=null)
               min=teamAndStrategyVO.getMemberLimitStrategyVO().getMinMember();
             if(teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember()!=null)
                 max=teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember();
-        }
+        model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseService.getCourseById(courseId));
         return "student_course_info";
     }

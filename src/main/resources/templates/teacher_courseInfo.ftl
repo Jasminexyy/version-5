@@ -62,28 +62,28 @@
             <tr>
                 <td class="c">小组总人数(含组长)</td>
                 <td class="c"></td>
-                <td class="c">${curCourse.teamMinNum}-${curCourse.teamMaxNum}</td>
+                <td class="c">${teamNeedVO.teamAndStrategyVO.memberLimitStrategyVO.minMember}-${teamNeedVO.teamAndStrategyVO.memberLimitStrategyVO.maxMember}</td>
             </tr>
-            <#assign courseMemberLimitStrategyVOS=curCourse.courseMemberLimitStrategyVOList/>
-            <#assign conflictCourseStrategyVOS=curCourse.conflictCourseStrategyVOList/>
             <tr><td class="c">组内选修课程人数</td></tr>
-            <#list courseMemberLimitStrategyVOS as course>
+            <#list teamNeedVO.teamAndStrategyVO.teamOrStrategyVOList as teamOrStrategyVO>
+                <#list teamOrStrategyVO.courseMemberLimitStrategyVOList as courseMemberLimitStrategyVO>
                 <tr>
-                    <td class="c">${course.courseId}</td>
+                    <td class="c">${courseMemberLimitStrategyVO.courseName}</td>
                     <td class="c"></td>
-                    <td class="c">${course.minMember}-${course.maxMember}</td></tr>
+                    <td class="c">${courseMemberLimitStrategyVO.minMember}-${courseMemberLimitStrategyVO.maxMember}</td></tr>
+                    </#list>
             </#list>
         </table>
     </div>
     <div class="div3"><p4>冲突课程</p4></div>
     <div class="div2">
-        <#list conflictCourseStrategyVOS as courses>
+        <#list teamNeedVO.conflictCourseStrategyVOList as conflictCourseStrategyVO>
             <div style="border: 1px solid #e8e8e8">
                 <table class="table_d2" cellspacing="" cellpadding="">
                     <tr>
-                        <#list courses as course>
-                            <td class="c">${course.courseName}</td>
-                        </#list>
+
+                            <td class="c">${conflictCourseStrategyVO.courseName}</td>
+
                     </tr>
                 </table>
             </div>
