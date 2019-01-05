@@ -12,7 +12,6 @@ body {
      background-color:#ffffff;
 }
  div{
-     width:80%;
      border-bottom: 0.0625rem solid #d1d1d1;
      font-size:1.25rem;
      background-color:#ffffff;
@@ -66,7 +65,6 @@ body {
 }
  #header1{
      background-color:#9ACD32;
-     width:80%;
      font-size:1.5625rem;
      height:2.5rem;
      line-height:2.5rem;

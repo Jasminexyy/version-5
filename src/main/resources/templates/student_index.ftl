@@ -23,7 +23,7 @@
 	    <p>${curStudent.account}</p> <!--学号号-->
 	    </div>
 	    <div id="wrap">
-	        <a href="/cm/student/course/courselist"><li class="l">我的课程<span class="right">></span></li></a>
+	        <a href="/cm/student/course/courselist?account=${curStudent.account}"><li class="l">我的课程<span class="right">></span></li></a>
 	        <a href="/cm/student/setting"><li class="l">
 				账户与设置
 				<span class="right">></span></li></a>
