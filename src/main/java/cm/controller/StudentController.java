@@ -31,14 +31,16 @@ public class StudentController {
     @RequestMapping(value="/activation",method = RequestMethod.POST)
     public String studentActivationSubmit(String password,String password1,String email){
         if(studentService.active(password,password1,email,student))
-            return "redirect:/cm/student/index/${student.account}";
+            return "redirect:/login";
         else
             return "redirect:/cm/student/activation";
     }
 
     //////////////student index get
-    @RequestMapping(value = "/index/{account}",method = RequestMethod.GET)
-    public String studentIndex(Model model, @PathVariable String account){
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String studentIndex(Model model, String account){
+        System.out.println("studentIndex");
+        System.out.println(account);
         student=studentService.getUserVOByAccount(account);
         if (studentService.getIs_active(student)==0)
                 return "redirect:/cm/student/activation";

@@ -32,6 +32,7 @@ public class StudentDAO {
         return studentMapper.getByStudentAccount(account);
     }
 
+
     public List<Student> listAllStudent()
     {
         return studentMapper.listAllStudent();
@@ -39,7 +40,7 @@ public class StudentDAO {
 
     public Student getByNameOrAccount(String nameOrAccount)
     {
-        return studentMapper.getByNameOrAccount(nameOrAccount);
+        return studentMapper.getByAccount(nameOrAccount);
     }
 
     public Integer activateByStudentId(String passWord, String email, Long userId) {
@@ -53,11 +54,9 @@ public class StudentDAO {
          }catch (Exception e){
              return null;
          }
-
          if(flag==0){
              return null;
          }
-
          return student;
     }
 

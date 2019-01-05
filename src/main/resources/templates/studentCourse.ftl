@@ -4,6 +4,7 @@
 	<meta name="viewport"
 		  content="width=device-width,user-scale=no,initial-scale=1.0,maximum-
 scale=1.0,minimum-scale=1.0">
+
 	<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
 	<title>Enter your title here</title>
 </head>
@@ -13,15 +14,15 @@ scale=1.0,minimum-scale=1.0">
 	            <span>
 	                <
 	            </span>
-		ÎÒµÄ¿Î³Ì
+		æˆ‘çš„è¯¾ç¨‹
 		<span1>
 			<li class="dao li1">+
 				<ul class="sub sub1">
-					<a href="/cm/student/person">
-						<li class="main">¸öÈËÒ³</li>
+					<a href="/cm/student/student_index">
+						<li class="main">ä¸ªäººé¡µ</li>
 					</a>
 					<a href="/cm/student/seminar">
-						<li class="main">ÌÖÂÛ¿Î</li>
+						<li class="main">è®¨è®ºè¯¾</li>
 					</a>
 				</ul>
 			</li>
@@ -32,32 +33,33 @@ scale=1.0,minimum-scale=1.0">
 	<div style="height:0.5rem;background-color:#e8e8e8"></div>
 
 	<div>
+		<#assign index=0>
+		<#assign keys=courseAndKlassList?keys/>
+		<#list keys as key>
 		<details>
-			<!--ºÃ¶à¿Î³Ì»¹ÓĞ×Ô¼ºµÄ°à¼¶-->
-			<#assign index=0>
-			<#assign keys=courseAndKlassList?keys />
-			<#list keys as key>
+			<!--å¥½å¤šè¯¾ç¨‹è¿˜æœ‰è‡ªå·±çš„ç­çº§-->
+
 				<summary
 						class="sumbackgroundw">${key}
-					${courseAndKlassList.get(key).grade} ${courseAndKlassList.get(key).KlassName}</summary>
-				<a href="/cm/student/course/grade">
-					<div id="backcolor">
-						ÎÒµÄ³É¼¨
+					 ${courseAndKlassList[key].klassName}</summary>
+				<a href="/cm/student/course/score">
+					<div class="backcolor">
+						æˆ‘çš„æˆç»©
 						<span class="right">></span>
 						<br/>
 					</div>
 				</a>
 				<a href="/cm/student/course/team">
-					<div id="backcolor">
-						ÎÒµÄ×é¶Ó
+					<div class="backcolor">
+						æˆ‘çš„ç»„é˜Ÿ
 						<span class="right">></span>
 						<br/>
 					</div>
 				</a>
 
-			</#list>
-		</details>
 
+		</details>
+		</#list>
 	</div>
 
 	</details>

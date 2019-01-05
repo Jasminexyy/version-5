@@ -17,11 +17,13 @@ public class StudentCourseController {
     @Autowired
     private CourseService courseService;
 
-    UserVO student;
+    UserVO student=new UserVO();
 
     ///////student course list get
-    @RequestMapping(value = "",method= RequestMethod.GET)
+    @RequestMapping(value = "/courselist",method= RequestMethod.GET)
     public String studentCourse(Model model){
+        student.setId((long)149);
+        System.out.println("149");
         Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
         return "studentCourse";

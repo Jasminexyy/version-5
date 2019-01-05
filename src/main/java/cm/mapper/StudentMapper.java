@@ -123,7 +123,7 @@ public interface StudentMapper {
      * @param studentId
      * @return java.lang.Integer
      */
-    @Update("update student set password=#{password},email=#{email},is_active=0 " +
+    @Update("update student set password=#{password},email=#{email},is_active=1 " +
             "where id=#{studentId}")
     Integer activateByStudentId(@Param("password") String password,
                                 @Param("email") String email,

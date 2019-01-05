@@ -107,10 +107,13 @@ public class CourseService {
 	//courseName
 	public Map<String, KlassVO> listCourseAndKlassByStudentId(Long studentId)
 	{
+		System.out.println("进入listCourseAndKlassByStudentId方法");
         List<Course> courses=courseDAO.listByStudentId(studentId);
+        System.out.println(courses.size()+"大小");
         Map<String, KlassVO> map=new HashMap<String, KlassVO>();
         for(int i=0;i<courses.size();i++)
         {
+        	System.out.println(courses.get(i).getCourseName());
             Klass k=klassDAO.getByCourseIdAndStudentId(courses.get(i).getId(),studentId);
             map.put(courses.get(i).getCourseName(),KlassService.klassToKlassVO(k));
         }

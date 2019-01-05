@@ -56,7 +56,7 @@ public interface TeacherMapper {
      */
     @Select("select id,account,password,is_active from teacher where account=#{userAccount}")
     @Results({
-            @Result(property = "userId",column = "id" ),
+            @Result(property = "userId",column = "id"),
             @Result(property = "userAccount",column = "account"),
             @Result(property = "passWord",column = "password"),
             @Result(property = "isActive",column = "is_active")
@@ -127,7 +127,7 @@ public interface TeacherMapper {
      * @param teacherId
      * @return java.lang.Integer
      */
-    @Update("update teacher set password=#{password},is_active=0 " +
+    @Update("update teacher set password=#{password},is_active=1 " +
             "where id=#{teacherId}")
     Integer activateByTeacherId(@Param("password") String password,
                                 @Param("teacherId") Long teacherId);

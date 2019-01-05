@@ -22,11 +22,13 @@ public class StudentService {
     public UserVO getUserVOByAccount(String account) {
         Student s=studentDAO.getByStudentAccount(account);
         UserVO student=new UserVO();
+
         student.setId(s.getId());
         student.setAccount(s.getAccount());
         student.setEmail(s.getEmail());
         student.setName(s.getStudentName());
         student.setRole("student");
+        student.setIsActive(s.getIsActive());
         return student;
     }
 
@@ -73,9 +75,10 @@ public class StudentService {
     public boolean active(String password,String password1,String email,UserVO student)
     {
         if(password.equals(password1)) {
-            studentDAO.activateByStudentId(password, email, student.getId());
             student.setEmail(email);
             student.setIsActive(Byte.valueOf((byte)1));
+            student.setPassword(password);
+            studentDAO.activateByStudentId(password,email,student.getId());
             return true;
         }
         else{
