@@ -22,6 +22,7 @@ public class StudentCourseController {
         private StudentService studentService;
     UserVO student=new UserVO();
 
+
     ///////student course list get
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
     public String studentCourse(Model model,String account){
@@ -39,10 +40,15 @@ public class StudentCourseController {
     }
 
     ///////student course score Map<RoundName,SeminarScore>
-    @RequestMapping(value = "/score/{klassId}",method = RequestMethod.POST)
-    public String studentScore(@PathVariable long klassId, Model model){
+    @RequestMapping(value = "/score",method = RequestMethod.GET)
+    public String studentScore(long klassId, Model model){
+        System.out.println(student.getId());
         List<RoundScoreVO> roundScoreVOList=courseService.listScoreForStudent(klassId,student.getId());
-        model.addAttribute("scoreDetails",roundScoreVOList);
+        System.out.println(roundScoreVOList.size());
+        if(roundScoreVOList==null)
+            model.addAttribute("scoreDetails", null);
+        else
+            model.addAttribute("scoreDetails", roundScoreVOList);
         return "studentScore";
     }
 }

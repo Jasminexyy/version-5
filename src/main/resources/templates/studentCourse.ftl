@@ -42,7 +42,7 @@ scale=1.0,minimum-scale=1.0">
 				<summary
 						class="sumbackgroundw">${key}
 					 ${courseAndKlassList[key].klassName}</summary>
-				<a href="/cm/student/course/score/${courseAndKlassList[key].klassId}">
+				<a href="/cm/student/course/score?klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的成绩
 						<span class="right">></span>
