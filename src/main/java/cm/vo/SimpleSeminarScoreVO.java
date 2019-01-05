@@ -25,9 +25,6 @@ public class SimpleSeminarScoreVO {
     /**
      * seminarScore
      */
-
-    private BigDecimal totalScore;
-
     private BigDecimal presentationScore;
 
     private BigDecimal questionScore;

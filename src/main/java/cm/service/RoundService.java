@@ -31,26 +31,27 @@ public class RoundService {
     public Map<String, SeminarListVO> listRoundNameAndSeminar(long courseId, long klassId) {
         //获得该课程下所有讨论课轮次
         List<Round> rounds=roundDAO.listByCourseId(courseId);
-        SeminarListVO seminarListVO=new SeminarListVO();
+
         Map<String, SeminarListVO> map=new HashMap<String, SeminarListVO>();
         for (int i=0;i<rounds.size();i++) {
             //获得每个roundId的班级,对应关系
             List<KlassRound> klassRound = roundDAO.listKlassRoundsByRoundId(rounds.get(i).getId());
-            for (int j = 0; j < klassRound.size(); j++) {
-                //如果roundid对应的班级是学生的班级
-                if (klassRound.get(i).getKlassId() == klassId) {
+            //如果roundid对应的班级是学生的班级
+            for (int j = 0; j < klassRound.size(); j++)
+                if (klassRound.get(j).getKlassId().equals(klassId)) {
+                    SeminarListVO seminarListVO=new SeminarListVO();
                     //把讨论课序号存到roundName中
-                    String roundName = roundDAO.getByRoundId(klassRound.get(i).getRoundId()).getRoundSerial().toString();
-                    System.out.println(roundName);
+                    String roundName = roundDAO.getByRoundId(klassRound.get(j).getRoundId()).getRoundSerial().toString();
                     // 通过roundId找班级下所有seminar
                     List<Seminar> seminars = seminarDAO.listByRoundId(rounds.get(i).getId());
                     List<SeminarVO> seminarVOS = new LinkedList<SeminarVO>();
                     for (int k = 0; k < seminars.size(); k++) {
                         //把seminarslist变成seminarlistVO
-                        Seminar seminar = seminars.get(i);
+                        Seminar seminar = seminars.get(k);
                         SeminarVO seminarVO = new SeminarVO();
                         seminarVO.setSeminarTopic(seminar.getSeminarName());
                         seminarVO.setSeminarOrder(seminar.getSeminarSerial());
+                        seminarVO.setSeminarId(seminar.getId());
                         seminarVOS.add(seminarVO);
                     }
                     //最后把seminarVOlist放到SeminarListVO中
@@ -58,7 +59,6 @@ public class RoundService {
                     //加入map
                     map.put(roundName, seminarListVO);
                 }
-            }
         }
         return map;
     }

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head style="font-size:35px">
-	<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
 	<link href="/css/login.css" type="text/css" rel="stylesheet"/>
+	<script src="/js/jquery.min.js" type="text/javascript"></script>
 	<title>学生未开始为报名讨论课</title>
 </head>
 <body>
@@ -26,7 +27,6 @@
 		</center>
 
 	</div>
-
 
 	<#if "${seminarInfo.seminarStatus}"==0>
 	<table class="table0" cellspacing="0" cellpadding="0">
