@@ -33,16 +33,6 @@ public class TeacherSeminarController {
     SeminarInfoVO seminarInfoVO;
     UserVO userVO;
     ////////讨论课管理
-    ///////////讨论课列表
-    @RequestMapping(value = "",method = RequestMethod.POST)
-    public String teacherSeminar(Long courseId,String account,Model model){
-        courseDetailVO=courseService.getCourseById(courseId);
-        userVO= teacherService.getUserVOByAccount(account);
-        model.addAttribute("roundList",roundService.listRoundByCourseId(courseId));
-        model.addAttribute("klassList",klassService.listKlassByCourseId(courseId));
-        model.addAttribute("courseName",courseDetailVO.getCourseName());
-        return "teacher_seminarList";
-    }
 
     ///////////讨论课
     @RequestMapping(value ="/course",method = RequestMethod.GET)
@@ -53,6 +43,18 @@ public class TeacherSeminarController {
         model.addAttribute("courseList",courseService.listCourseByTeacherId(userVO));
         //model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
         return "teacher_seminar_courseList";
+    }
+
+    ///////////讨论课列表
+    @RequestMapping(value = "/seminarList",method = RequestMethod.GET)
+    public String teacherSeminar(Long courseId,Model model){
+        System.out.println("HI");
+        courseDetailVO=courseService.getCourseById(courseId);
+    //    userVO= teacherService.getUserVOByAccount(account);
+        model.addAttribute("roundList",roundService.listRoundByCourseId(courseId));
+        model.addAttribute("klassList",klassService.listKlassByCourseId(courseId));
+        model.addAttribute("courseName",courseDetailVO.getCourseName());
+        return "teacher_seminarList";
     }
 
 

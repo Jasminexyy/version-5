@@ -7,6 +7,7 @@
     <title>教师-讨论课-总界面</title>
 </head>
 <body>
+
 <center>
     <div id="header1">
 	            <span>
@@ -28,7 +29,7 @@
 <div id="wrap">
     <li class="first">
     <#list courseList as course>
-       <li class="l">${course.courseName}<a href="/cm/teacher/course/seminar/${course.id}"><span class="right">></span></a></li>
+       <li class="l">${course.courseName}<a href="/cm/teacher/course/seminar/seminarList?courseId=${course.id}"><span class="right">></span></a></li>
     </#list>
     </li>
 
