@@ -3,49 +3,40 @@
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
-		<title>ĞŞ¸ÄÓÊÏä</title>
+		<script src="/js/jquery.min.js" type="text/javascript"></script>
+		<title>ä¿®æ”¹é‚®ç®±</title>
 	</head>
 	<body>
 	<script>
 		 function send(){
-		 	var email=document.getElementById("new_email");
+		 	var email="email="+document.getElementById("new_email").value;
 			 jQuery.ajax({
 				 type: "POST",
 				 url: "/cm/teacher/setting/modifyEmail",
-				 headers: {"contentType": "application/json"},
 				 processData: false,
-				 data: {"email":email},
+				 data:email,
 				 dataType: "json",
 				 complete: function (data) {
 					 if (data.status == 200)
-						 window.location = "/login/teacher";
+						 window.location = "/cm/teacher/setting?account=${teacher.account}";
 				 }
-			 })
+			 });
 		 }
 	</script>
 	    <center>
 	        <div id="header1">
 	        <center>
-	            <span>
-	                <
-	            </span>
-	        ĞŞ¸ÄÓÊÏä
-	            
-	               
+	            <a href="/cm/teacher/setting?account=${teacher.account}"><span><</span></a>
+	        ä¿®æ”¹é‚®ç®±
 	        </center>
-	            
 	        </div>
-	    
 	    <table class="table0" cellspacing="0" cellpadding="0">
-	        
-	        <tr><td class="c12">email:</td><td class="c14"><input class="in4" name="email" value="ÌîĞ´ĞÂÓÊÏä" id="new_email"></input></td></tr>
-	        
+	        <tr><td class="c12">email:</td><td class="c14"><input class="in4" name="email" placeholder="å¡«å†™æ–°é‚®ç®±" id="new_email"></input></td></tr>
 	    </table>
 	    </center>
 	    <center>
-	    <p class="p11">ÓÊÏä¸ñÊ½Èç£ºuser@host.domainnames</p>
-	    <button class="button9" onclick="send()">È·ÈÏÌá½»</button>
-	   
+	    <p class="p11">é‚®ç®±æ ¼å¼å¦‚ï¼šuser@host.domainnames</p>
+	    <button class="button9" onclick="send()">ç¡®è®¤æäº¤</button>
 	    </center>
 	</body>
 </html>

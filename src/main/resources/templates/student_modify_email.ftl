@@ -36,7 +36,7 @@
             dataType: "json",
             complete: function (data) {
                 if (data.status == 200)
-                    window.location = "/cm/student/index?account=${student.account}";
+                    window.location = "/cm/student/setting?account=${student.account}";
             }
         });
     }

@@ -58,7 +58,7 @@ public class TeacherController {
     @RequestMapping(value = "/setting/modifyEmail", method = RequestMethod.GET)
     public String teacherModifyEmail(Model model) {
         model.addAttribute("teacher",teacher);
-        return "modify_email";
+        return "teacher_modify_email";
     }
 
     ////////////////////////////修改邮箱提交待修改
@@ -77,7 +77,7 @@ public class TeacherController {
     {
         teacher=teacherService.getUserVOByAccount(teacher.getAccount());
         model.addAttribute("teacher",teacher);
-        return "modify_pwd";
+        return "teacher_modify_pwd";
     }
 
     ////////////////////////////////修改账户密码提交
