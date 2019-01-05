@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head style="font-size:35px">
-	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
 		<link href="/css/login.css" type="text/css" rel="stylesheet">
 		<title>学生个人页面</title>
 	</head>
@@ -13,7 +13,7 @@
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
 						<a href="/cm/student/person"><li class="main">个人页</li></a>
-						<a href="/cm/student/seminar"><li class="main">讨论课</li></a>
+						<a href="/cm/student/seminar/seminarEntrance/${curStudent.account}"><li class="main">讨论课</li></a>
 				    </ul></li></span1>
 	        </center>	            
 	        </div>

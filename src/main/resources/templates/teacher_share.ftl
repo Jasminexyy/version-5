@@ -3,7 +3,7 @@
 	<head>
 	<head style="font-size:35px;">
 		<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-		<title>ÀÏÊ¦¹²ÏíÉèÖÃ</title>
+		<title>è€å¸ˆå…±äº«è®¾ç½®</title>
 		<link href="/css/share.css" type="text/css" rel="stylesheet"/>
 		<script src="/js/jquery.min.js"></script>
 	</head>
@@ -13,13 +13,13 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        ¹²ÏíÉèÖÃ
+	        å…±äº«è®¾ç½®
 	            <span1>
 	                <b><li class="dao li1">+
 						<ul class="sub sub1">
-							<a href="/cm/teacher/notification">	<li class="main">´ú°ì</li></a>
-							<a href="/cm/teacher/setting"><li class="main">¸öÈËÒ³</li></a>
-							<a href="/cm/teacher/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+							<a href="/cm/teacher/notification">	<li class="main">ä»£åŠ</li></a>
+							<a href="/cm/teacher/setting"><li class="main">ä¸ªäººé¡µ</li></a>
+							<a href="/cm/teacher/seminar"><li class="main">è®¨è®ºè¯¾</li></a>
 						</ul>
 					</li>
 					</b>
@@ -28,24 +28,24 @@
 		<#list shareCourseList as shareCourse>
 			<div class="backcolor">
 				<details>
-					<summary>${shareCourse.courseName}(${shareCourse.teacherName}ÀÏÊ¦)</summary>
+					<summary>${shareCourse.courseName}(${shareCourse.teacherName}è€å¸ˆ)</summary>
 					<table>
 						<tr>
-							<td class="color">¹²ÏíÀàĞÍ£º</td>
-							<td>¹²Ïí·Ö×é</td><td></td>
+							<td class="color">å…±äº«ç±»å‹ï¼š</td>
+							<td>å…±äº«åˆ†ç»„</td><td></td>
 						</tr>
 						<tr>
-							<td class="color">¹²ÏíÇé¿ö£º</td>
+							<td class="color">å…±äº«æƒ…å†µï¼š</td>
 							<td>
 								${shareCourse.shareRelation}
 								<#if shareCourse.shareRelation==1>
-									Ö÷¿Î³Ì
-								<#elseif shareCourse.shareRelation==2>´Ó¿Î³Ì
+									ä¸»è¯¾ç¨‹
+								<#elseif shareCourse.shareRelation==2>ä»è¯¾ç¨‹
 								</#if>
 							</td><td></td>
 						</tr>
 						<tr><td></td><td></td>
-							<td><input class="cancel" value="È¡Ïû¹²Ïí" onclick=""/></td>
+							<td><input class="cancel" value="å–æ¶ˆå…±äº«" onclick=""/></td>
 						</tr>
 					</table>
 				</details>
@@ -54,7 +54,7 @@
 		</#list>
 		<br/>
 		<br/>
-		<input class="green" value="ĞÂÔö¹²Ïí" onclick="createShare();"/>
+		<input class="green" value="æ–°å¢å…±äº«" onclick="createShare();"/>
 	</center>
 	</body>
 <script type="text/javascript">

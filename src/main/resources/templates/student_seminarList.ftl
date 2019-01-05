@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head style="font-size:35px;">
-<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
 		<link href="/css/details.css" type="text/css" rel="stylesheet"/>
-		<title>╤з╔·╠╓┬█┐╬</title>
+		<title>хнжчФЯшоишо║шп╛</title>
 	</head>
 
 <body>
 <center>
     <#assign roundNames=roundAndSeminarList?keys/>
 <div id="header1">
-	            <span>
-	                <b><</b>
-	            </span>
-    ╠╓┬█┐╬┴╨▒э
+	            <span><b><</b></span>
+	шоишо║шп╛хИЧшби
 	            <span1>
 					<b><li class="dao li1">+
 						<ul class="sub sub1">
-							<a href="/cm/student/person"><li class="main">╕Ў╚╦╥│</li></a>
-							<a href="/cm/student/seminar"><li class="main">╠╓┬█┐╬</li></a>
+							<a href="/cm/student/person"><li class="main">ф╕кф║║щб╡</li></a>
+							<a href="/cm/student/seminar"><li class="main">шоишо║шп╛</li></a>
 						</ul></li>
 					</b>
 					</span1>	            

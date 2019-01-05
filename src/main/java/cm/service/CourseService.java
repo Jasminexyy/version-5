@@ -124,6 +124,7 @@ public class CourseService {
 	public CourseDetailVO getCourseById(Long courseId) {
 		Course course = courseDAO.getByCourseId(courseId);
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
+		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
 		courseDetailVO.setIntroduction(course.getIntroduction());
 		courseDetailVO.setPresentationPercentage(course.getPresentationPercentage());

@@ -41,6 +41,7 @@ public class RoundService {
                 if (klassRound.get(i).getKlassId() == klassId) {
                     //把讨论课序号存到roundName中
                     String roundName = roundDAO.getByRoundId(klassRound.get(i).getRoundId()).getRoundSerial().toString();
+                    System.out.println(roundName);
                     // 通过roundId找班级下所有seminar
                     List<Seminar> seminars = seminarDAO.listByRoundId(rounds.get(i).getId());
                     List<SeminarVO> seminarVOS = new LinkedList<SeminarVO>();
