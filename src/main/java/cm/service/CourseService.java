@@ -316,14 +316,12 @@ public class CourseService {
 		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
 		for(TeamStrategy teamStrategy:teamStrategyList) {
 
+			TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
             Long strategyId = teamStrategy.getStrategyId();
 			if(teamStrategy.getStrategyName().equals("TeamAndStrategy")) {
-
-                List<TeamAndStrategyVO> teamAndStrategyVOList = new ArrayList<>();
 				List<TeamAndStrategy> teamAndStrategyList = strategyDAO.listTeamAndStrategyByStrategyId(strategyId);
 				for(TeamAndStrategy teamAndStrategy:teamAndStrategyList) {
 
-                    TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
                     if(teamAndStrategy.getStrategyName().equals("MemberLimitStrategy")) {
 
                         MemberLimitStrategyVO memberLimitStrategyVO = new MemberLimitStrategyVO();
@@ -361,9 +359,8 @@ public class CourseService {
                         teamAndStrategyVO.setTeamOrStrategyVOList(teamOrStrategyVOList);
                     }
 
-                    teamAndStrategyVOList.add(teamAndStrategyVO);
                 }
-                teamNeedVO.setTeamAndStrategyVOList(teamAndStrategyVOList);
+                teamNeedVO.setTeamAndStrategyVO(teamAndStrategyVO);
 			}
 			if(teamStrategy.getStrategyName().equals("ConflictCourseStrategy")){
 
@@ -408,10 +405,14 @@ public class CourseService {
 
 	//在ConflictCourseStrategy里修改项
 	int updateConflictCourseStrategy(Long strategyId, Long conflictCourseId, Long newConflictCourseId){
-
 		return strategyDAO.updateConflictCourseStrategy(strategyId, conflictCourseId, newConflictCourseId);
 
 	}
+
+	//在ConflictCourseStrategy里删除项
+//	int deleteConflictCourseStrategy(Long strategyId){
+//		return strategyDAO.deleteConflictCourseStrategy(strategyId);
+//	}
 
 	int teamAndStrategyCount = 0;
 	//在TeamStrategy里新建TeamAndStrategy
@@ -451,6 +452,10 @@ public class CourseService {
 		return strategyDAO.updateMemberLimitStrategy(strategyId, minMember, maxMember);
 	}
 
+	//在MemberLimitStrategy里删除项
+//	int deleteMemberLimitStrategy(Long strategyId){
+//		return strategyDAO.deleteMemberLimitStrategy(strategyId);
+//	}
 
 	int teamOrStrategyCount = 0;
 	//在TeamAndStrategy里新建TeamOrStrategy
@@ -478,9 +483,13 @@ public class CourseService {
 	int createCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
 		return strategyDAO.createCourseMemberLimitStrategy(courseId, minMember, maxMember);
 	}
-
 	//在CourseMemberLimitStrategy里修改项
 	int updateCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
 		return strategyDAO.updateCourseMemberLimitStrategy(courseId, minMember, maxMember);
 	}
+
+	//在CourseMemberLimitStrategy里删除项
+//	int deleteCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
+//		return strategyDAO.deleteCourseMemberLimitStrategy(courseId, minMember, maxMember);
+//	}
 }
