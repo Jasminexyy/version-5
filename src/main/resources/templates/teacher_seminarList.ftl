@@ -58,7 +58,7 @@
         </#list>
     </div>
 
-    <button type="submit">+新建讨论课</button>
+    <a href="/cm/teacher/course/seminar/create"<button>+新建讨论课</button>
 
 
 </center>

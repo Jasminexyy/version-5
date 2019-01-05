@@ -29,10 +29,18 @@
 
 	<table class="table0" cellspacing="0" cellpadding="0">
 		<tr><td class="c2">轮次：</td><td class="c5">${Seminar.roundSerial}</td><td class="c2"></td></tr>
-		<tr><td class="c10">主题：</td><td class="c4">${Seminar.introduction}</td></tr>
+		<tr><td class="c10">主题：</td><td class="c4">${Seminar.seminarName}</td></tr>
 		<tr><td class="c2">课次序号：</td><td class="c5">${Seminar.seminarSerial}</td><td class="c2"></td></tr>
 		<tr><td class="c10">要求：</td><td class="c4">${Seminar.introduction}</td></tr>
-		<tr><td class="c2">课程情况：</td><td class="c5">${Seminar.seminarStatus}</td><td class="c2"><u class="u1">查看信息</u></td></tr>
+		<tr><td class="c2">课程情况：</td><td class="c5">
+				<#if Seminar.seminarStatus== 1>
+				正在进行
+				<#elseif Seminar.seminarStatus==2>
+					已结束
+				<#elseif Seminar.seminarStatus==0>
+					未开始
+				</#if>
+			</td><td class="c2"><u class="u1">查看信息</u></td></tr>
 	</table>
 </center>
 <center>
