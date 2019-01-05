@@ -82,7 +82,7 @@
                 <table class="table_d2" cellspacing="" cellpadding="">
                     <tr>
 
-                            <td class="c">${conflictCourseStrategyVO.courseName}</td>
+                            <td class="c">${conflictCourseStrategyVO.courseName} (${conflictCourseStrategyVO.teacherName})</td>
 
                     </tr>
                 </table>

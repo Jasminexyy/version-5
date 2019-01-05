@@ -373,7 +373,7 @@ public class CourseService {
                     conflictCourseStrategyVO.setCourseId(conflictCourseStrategy.getCourseId());
                     //课程名
                     conflictCourseStrategyVO.setCourseName(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getCourseName());
-			//		conflictCourseStrategyVO.setTeacherName(teacherDAO.getByTeacherId(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getTeacherId()).getTeacherName());
+					conflictCourseStrategyVO.setTeacherName(teacherDAO.getByTeacherId(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getTeacherId()).getTeacherName());
 
 					conflictCourseStrategyVOList.add(conflictCourseStrategyVO);
                 }
