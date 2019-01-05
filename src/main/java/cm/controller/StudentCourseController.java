@@ -34,8 +34,8 @@ public class StudentCourseController {
 
     ///////student course info post
     @RequestMapping(value = "/info",method = RequestMethod.GET)
-    public String studentCourseInfo(long klassId,Model model){
-        model.addAttribute("curCourse",courseService.getCourseById(klassId));
+    public String studentCourseInfo(long courseId,Model model){
+        model.addAttribute("curCourse",courseService.getCourseById(courseId));
         return "student_course_info";
     }
 

@@ -111,18 +111,19 @@ public class TeacherCourseController {
 
 
     //////学生成绩
-    @RequestMapping(value = "/grade",method = RequestMethod.POST)
+    @RequestMapping(value = "/grade",method = RequestMethod.GET)
     public String teacherGrade(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
-        Map<String, List<SeminarScoreVO>> maps=courseService.listScoreForTeacher(courseId);
+        Map<String, List<TeacherSeminarScoreVO>> maps=courseService.listScoreForTeacher(courseId);
         model.addAttribute("roundNameAndSeminarScore",maps);
-        return "teacher_grade.html";
+        return "teacher_grade";
     }
 
     ////////班级管理
     @RequestMapping(value="/klassList",method = RequestMethod.POST)
     public String teacherKlassManage(Long course_id,Model model){
         courseDetailVO=courseService.getCourseById(course_id);
+
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
         return "teacher_klassList";
     }

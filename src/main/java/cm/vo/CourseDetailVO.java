@@ -19,9 +19,4 @@ public class CourseDetailVO {
     private Byte reportPercentage;
     private String teamStartTime;
     private String teamEndTime;
-    private Byte teamMaxNum;
-    private Byte teamMinNum;
-
-    private List<List<ConflictCourseStrategyVO>> conflictCourseStrategyVOList;
-    private List<CourseMemberLimitStrategyVO> courseMemberLimitStrategyVOList;
 }

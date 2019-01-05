@@ -33,7 +33,7 @@
 			<!--老师开的好多课程-->
 
 				<summary  class="sumbackgroundw">${Course.courseName}</summary>
-				<a href="/cm/teacher/course/grade/${Course.id}"><div id="backcolor">
+				<a href="/cm/teacher/course/grade?courseId=${Course.id}"><div id="backcolor">
 		学生成绩
 	    <span class="right">></span>
 	    <br/>
@@ -69,11 +69,11 @@
 			</div>
 			<div style="height:3.75rem;background-color:#e8e8e8"></div>
 
-			<a href="/cm/teacher/course/create"><div class="header">
+			<div class="header">
 		+新建课程
-	    <span class="right">></span>
+					<span class="right">></span>
 	    <br/>
-	</div>	</a>
+	</div>
 		</center>
 
 

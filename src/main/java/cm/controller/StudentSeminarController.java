@@ -28,7 +28,7 @@ public class StudentSeminarController {
     @Autowired
     private TeamService teamService;
     @Autowired
-            private StudentService studentService;
+    private StudentService studentService;
 
     UserVO student;
 
@@ -46,18 +46,23 @@ public class StudentSeminarController {
     /////////student seminar List
     @RequestMapping(value = "/List/{klassId}",method=RequestMethod.GET)
     public String studentSeminarList(@PathVariable Long klassId,Model model){
+        System.out.println(klassId);
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         //String--RoundName
-        Map<String, SeminarListVO> maps=new HashMap<>();
-        maps=roundService.listRoundNameAndSeminar(courseId,klassId);
+        Map<String, SeminarListVO> maps=roundService.listRoundNameAndSeminar(courseId,klassId);
         model.addAttribute("roundAndSeminarList",maps);
+        model.addAttribute("klassId",klassId);
+        model.addAttribute("student",student);
         return "student_seminarList";
     }
 
     ///////student seminar info
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String studentSeminarInfo(Long klassId,Long seminarId,Model model){
-        model.addAttribute("courseName",courseDetailVO.getCourseName());
+        Long courseId=courseService.getCourseByKlassId(klassId).getId();
+        String courseName=courseService.getCourseById(courseId).getCourseName();
+        System.out.println(courseName);
+        model.addAttribute("courseName",courseName);
         model.addAttribute("seminarInfo",seminarService.getSeminarInfo(klassId,seminarId));
         model.addAttribute("attendance",seminarService.getAttendance(klassId,seminarId,student.getId()));
         return "student_seminar_info";

@@ -121,9 +121,10 @@ public class CourseService {
         return map;
 	}
 
-	public CourseDetailVO getCourseById(Long klassId) {
-		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
+	public CourseDetailVO getCourseById(Long courseId) {
+		System.out.println("courseid"+courseId);
 		Course course = courseDAO.getByCourseId(courseId);
+		System.out.println("is coursename"+course.getCourseName());
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
 		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
@@ -134,6 +135,22 @@ public class CourseService {
 		courseDetailVO.setTeamStartTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(course.getTeamStartTime()));
 		courseDetailVO.setTeamEndTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(course.getTeamEndTime()));
 		return courseDetailVO;
+	}
+
+	void panduan(SimpleSeminarScoreVO simpleSeminarScoreVO,SeminarScore seminarScore)
+	{
+		if(seminarScore.getPresentationScore()==null)
+			simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
+		else
+			simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
+		if(seminarScore.getQuestionScore().equals(""))
+			simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
+		else
+			simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
+		if(seminarScore.getReportScore().equals(""))
+			simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
+		else
+			simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
 	}
 
 	public List<RoundScoreVO> listScoreForStudent(Long klassId, Long studentId) {
@@ -181,20 +198,8 @@ public class CourseService {
 				SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),team.getId());
 				SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
 
-				if(seminarScore.getPresentationScore()==null)
-					simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
-				else
-				simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
+				panduan(simpleSeminarScoreVO,seminarScore);
 
-				if(seminarScore.getQuestionScore()==null)
-					simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
-				else
-				simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
-
-				if(seminarScore.getReportScore()==null)
-				simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
-				else
-				simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
 				simpleSeminarScoreVO.setSeminarName(seminarDAO.getBySeminarId(seminarList.get(j).getId()).getSeminarName());
 				simpleSeminarScoreVOList.add(simpleSeminarScoreVO);
 			}
@@ -212,64 +217,85 @@ public class CourseService {
         return courseDAO.listByStudentId(studentId);
     }
 
-
 	public List<Course> listCourseByTeacherId(UserVO teacher) {
 		List<Course> courses=courseDAO.listByTeacherId(teacher.getId());
 		return courses;
 	}
 
-	public Map<String, List<SeminarScoreVO>> listScoreForTeacher(Long courseId) {
-		//获取该课程下所有轮次
-		//轮次-班级，总分-所有讨论课，分分
-		List<Round> rounds=roundDAO.listByCourseId(courseId);
-		Map<String, List<SeminarScoreVO>> map=new HashMap<String, List<SeminarScoreVO>> ();
-		for(int i=0;i<rounds.size();i++)
+	public Map<String, List<TeacherSeminarScoreVO>> listScoreForTeacher(Long courseId) {
+		//获得当前课程下所有小组
+		List<Team> teamList=teamDAO.listByCourseId(courseId);
+		//获得当前课程所有轮次
+		List<Round> roundList=roundDAO.listByCourseId(courseId);
+		Map<String, List<TeacherSeminarScoreVO>> map=new HashMap<>();
+
+		//开始循环吧！
+		for(int i=0;i<roundList.size();i++)//4
 		{
-			Round round=rounds.get(i);
+			//每个轮次对应一串TeacherSeminarScoreVO list
+			List<TeacherSeminarScoreVO> teacherSeminarScoreVOList=new LinkedList<>();
+			//当前轮次
+			Round round=roundList.get(i);
 			String roundname=round.getRoundSerial().toString();
+			//当前轮次下所有讨论课
+			List<Seminar> seminarList=seminarDAO.listByRoundId(round.getId());
+			for(int j=0;j<teamList.size();j++) {//26
+				TeacherSeminarScoreVO teacherSeminarScoreVO=new TeacherSeminarScoreVO();
+				//获取每一个课程下的班级
+				Team team=teamList.get(j);
+				System.out.println(j);
+				//通过roungid和teamid得到当前轮次下当前班级的讨论课总成绩
+				RoundScore roundScore=roundScoreDAO.getByRoundIdAndTeamId(round.getId(),team.getId());
+				//通过小组id得到班级id
+				Long klassId=teamDAO.getKlassIdByTeamId(team.getId());
+				System.out.println("klassid:"+klassId);
+				Klass klass=klassDAO.getByKlassId(klassId);
 
-			//该课程下所有队伍
-			List<Team> teams=teamDAO.listByCourseId(courseId);
-			for(int j=0;j<teams.size();j++)
-			{
-				//获取当前课程所有班级
-				Team team=teams.get(j);
-				//根据轮次获得所有讨论课
-				List<Seminar> seminars=seminarDAO.listByRoundId(round.getId());
-				Klass klass=klassDAO.getByKlassId(team.getKlassId());
-				List<SeminarScoreVO> seminarScoreVOS=new LinkedList<SeminarScoreVO>();
-				for(int k=0;k<seminars.size();k++) {
-					//依次获得讨论课下小组的成绩
-					//获得该小组班级
-					//很多重复的，不过都加一加吧
-					SeminarScoreVO seminarScoreVO=new SeminarScoreVO();
-					//1-1班级-队伍序号
-					seminarScoreVO.setKlassName(klass.getKlassSerial().toString());
-					Seminar seminar=seminars.get(k);
+				//当前轮次总分数get
+				teacherSeminarScoreVO.setTotalScore(roundScore.getTotalScore());
+
+				List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<>();
+				for(int k=0;k<seminarList.size();k++)
+				{
+					Seminar seminar=seminarList.get(k);
+					KlassSeminar klassSeminar=
+							klassSeminarDAO.getBySeminarIdAndKlassId(seminar.getId(),klassId);
+					System.out.println("klassSeminar"+klassSeminar);
+					SeminarScore seminarScore=
+							seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),team.getId());
 					SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
-					simpleSeminarScoreVO.setSeminarId(seminar.getId());
-					simpleSeminarScoreVO.setSeminarSerial(seminar.getSeminarSerial());
-					simpleSeminarScoreVO.setIntroduction(seminar.getIntroduction());
 					simpleSeminarScoreVO.setSeminarName(seminar.getSeminarName());
-					//这四个才是必不可少的
-					SeminarScore seminarScore=seminarScoreDAO.getBySeminarIdAndKlassIdAndTeamId(seminar.getId(),klass.getId(),team.getId());
-					simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
-					simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
-					simpleSeminarScoreVO.setReportScore(seminarScore.getPresentationScore());
-					simpleSeminarScoreVO.setTotalScore(seminarScore.getTotalScore());
-					seminarScoreVO.setSimpleSeminarScoreVO(simpleSeminarScoreVO);
-					seminarScoreVOS.add(seminarScoreVO);
-				}
-				map.put(roundname,seminarScoreVOS);
-			}
+					if(seminarScore==null)
+					{
+						simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
+						simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
+						simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
+					}else {
+						panduan(simpleSeminarScoreVO, seminarScore);
+					}
 
+					simpleSeminarScoreVOList.add(simpleSeminarScoreVO);
+				}
+				teacherSeminarScoreVO.setSimpleSeminarScoreVO(simpleSeminarScoreVOList);
+				teacherSeminarScoreVOList.add(teacherSeminarScoreVO);
+			}
+			map.put(roundname,teacherSeminarScoreVOList);
+			for(int m=0;m<teacherSeminarScoreVOList.size();m++){
+				TeacherSeminarScoreVO t=teacherSeminarScoreVOList.get(m);
+				List<SimpleSeminarScoreVO>tmp=t.getSimpleSeminarScoreVO();
+				for(int a=0;a<tmp.size();a++){
+					System.out.println(tmp.get(a).getPresentationScore());
+					System.out.println(tmp.get(a).getQuestionScore());
+					System.out.println(tmp.get(a).getReportScore());
+				}
+			}
 		}
 		return map;
 	}
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
-		return getCourseById(klassId);
+		return getCourseById(courseId);
 	}
 
 	public CourseVO courseToCourseVO(Course course)
@@ -308,14 +334,12 @@ public class CourseService {
 		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
 		for(TeamStrategy teamStrategy:teamStrategyList) {
 
+			TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
             Long strategyId = teamStrategy.getStrategyId();
 			if(teamStrategy.getStrategyName().equals("TeamAndStrategy")) {
-
-                List<TeamAndStrategyVO> teamAndStrategyVOList = new ArrayList<>();
 				List<TeamAndStrategy> teamAndStrategyList = strategyDAO.listTeamAndStrategyByStrategyId(strategyId);
 				for(TeamAndStrategy teamAndStrategy:teamAndStrategyList) {
 
-                    TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
                     if(teamAndStrategy.getStrategyName().equals("MemberLimitStrategy")) {
 
                         MemberLimitStrategyVO memberLimitStrategyVO = new MemberLimitStrategyVO();
@@ -353,9 +377,8 @@ public class CourseService {
                         teamAndStrategyVO.setTeamOrStrategyVOList(teamOrStrategyVOList);
                     }
 
-                    teamAndStrategyVOList.add(teamAndStrategyVO);
                 }
-                teamNeedVO.setTeamAndStrategyVOList(teamAndStrategyVOList);
+                teamNeedVO.setTeamAndStrategyVO(teamAndStrategyVO);
 			}
 			if(teamStrategy.getStrategyName().equals("ConflictCourseStrategy")){
 
@@ -400,10 +423,14 @@ public class CourseService {
 
 	//在ConflictCourseStrategy里修改项
 	int updateConflictCourseStrategy(Long strategyId, Long conflictCourseId, Long newConflictCourseId){
-
 		return strategyDAO.updateConflictCourseStrategy(strategyId, conflictCourseId, newConflictCourseId);
 
 	}
+
+	//在ConflictCourseStrategy里删除项
+//	int deleteConflictCourseStrategy(Long strategyId){
+//		return strategyDAO.deleteConflictCourseStrategy(strategyId);
+//	}
 
 	int teamAndStrategyCount = 0;
 	//在TeamStrategy里新建TeamAndStrategy
@@ -443,6 +470,10 @@ public class CourseService {
 		return strategyDAO.updateMemberLimitStrategy(strategyId, minMember, maxMember);
 	}
 
+	//在MemberLimitStrategy里删除项
+//	int deleteMemberLimitStrategy(Long strategyId){
+//		return strategyDAO.deleteMemberLimitStrategy(strategyId);
+//	}
 
 	int teamOrStrategyCount = 0;
 	//在TeamAndStrategy里新建TeamOrStrategy
@@ -470,9 +501,13 @@ public class CourseService {
 	int createCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
 		return strategyDAO.createCourseMemberLimitStrategy(courseId, minMember, maxMember);
 	}
-
 	//在CourseMemberLimitStrategy里修改项
 	int updateCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
 		return strategyDAO.updateCourseMemberLimitStrategy(courseId, minMember, maxMember);
 	}
+
+	//在CourseMemberLimitStrategy里删除项
+//	int deleteCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
+//		return strategyDAO.deleteCourseMemberLimitStrategy(courseId, minMember, maxMember);
+//	}
 }
