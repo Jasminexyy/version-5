@@ -84,8 +84,9 @@ public class TeacherController {
     @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherModifyPwdSubmit(String password) {
-        if (teacherService.modifyPwd(password,teacher))
+        if (teacherService.modifyPwd(password,teacher)) {
             return new ResponseEntity(HttpStatus.OK);
+        }
         else
             return new ResponseEntity(HttpStatus.CONFLICT);
     }

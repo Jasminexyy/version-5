@@ -96,6 +96,8 @@ public class TeacherService {
     public UserVO getUserVOByAccount(String account) {
         Teacher t=teacherDAO.getByTeacherAccount(account);
         UserVO teacher=new UserVO();
+        if(t.getPassword()==null)
+            teacher.setPassword("123456");
         teacher.setIsActive(t.getIsActive());
         teacher.setId(t.getId());
         teacher.setAccount(t.getAccount());
