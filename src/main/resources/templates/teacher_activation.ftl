@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html lang="ch">
 <head style="font-size:35px">
-    <link href="/css/userlogin.css" type="text/css" rel="stylesheet" charset="GB2312"/>
-    <meta name="viewport"
-          content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
-          charset="GB2312">
-    <script src="/js/jquery_min.js" type="text/javascript"></script>
-    <title>½ÌÊ¦¼¤»î</title>
+    <link href="/css/userlogin.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" charset="GB2312">
+    <title>æ•™å¸ˆæ¿€æ´»</title>
 </head>
 <body>
 <center>
     <div id="header">
         <span><</span>
-        <center>ÃÜÂëÉèÖÃ</center>
+        <center>å¯†ç è®¾ç½®</center>
     </div>
     <form action="/cm/teacher/activation" method="post">
-        <input class="input1" type="text" name="password" value="ÊäÈëÃÜÂë" onfocus="this.value='';this.onfocus='';"onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9_ \.]/g,'');"/><br/>
-        <input class="input1" type="text" name="password1" value="È·ÈÏÃÜÂë" onfocus="this.value='';this.onfocus='';"onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9_ \.]/g,'');"/><br/>
-        <p1>¿É°üº¬Êý×Ö¡¢×ÖÄ¸¡¢ÏÂ»®Ïß£¬³¤¶È²»Ð¡ÓÚ6Î»</p1></br>
-        <button type="submit" class="submit">È·ÈÏÌá½»</button>
+        <input class="input1" type="text" name="password" value="è¾“å…¥å¯†ç " onfocus="this.value='';this.onfocus='';"onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9_ \.]/g,'');"/><br/>
+        <input class="input1" type="text" name="password1" value="ç¡®è®¤å¯†ç " onfocus="this.value='';this.onfocus='';"onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9_ \.]/g,'');"/><br/>
+        <p1>å¯åŒ…å«æ•°å­—ã€å­—æ¯ã€ä¸‹åˆ’çº¿ï¼Œé•¿åº¦ä¸å°äºŽ6ä½</p1></br>
+        <button type="submit" class="submit">ç¡®è®¤æäº¤</button>
     </form>
 </center>
 </body>

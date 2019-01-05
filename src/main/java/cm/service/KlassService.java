@@ -144,6 +144,7 @@ public static KlassVO klassToKlassVO(Klass k)
     klassVO.setKlassLocation(k.getKlassLocation());
     klassVO.setKlassSerial(k.getKlassSerial());
     klassVO.setKlassTime(k.getKlassTime());
+
     return klassVO;
 }
 

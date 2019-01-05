@@ -4,6 +4,7 @@
 	<meta name="viewport"
 		  content="width=device-width,user-scale=no,initial-scale=1.0,maximum-
 scale=1.0,minimum-scale=1.0">
+
 	<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
 	<title>Enter your title here</title>
 </head>
@@ -41,14 +42,14 @@ scale=1.0,minimum-scale=1.0">
 						class="sumbackgroundw">${key}
 					${courseAndKlassList.get(key).grade} ${courseAndKlassList.get(key).KlassName}</summary>
 				<a href="/cm/student/course/grade">
-					<div id="backcolor">
+					<div class="backcolor">
 						我的成绩
 						<span class="right">></span>
 						<br/>
 					</div>
 				</a>
 				<a href="/cm/student/course/team">
-					<div id="backcolor">
+					<div class="backcolor">
 						我的组队
 						<span class="right">></span>
 						<br/>

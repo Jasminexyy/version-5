@@ -28,6 +28,7 @@ public class StudentService {
         student.setEmail(s.getEmail());
         student.setName(s.getStudentName());
         student.setRole("student");
+        student.setIsActive(s.getIsActive());
         return student;
     }
 

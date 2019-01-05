@@ -58,7 +58,7 @@ body {
  tr td {
      border-top:0.0625rem solid #e8e8e8;
 }
- #backcolor {
+ .backcolor {
      background-color:#e8e8e8;
      height:2.5rem;
      line-height:2.5rem;
