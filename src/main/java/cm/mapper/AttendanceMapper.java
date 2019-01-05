@@ -22,6 +22,8 @@ public interface AttendanceMapper {
     @Select("select * from attendance where id=#{attendanceId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -39,6 +41,8 @@ public interface AttendanceMapper {
     @Select("select * from attendance where klass_seminar_id=#{klassSeminarId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -56,6 +60,8 @@ public interface AttendanceMapper {
     @Select("select * from attendance where team_id=#{teamId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -76,6 +82,8 @@ public interface AttendanceMapper {
             "in(select team_id from klass_student where klass_id=#{klassId} and student_id=#{studentId})")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -98,6 +106,8 @@ public interface AttendanceMapper {
             "in(select team_id from klass_student where klass_id=#{klassId} and student_id=#{studentId})")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -117,6 +127,8 @@ public interface AttendanceMapper {
     @Select("select * from attendance where klass_seminar_id=#{klassSeminarId} and team_id=#{teamId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -136,6 +148,8 @@ public interface AttendanceMapper {
     @Select("select * from attendance where klass_seminar_id=#{klassSeminarId} and team_order=#{teamOrder}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -155,6 +169,8 @@ public interface AttendanceMapper {
             "in(select team_id from klass_student where student_id=#{studentId})")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
@@ -272,6 +288,8 @@ public interface AttendanceMapper {
             "in (select id from seminar where round_id =#{roundId}))")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "klassSeminarId",column = "klass_seminar_id"),
+            @Result(property = "teamId",column = "team_id"),
             @Result(property = "teamOrder",column = "team_order"),
             @Result(property = "isPresent",column = "is_present"),
             @Result(property = "reportName",column = "report_name"),
