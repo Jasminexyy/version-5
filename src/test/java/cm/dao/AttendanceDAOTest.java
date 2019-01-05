@@ -17,10 +17,4 @@ public class AttendanceDAOTest {
     public void getByKlassSeminarIdAndTeamId() {
         System.out.println(attendanceDAO.getByKlassSeminarIdAndTeamId(21L,18L));
     }
-
-    @Test
-    public void getBySeminarIdAndKlassIdAndStudentId() {
-        System.out.println(attendanceDAO.getBySeminarIdAndKlassIdAndStudentId(10L,21L, 142L));
-    }
-
 }
