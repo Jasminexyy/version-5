@@ -4,9 +4,9 @@
 <head style="font-size: 35px">
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
-          charset="GB2312">
+          charset="GB2312"/>
     <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
-    <script src="/js/jquery_min.js" type="text/javascript"></script>
+    <script src="/js/jquery.min.js" type="text/javascript"></script>
     <title>课程信息</title>
 </head>
 <body>

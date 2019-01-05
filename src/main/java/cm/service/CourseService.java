@@ -269,7 +269,7 @@ public class CourseService {
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
-		return getCourseById(klassId);
+		return getCourseById(courseId);
 	}
 
 	public CourseVO courseToCourseVO(Course course)
