@@ -19,7 +19,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    UserVO student;
+    static UserVO student;
 
     ///////////////student activation get
     @RequestMapping(value = "/activation",method = RequestMethod.GET)
@@ -39,8 +39,6 @@ public class StudentController {
     //////////////student index get
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String studentIndex(Model model, String account){
-        System.out.println("studentIndex");
-        System.out.println(account);
         student=studentService.getUserVOByAccount(account);
         if (studentService.getIs_active(student)==0)
                 return "redirect:/cm/student/activation";

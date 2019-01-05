@@ -1,10 +1,12 @@
 package cm.controller;
 
 import cm.service.CourseService;
+import cm.service.StudentService;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,14 +18,14 @@ import java.util.Map;
 public class StudentCourseController {
     @Autowired
     private CourseService courseService;
-
+@Autowired
+        private StudentService studentService;
     UserVO student=new UserVO();
 
     ///////student course list get
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
-    public String studentCourse(Model model){
-        student.setId((long)149);
-        System.out.println("149");
+    public String studentCourse(Model model,String account){
+        student=studentService.getUserVOByAccount(account);
         Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
         return "studentCourse";
@@ -37,9 +39,9 @@ public class StudentCourseController {
     }
 
     ///////student course score Map<RoundName,SeminarScore>
-    @RequestMapping(value = "/score",method = RequestMethod.POST)
-    public String studentScore(long courseId,long klassId,Model model){
-        List<RoundScoreVO> roundScoreVOList=courseService.listScoreForStudent(courseId,klassId,student.getId());
+    @RequestMapping(value = "/score/{klassId}",method = RequestMethod.POST)
+    public String studentScore(@PathVariable long klassId, Model model){
+        List<RoundScoreVO> roundScoreVOList=courseService.listScoreForStudent(klassId,student.getId());
         model.addAttribute("scoreDetails",roundScoreVOList);
         return "studentScore";
     }

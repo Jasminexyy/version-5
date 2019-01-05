@@ -134,7 +134,8 @@ public class CourseService {
 	}
 
 	//string是roundname，传给前端
-	public List<RoundScoreVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
+	public List<RoundScoreVO> listScoreForStudent(Long klassId, Long studentId) {
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
         List<RoundScoreVO> roundScoreVOList=new LinkedList<RoundScoreVO>();
         //获取课程所有讨论课轮次
         List<Round> roundList=roundDAO.listByCourseId(courseId);

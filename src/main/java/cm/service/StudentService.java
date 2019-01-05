@@ -22,13 +22,13 @@ public class StudentService {
     public UserVO getUserVOByAccount(String account) {
         Student s=studentDAO.getByStudentAccount(account);
         UserVO student=new UserVO();
-
         student.setId(s.getId());
         student.setAccount(s.getAccount());
         student.setEmail(s.getEmail());
         student.setName(s.getStudentName());
         student.setRole("student");
         student.setIsActive(s.getIsActive());
+        student.setPassword(student.getPassword());
         return student;
     }
 
