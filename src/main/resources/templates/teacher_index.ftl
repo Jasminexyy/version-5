@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html>
 	<head style="font-size:35px">
@@ -9,28 +12,35 @@
 		<center>
 	        <div id="header1">
 	        <center>
-                <center><a href="/login"><span><</span></a> 我
+	            <span>
+	                <
+	            </span>
+	        我
 	            <span1>
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
 						<a href="/cm/teacher/notification"><li class="main">代办</li></a>
-						<a href="/cm/teacher/index?account=${curTeacher.account}"><li class="main">个人页</li></a>
-						<a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
+						<a href="/cm/teacher/index"><li class="main">个人页</li></a>
+						<a href="/cm/teacher/course/seminar/course?account=${curTeacher.account}"><li class="main">讨论课</li></a>
 				    </ul>
-					</li>
+					</li>               
+
 					</span1>
-	        </center>
-	        </div>
+	        </center>	            
+	        </div> 
+	    
 	    <div id="d2">
 	    <br/>
-	    <p>${curTeacher.name} </p>
-	    <p>${curTeacher.account}</p>
+	    <p>${curTeacher.name} </p>  <!--姓名-->
+	    <p>${curTeacher.account}</p> <!--教工号-->
 	    </div>
 	    <div id="wrap">
-	        <a href="/cm/teacher/course/${curTeacher.account}"><li class="l">我的课程<span class="right">></span></li></a>
-	        <a href="/cm/teacher/setting?account=${curTeacher.account}"><li class="l">
+	    
+	        <a href="/cm/teacher/course/courselist?account=${curTeacher.account}"><li class="l">我的课程<span class="right">></span></li></a>
+	        <a href="/cm/teacher/setting"><li class="l">
 				账户与设置
 				<span class="right">></span></li></a>
+	
 		</div>
 		</center>
 	</body>
