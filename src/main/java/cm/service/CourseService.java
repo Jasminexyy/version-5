@@ -121,7 +121,8 @@ public class CourseService {
         return map;
 	}
 
-	public CourseDetailVO getCourseById(Long courseId) {
+	public CourseDetailVO getCourseById(Long klassId) {
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
 		Course course = courseDAO.getByCourseId(courseId);
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
 		courseDetailVO.setCourseName(course.getCourseName());
@@ -267,7 +268,7 @@ public class CourseService {
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
-		return getCourseById(courseId);
+		return getCourseById(klassId);
 	}
 
 	public CourseVO courseToCourseVO(Course course)
