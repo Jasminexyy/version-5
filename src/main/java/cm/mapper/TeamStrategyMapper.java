@@ -1,5 +1,6 @@
 package cm.mapper;
 
+import cm.entity.TeamOrStrategy;
 import cm.entity.TeamStrategy;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -28,4 +29,18 @@ public interface TeamStrategyMapper {
     })
     List<TeamStrategy> listByCourseId(@Param("courseId") Long courseId);
 
+    /**
+     * 创建策略
+     * @param id
+     * @param strategyName
+     * @param strategyId
+     * @return int
+     */
+    @Insert("insert into team_or_strategy(course_id,strategy_serial,strategy_name,strategy_id) " +
+            "values(#{courseId},#{strategySerial},#{strategyName},#{strategyId})")
+    @Options(useGeneratedKeys = true, keyProperty = "teamOrStrategy.id")
+    int createTeamStrategy(@Param("courseId") Long courseId,
+                           @Param("strategySerial") Byte strategySerial,
+                           @Param("strategyName") String strategyName,
+                           @Param("strategyId") Long strategyId);
 }

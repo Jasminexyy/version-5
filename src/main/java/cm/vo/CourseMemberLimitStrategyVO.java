@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class CourseMemberLimitStrategyVO {
     private Long courseId;
+    private String courseName;
     private Byte minMember;
     private Byte maxMember;
 }
