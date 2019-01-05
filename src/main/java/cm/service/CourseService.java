@@ -121,9 +121,11 @@ public class CourseService {
         return map;
 	}
 
-	public CourseDetailVO getCourseById(Long courseId) {
+	public CourseDetailVO getCourseById(Long klassId) {
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
 		Course course = courseDAO.getByCourseId(courseId);
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
+		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
 		courseDetailVO.setIntroduction(course.getIntroduction());
 		courseDetailVO.setPresentationPercentage(course.getPresentationPercentage());
@@ -267,7 +269,7 @@ public class CourseService {
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
-		return getCourseById(courseId);
+		return getCourseById(klassId);
 	}
 
 	public CourseVO courseToCourseVO(Course course)
@@ -372,5 +374,105 @@ public class CourseService {
 			}
 		}
 		return teamNeedVO;
+	}
+
+
+	int conflictCourseStrategyCount = 0;
+	//在TeamStrategy里新建ConflictCourseStrategy
+	int createConflictCourseStrategyOfTeamStrategy(Long courseId){
+		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
+		List<TeamStrategy> allTeamStrategyList = strategyDAO.listAllTeamStrategy();
+		Byte strategySerial = (byte)(teamStrategyList.size()+1);
+		conflictCourseStrategyCount = 0;
+		for(TeamStrategy teamStrategy:allTeamStrategyList)
+			if(teamStrategy.getStrategyName().equals("ConflictCourseStrategy"))
+				conflictCourseStrategyCount+=1;
+		Integer count = conflictCourseStrategyCount+1;
+		Long strategyId = count.longValue();
+		return strategyDAO.createTeamStrategy(courseId, strategySerial, "ConflictCourseStrategy", strategyId);
+	}
+
+
+	//在ConflictCourseStrategy里新建项
+	int createConflictCourseStrategy(Long strategyId, Long conflictCourseId){
+		return strategyDAO.createConflictCourseStrategy(strategyId, conflictCourseId);
+	}
+
+	//在ConflictCourseStrategy里修改项
+	int updateConflictCourseStrategy(Long strategyId, Long conflictCourseId, Long newConflictCourseId){
+
+		return strategyDAO.updateConflictCourseStrategy(strategyId, conflictCourseId, newConflictCourseId);
+
+	}
+
+	int teamAndStrategyCount = 0;
+	//在TeamStrategy里新建TeamAndStrategy
+	int createTeamAndStrategyOfTeamStrategy(Long courseId){
+		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
+		List<TeamStrategy> allTeamStrategyList = strategyDAO.listAllTeamStrategy();
+		Byte strategySerial = (byte)(teamStrategyList.size()+1);
+		teamAndStrategyCount = 0;
+		for(TeamStrategy teamStrategy:allTeamStrategyList)
+			if(teamStrategy.getStrategyName().equals("TeamAndStrategy"))
+				teamAndStrategyCount+=1;
+		Integer count = teamAndStrategyCount+1;
+		Long strategyId = count.longValue();
+		return strategyDAO.createTeamStrategy(courseId, strategySerial, "TeamAndStrategy", strategyId);
+	}
+
+	int memberLimitStrategyCount = 0;
+	//在TeamAndStrategy里新建MemberLimitStrategy
+	int createMemberLimitStrategyOfTeamAndStrategy(Long teamStrategyId){
+		List<TeamAndStrategy> allTeamAndStrategyList = strategyDAO.listAllTeamAndStrategy();
+		memberLimitStrategyCount = 0;
+		for(TeamAndStrategy teamAndStrategy:allTeamAndStrategyList)
+			if(teamAndStrategy.getStrategyName().equals("MemberLimitStrategy"))
+				memberLimitStrategyCount+=1;
+		Integer count = memberLimitStrategyCount+1;
+		Long strategyId = count.longValue();
+		return strategyDAO.createTeamAndStrategy(teamStrategyId, "MemberLimitStrategy", strategyId);
+	}
+
+	//在MemberLimitStrategy里新建项
+	int createMemberLimitStrategy(Byte minMember, Byte maxMember){
+		return strategyDAO.createMemberLimitStrategy(minMember, maxMember);
+	}
+
+	//在MemberLimitStrategy里修改项
+	int updateMemberLimitStrategy(Long strategyId, Byte minMember, Byte maxMember){
+		return strategyDAO.updateMemberLimitStrategy(strategyId, minMember, maxMember);
+	}
+
+
+	int teamOrStrategyCount = 0;
+	//在TeamAndStrategy里新建TeamOrStrategy
+	int createTeamOrStrategyOfTeamAndStrategy(Long teamStrategyId){
+		List<TeamAndStrategy> allTeamAndStrategyList = strategyDAO.listAllTeamAndStrategy();
+		teamOrStrategyCount = 0;
+		for(TeamAndStrategy teamAndStrategy:allTeamAndStrategyList)
+			if(teamAndStrategy.getStrategyName().equals("TeamOrStrategy"))
+				teamOrStrategyCount+=1;
+		Integer count = teamOrStrategyCount+1;
+		Long strategyId = count.longValue();
+		return strategyDAO.createTeamAndStrategy(teamStrategyId, "TeamOrStrategy", strategyId);
+	}
+
+
+	//在TeamOrStrategy里新建CourseMemberLimitStrategy
+	int createCourseMemberLimitStrategyOfTeamOrStrategy(Long teamAndstrategyId){
+		List<TeamOrStrategy> teamOrStrategyList = strategyDAO.listAllTeamOrStrategy();
+		Integer count = teamOrStrategyList.size()+1;
+		Long strategyId = count.longValue();
+		return strategyDAO.createTeamOrStrategy(teamAndstrategyId, "CourseMemberLimitStrategy", strategyId);
+	}
+
+	//在CourseMemberLimitStrategy里新建项
+	int createCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
+		return strategyDAO.createCourseMemberLimitStrategy(courseId, minMember, maxMember);
+	}
+
+	//在CourseMemberLimitStrategy里修改项
+	int updateCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
+		return strategyDAO.updateCourseMemberLimitStrategy(courseId, minMember, maxMember);
 	}
 }

@@ -2,7 +2,7 @@
 <html lang="ch">
 <head style="font-size:35px">
     <link href="/css/userlogin.css" type="text/css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" charset="GB2312">
+    <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0" charset="GB2312"/>
     <title>登录</title>
     <script src="/js/jquery_min.js" type="text/javascript"></script>
     <script type="text/javascript">

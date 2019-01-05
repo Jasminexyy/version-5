@@ -17,13 +17,14 @@ public interface ConflictCourseStrategyMapper {
 
     /**
      * 插入冲突
-     * @param courseId1
-     * @param courseId2
+     * @param id
+     * @param courseId
      * @return int
      */
-    @Insert("insert into conflict_course_strategy(course_1_id,course_2_id) values(#{courseId1},#{courseId2})")
-    int createConflictCourseStrategy(@Param("courseId1") Long courseId1,
-                                     @Param("courseId2") Long courseId2);
+    @Insert("insert into conflict_course_strategy(id,course_id) values(#{id},#{courseId})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int createConflictCourseStrategy(@Param("id") Long id,
+                                     @Param("courseId") Long courseId);
 
     /**
      * 根据StrategyId获得所有的ConflictCourse
@@ -36,4 +37,17 @@ public interface ConflictCourseStrategyMapper {
             @Result(property = "courseId",column = "course_id")
     })
     List<ConflictCourseStrategy> listConflictCourseByStrategyId(@Param("strategyId") Long strategyId);
+
+    /**
+     * 更新ConflictCourseStrategy
+     * @param strategyId
+     * @param conflictCourseId
+     * @param newConflictCourseId
+     * @return int
+     */
+    @Update("update conflict_course_strategy set course_id=#{newConflictCourseId} where strategy_id=#{strategyId} and course_id=#{conflictCourseId}")
+    int updateConflictCourseStrategy(@Param("strategyId") Long strategyId,
+                                     @Param("conflictCourseId") Long conflictCourseId,
+                                     @Param("newConflictCourseId") Long newConflictCourseId
+    );
 }

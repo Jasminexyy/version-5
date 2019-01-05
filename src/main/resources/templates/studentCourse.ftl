@@ -56,7 +56,13 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-
+			<a href="/cm/student/course/info?klassId=${courseAndKlassList[key].klassId}">
+				<div class="backcolor">
+					课程信息
+					<span class="right">></span>
+					<br/>
+				</div>
+			</a>
 
 		</details>
 		</#list>

@@ -3,7 +3,7 @@
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
-		<title>Ñ§Éú¿Î³ÌĞÅÏ¢</title>
+		<title>å­¦ç”Ÿè¯¾ç¨‹ä¿¡æ¯</title>
 	</head>
 	<body>
 		<center>
@@ -16,8 +16,8 @@
 	            <span1>
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
-                        <a href="/cm/student/index"><li class="main">¸öÈËÒ³</li></a>
-                        <a href="/cm/student/course/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+                        <a href="/cm/student/index"><li class="main">ä¸ªäººé¡µ</li></a>
+                        <a href="/cm/student/course/seminar"><li class="main">è®¨è®ºè¯¾</li></a>
 				    </ul>
 					</li>               
 					
@@ -25,17 +25,17 @@
 	        </center>	            
 	        </div> 
 	    
-	    <p class="p12">¿Î³Ì¼ò½é</p><p class="p7">${curCourse.introduction}</p>
+	    <p class="p12">è¯¾ç¨‹ç®€ä»‹</p><p class="p7">${curCourse.introduction}</p>
 	    <table class="table0" cellspacing="0" cellpadding="0">
 	        
-	        <tr><td class="c6">³É¼¨¼ÆËã¹æÔò£º</td><td class="c6">¿ÎÌÃÕ¹Ê¾£º</td><td class="c6">${curCourse.presentationPercentage}%</td></tr>
-	        <tr><td class="c6"></td><td class="c6">¿ÎÌÃÌáÎÊ£º</td><td class="c6">${curCourse.questionPercentage}%</td></tr>
-	        <tr><td class="c6"></td><td class="c6">ÊéÃæ±¨¸æ£º</td><td class="c6">${curCourse.reportPercentage}%</td></tr>
+	        <tr><td class="c6">æˆç»©è®¡ç®—è§„åˆ™ï¼š</td><td class="c6">è¯¾å ‚å±•ç¤ºï¼š</td><td class="c6">${curCourse.presentationPercentage}%</td></tr>
+	        <tr><td class="c6"></td><td class="c6">è¯¾å ‚æé—®ï¼š</td><td class="c6">${curCourse.questionPercentage}%</td></tr>
+	        <tr><td class="c6"></td><td class="c6">ä¹¦é¢æŠ¥å‘Šï¼š</td><td class="c6">${curCourse.reportPercentage}%</td></tr>
 	        <tr><td class="c6"></td><td class="c6"></td><td class="c6"></td></tr>
-			<tr><td class="c6">×é¶Ó¿ªÊ¼Ê±¼ä£º</td><td class="c6">${curCourse.teamStartTime}</td><td class="c6"></td></tr>
-	        <tr><td class="c6">×é¶Ó½ØÖ¹Ê±¼ä£º</td><td class="c6">${curCourse.teamEndTime}</td><td class="c6"></td></tr>
+			<tr><td class="c6">ç»„é˜Ÿå¼€å§‹æ—¶é—´ï¼š</td><td class="c6">${curCourse.teamStartTime}</td><td class="c6"></td></tr>
+	        <tr><td class="c6">ç»„é˜Ÿæˆªæ­¢æ—¶é—´ï¼š</td><td class="c6">${curCourse.teamEndTime}</td><td class="c6"></td></tr>
 	        <tr><td class="c6"></td><td class="c6"></td><td class="c6"></td></tr>
-	        <tr><td class="c2">×é¶ÓÒªÇó</td><td class="c2"></td><td class="c13"><span class="right">></span></td></tr>
+	        <tr><td class="c2">ç»„é˜Ÿè¦æ±‚</td><td class="c2"></td><td class="c13"><span class="right">></span></td></tr>
 	        
 	    </table>
 	    

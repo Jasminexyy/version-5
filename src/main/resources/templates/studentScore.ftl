@@ -26,6 +26,7 @@
 <center>
 
 <div>
+	<#if scoreDetails??>
 	<#list scoreDetails as roundScore>
 		<details>
 			<!--好多轮次的讨论课-->
@@ -49,6 +50,7 @@
 			</#list>
 		</details>
 	</#list>
+	</#if>
 </div>
 
 	<button class="submit">导出成绩</button>

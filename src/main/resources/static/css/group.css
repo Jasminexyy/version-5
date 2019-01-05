@@ -53,9 +53,9 @@ body {
      height:1.875rem;
      font-size:1rem;
      position: relative;
-    /*ÉèÖÃpositionÊôÐÔ*/
+    /*ï¿½ï¿½ï¿½ï¿½positionï¿½ï¿½ï¿½ï¿½*/
      top: 50%;
-    /*Æ«ÒÆ*/
+    /*Æ«ï¿½ï¿½*/
      transform: translateY(-60%);
 }
  select{
@@ -64,9 +64,9 @@ body {
      height:1.875rem;
      font-size:1.25rem;
      position: relative;
-    /*ÉèÖÃpositionÊôÐÔ*/
+    /*ï¿½ï¿½ï¿½ï¿½positionï¿½ï¿½ï¿½ï¿½*/
      top: 50%;
-    /*Æ«ÒÆ*/
+    /*Æ«ï¿½ï¿½*/
      transform: translateY(-50%);
      border-radius:0.625rem;
 }
@@ -167,4 +167,7 @@ body {
      border-color:#000000;
      background-color:#ffffff;
 }
- 
+a{
+    text-decoration:none;
+    color:#000000;
+}
