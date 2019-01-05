@@ -59,14 +59,16 @@ public class StudentController {
     //////////student setting modifypwd get
     @RequestMapping(value="/setting/modifyPwd",method = RequestMethod.GET)
     public String studentModifyPwd(Model model){
+        System.out.println(student.getAccount());
         model.addAttribute("student",student);
-        return "modify_pwd";
+        return "student_modify_pwd";
     }
 
     /////////student setting modifyPwd submit
     @RequestMapping(value = "/setting/modifyPwd",method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity studentModifyPwdSubmit(String password){
+        System.out.println(password);
         studentService.modifyStudentPwd(password,student);
             return new ResponseEntity(HttpStatus.OK);
     }
@@ -75,13 +77,14 @@ public class StudentController {
     @RequestMapping(value = "/setting/modifyEmail",method = RequestMethod.GET)
     public String studentModifyEmail(Model model){
         model.addAttribute("student",student);
-        return "modify_email";
+        return "student_modify_email";
     }
 
     //////student setting modify Email submit
     @RequestMapping(value = "/setting/modifyEmail",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity studentModifyEmail(String email){
+        System.out.println(email);
         studentService.modifyStudentEmail(email,student);
         return new ResponseEntity(HttpStatus.OK);
     }

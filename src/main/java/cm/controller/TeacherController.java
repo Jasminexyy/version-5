@@ -75,6 +75,7 @@ public class TeacherController {
     @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.GET)
     public String teacherModifyPwd(Model model)
     {
+        teacher=teacherService.getUserVOByAccount(teacher.getAccount());
         model.addAttribute("teacher",teacher);
         return "modify_pwd";
     }

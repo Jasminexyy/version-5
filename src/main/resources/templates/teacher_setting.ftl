@@ -3,44 +3,37 @@
 <head style="font-size:35px">
 	<meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	<link href="/css/login.css" type="text/css" rel="stylesheet"/>
-	<title>ÕË»§ÓëÉèÖÃ</title>
+	<script src="/js/jquery.min.js" type="text/javascript"></script>
+	<title>è´¦æˆ·ä¸è®¾ç½®</title>
 </head>
 <body>
 <center>
 	<div id="header1">
 		<center>
-	            <span>
-	                <
-	            </span>
-			ÕË»§ÓëÉèÖÃ
+			<a href="/cm/teacher/index?account=${curUser.account}"><span><</span></a>
+			è´¦æˆ·ä¸è®¾ç½®
 			<span1>
 				<li class="dao li1">+
 					<ul class="sub sub1">
-						<a href="/cm/teacher/notification"><li <li class="main">´ú°ì</li></a>
-						<a href="/cm/student/setting"><li class="main">¸öÈËÒ³</li></a>
-						<a href="/cm/student/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+						<a href="/cm/teacher/notification"><li <li class="main">ä»£åŠ</li></a>
+						<a href="/cm/student/setting?account=${curUser.account}"><li class="main">ä¸ªäººé¡µ</li></a>
+						<a href="/cm/student/seminar"><li class="main">è®¨è®ºè¯¾</li></a>
 					</ul>
 				</li>
-
 			</span1>
 		</center>
-
 	</div>
-
-
 	<table class="table0" cellspacing="0" cellpadding="0">
-		<tr><td class="c10">ĞÕÃû£º</td><td class="c4">${curUser.name}</td><td class="c10"></td></tr>
-		<tr><td class="c2">½Ì¹¤ºÅ£º</td><td class="c5">${curUser.account}</td><td class="c2"></td></tr>
-		<tr><td class="c10">ÁªÏµ·½Ê½(ÓÊÏä)£º</td><td class="c4">${curUser.email}</td><td class="c10"><u class="u1">ĞŞ¸Ä</u></td></tr>
-		<tr><td class="c2">ÕË»§ÃÜÂë£º</td><td class="c5">${curUser.password}</td><td class="c2"><span class="right">></span></td></tr>
-		<tr><td class="c10">¹ÜÀíÔ±ÓÊÏä£º</td><td class="c4">123456@admin.com</td><td class="c10"></td></tr>
+		<tr><td class="c10">å§“åï¼š</td><td class="c4">${curUser.name}</td><td class="c10"></td></tr>
+		<tr><td class="c2">æ•™å·¥å·ï¼š</td><td class="c5">${curUser.account}</td><td class="c2"></td></tr>
+		<tr><td class="c10">è”ç³»æ–¹å¼(é‚®ç®±)ï¼š</td><td class="c4">${curUser.email}</td><td class="c10"><a href="/cm/teacher/setting/modifyEmail?account=${curUser.account}"><u class="u1">ä¿®æ”¹</u></a></td></tr>
+		<tr><td class="c2">è´¦æˆ·å¯†ç ï¼š</td><td class="c5">${curUser.password}</td><td class="c2"><a href="/cm/teacher/setting/modifyPwd?account=${curUser.account}"><span class="right">></span></a></td></tr>
+		<tr><td class="c10">ç®¡ç†å‘˜é‚®ç®±ï¼š</td><td class="c4">123456@admin.com</td><td class="c10"></td></tr>
 	</table>
 </center>
 <center>
-	<!--	<form th:action="@{/logout}" method="post"> -->
-	<a href="/login"><button class="button8">ÍË³öµÇÂ¼</button></a></br>
+	<a href="/login"><button class="button8">é€€å‡ºç™»å½•</button></a></br>
 	</form>
-
 </center>
 </body>
 </html>
