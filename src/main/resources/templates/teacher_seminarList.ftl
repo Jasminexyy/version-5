@@ -29,7 +29,7 @@
 </center>
 
 <center>
-    <div style="width:80%">
+    <div style="width:90%">
         <#list roundList as roundVO>
         <details>
             <!--所有轮次都在这里-->
@@ -58,7 +58,7 @@
         </#list>
     </div>
 
-    <a href="/cm/teacher/course/seminar/create"<button>+新建讨论课</button>
+    <a href="/cm/teacher/course/seminar/create"><button>+新建讨论课</button></a>
 
 
 </center>
