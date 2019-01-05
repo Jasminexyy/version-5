@@ -3,7 +3,7 @@
 	<head style="font-size:35px;">
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 
-		<link href="/css/login.css" type="text/css" rel="stylesheet"/>
+		<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
 		<title>Enter your title here</title>
 	</head>
 	<body>
@@ -31,7 +31,7 @@
 			<details>
 			<!--老师开的好多课程-->
 			<#list courseList as Course>
-				<summary  class="sumbackgroundw">${Course.name}</summary>
+				<summary  class="sumbackgroundw">${Course.courseName}</summary>
 				<a href="/cm/teacher/course/grade/${Course.id}"><div id="backcolor">
 		学生成绩
 	    <span class="right">></span>

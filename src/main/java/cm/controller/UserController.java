@@ -43,9 +43,7 @@ public class UserController {
 					return "redirect:/cm/teacher/index?account="+account;
 			}
 			System.out.println("verify teacher fail");
-
 		}
-		System.out.println("我败了");
 		return "userlogin";
 	}
 }

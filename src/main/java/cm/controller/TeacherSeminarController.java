@@ -33,24 +33,28 @@ public class TeacherSeminarController {
     SeminarInfoVO seminarInfoVO;
     UserVO userVO;
     ////////讨论课管理
-    ///////////讨论课列表
-    @RequestMapping(value = "",method = RequestMethod.POST)
-    public String teacherSeminar(Long courseId,String account,Model model){
-        courseDetailVO=courseService.getCourseById(courseId);
-        userVO= teacherService.getUserVOByAccount(account);
-        model.addAttribute("roundList",roundService.listRoundByCourseId(courseId));
-        model.addAttribute("klassList",klassService.listKlassByCourseId(courseId));
-        model.addAttribute("courseName",courseDetailVO.getCourseName());
-        return "teacher_seminarList";
-    }
 
     ///////////讨论课
     @RequestMapping(value ="/course",method = RequestMethod.GET)
     public String teacherSeminarCourseList(Model model,String account){
+        System.out.println("你好呀");
         userVO= teacherService.getUserVOByAccount(account);
+        System.out.println("我不好"+userVO.getName());
         model.addAttribute("courseList",courseService.listCourseByTeacherId(userVO));
-        model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
+        //model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
         return "teacher_seminar_courseList";
+    }
+
+    ///////////讨论课列表
+    @RequestMapping(value = "/seminarList",method = RequestMethod.GET)
+    public String teacherSeminar(Long courseId,Model model){
+        System.out.println("HI");
+        courseDetailVO=courseService.getCourseById(courseId);
+    //    userVO= teacherService.getUserVOByAccount(account);
+        model.addAttribute("roundList",roundService.listRoundByCourseId(courseId));
+        model.addAttribute("klassList",klassService.listKlassByCourseId(courseId));
+        model.addAttribute("courseName",courseDetailVO.getCourseName());
+        return "teacher_seminarList";
     }
 
 
@@ -78,11 +82,13 @@ public class TeacherSeminarController {
     }
 
     //////////讨论课详情
-    @RequestMapping(value = "/info",method = RequestMethod.POST)
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String teacherSeminar(long klassId,long seminarId,Model model){
         seminarInfoVO=seminarService.getSeminarInfo(klassId,seminarId);
+        System.out.println(seminarInfoVO.getCourseName());
         model.addAttribute("Seminar",seminarInfoVO);
-        return "teacher_seminar_modify";
+
+        return "teacher_pre_seminar";
     }
 
     @RequestMapping(value = "/modify",method = RequestMethod.GET)

@@ -42,7 +42,7 @@ scale=1.0,minimum-scale=1.0">
 				<summary
 						class="sumbackgroundw">${key}
 					 ${courseAndKlassList[key].klassName}</summary>
-				<a href="/cm/student/course/score">
+				<a href="/cm/student/course/score?klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的成绩
 						<span class="right">></span>
@@ -56,7 +56,13 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-
+			<a href="/cm/student/course/info?klassId=${courseAndKlassList[key].klassId}">
+				<div class="backcolor">
+					课程信息
+					<span class="right">></span>
+					<br/>
+				</div>
+			</a>
 
 		</details>
 		</#list>
@@ -72,4 +78,3 @@ scale=1.0,minimum-scale=1.0">
 
 </body>
 </html>
-s

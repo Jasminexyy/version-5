@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -43,11 +44,12 @@ public class StudentSeminarController {
     }
 
     /////////student seminar List
-    @RequestMapping(value = "/List",method=RequestMethod.GET)
-    public String studentSeminarList(Long klassId,Model model){
-        courseDetailVO=courseService.getCourseByKlassId(klassId);
+    @RequestMapping(value = "/List/{klassId}",method=RequestMethod.GET)
+    public String studentSeminarList(@PathVariable Long klassId,Model model){
+        Long courseId=courseService.getCourseByKlassId(klassId).getId();
         //String--RoundName
-        Map<String, SeminarListVO>maps=roundService.listRoundNameAndSeminar(courseDetailVO.getId(),klassId);
+        Map<String, SeminarListVO> maps=new HashMap<>();
+        maps=roundService.listRoundNameAndSeminar(courseId,klassId);
         model.addAttribute("roundAndSeminarList",maps);
         return "student_seminarList";
     }

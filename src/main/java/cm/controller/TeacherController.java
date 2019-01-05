@@ -58,7 +58,7 @@ public class TeacherController {
     @RequestMapping(value = "/setting/modifyEmail", method = RequestMethod.GET)
     public String teacherModifyEmail(Model model) {
         model.addAttribute("teacher",teacher);
-        return "modify_email";
+        return "teacher_modify_email";
     }
 
     ////////////////////////////修改邮箱提交待修改
@@ -75,16 +75,18 @@ public class TeacherController {
     @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.GET)
     public String teacherModifyPwd(Model model)
     {
+        teacher=teacherService.getUserVOByAccount(teacher.getAccount());
         model.addAttribute("teacher",teacher);
-        return "modify_pwd";
+        return "teacher_modify_pwd";
     }
 
     ////////////////////////////////修改账户密码提交
     @RequestMapping(value = "/setting/modifyPwd", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherModifyPwdSubmit(String password) {
-        if (teacherService.modifyPwd(password,teacher))
+        if (teacherService.modifyPwd(password,teacher)) {
             return new ResponseEntity(HttpStatus.OK);
+        }
         else
             return new ResponseEntity(HttpStatus.CONFLICT);
     }

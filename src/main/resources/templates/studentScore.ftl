@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	<link href="/css/details.css" type="text/css" rel="stylesheet"/>
 	<script src="/js/jquery.min.js"></script>
-	<title>ÎÒµÄ³É¼¨</title>
+	<title>æˆ‘çš„æˆç»©</title>
 </head>
 <body>
 <center>
@@ -12,43 +12,48 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        ÎÒµÄ³É¼¨
+	        æˆ‘çš„æˆç»©
 	            <span1>
 	                <b><li class="dao li1">+
 							<ul class="sub sub1">
-								<a href="/cm/student/person"><li class="main">¸öÈËÒ³</li></a>
-								<a href="/cm/student/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+								<a href="/cm/student/person"><li class="main">ä¸ªäººé¡µ</li></a>
+								<a href="/cm/student/seminar"><li class="main">è®¨è®ºè¯¾</li></a>
 							</ul></li>
 					</b>
 					</span1>	            
 	        </div> 
 </center>
 <center>
-<div style="width:80%">
+
+<div>
+	<#if scoreDetails??>
 	<#list scoreDetails as roundScore>
 		<details>
-			<!--ºÃ¶àÂÖ´ÎµÄÌÖÂÛ¿Î-->
-			<summary  id="sumbackground">µÚ${roundScore.roundNumber}ÂÖ-${roundScore.totalScore}</summary>
-			<details>
-				<!--Ã¿ÂÖ²»Í¬ÌÖÂÛ¿ÎÃû×ÖºÍ·ÖÊı-->
-				<#list roundScore.simpleSeminarScoreVOList as seminarScore>
+			<!--å¥½å¤šè½®æ¬¡çš„è®¨è®ºè¯¾-->
+			<summary  id="sumbackground">ç¬¬${roundScore.roundNumber}è½®-${roundScore.totalScore}</summary>
+			<#list roundScore.simpleSeminarScoreVOList as seminarScore>
+				<details>
+					<!--æ¯è½®ä¸åŒè®¨è®ºè¯¾åå­—å’Œåˆ†æ•°-->
+
 					<summary id="sumbackground-summary">${seminarScore.seminarName}</summary>
 					<div  id="backcolor">
 						<table>
 							<tr>
-								<td>Õ¹Ê¾£º<font color="#9ACD32">${seminarScore.presentationScore}</font></td>
-								<td>ÌáÎÊ£º<font color="#9ACD32">${seminarScore.questionScore}</font></td>
-								<td>ÊéÃæ±¨¸æ£º<font color="#9ACD32">${seminarScore.reportScore}</font></td>
+								<td>å±•ç¤ºï¼š<font color="#9ACD32">${seminarScore.presentationScore}</font></td>
+								<td>æé—®ï¼š<font color="#9ACD32">${seminarScore.questionScore}</font></td>
+								<td>ä¹¦é¢æŠ¥å‘Šï¼š<font color="#9ACD32">${seminarScore.reportScore}</font></td>
 							</tr>
 						</table>
 						<br/>
 					</div>
-				</#list>
-			</details>
+				</details>
+			</#list>
 		</details>
 	</#list>
+	</#if>
 </div>
-	<button class="submit">µ¼³ö³É¼¨</button>
+
+	<button class="submit">å¯¼å‡ºæˆç»©</button>
 </center>
 </body>
 </html>

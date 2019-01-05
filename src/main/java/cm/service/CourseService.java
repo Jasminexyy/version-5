@@ -6,6 +6,7 @@ import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -120,9 +121,11 @@ public class CourseService {
         return map;
 	}
 
-	public CourseDetailVO getCourseById(Long courseId) {
+	public CourseDetailVO getCourseById(Long klassId) {
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
 		Course course = courseDAO.getByCourseId(courseId);
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
+		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
 		courseDetailVO.setIntroduction(course.getIntroduction());
 		courseDetailVO.setPresentationPercentage(course.getPresentationPercentage());
@@ -133,16 +136,26 @@ public class CourseService {
 		return courseDetailVO;
 	}
 
-	//string是roundname，传给前端
-	public List<RoundScoreVO> listScoreForStudent(Long courseId, Long klassId, Long studentId) {
+	public List<RoundScoreVO> listScoreForStudent(Long klassId, Long studentId) {
+		//通过klassId获得courseId
+		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
+		System.out.println("courseId:"+courseId);
         List<RoundScoreVO> roundScoreVOList=new LinkedList<RoundScoreVO>();
         //获取课程所有讨论课轮次
         List<Round> roundList=roundDAO.listByCourseId(courseId);
-		RoundScoreVO roundScoreVO=new RoundScoreVO();
+        //如果轮次为空，当前课程没有轮次
+        if(roundList.size()==0)
+        	return null;
+        System.out.println("all "+roundList.size()+" round");
+
 		//当前学生小组
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
+		if(team==null)
+			return null;
+		System.out.println("当前学生小组"+team.getId()+"组");
 		for(int i=0;i<roundList.size();i++)
 		{
+			RoundScoreVO roundScoreVO=new RoundScoreVO();
 			//每一轮的所有讨论课的分数
 			List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<SimpleSeminarScoreVO>();
 			//当前round
@@ -152,26 +165,45 @@ public class CourseService {
 			//map,key,roundName,设置讨论课轮次
 			String roundName=round.getRoundSerial().toString();
 			roundScoreVO.setRoundNumber(new Byte(roundName));
+			System.out.println(roundName);
 			//获得当轮的总分数
             roundScoreVO.setTotalScore(roundScore.getTotalScore());
             //获得当轮的所有讨论课的
 			List<Seminar> seminarList=round.getSeminars();
+			System.out.println("all seminars:"+seminarList.size());
 			//把所有的seminar的分数传到list中
             for(int j=0;j<seminarList.size();j++)
 			{
 				//通过seminarid和klassid得到当前讨论课的班级
 				KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(
-						seminarList.get(i).getId(),klassId);
+						seminarList.get(j).getId(),klassId);
+				System.out.println("klassSeminar id:"+klassSeminar.getId());
 				SeminarScore seminarScore=seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),team.getId());
 				SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
-				simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
-				simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
+
+				if(seminarScore.getPresentationScore()==null)
+					simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
+				else
 				simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
+
+				if(seminarScore.getQuestionScore()==null)
+					simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
+				else
+				simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
+
+				if(seminarScore.getReportScore()==null)
+				simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
+				else
+				simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
+				simpleSeminarScoreVO.setSeminarName(seminarDAO.getBySeminarId(seminarList.get(j).getId()).getSeminarName());
 				simpleSeminarScoreVOList.add(simpleSeminarScoreVO);
 			}
 			roundScoreVO.setSimpleSeminarScoreVOList(simpleSeminarScoreVOList);
+            System.out.println("the "+roundName+" round put");
 			roundScoreVOList.add(roundScoreVO);
 		}
+		for(int i=0;i<roundScoreVOList.size();i++)
+			System.out.println(roundScoreVOList.get(i).getRoundNumber());
 		return roundScoreVOList;
 	}
 
@@ -237,7 +269,7 @@ public class CourseService {
 
 	public CourseDetailVO getCourseByKlassId(Long klassId) {
 		Long courseId=klassDAO.getCourseIdByKlassId(klassId);
-		return getCourseById(courseId);
+		return getCourseById(klassId);
 	}
 
 	public CourseVO courseToCourseVO(Course course)
