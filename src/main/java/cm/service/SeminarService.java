@@ -167,9 +167,12 @@ public class SeminarService {
     }
 
     public AttendanceVO getAttendance(Long klassId, Long seminarId, Long studentId) {
-        KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(klassId,seminarId);
+        KlassSeminar klassSeminar=klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId);
         AttendanceVO attendanceVO=new AttendanceVO();
-        Attendance attendance=attendanceDAO.getByKlassSeminarIdAndKlassIdAndStudentId(klassSeminar.getId(),seminarId,studentId);
+        Long teamId=teamDAO.getByKlassIdAndStudentId(klassId,studentId).getId();
+        Attendance attendance=attendanceDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),teamId);
+        if(attendance==null)
+            return null;
         attendanceVO.setAttendanceId(attendance.getId());
         attendanceVO.setTeamOrder(attendance.getTeamOrder());
         attendanceVO.setIsPresent(attendance.getIsPresent());
@@ -180,7 +183,6 @@ public class SeminarService {
 
     public SeminarInfoVO getSeminarInfo(Long klassId, Long seminarId) {
         KlassSeminar klassSeminar=findKlassSeminarById(klassId,seminarId);
-        System.out.println(klassSeminar.getId());
         return getSeminarInfo(klassSeminar.getId());
     }
 
@@ -190,8 +192,6 @@ KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
         seminarInfoVO.setSeminarId(klassSeminarId);
         //通过seminarid找到seminar然后得到intro
         Seminar seminar=seminarDAO.getBySeminarId(klassSeminar.getSeminarId());
-        System.out.println(seminar.getId());
-        System.out.println(seminar.getRoundId());
         Round round=roundDAO.getByRoundId(seminar.getRoundId());
         seminarInfoVO.setIntroduction(seminar.getIntroduction());
         seminarInfoVO.setRoundSerial(round.getRoundSerial());
@@ -200,6 +200,8 @@ KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
 seminarInfoVO.setCourseName(courseDAO.getByCourseId(klassDAO.getCourseIdByKlassId(klassSeminar.getKlassId())).getCourseName());
 seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
         seminarInfoVO.setAttendanceListVO(getAttendanceList(klassSeminarId));
+        seminarInfoVO.setEnrollEndTime(seminar.getEnrollStartTime().toString());
+        seminarInfoVO.setEnrollStartTime(seminar.getEnrollEndTime().toString());
         return seminarInfoVO;
     }
 

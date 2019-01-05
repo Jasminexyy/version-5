@@ -122,9 +122,7 @@ public class CourseService {
 	}
 
 	public CourseDetailVO getCourseById(Long courseId) {
-		System.out.println("courseid"+courseId);
 		Course course = courseDAO.getByCourseId(courseId);
-		System.out.println("is coursename"+course.getCourseName());
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
 		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
