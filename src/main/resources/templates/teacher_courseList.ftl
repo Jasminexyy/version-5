@@ -53,7 +53,7 @@
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	<a href="/cm/teacher/course/seminar/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/seminar/seminarList?courseId=${Course.id}"><div id="backcolor">
 		讨论课设置
 	    <span class="right">></span>
 	    <br/>
