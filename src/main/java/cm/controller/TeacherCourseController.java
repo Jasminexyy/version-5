@@ -40,7 +40,7 @@ public class TeacherCourseController {
     }
 
     /////////////////////////////////////课程详情页
-    @RequestMapping(value="/info",method = RequestMethod.POST)
+    @RequestMapping(value="/info",method = RequestMethod.GET)
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("curCourse",courseDetailVO);

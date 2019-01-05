@@ -35,6 +35,16 @@ public class StudentCourseController {
     ///////student course info post
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String studentCourseInfo(long courseId,Model model){
+        int min;
+        int max;
+        TeamNeedVO teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
+        List<TeamAndStrategyVO> teamAndStrategyVOList=teamNeedVO.getTeamAndStrategyVOList();
+        for(TeamAndStrategyVO teamAndStrategyVO:teamAndStrategyVOList){
+          if(teamAndStrategyVO.getMemberLimitStrategyVO().getMinMember()!=null)
+              min=teamAndStrategyVO.getMemberLimitStrategyVO().getMinMember();
+            if(teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember()!=null)
+                max=teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember();
+        }
         model.addAttribute("curCourse",courseService.getCourseById(courseId));
         return "student_course_info";
     }

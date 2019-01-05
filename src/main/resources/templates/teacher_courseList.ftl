@@ -43,7 +43,7 @@
 	    <span class="right">></span>
 	    <br/>
 				</div>	
-	<a href="/cm/teacher/course/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/info?courseId=${Course.id}"><div id="backcolor">
 		课程信息
 	    <span class="right">></span>
 	    <br/>
