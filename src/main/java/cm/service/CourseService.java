@@ -257,7 +257,7 @@ public class CourseService {
 				List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<SimpleSeminarScoreVO>();
 				for(int k=0;k<seminarList.size();k++)
 				{
-					Seminar seminar=seminarList.get(i);
+					Seminar seminar=seminarList.get(k);
 					KlassSeminar klassSeminar=
 							klassSeminarDAO.getBySeminarIdAndKlassId(seminar.getId(),klassId);
 					SeminarScore seminarScore=

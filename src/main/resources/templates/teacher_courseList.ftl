@@ -38,7 +38,7 @@
 	    <span class="right">></span>
 	    <br/>
 				</div>	</a>
-				<a href="/cm/teacher/course/teamList/${Course.id}"><div id="backcolor">
+				<a href="/cm/teacher/course/teamList?courseId=${Course.id}"><div id="backcolor">
 		学生组队
 	    <span class="right">></span>
 	    <br/>
@@ -48,7 +48,7 @@
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	<a href="/cm/teacher/course/klassList/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/klassList?course_id=${Course.id}"><div id="backcolor">
 		班级信息
 	    <span class="right">></span>
 	    <br/>

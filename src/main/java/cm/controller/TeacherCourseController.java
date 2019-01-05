@@ -82,6 +82,7 @@ public class TeacherCourseController {
     //////////////学生组队
     @RequestMapping(value="/teamList",method = RequestMethod.POST)
     public String teacherTeamList(Long courseId,Model model){
+        System.out.println(courseId);
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
@@ -120,8 +121,9 @@ public class TeacherCourseController {
     }
 
     ////////班级管理
-    @RequestMapping(value="/klassList",method = RequestMethod.POST)
+    @RequestMapping(value="/klassList",method = RequestMethod.GET)
     public String teacherKlassManage(Long course_id,Model model){
+        System.out.println("进来了");
         courseDetailVO=courseService.getCourseById(course_id);
 
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
