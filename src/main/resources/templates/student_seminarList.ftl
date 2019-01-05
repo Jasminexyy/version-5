@@ -15,11 +15,7 @@
 				processData:false,
 				// data:$('#myform').serialize(),
 				data:"klassId="+e+"&seminarId="+e1,
-				dataType:"json",
-				complete:function(data){
-					if(data.status==200)
-						window.location="/cm/student/seminar/seminarEntrance?account=${student.account}";
-				}
+				dataType:"json"
 			});
 		}
 	</script>

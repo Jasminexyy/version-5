@@ -122,9 +122,7 @@ public class CourseService {
 	}
 
 	public CourseDetailVO getCourseById(Long courseId) {
-		System.out.println("courseid"+courseId);
 		Course course = courseDAO.getByCourseId(courseId);
-		System.out.println("is coursename"+course.getCourseName());
 		CourseDetailVO courseDetailVO = new CourseDetailVO();
 		courseDetailVO.setId(courseId);
 		courseDetailVO.setCourseName(course.getCourseName());
@@ -143,13 +141,11 @@ public class CourseService {
 			simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
 		else
 			simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
-
-		if(seminarScore.getQuestionScore()==null)
+		if(seminarScore.getQuestionScore().equals(""))
 			simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
 		else
 			simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
-
-		if(seminarScore.getReportScore()==null)
+		if(seminarScore.getReportScore().equals(""))
 			simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
 		else
 			simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
@@ -219,7 +215,6 @@ public class CourseService {
         return courseDAO.listByStudentId(studentId);
     }
 
-
 	public List<Course> listCourseByTeacherId(UserVO teacher) {
 		List<Course> courses=courseDAO.listByTeacherId(teacher.getId());
 		return courses;
@@ -230,47 +225,68 @@ public class CourseService {
 		List<Team> teamList=teamDAO.listByCourseId(courseId);
 		//获得当前课程所有轮次
 		List<Round> roundList=roundDAO.listByCourseId(courseId);
-		Map<String, List<TeacherSeminarScoreVO>> map=new HashMap<String, List<TeacherSeminarScoreVO>>();
+		Map<String, List<TeacherSeminarScoreVO>> map=new HashMap<>();
 
 		//开始循环吧！
-		for(int i=0;i<roundList.size();i++)
+		for(int i=0;i<roundList.size();i++)//4
 		{
-			List<TeacherSeminarScoreVO> teacherSeminarScoreVOList=new LinkedList<TeacherSeminarScoreVO>();
+			//每个轮次对应一串TeacherSeminarScoreVO list
+			List<TeacherSeminarScoreVO> teacherSeminarScoreVOList=new LinkedList<>();
 			//当前轮次
 			Round round=roundList.get(i);
+			String roundname=round.getRoundSerial().toString();
 			//当前轮次下所有讨论课
 			List<Seminar> seminarList=seminarDAO.listByRoundId(round.getId());
-
-			for(int j=0;j<teamList.size();j++) {
+			for(int j=0;j<teamList.size();j++) {//26
 				TeacherSeminarScoreVO teacherSeminarScoreVO=new TeacherSeminarScoreVO();
 				//获取每一个课程下的班级
 				Team team=teamList.get(j);
+				System.out.println(j);
 				//通过roungid和teamid得到当前轮次下当前班级的讨论课总成绩
 				RoundScore roundScore=roundScoreDAO.getByRoundIdAndTeamId(round.getId(),team.getId());
 				//通过小组id得到班级id
 				Long klassId=teamDAO.getKlassIdByTeamId(team.getId());
+				System.out.println("klassid:"+klassId);
 				Klass klass=klassDAO.getByKlassId(klassId);
 
 				//当前轮次总分数get
 				teacherSeminarScoreVO.setTotalScore(roundScore.getTotalScore());
 
-				List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<SimpleSeminarScoreVO>();
+				List<SimpleSeminarScoreVO> simpleSeminarScoreVOList=new LinkedList<>();
 				for(int k=0;k<seminarList.size();k++)
 				{
 					Seminar seminar=seminarList.get(k);
 					KlassSeminar klassSeminar=
 							klassSeminarDAO.getBySeminarIdAndKlassId(seminar.getId(),klassId);
+					System.out.println("klassSeminar"+klassSeminar);
 					SeminarScore seminarScore=
 							seminarScoreDAO.getByKlassSeminarIdAndTeamId(klassSeminar.getId(),team.getId());
 					SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
 					simpleSeminarScoreVO.setSeminarName(seminar.getSeminarName());
-					panduan(simpleSeminarScoreVO,seminarScore);
+					if(seminarScore==null)
+					{
+						simpleSeminarScoreVO.setPresentationScore(new BigDecimal(0));
+						simpleSeminarScoreVO.setQuestionScore(new BigDecimal(0));
+						simpleSeminarScoreVO.setReportScore(new BigDecimal(0));
+					}else {
+						panduan(simpleSeminarScoreVO, seminarScore);
+					}
+
 					simpleSeminarScoreVOList.add(simpleSeminarScoreVO);
 				}
 				teacherSeminarScoreVO.setSimpleSeminarScoreVO(simpleSeminarScoreVOList);
 				teacherSeminarScoreVOList.add(teacherSeminarScoreVO);
 			}
-			map.put(round.getRoundSerial().toString(),teacherSeminarScoreVOList);
+			map.put(roundname,teacherSeminarScoreVOList);
+			for(int m=0;m<teacherSeminarScoreVOList.size();m++){
+				TeacherSeminarScoreVO t=teacherSeminarScoreVOList.get(m);
+				List<SimpleSeminarScoreVO>tmp=t.getSimpleSeminarScoreVO();
+				for(int a=0;a<tmp.size();a++){
+					System.out.println(tmp.get(a).getPresentationScore());
+					System.out.println(tmp.get(a).getQuestionScore());
+					System.out.println(tmp.get(a).getReportScore());
+				}
+			}
 		}
 		return map;
 	}

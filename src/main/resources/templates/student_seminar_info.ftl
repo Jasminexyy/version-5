@@ -10,9 +10,7 @@
 <center>
 	<div id="header1">
 		<center>
-	            <span>
-	                <
-	            </span>
+	            <span><</span>
 			${seminarInfo.courseName}
 			<span1>
 				<li class="dao li1">+
@@ -28,10 +26,10 @@
 
 	</div>
 
-	<#if "${seminarInfo.seminarStatus}"==0>
+	<#if seminarInfo.seminarStatus==0>
 	<table class="table0" cellspacing="0" cellpadding="0">
 		<tr><td class="c2">轮次：</td><td class="c5">${seminarInfo.roundSerial}</td><td class="c2"></td></tr>
-		<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.SeminarName}</td></tr>
+		<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.seminarName}</td></tr>
 		<tr><td class="c2">课次序号：</td><td class="c5">${seminarInfo.seminarSerial}</td><td class="c2"></td></tr>
 		<tr><td class="c10">要求：</td><td class="c4">${seminarInfo.introduction}</td></tr>
 		<tr><td class="c2">课程情况：</td><td class="c5">未开始</td><td class="c2"><a href="/cm/student/seminar/enrollList"><u class="u1">报名情况</u></a></td></tr>
@@ -45,7 +43,7 @@
 </center>
 
 <#elseif "${seminarInfo.seminarStatus}"==1>
-	table class="table0" cellspacing="0" cellpadding="0">
+	<table class="table0" cellspacing="0" cellpadding="0">
 	<tr><td class="c2">轮次：</td><td class="c5">${seminarInfo.roundSerial}</td><td class="c2"></td></tr>
 	<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.SeminarName}</td></tr>
 	<tr><td class="c2">课次序号：</td><td class="c5">${seminarInfo.seminarSerial}</td><td class="c2"></td></tr>
