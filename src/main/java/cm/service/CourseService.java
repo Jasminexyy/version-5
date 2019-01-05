@@ -316,14 +316,12 @@ public class CourseService {
 		List<TeamStrategy> teamStrategyList = strategyDAO.listTeamStrategyByCourseId(courseId);
 		for(TeamStrategy teamStrategy:teamStrategyList) {
 
+			TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
             Long strategyId = teamStrategy.getStrategyId();
 			if(teamStrategy.getStrategyName().equals("TeamAndStrategy")) {
-
-                List<TeamAndStrategyVO> teamAndStrategyVOList = new ArrayList<>();
 				List<TeamAndStrategy> teamAndStrategyList = strategyDAO.listTeamAndStrategyByStrategyId(strategyId);
 				for(TeamAndStrategy teamAndStrategy:teamAndStrategyList) {
 
-                    TeamAndStrategyVO teamAndStrategyVO = new TeamAndStrategyVO();
                     if(teamAndStrategy.getStrategyName().equals("MemberLimitStrategy")) {
 
                         MemberLimitStrategyVO memberLimitStrategyVO = new MemberLimitStrategyVO();
@@ -361,9 +359,8 @@ public class CourseService {
                         teamAndStrategyVO.setTeamOrStrategyVOList(teamOrStrategyVOList);
                     }
 
-                    teamAndStrategyVOList.add(teamAndStrategyVO);
                 }
-                teamNeedVO.setTeamAndStrategyVOList(teamAndStrategyVOList);
+                teamNeedVO.setTeamAndStrategyVO(teamAndStrategyVO);
 			}
 			if(teamStrategy.getStrategyName().equals("ConflictCourseStrategy")){
 
