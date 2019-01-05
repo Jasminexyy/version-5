@@ -8,7 +8,7 @@
 	<body class="body1">
 		<center>
 	        <div id="header1">
-	        <center><span><</span>我
+	        <center><a href="/login"><span><</span></a> 我
 	            <span1>
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
