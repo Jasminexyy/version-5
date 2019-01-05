@@ -28,11 +28,12 @@ public class TeacherCourseController {
             private ShareService shareService;
 
     CourseDetailVO courseDetailVO;
-    UserVO userVO;
+    UserVO userVO=new UserVO();
 
     //课程管理
-    @RequestMapping(value = "/{account}",method= RequestMethod.GET)
-    public String teacherCourseManage(Model model,@PathVariable String account) {
+    @RequestMapping(value = "/courselist",method= RequestMethod.GET)
+    public String teacherCourseManage(Model model, String account) {
+        System.out.println("我的课程");
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
         return "teacher_courseList";

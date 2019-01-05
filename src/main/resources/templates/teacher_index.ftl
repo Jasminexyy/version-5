@@ -20,7 +20,7 @@
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
 						<a href="/cm/teacher/notification"><li class="main">代办</li></a>
-						<a href="/cm/teacher/person"><li class="main">个人页</li></a>
+						<a href="/cm/teacher/index"><li class="main">个人页</li></a>
 						<a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
 				    </ul>
 					</li>               
@@ -36,8 +36,8 @@
 	    </div>
 	    <div id="wrap">
 	    
-	        <a href="/cm/teacher/course/${curTeacher.account}"><li class="l">我的课程<span class="right">></span></li></a>
-	        <a href="/cm/teacher/setting/${curTeacher.account}"><li class="l">
+	        <a href="/cm/teacher/course/courselist?account=${curTeacher.account}"><li class="l">我的课程<span class="right">></span></li></a>
+	        <a href="/cm/teacher/setting"><li class="l">
 				账户与设置
 				<span class="right">></span></li></a>
 	

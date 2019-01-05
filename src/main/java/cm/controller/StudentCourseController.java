@@ -22,6 +22,7 @@ public class StudentCourseController {
         private StudentService studentService;
     UserVO student=new UserVO();
 
+
     ///////student course list get
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
     public String studentCourse(Model model,String account){
