@@ -33,9 +33,9 @@ public class StudentCourseController {
     }
 
     ///////student course info post
-    @RequestMapping(value = "/info",method = RequestMethod.POST)
-    public String studentCourseInfo(long courseId,Model model){
-        model.addAttribute("curCourse",courseService.getCourseById(courseId));
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
+    public String studentCourseInfo(long klassId,Model model){
+        model.addAttribute("curCourse",courseService.getCourseById(klassId));
         return "student_course_info";
     }
 
@@ -44,9 +44,10 @@ public class StudentCourseController {
     public String studentScore(long klassId, Model model){
         System.out.println(student.getId());
         List<RoundScoreVO> roundScoreVOList=courseService.listScoreForStudent(klassId,student.getId());
-        System.out.println(roundScoreVOList.size());
-        if(roundScoreVOList==null)
+        if(roundScoreVOList==null) {
+            System.out.println("are you empty");
             model.addAttribute("scoreDetails", null);
+        }
         else
             model.addAttribute("scoreDetails", roundScoreVOList);
         return "studentScore";

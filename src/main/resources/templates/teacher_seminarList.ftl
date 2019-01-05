@@ -46,7 +46,7 @@
                 <#list klassList as klassVO>
                 <div  id="backcolor">
                    ${klassVO.klassName}
-                    <span class="right">></span>
+                    <a href="/cm/teacher/course/seminar/info?klassId=${klassVO.klassId}&seminarId=${seminarVO.seminarId}"><span class="right">></span></a>
                     <br/>
                 </div>
                 </#list>
@@ -57,7 +57,7 @@
         </details>
         </#list>
     </div>
-    <button type="submit">+新建轮次</button>
+
     <button type="submit">+新建讨论课</button>
 
 

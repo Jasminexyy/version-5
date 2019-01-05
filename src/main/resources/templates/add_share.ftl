@@ -2,8 +2,8 @@
 <html>
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-	    <link href="login.css" type="text/css" rel="stylesheet"/> 
-		<title>ÐÂÔö¹²Ïí</title>
+	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
+		<title>æ–°å¢žå…±äº«</title>
 	</head>
 
 	<body>
@@ -36,22 +36,22 @@ function send_courseId(){
 	            <span>
 	                <
 	            </span>
-	        ÐÂÔö¹²Ïí      
+	        æ–°å¢žå…±äº«      
 	        </center>
 	            
 	        </div>
 	    
 	    <div id="d3">
 	    
-	    <p>¹²ÏíÀàÐÍ£º<select class="s1">
-	    <option>¹²ÏíÌÖÂÛ¿Î</option>
-	    <option>¹²Ïí·Ö×é</option>
+	    <p>å…±äº«ç±»åž‹ï¼š<select class="s1">
+	    <option>å…±äº«è®¨è®ºè¯¾</option>
+	    <option>å…±äº«åˆ†ç»„</option>
 	    </select></p>
 	    
 	    </div>
 	   <div id="d3">
 	    
-	    <p>¹²Ïí¶ÔÏó£º<select id="selected_course" class="s1">
+	    <p>å…±äº«å¯¹è±¡ï¼š<select id="selected_course" class="s1">
 				<#list courseList as courseVO>
 	    <option>${courseVO.name} ${courseVO.teacherName}</option>
 				</#list>
@@ -60,7 +60,7 @@ function send_courseId(){
 	    </center>
 	    <center>
 	    
-	    <button class="button10" onclick="send_courseId()">È·ÈÏ¹²Ïí</button></br>
+	    <button class="button10" onclick="send_courseId()">ç¡®è®¤å…±äº«</button></br>
 	   
 	    </center>
 	</body>
