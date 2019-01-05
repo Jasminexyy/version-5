@@ -235,7 +235,6 @@ seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
         SimpleSeminarScoreVO simpleSeminarScoreVO=new SimpleSeminarScoreVO();
         simpleSeminarScoreVO.setSeminarName(seminar.getSeminarName());
         //获得seminar分数
-        simpleSeminarScoreVO.setTotalScore(seminarScore.getTotalScore());
         simpleSeminarScoreVO.setReportScore(seminarScore.getReportScore());
         simpleSeminarScoreVO.setQuestionScore(seminarScore.getQuestionScore());
         simpleSeminarScoreVO.setPresentationScore(seminarScore.getPresentationScore());
