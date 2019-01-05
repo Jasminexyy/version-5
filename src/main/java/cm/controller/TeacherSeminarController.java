@@ -47,9 +47,11 @@ public class TeacherSeminarController {
     ///////////讨论课
     @RequestMapping(value ="/course",method = RequestMethod.GET)
     public String teacherSeminarCourseList(Model model,String account){
+        System.out.println("你好呀");
         userVO= teacherService.getUserVOByAccount(account);
+        System.out.println("我不好"+userVO.getName());
         model.addAttribute("courseList",courseService.listCourseByTeacherId(userVO));
-        model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
+        //model.addAttribute("seminarInfo",seminarService.getSeminarInfoING(courseDetailVO));
         return "teacher_seminar_courseList";
     }
 

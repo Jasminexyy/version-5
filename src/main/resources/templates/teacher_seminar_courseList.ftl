@@ -18,7 +18,7 @@
                 <ul class="sub sub1">
                     <a href="/cm/teacher/notification"><li class="main">代办</li></a>
                     <a href="/cm/teacher/person"><li class="main">个人页</li></a>
-                    <a href="/cm/student/seminar"><li class="main">讨论课</li></a>
+                    <a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
                 </ul>
             </li>
             </b>
@@ -28,7 +28,7 @@
 <div id="wrap">
     <li class="first">
     <#list courseList as course>
-       <li class="l">${course.name}<a href="/cm/teacher/course/seminar/${course.id}"><span class="right">></span></a></li>
+       <li class="l">${course.courseName}<a href="/cm/teacher/course/seminar/${course.id}"><span class="right">></span></a></li>
     </#list>
     </li>
 
