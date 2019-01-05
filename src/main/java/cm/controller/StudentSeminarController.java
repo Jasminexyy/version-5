@@ -61,7 +61,6 @@ public class StudentSeminarController {
     public String studentSeminarInfo(Long klassId,Long seminarId,Model model){
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         String courseName=courseService.getCourseById(courseId).getCourseName();
-        System.out.println(courseName);
         model.addAttribute("courseName",courseName);
         model.addAttribute("seminarInfo",seminarService.getSeminarInfo(klassId,seminarId));
         model.addAttribute("attendance",seminarService.getAttendance(klassId,seminarId,student.getId()));
