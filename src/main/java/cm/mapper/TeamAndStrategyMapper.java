@@ -36,8 +36,19 @@ public interface TeamAndStrategyMapper {
      */
     @Insert("insert into team_and_strategy(id,strategy_name,strategy_id) " +
             "values(#{id},#{strategyName},#{strategyId})")
-    @Options(useGeneratedKeys = true, keyProperty = "teamAndStrategy.id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int createTeamAndStrategy(@Param("id") Long id,
                               @Param("strategyName") String strategyName,
                               @Param("strategyId") Long strategyId);
+    /**
+     * 所有与策略
+     * @return java.util.List<cm.entity.TeamAndStrategy>
+     */
+    @Select("select * from team_and_strategy")
+    @Results({
+            @Result(property = "id",column = "id"),
+            @Result(property = "strategyName",column = "strategy_name"),
+            @Result(property = "strategyId",column = "strategy_id")
+    })
+    List<TeamAndStrategy> listAllTeamAndStrategy();
 }

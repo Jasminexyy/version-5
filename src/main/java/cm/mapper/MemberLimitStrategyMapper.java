@@ -33,7 +33,19 @@ public interface MemberLimitStrategyMapper {
      */
     @Insert("insert into member_limit_strategy(min_member,max_member) " +
             "values(#{minMember},#{maxMember})")
-    @Options(useGeneratedKeys = true, keyProperty = "memberLimitStrategy.id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int createMemberLimitStrategy(@Param("minMember") Byte minMember,
+                                  @Param("maxMember") Byte maxMember);
+
+    /**
+     * 更新成员限制策略
+     * @param strategyId
+     * @param minMember
+     * @param maxMember
+     * @return int
+     */
+    @Update("update member_limit_strategy set min_member=#{minMember},max_member=#{maxMember} where strategy_id=#{strategyId}")
+    int updateMemberLimitStrategy(@Param("strategyId") Long strategyId,
+                                  @Param("minMember") Byte minMember,
                                   @Param("maxMember") Byte maxMember);
 }

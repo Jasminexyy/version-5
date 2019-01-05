@@ -170,8 +170,16 @@ public class StrategyDAO {
         return teamStrategyMapper.listByCourseId(courseId);
     }
 
+    public List<TeamStrategy> listAllTeamStrategy(){
+        return teamStrategyMapper.listAllTeamStrategy();
+    }
+
     public List<TeamAndStrategy> listTeamAndStrategyByStrategyId(Long strategyId){
         return teamAndStrategyMapper.listByStrategyId(strategyId);
+    }
+
+    public List<TeamAndStrategy> listAllTeamAndStrategy(){
+        return teamAndStrategyMapper.listAllTeamAndStrategy();
     }
 
     public MemberLimitStrategy getMemberLimitStrategyById(Long strategyId){
@@ -182,6 +190,10 @@ public class StrategyDAO {
         return teamOrStrategyMapper.listByStrategyId(strategyId);
     }
 
+    public List<TeamOrStrategy> listAllTeamOrStrategy(){
+        return teamOrStrategyMapper.listAllTeamOrStrategy();
+    }
+
     public CourseMemberLimitStrategy getCourseMemberLimitStrategyById(Long strategyId){
         return courseMemberLimitStrategyMapper.getByStrategyId(strategyId);
     }
@@ -190,20 +202,37 @@ public class StrategyDAO {
         return conflictCourseStrategyMapper.listConflictCourseByStrategyId(strategyId);
     }
 
+    public int createTeamAndStrategy(Long id,String strategyName, Long strategyId){
+        return  teamAndStrategyMapper.createTeamAndStrategy(id,strategyName, strategyId);
+    }
+
     public int createCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
         return  courseMemberLimitStrategyMapper.createCourseMemberLimitStrategy(courseId, minMember, maxMember);
     }
 
     public int createMemberLimitStrategy(Byte minMember, Byte maxMember){
-        return  memberLimitStrategyMapper.createMemberLimitStrategy(minMember,maxMember);
+        return  memberLimitStrategyMapper.createMemberLimitStrategy(minMember, maxMember);
     }
 
-    public int createTeamAndStrategy(Long id,String strategyName, Long strategyId){
-        return  teamAndStrategyMapper.createTeamAndStrategy(id,strategyName, strategyId);
+    public int createTeamStrategy(Long courseId, Byte strategySerial, String strategyName, Long strategyId){
+        return  teamStrategyMapper.createTeamStrategy(courseId, strategySerial, strategyName, strategyId);
     }
 
     public int createTeamOrStrategy(Long id, String strategyName,Long strategyId){
         return  teamOrStrategyMapper.createTeamOrStrategy(id,strategyName,strategyId);
     }
 
+    public int createConflictCourseStrategy(Long id,Long courseId){
+        return  conflictCourseStrategyMapper.createConflictCourseStrategy(id,courseId);
+    }
+
+    public int updateConflictCourseStrategy(Long strategyId, Long conflictCourseId, Long newConflictCourseId){
+        return  conflictCourseStrategyMapper.updateConflictCourseStrategy(strategyId, conflictCourseId, newConflictCourseId);
+    }
+    public int updateMemberLimitStrategy(Long strategyId, Byte minMember, Byte maxMember){
+        return  memberLimitStrategyMapper.updateMemberLimitStrategy(strategyId, minMember, maxMember);
+    }
+    public int updateCourseMemberLimitStrategy(Long courseId, Byte minMember, Byte maxMember){
+        return  courseMemberLimitStrategyMapper.updateCourseMemberLimitStrategy(courseId, minMember, maxMember);
+    }
 }

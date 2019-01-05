@@ -27,7 +27,17 @@ public interface TeamOrStrategyMapper {
     })
     List<TeamOrStrategy> listByStrategyId(@Param("strategyId") Long strategyId);
 
-
+    /**
+     * 或策略
+     * @return java.util.List<cm.entity.TeamOrStrategy>
+     */
+    @Select("select * from team_or_strategy")
+    @Results({
+            @Result(property = "id",column = "id"),
+            @Result(property = "strategyName",column = "strategy_name"),
+            @Result(property = "strategyId",column = "strategy_id")
+    })
+    List<TeamOrStrategy> listAllTeamOrStrategy();
     /**
      * 创建或策略
      * @param id
@@ -37,7 +47,7 @@ public interface TeamOrStrategyMapper {
      */
     @Insert("insert into team_or_strategy(id,strategy_name,strategy_id) " +
             "values(#{id},#{strategyName},#{strategyId})")
-    @Options(useGeneratedKeys = true, keyProperty = "teamOrStrategy.id")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int createTeamOrStrategy(@Param("id") Long id,
                              @Param("strategyName") String strategyName,
                              @Param("strategyId") Long strategyId);
