@@ -53,11 +53,9 @@ public class StudentDAO {
          }catch (Exception e){
              return null;
          }
-
          if(flag==0){
              return null;
          }
-
          return student;
     }
 

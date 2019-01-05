@@ -36,17 +36,32 @@ public class StudentController {
             return "redirect:/cm/student/activation";
     }
 
-    //////////////student index get
-    @RequestMapping(value = "/index/{account}",method = RequestMethod.GET)
-    public String studentIndex(Model model, @PathVariable String account){
-        student=studentService.getUserVOByAccount(account);
-        if (studentService.getIs_active(student)==0)
-                return "redirect:/cm/student/activation";
-        else{
-            model.addAttribute("curStudent",student);
-            return "student_index";
-        }
+//    //////////////student index get
+//    @RequestMapping(value = "/index/{account}",method = RequestMethod.GET)
+//    public String studentIndex(Model model, @PathVariable String account){
+//        student=studentService.getUserVOByAccount(account);
+//        if (studentService.getIs_active(student)==0)
+//                return "redirect:/cm/student/activation";
+//        else{
+//            model.addAttribute("curStudent",student);
+//            return "student_index";
+//        }
+//    }
+//////////////student index get
+@RequestMapping(value = "/index",method = RequestMethod.GET)
+public String studentIndex(Model model,String account){
+    System.out.println("studentIndex");
+    System.out.println(account);
+    student=studentService.getUserVOByAccount(account);
+    System.out.println("studentIndex");
+    if (studentService.getIs_active(student)==0)
+        return "redirect:/cm/student/activation";
+    else{
+        System.out.println("studentIndex");
+        model.addAttribute("curStudent",student);
+        return "student_index";
     }
+}
 
     ////////////student setting get
     @RequestMapping(value = "/setting",method=RequestMethod.GET)

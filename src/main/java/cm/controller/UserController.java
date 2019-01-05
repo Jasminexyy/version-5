@@ -33,7 +33,9 @@ public class UserController {
 	public String LoginSubmit(String account, String password) throws IOException {
 		System.out.println(account);
 		if (account.length()>0) {
+			System.out.println("verify student successfully");
 			if (studentService.vertify(account, password)) {
+				System.out.println("verify student successfully");
 				return "redirect:/cm/student/index?account="+account;
 			}
 			else {
