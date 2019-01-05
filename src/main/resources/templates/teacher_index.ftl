@@ -21,7 +21,7 @@
 	                <ul class="sub sub1">
 						<a href="/cm/teacher/notification"><li class="main">代办</li></a>
 						<a href="/cm/teacher/index"><li class="main">个人页</li></a>
-						<a href="/cm/teacher/seminar"><li class="main">讨论课</li></a>
+						<a href="/cm/teacher/course/seminar/course?account=${curTeacher.account}"><li class="main">讨论课</li></a>
 				    </ul>
 					</li>               
 
