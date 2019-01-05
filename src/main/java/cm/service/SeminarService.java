@@ -180,21 +180,25 @@ public class SeminarService {
 
     public SeminarInfoVO getSeminarInfo(Long klassId, Long seminarId) {
         KlassSeminar klassSeminar=findKlassSeminarById(klassId,seminarId);
+        System.out.println(klassSeminar.getId());
         return getSeminarInfo(klassSeminar.getId());
     }
 
     public SeminarInfoVO getSeminarInfo(Long klassSeminarId) {
         SeminarInfoVO seminarInfoVO=new SeminarInfoVO();
-
+KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
         seminarInfoVO.setSeminarId(klassSeminarId);
         //通过seminarid找到seminar然后得到intro
-        Seminar seminar=seminarDAO.getBySeminarId(klassSeminarId);
+        Seminar seminar=seminarDAO.getBySeminarId(klassSeminar.getSeminarId());
+        System.out.println(seminar.getId());
+        System.out.println(seminar.getRoundId());
         Round round=roundDAO.getByRoundId(seminar.getRoundId());
         seminarInfoVO.setIntroduction(seminar.getIntroduction());
         seminarInfoVO.setRoundSerial(round.getRoundSerial());
         seminarInfoVO.setSeminarName(seminar.getSeminarName());
         seminarInfoVO.setSeminarSerial(seminar.getSeminarSerial());
-
+seminarInfoVO.setCourseName(courseDAO.getByCourseId(klassDAO.getCourseIdByKlassId(klassSeminar.getKlassId())).getCourseName());
+seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
         seminarInfoVO.setAttendanceListVO(getAttendanceList(klassSeminarId));
         return seminarInfoVO;
     }

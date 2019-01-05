@@ -82,11 +82,13 @@ public class TeacherSeminarController {
     }
 
     //////////讨论课详情
-    @RequestMapping(value = "/info",method = RequestMethod.POST)
+    @RequestMapping(value = "/info",method = RequestMethod.GET)
     public String teacherSeminar(long klassId,long seminarId,Model model){
         seminarInfoVO=seminarService.getSeminarInfo(klassId,seminarId);
+        System.out.println(seminarInfoVO.getCourseName());
         model.addAttribute("Seminar",seminarInfoVO);
-        return "teacher_seminar_modify";
+
+        return "teacher_pre_seminar";
     }
 
     @RequestMapping(value = "/modify",method = RequestMethod.GET)
