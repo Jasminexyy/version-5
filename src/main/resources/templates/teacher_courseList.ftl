@@ -27,10 +27,11 @@
 			
 			<div style="height:0.75rem;background-color:#e8e8e8"> </div>
 			
-			<div>		
+			<div>
+				<#list courseList as Course>
 			<details>
 			<!--老师开的好多课程-->
-			<#list courseList as Course>
+
 				<summary  class="sumbackgroundw">${Course.courseName}</summary>
 				<a href="/cm/teacher/course/grade/${Course.id}"><div id="backcolor">
 		学生成绩
@@ -62,9 +63,9 @@
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	</#list>
+
 			</details>
-			
+				</#list>
 			</div>
 			<div style="height:3.75rem;background-color:#e8e8e8"></div>
 
