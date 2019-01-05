@@ -12,6 +12,6 @@ import java.util.List;
  */
 @Data
 public class TeamNeedVO {
-    private List<TeamAndStrategyVO> teamAndStrategyVOList;
+    private TeamAndStrategyVO teamAndStrategyVO;
     private List<ConflictCourseStrategyVO> conflictCourseStrategyVOList;
 }
