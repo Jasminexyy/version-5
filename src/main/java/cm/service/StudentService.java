@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class StudentService {
 
+
     @Autowired
     private StudentDAO studentDAO;
     @Autowired
@@ -21,7 +22,7 @@ public class StudentService {
     public UserVO getUserVOByAccount(String account) {
         Student s=studentDAO.getByStudentAccount(account);
         UserVO student=new UserVO();
-        student.setIsActive(s.getIsActive());
+
         student.setId(s.getId());
         student.setAccount(s.getAccount());
         student.setEmail(s.getEmail());

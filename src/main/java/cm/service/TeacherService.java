@@ -22,6 +22,7 @@ public class TeacherService {
 
     public boolean vertify(String account, String password){
         Teacher tmp=new Teacher();
+
         if(teacherDAO.getUserByTeacherAccount(account)!=null) {
             tmp=teacherDAO.getByNameOrAccount(account);
             if (tmp.getPassword().equals(password))
