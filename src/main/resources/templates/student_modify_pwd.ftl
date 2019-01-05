@@ -3,26 +3,27 @@
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
-		<title>ĞŞ¸ÄÃÜÂë</title>
+		<script src="/js/jquery.min.js" type="text/javascript"></script>
+		<title>ä¿®æ”¹å¯†ç </title>
 	</head>
 	<body>
 	<script>
 
 		function send(){
-			var p0=document.getElementById("pwd0");
-			var p1=document.getElementById("pwd1");
-			var p2=document.getElementById("pwd2");
+			var p0=document.getElementById("pwd0").value;
+			var p1=document.getElementById("pwd1").value;
+			var p2=document.getElementById("pwd2").value;
 			if(p1!=p2)
-				alert("Á½´ÎÊäÈëÃÜÂë²»Í¬");
+				alert("ä¸¤æ¬¡è¾“å…¥å¯†ç ä¸åŒ");
 			else if(p0!=${student.password})
-				alert("ÃÜÂë²»ÕıÈ·");
+				alert("å¯†ç ä¸æ­£ç¡®");
 			else {
+				var da="password="+p1;
 				jQuery.ajax({
 					type: "POST",
 					url: "/cm/student/setting/modifyPwd",
-					headers: {"contentType": "application/json"},
 					processData: false,
-					data: {"password":p1},
+					data: da,
 					dataType: "json",
 					complete: function (data) {
 						if (data.status == 200)
@@ -32,30 +33,24 @@
 			}
 		}
 	</script>
-
 	<center>
 	        <div id="header1">
 	        <center>
-	            <span>
-	                <
-	            </span>
-	        ĞŞ¸ÄÃÜÂë
+	            <a href="/cm/student/setting?account="${student.account}><span><</span></a>
+	        ä¿®æ”¹å¯†ç 
 	        </center>
-	            
 	        </div>
 	    <form id="myform">
 	    <table class="table0" cellspacing="0" cellpadding="0">
-	        <tr><td class="c11">Ô­ÃÜÂë£º</td><td class="c13"><input class="in3" value="Ô­ÃÜÂë" id="pwd0"></input></td></tr>
-	        <tr><td class="c12">ĞÂÃÜÂë£º</td><td class="c14"><input class="in4" value="ÌîĞ´ĞÂÃÜÂë" id="pwd1"></input></td></tr>
-	        <tr><td class="c11">È·ÈÏÃÜÂë£º</td><td class="c13"><input class="in3" value="ÔÙ´ÎÌîĞ´È·ÈÏ" id="pwd2"></input></td></tr>
+	        <tr><td class="c11">åŸå¯†ç ï¼š</td><td class="c13"><input class="in3" placeholder="åŸå¯†ç " id="pwd0"></input></td></tr>
+	        <tr><td class="c12">æ–°å¯†ç ï¼š</td><td class="c14"><input class="in4" placeholder="å¡«å†™æ–°å¯†ç " id="pwd1"></input></td></tr>
+	        <tr><td class="c11">ç¡®è®¤å¯†ç ï¼š</td><td class="c13"><input class="in3" placeholder="å†æ¬¡å¡«å†™ç¡®è®¤" id="pwd2"></input></td></tr>
 	    </table>
 		</form>
 	    </center>
 	    <center>
-	    <p class="p11">ÃÜÂë³¤¶È8-12Î»£¬Ğë°üº¬Êı×Ö¡¢×ÖÄ¸¡¢·ûºÅÁ½ÖÖ»òÒÔÉÏÔªËØ</p>
-	    <button class="button9" onclick="send()">È·ÈÏÌá½»</button></br>
-	   
+	    <p class="p11">å¯†ç é•¿åº¦8-12ä½ï¼Œé¡»åŒ…å«æ•°å­—ã€å­—æ¯ã€ç¬¦å·ä¸¤ç§æˆ–ä»¥ä¸Šå…ƒç´ </p>
+	    <button class="button9" onclick="send()">ç¡®è®¤æäº¤</button></br>
 	    </center>
-
 	</body>
 </html>

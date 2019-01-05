@@ -102,6 +102,7 @@ public class TeacherService {
         teacher.setEmail(t.getEmail());
         teacher.setName(t.getTeacherName());
         teacher.setRole("teacher");
+        teacher.setPassword(t.getPassword());
         return teacher;
     }
 

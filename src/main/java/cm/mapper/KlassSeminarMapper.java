@@ -26,6 +26,8 @@ public interface KlassSeminarMapper {
             "in (select klass_id from klass_student where course_id=#{courseId} and student_id=#{studentId})")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "seminarId",column = "seminar_id"),
+            @Result(property = "klassId",column = "klass_id"),
             @Result(property = "reportDdl",column = "report_ddl"),
             @Result(property = "status",column = "status")
     })
@@ -40,6 +42,8 @@ public interface KlassSeminarMapper {
     @Select("select * from klass_seminar where seminar_id=#{seminarId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "seminarId",column = "seminar_id"),
+            @Result(property = "klassId",column = "klass_id"),
             @Result(property = "reportDdl",column = "report_ddl"),
             @Result(property = "status",column = "status")
     })
@@ -53,6 +57,8 @@ public interface KlassSeminarMapper {
     @Select("select * from klass_seminar where klass_id=#{klassId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "seminarId",column = "seminar_id"),
+            @Result(property = "klassId",column = "klass_id"),
             @Result(property = "reportDdl",column = "report_ddl"),
             @Result(property = "status",column = "status")
     })
@@ -66,6 +72,8 @@ public interface KlassSeminarMapper {
     @Select("select * from klass_seminar where id=#{klassSeminarId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "seminarId",column = "seminar_id"),
+            @Result(property = "klassId",column = "klass_id"),
             @Result(property = "reportDdl",column = "report_ddl"),
             @Result(property = "status",column = "status")
     })
@@ -80,6 +88,8 @@ public interface KlassSeminarMapper {
     @Select("select * from klass_seminar where seminar_id=#{seminarId} and klass_id=#{klassId}")
     @Results({
             @Result(property = "id",column = "id"),
+            @Result(property = "seminarId",column = "seminar_id"),
+            @Result(property = "klassId",column = "klass_id"),
             @Result(property = "reportDdl",column = "report_ddl"),
             @Result(property = "status",column = "status")
     })
