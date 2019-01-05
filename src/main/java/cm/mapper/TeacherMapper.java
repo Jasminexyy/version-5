@@ -127,7 +127,7 @@ public interface TeacherMapper {
      * @param teacherId
      * @return java.lang.Integer
      */
-    @Update("update teacher set password=#{password},is_active=0 " +
+    @Update("update teacher set password=#{password},is_active=1 " +
             "where id=#{teacherId}")
     Integer activateByTeacherId(@Param("password") String password,
                                 @Param("teacherId") Long teacherId);

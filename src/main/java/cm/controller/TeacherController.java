@@ -28,7 +28,7 @@ public class TeacherController {
     @RequestMapping(value = "/activation", method = RequestMethod.POST)
     public String teacherActivationSubmit(String password, String password1) {
         if (teacherService.activate(password, password1,teacher)) {
-            return "redirect:/cm/teacher/index/${teacher.account}";
+            return "redirect:/login";
         }
         else
             return "redirect:/cm/teacher/activation";

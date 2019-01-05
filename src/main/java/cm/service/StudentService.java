@@ -75,9 +75,10 @@ public class StudentService {
     public boolean active(String password,String password1,String email,UserVO student)
     {
         if(password.equals(password1)) {
-            studentDAO.activateByStudentId(password, email, student.getId());
             student.setEmail(email);
             student.setIsActive(Byte.valueOf((byte)1));
+            student.setPassword(password);
+            studentDAO.activateByStudentId(password,email,student.getId());
             return true;
         }
         else{
