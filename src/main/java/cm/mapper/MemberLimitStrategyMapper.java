@@ -27,11 +27,13 @@ public interface MemberLimitStrategyMapper {
 
     /**
      * 创建成员限制策略
-     * @param memberLimitStrategy
-     * @return cm.entity.MemberLimitStrategy
+     * @param minMember
+     * @param maxMember
+     * @return int
      */
     @Insert("insert into member_limit_strategy(min_member,max_member) " +
-            "values(#{memberLimitStrategy.minMember},#{memberLimitStrategy.maxMember})")
+            "values(#{minMember},#{maxMember})")
     @Options(useGeneratedKeys = true, keyProperty = "memberLimitStrategy.id")
-    int createMemberLimitStrategy(@Param("memberLimitStrategy") MemberLimitStrategy memberLimitStrategy);
+    int createMemberLimitStrategy(@Param("minMember") Byte minMember,
+                                  @Param("maxMember") Byte maxMember);
 }

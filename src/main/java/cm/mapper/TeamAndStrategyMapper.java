@@ -29,11 +29,15 @@ public interface TeamAndStrategyMapper {
 
     /**
      * 创建与策略
-     * @param teamAndStrategy
-     * @return cm.entity.teamAndStrategy
+     * @param id
+     * @param strategyName
+     * @param strategyId
+     * @return int
      */
-    @Insert("insert into team_and_strategy(min_member,max_member) " +
-            "values(#{teamAndStrategy.minMember},#{teamAndStrategy.maxMember})")
+    @Insert("insert into team_and_strategy(id,strategy_name,strategy_id) " +
+            "values(#{id},#{strategyName},#{strategyId})")
     @Options(useGeneratedKeys = true, keyProperty = "teamAndStrategy.id")
-    int createTeamAndStrategy(@Param("teamAndStrategy") TeamAndStrategy teamAndStrategy);
+    int createTeamAndStrategy(@Param("id") Long id,
+                              @Param("strategyName") String strategyName,
+                              @Param("strategyId") Long strategyId);
 }

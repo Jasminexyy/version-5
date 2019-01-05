@@ -41,11 +41,16 @@ public interface CourseMemberLimitStrategyMapper {
 
     /**
      * 创建CourseMemberLimitStrategy
-     * @param courseMemberLimitStrategy
+     * @param courseId
+     * @param minMember
+     * @param maxMember
      * @return int
      */
     @Insert("insert into course_member_limit_strategy(course_id,min_member,max_member) " +
-            "values(#{courseMemberLimitStrategy.courseId},#{courseMemberLimitStrategy.minMember},#{courseMemberLimitStrategy.maxMember})")
+            "values(#{courseId},#{minMember},#{maxMember})")
     @Options(useGeneratedKeys = true, keyProperty = "courseMemberLimitStrategy.id")
-    int createCourseMemberLimitStrategy(@Param("courseMemberLimitStrategy") CourseMemberLimitStrategy courseMemberLimitStrategy);
+    int createCourseMemberLimitStrategy(@Param("courseId") Long courseId,
+                                        @Param("minMember") Byte minMember,
+                                        @Param("maxMember") Byte maxMember);
+
 }
