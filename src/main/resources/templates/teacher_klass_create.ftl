@@ -58,9 +58,9 @@
         var klass=document.getElementById("klass");
         var time=document.getElementById("time");
         var location=document.getElementById("location");
-        var studentList=document.getElementById("studentList");
+        var file=document.getElementById("studentList");
         function checkForm() {
-            if(grade.value==''|klass.value==''|time.value==''|location.value==''){
+            if(grade.value==''|klass.value==''|time.value==''|location.value==''||file.value()==null){
                 alert("有项目为空!");
                 return false;
             }
