@@ -5,34 +5,34 @@
 	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
 		<script src="/js/jquery.min.js" type="text/javascript"></script>
 		<title>修改密码</title>
+        <script>
+
+            function send(){
+                var p0=document.getElementById("pwd0").value;
+                var p1=document.getElementById("pwd1").value;
+                var p2=document.getElementById("pwd2").value;
+                if(p1!=p2)
+                    alert("两次输入密码不同");
+                else if(p0!=${student.password})
+                    alert("密码不正确");
+                else {
+                    var da="password="+p1;
+                    jQuery.ajax({
+                        type: "POST",
+                        url: "/cm/student/setting/modifyPwd",
+                        processData: false,
+                        data: da,
+                        dataType: "json",
+                        complete: function (data) {
+                            if (data.status == 200)
+                                window.location = "/login";
+                        }
+                    })
+                }
+            }
+        </script>
 	</head>
 	<body>
-	<script>
-
-		function send(){
-			var p0=document.getElementById("pwd0").value;
-			var p1=document.getElementById("pwd1").value;
-			var p2=document.getElementById("pwd2").value;
-			if(p1!=p2)
-				alert("两次输入密码不同");
-			else if(p0!=${student.password})
-				alert("密码不正确");
-			else {
-				var da="password="+p1;
-				jQuery.ajax({
-					type: "POST",
-					url: "/cm/student/setting/modifyPwd",
-					processData: false,
-					data: da,
-					dataType: "json",
-					complete: function (data) {
-						if (data.status == 200)
-							window.location = "/login";
-					}
-				})
-			}
-		}
-	</script>
 	<center>
 	        <div id="header1">
 	        <center>

@@ -12,7 +12,7 @@
 	            <span1>
 	                <li class="dao li1">+
 	                <ul class="sub sub1">
-						<a href="/cm/student/person"><li class="main">个人页</li></a>
+						<a href=""><li class="main">个人页</li></a>
 						<a href="/cm/student/seminar/seminarEntrance/${curStudent.account}"><li class="main">讨论课</li></a>
 				    </ul></li></span1>
 	        </center>	            

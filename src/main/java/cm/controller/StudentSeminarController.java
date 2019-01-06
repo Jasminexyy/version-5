@@ -57,8 +57,8 @@ public class StudentSeminarController {
     }
 
     ///////student seminar info
-    @RequestMapping(value = "/info",method = RequestMethod.GET)
-    public String studentSeminarInfo(Long klassId,Long seminarId,Model model){
+    @RequestMapping(value = "/info/{klassId}/{seminarId}",method = RequestMethod.GET)
+    public String studentSeminarInfo(@PathVariable Long klassId,@PathVariable Long seminarId,Model model){
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         String courseName=courseService.getCourseById(courseId).getCourseName();
         model.addAttribute("courseName",courseName);

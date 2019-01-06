@@ -14,7 +14,6 @@
 <body>
 <center>
     <div id="header">
-        <span>X</span>
         <center>课堂管理系统登录</center>
     </div>
     <form action="/cm/login" method="post">
@@ -22,11 +21,15 @@
         <input type="password" name="password" value="登录密码" onfocus="this.value='';this.onfocus='';"/><br/>
         <button id="login" type="submit" onclick="submit()">登 录</button></br>
     </form>
-    <p>忘记密码</p>
+    <p style="cursor: pointer" onclick="forget()">忘记密码</p>
     <div id="bottom">
         初次登陆默认密码为123456
     </div>
 </center>
-
+<script type="text/javascript">
+    function forget() {
+        alert('请联系管理员重置密码!');
+    }
+</script>
 </body>
 </html>

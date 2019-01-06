@@ -381,6 +381,7 @@ text-align:left;
      height:2.5rem;
      border-style:none;
      letter-spacing:0.625rem;
+    cursor: pointer;
 }
 
 .button9 {
