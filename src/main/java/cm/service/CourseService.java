@@ -359,7 +359,7 @@ public class CourseService {
                             if(teamOrStrategy.getStrategyName().equals("CourseMemberLimitStrategy")) {
 
                                 CourseMemberLimitStrategyVO courseMemberLimitStrategyVO = new CourseMemberLimitStrategyVO();
-                                CourseMemberLimitStrategy courseMemberLimitStrategy = strategyDAO.getCourseMemberLimitStrategyById(strategyId);
+                                CourseMemberLimitStrategy courseMemberLimitStrategy = strategyDAO.getCourseMemberLimitStrategyById(teamOrStrategy.getStrategyId());
 
                                 courseMemberLimitStrategyVO.setCourseId(courseMemberLimitStrategy.getCourseId());
 								courseMemberLimitStrategyVO.setCourseName(courseDAO.getByCourseId(courseMemberLimitStrategy.getCourseId()).getCourseName());
@@ -389,7 +389,9 @@ public class CourseService {
                     conflictCourseStrategyVO.setCourseId(conflictCourseStrategy.getCourseId());
                     //课程名
                     conflictCourseStrategyVO.setCourseName(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getCourseName());
-                    conflictCourseStrategyVOList.add(conflictCourseStrategyVO);
+					conflictCourseStrategyVO.setTeacherName(teacherDAO.getByTeacherId(courseDAO.getByCourseId(conflictCourseStrategy.getCourseId()).getTeacherId()).getTeacherName());
+
+					conflictCourseStrategyVOList.add(conflictCourseStrategyVO);
                 }
                 teamNeedVO.setConflictCourseStrategyVOList(conflictCourseStrategyVOList);
 			}

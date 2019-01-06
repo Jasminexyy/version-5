@@ -30,6 +30,7 @@ public class TeacherCourseController {
         private StudentService studentService;
     CourseDetailVO courseDetailVO;
     UserVO userVO=new UserVO();
+    TeamNeedVO teamNeedVO;
 
     //课程管理
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
@@ -37,13 +38,16 @@ public class TeacherCourseController {
         System.out.println("我的课程");
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
+//        model.addAttribute("teacherId",userVO);
         return "teacher_courseList";
     }
 
     /////////////////////////////////////课程详情页
-    @RequestMapping(value="/info",method = RequestMethod.POST)
+    @RequestMapping(value="/info",method = RequestMethod.GET)
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
+        teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
+        model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseDetailVO);
         return "teacher_courseInfo";
     }
@@ -51,6 +55,7 @@ public class TeacherCourseController {
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String teacherCourseCreate(Model model){
+        System.out.println("lalalal");
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
@@ -83,6 +88,7 @@ public class TeacherCourseController {
     //////////////学生组队
     @RequestMapping(value="/teamList",method = RequestMethod.POST)
     public String teacherTeamList(Long courseId,Model model){
+        System.out.println(courseId);
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
@@ -121,8 +127,9 @@ public class TeacherCourseController {
     }
 
     ////////班级管理
-    @RequestMapping(value="/klassList",method = RequestMethod.POST)
+    @RequestMapping(value="/klassList",method = RequestMethod.GET)
     public String teacherKlassManage(Long course_id,Model model){
+        System.out.println("进来了");
         courseDetailVO=courseService.getCourseById(course_id);
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
         return "teacher_klassList";
