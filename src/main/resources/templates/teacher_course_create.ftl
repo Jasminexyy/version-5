@@ -122,25 +122,19 @@
         }
         function publish() {
             if(checkPost()){
-                //传数据
-                // jQuery.ajax({
-                //     type:"PUT",
-                //     url:"/cm/teacher/course/create",
-                //     headers:{"contentType":"application/json"},
-                //     processData:false,
-                //     // data:$('#addForm').serialize(),
-                //     data:{"courseName":courseName,"introduction":introduction,"presentationPercentage":presentationPercentage,"questionPercentage":questionPercentage
-                //         "reportPercentage":reportPercentage,"teamStartTime":teamStartTime,"teamEndTime":teamEndTime,"teamMaxNum":teamMaxNum
-                //         ,"teamMinNum":teamMinNum,"conflictCourseStrategyVOList":ConflictCourseStrategyList,
-                //         "courseMemberLimitStrategyVOList":CourseMemberLimitStrategyList},
-                //     // data:{"preScores":preScores,"queScores":queScores,"reportSubmitTime":reportSubmitTime},
-                //     dataType:"json",
-                //     complete:function(data){
-                //         if(data.status==200)
-                // confirm("创建成功！");
-                //             window.location="/cm/teacher/course/teacher_courseList";
-                //     }
-                // })
+                jQuery.ajax({
+                    type:"PUT",
+                    url:"/cm/teacher/course/create",
+                    headers:{"contentType":"application/json"},
+                    processData:false,
+                    data:$('#addForm').serialize(),
+                    dataType:"json",
+                    complete:function(data){
+                        if(data.status==200)
+                confirm("创建成功！");
+                            window.location="/cm/teacher/course/teacher_courseList";
+                    }
+                })
             }
         }
     </script>

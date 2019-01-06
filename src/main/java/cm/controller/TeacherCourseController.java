@@ -35,7 +35,7 @@ public class TeacherCourseController {
     //课程管理
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
     public String teacherCourseManage(Model model, String account) {
-        System.out.println("我的课程");
+        System.out.println("my courselist");
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
 //        model.addAttribute("teacherId",userVO);
@@ -55,12 +55,12 @@ public class TeacherCourseController {
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String teacherCourseCreate(Model model){
-        System.out.println("lalalal");
+        System.out.println("why create");
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
-////////////////////////////////创建课程
-    @RequestMapping(value = "/create",method = RequestMethod.PUT,consumes ="application/json" )
+//////////////////////////////创建课程
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherCourseCreateSubmit(@RequestBody CourseDetailVO course){
         if(courseService.addCourse(course,userVO))
@@ -152,8 +152,8 @@ public class TeacherCourseController {
 
     @RequestMapping(value = "/klass/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO){
-        if(klassService.addKlass(klassVO,courseDetailVO))
+    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO,@RequestBody MultipartFile multipartFile){
+        if(klassService.addKlass(klassVO,courseDetailVO,multipartFile))
             return new ResponseEntity(HttpStatus.OK);
         else
             return new ResponseEntity(HttpStatus.CONFLICT);

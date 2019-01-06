@@ -21,5 +21,4 @@ public class SeminarVO{
 
     private List<KlassVO> klassVOList;
 
-
 }
