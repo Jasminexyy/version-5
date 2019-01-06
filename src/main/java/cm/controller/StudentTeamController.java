@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
@@ -44,7 +45,11 @@ public class StudentTeamController {
         System.out.println(account);
         courseDetailVO=courseService.getCourseByKlassId(klassId);
         student= studentService.getUserVOByAccount(account);
+        if(teamService.getMyTeam(courseDetailVO.getId(),student.getId())==null)
+            model.addAttribute("myTeam",null);
+        else
         model.addAttribute("myTeam",teamService.getMyTeam(courseDetailVO.getId(),student.getId()));
+
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseDetailVO.getId()));
         model.addAttribute("studentsNotInTeam",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         return "student_teams";
@@ -55,8 +60,6 @@ public class StudentTeamController {
     public String studentMyTeam(Model model,Long id){
         TeamVO tmp=teamService.getVOByTeamId(id);
         model.addAttribute("myTeam",tmp);
-        System.out.println("student id:"+student.getId());
-        System.out.println("course id:"+courseDetailVO.getId());
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
         if(student.getId().equals(tmp.getLeader().getId()))
             return "student_myteam_leader";
@@ -91,12 +94,15 @@ public class StudentTeamController {
     }
 
     //////student delete member-leader
-    @RequestMapping(value = "/delete/{studentNum}",method=RequestMethod.DELETE)
-    @ResponseBody
-    public ResponseEntity studentTeamDeleteMember(@PathVariable String studentNum){
-        Long teamId=teamService.getMyTeam(courseDetailVO.getId(),student.getId()).getTeamId();
+    @RequestMapping(value = "/delete",method=RequestMethod.GET)
+    public String studentTeamDeleteMember(Model model,String studentNum){
+        Long studentId=studentService.getStudentByAccount(studentNum).getId();
+        Long teamId=teamService.getMyTeam(courseDetailVO.getId(),studentId).getTeamId();
         teamService.deleteMember(student.getId(),teamId,studentNum);
-        return new ResponseEntity(HttpStatus.OK);
+        TeamVO tmp=teamService.getVOByTeamId(teamId);
+        model.addAttribute("myTeam",tmp);
+        model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
+        return "student_myteam_leader";
     }
 
     /////student add member leader
@@ -110,15 +116,14 @@ public class StudentTeamController {
     /**
      * 遣散小组
      * @param teamId
-     * @param studentNum
      * @return
      */
     //////student disband team leader
-    @RequestMapping(value = "/disband",method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity studentTeamDisband(Long teamId,List<String> studentNum){
-        teamService.teamDisband(teamId,studentNum);
-        return new ResponseEntity(HttpStatus.OK);
+    @RequestMapping(value = "/disband",method = RequestMethod.GET)
+    public String studentTeamDisband(Long teamId,Model model){
+        teamService.teamDisband(teamId);
+        model.addAttribute("curStudent",student);
+        return "student_index";
     }
 
     //搜索成员

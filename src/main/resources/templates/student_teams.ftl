@@ -33,10 +33,16 @@
 				<font color="#9ACD32">${team.teamNumber} ${team.teamName}</font></summary>
 				<div style="border-style:none">
 				<table>
+					<tr>
+						<!--组长组员标识、学号、名字、课程名字-->
+						<td class="fontgreen">组长：</td>
+						<td>${team.leader.account}</td>
+						<td>${team.leader.name}</td>
+					</tr>
 					<#list team.members as student>
 				<tr>
 				<!--组长组员标识、学号、名字、课程名字-->
-				<td class="fontgreen">组长：</td>
+				<td class="fontgreen">组员：</td>
 				<td>${student.account}</td>
 				<td>${student.name}</td>
 				</tr>

@@ -14,12 +14,6 @@
 				alert("申请提交成功");
 			}
 		}
-		function del() {
-        if (!confirm("确认将他移出小组？")) {
-            window.event.returnValue = false; 
-        }
-		}
-    } 
 </script>		
 		
 	</head>
@@ -58,7 +52,9 @@
 						<tr>
 							<td class="fontgreen">组员：</td>
 							<td>${student.account}</td>
-							<a href="/cm/student/course/team/myteam/${student.name}"><td onclick="del()">${student.name}</td></a>
+							<td>
+								<a href="/cm/student/course/team/delete?studentNum=${student.account}">${student.name}
+								</a></td>
 
 						</tr>
 					</#list>
@@ -72,14 +68,14 @@
 			<font style="float:left;margin-left:10%;" class="fontgreen">添加成员：</font>
 			</div>
 			<!--未分组的人学号、名字、课程名字-->
-			<#list studentsNotInTeam as s>
+			<#list studentList as s>
 				<div>
 				<table>
 				<tr>
 				<td><input name="stuname" type="checkbox" value="" />${s.account}</td>
 				<td>${s.studentName}</td>
 				</tr>
-			<$list>
+			</#list>
 				</table>
 				</div>
 <div style="height:3rem;background-color:#e8e8e8;border-style:none;"></div>
@@ -87,7 +83,7 @@
 			<input onclick="shenhe()" type="submit" value="提交审核" class="sub3"/>
 			<br/>
 			</#if>
-			<input type="submit" value="解散小组" class="subr"/>
+			<a href="/cm/student/course/team/disband?teamId=${myTeam.teamId}"><input type="submit" value="解散小组" class="subr"/></a>
 			<input type="submit" value="添加" class="sub3"/>
 		</center>
 

@@ -97,6 +97,7 @@ public class ShareService {
         }
             Byte by = new Byte("1");
             shareTeamDAO.createShareTeamApplication(mainCourseId,subCourseId,subCourseTeacherId,by);
+
     }
 
 }

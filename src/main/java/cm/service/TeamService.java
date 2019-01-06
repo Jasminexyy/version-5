@@ -97,7 +97,7 @@ public class TeamService {
 		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
-	public void teamDisband(Long teamId,List<String> studentNum){
+	public void teamDisband(Long teamId){
 		List<Attendance> attendanceList=attendanceDAO.listByTeamId(teamId);
 		for(int i=0;i<attendanceList.size();i++)
 		attendanceDAO.deleteAttendanceByAttendanceId(attendanceList.get(i).getId());
