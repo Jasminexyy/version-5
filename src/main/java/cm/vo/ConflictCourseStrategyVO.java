@@ -13,4 +13,5 @@ public class ConflictCourseStrategyVO {
     private Long id;
     private Long courseId;
     private String courseName;
+    private String teacherName;
 }
