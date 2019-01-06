@@ -27,8 +27,8 @@ public interface KlassMapper {
             @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "klassTime",column = "klass_time"),
             @Result(property = "klassLocation",column = "klass_location"),
-            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId",fetchType = FetchType.LAZY)),
-            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId",fetchType = FetchType.LAZY))
+            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId")),
+            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId"))
     })
     List<Klass>listByCourseId(@Param("courseId") Long courseId);
 
@@ -46,8 +46,8 @@ public interface KlassMapper {
             @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "klassTime",column = "klass_time"),
             @Result(property = "klassLocation",column = "klass_location"),
-            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId",fetchType = FetchType.LAZY)),
-            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId",fetchType = FetchType.LAZY))
+            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId")),
+            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId"))
     })
     Klass getByCourseIdAndStudentId(@Param("courseId") Long courseId,
                                     @Param("studentId") Long studentId);
@@ -77,8 +77,8 @@ public interface KlassMapper {
             @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "klassTime",column = "klass_time"),
             @Result(property = "klassLocation",column = "klass_location"),
-            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId",fetchType = FetchType.LAZY)),
-            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId",fetchType = FetchType.LAZY))
+            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId")),
+            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId"))
     })
     Klass getByKlassId(@Param("klassId") Long klassId);
 
@@ -96,8 +96,8 @@ public interface KlassMapper {
             @Result(property = "klassSerial",column = "klass_serial"),
             @Result(property = "klassTime",column = "klass_time"),
             @Result(property = "klassLocation",column = "klass_location"),
-            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId",fetchType = FetchType.LAZY)),
-            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId",fetchType = FetchType.LAZY))
+            @Result(property = "teams", column = "id", many=@Many(select="cm.mapper.TeamMapper.listByKlassId")),
+            @Result(property = "students", column = "id", many=@Many(select="cm.mapper.StudentMapper.listByKlassId"))
     })
     Klass getByKlassIdAndTeacherId(@Param("klassId") Long klassId,
                                    @Param("teacherId") Long teacherId);

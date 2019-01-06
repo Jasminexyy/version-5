@@ -27,7 +27,7 @@ public interface RoundMapper {
             @Result(property = "presentationScoreMethod",column = "presentation_score_method"),
             @Result(property = "reportScoreMethod",column = "report_score_method"),
             @Result(property = "questionScoreMethod",column = "question_score_method"),
-            @Result(property = "seminars", column = "id", many=@Many(select="cm.mapper.SeminarMapper.listByRoundId",fetchType = FetchType.LAZY))
+            @Result(property = "seminars", column = "id", many=@Many(select="cm.mapper.SeminarMapper.listByRoundId"))
     })
     List<Round>listByCourseId(@Param("courseId") Long courseId);
 
@@ -43,7 +43,7 @@ public interface RoundMapper {
             @Result(property = "presentationScoreMethod",column = "presentation_score_method"),
             @Result(property = "reportScoreMethod",column = "report_score_method"),
             @Result(property = "questionScoreMethod",column = "question_score_method"),
-            @Result(property = "seminars", column = "id", many=@Many(select="cm.mapper.SeminarMapper.listByRoundId",fetchType = FetchType.LAZY))
+            @Result(property = "seminars", column = "id", many=@Many(select="cm.mapper.SeminarMapper.listByRoundId"))
     })
     Round getByRoundId(@Param("roundId") Long roundId);
 

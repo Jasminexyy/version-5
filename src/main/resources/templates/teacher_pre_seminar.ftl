@@ -40,7 +40,7 @@
 				<#elseif Seminar.seminarStatus==0>
 					未开始
 				</#if>
-			</td><td class="c2"><u class="u1">查看信息</u></td></tr>
+			</td><td class="c2"><a href="/cm/teacher/course/seminar/enrollList"><u class="u1">查看信息</u></a></td></tr>
 	</table>
 </center>
 <center>

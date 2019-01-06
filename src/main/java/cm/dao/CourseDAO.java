@@ -64,5 +64,11 @@ public class CourseDAO {
     public List<Course> listAllCourse() {
         return courseMapper.listAllCourse();
     }
+
+    public int updateCourse(Course course, Long courseId)
+    {
+        return courseMapper.updateCourse(course, courseId);
+    }
+
 }
 
