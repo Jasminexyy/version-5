@@ -288,5 +288,5 @@ public interface CourseMapper {
             "team_main_courseId=#{course.teamMainCourseId}," +
             "seminar_main_courseId=#{course.seminarMainCourseId}," +
             "where id = #{course.id}")
-    int updateCourse(Course course);
+    int updateCourse(@Param("course") Course course);
 }
