@@ -152,7 +152,7 @@ public class TeacherCourseController {
 
     @RequestMapping(value = "/klass/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO,@RequestBody MultipartFile multipartFile){
+    public ResponseEntity teacherKlassCreateSubmit(@RequestBody NewKlassVO klassVO,@RequestBody MultipartFile multipartFile){
         if(klassService.addKlass(klassVO,courseDetailVO,multipartFile))
             return new ResponseEntity(HttpStatus.OK);
         else

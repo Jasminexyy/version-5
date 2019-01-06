@@ -20,6 +20,4 @@ public class NewKlassVO {
     private String klassTime;
 
     private String klassLocation;
-
-    private MultipartFile students;
 }

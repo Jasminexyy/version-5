@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="css/seminar.css" charset="GB2312"/>
-    <script src="/js/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/css/seminar.css" charset="GB2312"/>
+    <script src="/js/jquery_min.js" type="text/javascript"></script>
     <title>新建班级</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <span><</span>
         <center>新建班级</center>
     </div>
-    <form id="addForm" method="post">
+    <form id="myForm" name="addForm" method="post">
         <div class="div6">
             <table class="table_d6" cellpadding="" cellspacing="">
                 <tr>
@@ -52,20 +52,21 @@
     </form>
 </center>
 <script type="text/javascript">
-    var grade=document.getElementById("grade");
-    var klass=document.getElementById("klass");
-    var time=document.getElementById("time");
-    var location=document.getElementById("location");
-    var studentList=document.getElementById("studentList");
-    function checkForm() {
-        if(grade.value==''|klass.value==''|time.value==''|location.value==''){
-            alert("有项目为空!");
-            return false;
-        }
-        else
-            return true;
-    }
+
     function save() {
+        var grade=document.getElementById("grade");
+        var klass=document.getElementById("klass");
+        var time=document.getElementById("time");
+        var location=document.getElementById("location");
+        var file=document.getElementById("studentList");
+        function checkForm() {
+            if(grade.value==''|klass.value==''|time.value==''|location.value==''||file.value()==null){
+                alert("有项目为空!");
+                return false;
+            }
+            else
+                return true;
+        };
         if(checkForm()){
             jQuery.ajax({
                 type:"POST",
@@ -73,8 +74,7 @@
                 headers:{"contentType":"application/json"},
                 processData:false,
                 // data:$('#myform').serialize(),
-                data:{"grade":grade.value,"klassSerial":klass.value,"klassTime":time.value,"klassLocation":location.value,
-                    "studentVOList":studentList.value},
+                data:$('#myForm').serialize(),
                 dataType:"json",
                 complete:function(data){
                     if(data.status==200)
