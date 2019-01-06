@@ -47,6 +47,9 @@ public class StudentCourseController {
                 max=teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember();
         model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseService.getCourseById(courseId));
+        Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
+        model.addAttribute("courseAndKlassList",maps);
+
         return "student_course_info";
     }
 

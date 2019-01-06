@@ -42,7 +42,7 @@
 			<button class="button6">删除班级</button>
 		</div>
 	</#list>
-	<a href="/cm/teacher/course/create"><button class="button1"><b>+ 新增班级</b></button></a></br>
+	<a href="/cm/teacher/course/klass/create"><input class="button1" value="+ 新增班级" type="button"/></a></br>
 </center>
 
 </body>
