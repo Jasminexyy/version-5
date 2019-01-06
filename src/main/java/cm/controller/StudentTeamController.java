@@ -37,7 +37,7 @@ public class StudentTeamController {
     CourseDetailVO courseDetailVO;
 
     //////student team list
-    @RequestMapping(value="",method= RequestMethod.POST)
+    @RequestMapping(value="/teamList",method= RequestMethod.GET)
     public String studentTeam(Long klassId,String account,Model model){
         System.out.println("teamList");
         System.out.println(klassId);
@@ -51,8 +51,8 @@ public class StudentTeamController {
     }
 
     //////student my team
-    @RequestMapping(value = "/myteam/{id}",method = RequestMethod.GET)
-    public String studentMyTeam(Model model,@PathVariable Long id){
+    @RequestMapping(value = "/myteam",method = RequestMethod.GET)
+    public String studentMyTeam(Model model,Long id){
         TeamVO tmp=teamService.getVOByTeamId(id);
         model.addAttribute("myTeam",tmp);
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
