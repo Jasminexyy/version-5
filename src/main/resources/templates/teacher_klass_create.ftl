@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"
           charset="GB2312">
-    <link rel="stylesheet" href="../static/css/seminar.css" charset="GB2312"/>
-    <script src="/js/jquery_min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/seminar.css" charset="GB2312"/>
+    <script src="/js/jquery.min.js" type="text/javascript"></script>
     <title>新建班级</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <span><</span>
         <center>新建班级</center>
     </div>
-    <form name="addForm" method="post">
+    <form id="addForm" method="post">
         <div class="div6">
             <table class="table_d6" cellpadding="" cellspacing="">
                 <tr>
