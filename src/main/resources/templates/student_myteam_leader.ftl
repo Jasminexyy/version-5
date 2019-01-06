@@ -8,14 +8,14 @@
 		
 	<script type="text/javascript">
 		function shenhe() {
-			var person=prompt("ÉêÇëÀíÓÉ","µ¥ĞĞÊäÈë");
+			var person=prompt("ç”³è¯·ç†ç”±","å•è¡Œè¾“å…¥");
 			if (person!=null && person!="")
 			{
-				alert("ÉêÇëÌá½»³É¹¦");
+				alert("ç”³è¯·æäº¤æˆåŠŸ");
 			}
 		}
 function del() { 
-        if (!confirm("½«${student.name}ÒÆ³öĞ¡×é£¿")) { 
+        if (!confirm("å°†${student.name}ç§»å‡ºå°ç»„ï¼Ÿ")) { 
             window.event.returnValue = false; 
         }else
 		{
@@ -53,7 +53,7 @@ function del() {
 			<div style="height:0.5rem;background-color:#e8e8e8"></div>
 			
 			<div class="sumbackgroudw">		
-			<!--²é¿´×Ô¼º×éµÄ³ÉÔ±-->
+			<!--æŸ¥çœ‹è‡ªå·±ç»„çš„æˆå‘˜-->
 				<font size="5" color="#9ACD32">${myTeam.teamNumber} ${myTeam.teamName}</font>
 				<#if myTeam.valid==0>
 					<font size="5" color="red">invalid</font>
@@ -61,15 +61,15 @@ function del() {
 				<div style="border-style:none">
 				<table>
 				<tr>
-				<!--×é³¤×éÔ±¡¢Ñ§ºÅ¡¢Ãû×Ö¡¢¿Î³ÌÃû×Ö-->
-				<td class="fontgreen">×é³¤£º</td>
+				<!--ç»„é•¿ç»„å‘˜ã€å­¦å·ã€åå­—ã€è¯¾ç¨‹åå­—-->
+				<td class="fontgreen">ç»„é•¿ï¼š</td>
 				<td>${myTeam.leader.account}</td>
-				<td class="fontred">ÎÒ</td>
+				<td class="fontred">æˆ‘</td>
 
 				</tr>
 					<#list myTeam.students as student>
 						<tr>
-							<td class="fontgreen">×éÔ±£º</td>
+							<td class="fontgreen">ç»„å‘˜ï¼š</td>
 							<td>${student.account}</td>
 							<td onclick="del()">${student.studentName}</td>
 
@@ -82,9 +82,9 @@ function del() {
 			</div>
 		
 			<div class="div1">
-			<font style="float:left;margin-left:10%;" class="fontgreen">Ìí¼Ó³ÉÔ±£º</font>
+			<font style="float:left;margin-left:10%;" class="fontgreen">æ·»åŠ æˆå‘˜ï¼š</font>
 			</div>
-			<!--Î´·Ö×éµÄÈËÑ§ºÅ¡¢Ãû×Ö¡¢¿Î³ÌÃû×Ö-->
+			<!--æœªåˆ†ç»„çš„äººå­¦å·ã€åå­—ã€è¯¾ç¨‹åå­—-->
 			<$list studentsNotInTeam as s>
 				<div>
 				<table>
@@ -97,11 +97,11 @@ function del() {
 				</div>
 <div style="height:3rem;background-color:#e8e8e8;border-style:none;"></div>
 			<#if myTeam.valid==0>
-			<input onclick="shenhe()" type="submit" value="Ìá½»ÉóºË" class="sub3"/>
+			<input onclick="shenhe()" type="submit" value="æäº¤å®¡æ ¸" class="sub3"/>
 			<br/>
 			</#if>
-			<input type="submit" value="½âÉ¢Ğ¡×é" class="subr"/>
-			<input type="submit" value="Ìí¼Ó" class="sub3"/>
+			<input type="submit" value="è§£æ•£å°ç»„" class="subr"/>
+			<input type="submit" value="æ·»åŠ " class="sub3"/>
 		</center>
 
 

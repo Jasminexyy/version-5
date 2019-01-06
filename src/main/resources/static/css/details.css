@@ -5,7 +5,10 @@ body
 	margin:auto;
 	width: 100%;
 }
-
+a{
+	text-decoration: none;
+	color:black;
+}
 #header{
 	background-color:#e8e8e8;
 	width:80%;
@@ -229,8 +232,6 @@ z-index:19999;
     border-color:#000000
 }
 
-
-
-
-
-
+a{ text-decoration:none;
+	color:#000000;
+}

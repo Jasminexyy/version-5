@@ -26,7 +26,8 @@ public class TeacherCourseController {
             private TeacherService teacherService;
     @Autowired
             private ShareService shareService;
-
+@Autowired
+        private StudentService studentService;
     CourseDetailVO courseDetailVO;
     UserVO userVO=new UserVO();
     TeamNeedVO teamNeedVO;
@@ -37,6 +38,7 @@ public class TeacherCourseController {
         System.out.println("我的课程");
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
+//        model.addAttribute("teacherId",userVO);
         return "teacher_courseList";
     }
 
@@ -53,6 +55,7 @@ public class TeacherCourseController {
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String teacherCourseCreate(Model model){
+        System.out.println("lalalal");
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
@@ -128,11 +131,15 @@ public class TeacherCourseController {
     public String teacherKlassManage(Long course_id,Model model){
         System.out.println("进来了");
         courseDetailVO=courseService.getCourseById(course_id);
-
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
         return "teacher_klassList";
     }
 
+    @RequestMapping(value = "/klass/studentList",method = RequestMethod.GET)
+    public String teacherKlassStudentList(Long klassId,Model model){
+        model.addAttribute("studentList",studentService.listStudentByKlassId(klassId));
+        return "teacher_klass_studentList";
+    }
     //////////创建班级
     @RequestMapping(value = "/klass/create",method = RequestMethod.GET)
     public String teacherKlassCreate(){

@@ -7,6 +7,7 @@ scale=1.0,minimum-scale=1.0">
 
 	<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
 	<title>Enter your title here</title>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
 </head>
 <body>
 <center>
@@ -49,7 +50,7 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-				<a href="/cm/student/course/team">
+				<a herf="/cm/student/course/team?account=${UserVO.id}&klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的组队
 						<span class="right">></span>

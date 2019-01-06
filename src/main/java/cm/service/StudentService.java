@@ -6,8 +6,10 @@ import cm.entity.LoginUser;
 import cm.entity.Student;
 import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +35,17 @@ public class StudentService {
         return student;
     }
 
+    public UserVO transferStudentToUserVO(Student student){
+        UserVO tmp=new UserVO();
+        tmp.setId(student.getId());
+        tmp.setName(student.getStudentName());
+        tmp.setAccount(student.getAccount());
+        tmp.setRole("student");
+        tmp.setIsActive(student.getIsActive());
+        tmp.setPassword(student.getPassword());
+        tmp.setEmail(student.getEmail());
+        return tmp;
+    }
 
     public Student getStudentByAccount(String account){
         return studentDAO.getByStudentAccount(account);
@@ -104,5 +117,15 @@ public class StudentService {
     public List<Student> getStudentNotInTeamByCourseId(Long courseId)
     {
         return studentDAO.listNoTeamStudentByCourseId(courseId);
+    }
+
+    public List<UserVO> listStudentByKlassId(Long klassId){
+        List<Student> students=studentDAO.listStudentByKlassId(klassId);
+        List<UserVO> list=new ArrayList<UserVO>();
+        for(int i=0;i<students.size();i++){
+            UserVO tmp=transferStudentToUserVO(students.get(i));
+            list.add(tmp);
+        }
+        return list;
     }
 }

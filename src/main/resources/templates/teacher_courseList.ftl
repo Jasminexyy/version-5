@@ -58,7 +58,7 @@
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	<a href="/cm/teacher/course/share?courseId=${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/shareset/${Course.id}"><div id="backcolor">
 		共享设置
 	    <span class="right">></span>
 	    <br/>
@@ -69,9 +69,9 @@
 			</div>
 			<div style="height:3.75rem;background-color:#e8e8e8"></div>
 
-			<a href="/cm/teacher/course/create"><div class="header">
+			<div class="header">
 		+新建课程
-					<span class="right">></span></a>
+					<span class="right">></span>
 	    <br/>
 	</div>
 		</center>
