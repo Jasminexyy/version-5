@@ -97,7 +97,7 @@ public class StudentDAO {
         }
     }
 
-    public List<Student> listByKlassId(Long klassId){
+    public List<Student> listStudentByKlassId(Long klassId){
          return studentMapper.listByKlassId(klassId);
     }
 
