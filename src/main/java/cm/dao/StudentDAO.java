@@ -97,6 +97,10 @@ public class StudentDAO {
         }
     }
 
+    public List<Student> listByKlassId(Long klassId){
+         return studentMapper.listByKlassId(klassId);
+    }
+
     /**
      * 无学生创建学生，有学生则加上id
      */

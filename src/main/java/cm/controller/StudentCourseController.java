@@ -29,6 +29,7 @@ public class StudentCourseController {
         student=studentService.getUserVOByAccount(account);
         Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
+        model.addAttribute("UserVO",student);
         return "studentCourse";
     }
 

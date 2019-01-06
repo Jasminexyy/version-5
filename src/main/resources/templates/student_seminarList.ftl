@@ -9,13 +9,13 @@
 			var da=e.value;
 			var da1=e1.value;
 			jQuery.ajax({
-				type:"GET",
+				type:"POST",
 				url:"/cm/student/seminar/info",
-				headers:{"contentType":"application/json"},
+				//headers:{"contentType":"application/json"},
 				processData:false,
 				// data:$('#myform').serialize(),
 				data:"klassId="+e+"&seminarId="+e1,
-				dataType:"json"
+				dataType:"json",
 			});
 		}
 	</script>
@@ -43,10 +43,10 @@
             <#assign seminarList=roundAndSeminarList[roundName]/>
             <summary class="sumbackgroundw-summary" style="background-color:#ffffff;"><font color="#9ACD32">${roundName}</font></summary>
             <#list seminarList.seminarVOList as seminar>
-                <div  class="backcolor1" onclick="goTo(${klassId},${seminar.seminarId})">
-                    <span class="left">${seminar.seminarOrder}</span>
+                <div class="backcolor1">
+                    <a onclick="goTo(${klassId},${seminar.seminarId})"><span class="left">${seminar.seminarOrder}</span>
                     ${seminar.seminarTopic}
-                    <span class="right">></span>
+                    <span class="right">></span></a>
                     <br/>
                 </div>
             </#list>

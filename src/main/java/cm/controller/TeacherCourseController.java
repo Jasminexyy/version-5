@@ -26,7 +26,8 @@ public class TeacherCourseController {
             private TeacherService teacherService;
     @Autowired
             private ShareService shareService;
-
+@Autowired
+        private StudentService studentService;
     CourseDetailVO courseDetailVO;
     UserVO userVO=new UserVO();
 
@@ -123,11 +124,15 @@ public class TeacherCourseController {
     @RequestMapping(value="/klassList",method = RequestMethod.POST)
     public String teacherKlassManage(Long course_id,Model model){
         courseDetailVO=courseService.getCourseById(course_id);
-
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));
         return "teacher_klassList";
     }
 
+    @RequestMapping(value = "/klass/studentList",method = RequestMethod.GET)
+    public String teacherKlassStudentList(Long klassId,Model model){
+        model.addAttribute("studentList",studentService.listStudentByKlassId(klassId));
+        return "teacher_klass_studentList";
+    }
     //////////创建班级
     @RequestMapping(value = "/klass/create",method = RequestMethod.GET)
     public String teacherKlassCreate(){

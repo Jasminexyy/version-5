@@ -8,21 +8,6 @@ scale=1.0,minimum-scale=1.0">
 	<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
 	<title>Enter your title here</title>
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
-
-	<script type="text/javascript">
-		function team(dat) {
-			var da = "klassId ="+dat+"&account="+window.sessionStorage["userAccount"];
-			console.log(window.sessionStorage["userAccount"]);
-			console.log(da);
-			jQuery.ajax({
-				type:"POST",
-				url:"/cm/student/course/team",
-				processData:false,
-				data:da,
-				dataType:"json"
-			});
-		}
-	</script>
 </head>
 <body>
 <center>
@@ -65,7 +50,7 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-				<a onclick="team(${courseAndKlassList[key].klassId})">
+				<a herf="/cm/student/course/team?account=${UserVO.id}&klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的组队
 						<span class="right">></span>

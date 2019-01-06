@@ -57,13 +57,20 @@ public class StudentSeminarController {
     }
 
     ///////student seminar info
-    @RequestMapping(value = "/info",method = RequestMethod.GET)
+    @RequestMapping(value = "/info",method = RequestMethod.POST)
     public String studentSeminarInfo(Long klassId,Long seminarId,Model model){
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         String courseName=courseService.getCourseById(courseId).getCourseName();
         model.addAttribute("courseName",courseName);
         model.addAttribute("seminarInfo",seminarService.getSeminarInfo(klassId,seminarId));
         model.addAttribute("attendance",seminarService.getAttendance(klassId,seminarId,student.getId()));
+        System.out.println("seminar info");
+        return "student_seminar_info";
+        //return "redirect:/cm/student/seminar/information";
+    }
+
+    @RequestMapping(value = "/information",method=RequestMethod.GET)
+    public String studentSeminarInformation(){
         return "student_seminar_info";
     }
 

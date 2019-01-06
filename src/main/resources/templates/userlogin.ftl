@@ -8,7 +8,8 @@
 
     <script type="text/javascript">
         function submit() {
-            window.sessionStorage["userAccount"]=document.getElementById("account").value);
+            var account=document.getElementById("account").value;
+            sessionStorage["userAccount"]=JSON.stringify(account);
             jQuery.ajax({
                 type:"POST",
                 url:"/cm/login",
