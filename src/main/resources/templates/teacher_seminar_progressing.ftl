@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ch">
 <head style="font-size:35px">
-    <link href="/static/css/seminar.css" type="text/css" rel="stylesheet" charset="GB2312"/>
+    <link href="/css/seminar.css" type="text/css" rel="stylesheet" charset="GB2312"/>
 
     <meta name="viewport"
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"

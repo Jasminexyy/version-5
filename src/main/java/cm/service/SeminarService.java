@@ -37,6 +37,8 @@ public class SeminarService {
     private QuestionDAO questionDAO;
 
 
+
+
     public KlassSeminar findKlassSeminarById(Long klassId, Long seminarId){
         return klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId);
     }
@@ -189,11 +191,12 @@ public class SeminarService {
     public SeminarInfoVO getSeminarInfo(Long klassSeminarId) {
         SeminarInfoVO seminarInfoVO=new SeminarInfoVO();
 KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
-        seminarInfoVO.setSeminarId(klassSeminarId);
+        seminarInfoVO.setSeminarId(klassSeminar.getSeminarId());
         //通过seminarid找到seminar然后得到intro
         Seminar seminar=seminarDAO.getBySeminarId(klassSeminar.getSeminarId());
         Round round=roundDAO.getByRoundId(seminar.getRoundId());
         seminarInfoVO.setIntroduction(seminar.getIntroduction());
+        seminarInfoVO.setKlassId(klassSeminar.getKlassId());
         seminarInfoVO.setRoundSerial(round.getRoundSerial());
         seminarInfoVO.setSeminarName(seminar.getSeminarName());
         seminarInfoVO.setSeminarSerial(seminar.getSeminarSerial());
@@ -350,5 +353,11 @@ seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
                 Long teamId=questionDAO.getTeamIdByQuestionId(questionId);
                 seminarScoreDAO.updateSeminarScore(seminarScore,klassSeminarId,teamId);
         }
+    }
+
+    public void modifystatus(Long seminarId, Long klassId, byte status) {
+        Long k=klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId).getId();
+        System.out.println(k);
+       klassSeminarDAO.setKlassSeminarStatus(k,status);
     }
 }

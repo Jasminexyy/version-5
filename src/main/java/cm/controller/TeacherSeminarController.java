@@ -1,10 +1,8 @@
 package cm.controller;
 
+import cm.entity.Seminar;
 import cm.service.*;
-import cm.vo.CourseDetailVO;
-import cm.vo.RoundVO;
-import cm.vo.SeminarInfoVO;
-import cm.vo.UserVO;
+import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +30,7 @@ public class TeacherSeminarController {
     CourseDetailVO courseDetailVO;
     SeminarInfoVO seminarInfoVO;
     UserVO userVO;
+    Seminar seminar;
     ////////讨论课管理
 
     ///////////讨论课
@@ -123,7 +122,13 @@ public class TeacherSeminarController {
 
     ///////////////////讨论课正在进行websocket
     @RequestMapping(value = "/progressing",method = RequestMethod.GET)
-    public String teacherSeminarProgressing(Model model){
+    public String teacherSeminarProgressing(Model model, Long seminarId,Long klassId){
+        seminarInfoVO=seminarService.getSeminarInfo(seminarId);
+        seminarInfoVO.setSeminarStatus((byte)1);
+        System.out.println(klassId);
+        seminarService.modifystatus(seminarId,klassId,(byte)1);
+        System.out.println( seminarInfoVO.getSeminarStatus());
+        System.out.println("lllll");
         model.addAttribute("seminarInfo",seminarInfoVO);
         return "teacher_seminar_progressing";
     }
