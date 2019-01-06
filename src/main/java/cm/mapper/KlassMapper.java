@@ -133,7 +133,7 @@ public interface KlassMapper {
      * @param klassSerial
      * @return
      */
-    @Select("select klass_id from klass where course_id=#{courseId} and klass_serial=#{klassSerial}")
+    @Select("select id from klass where course_id=#{courseId} and klass_serial=#{klassSerial}")
     Long getKlassIdByCourseIdAndKlassSerial(@Param("courseId") Long courseId,
                                             @Param("klassSerial") Long klassSerial);
 }

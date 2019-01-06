@@ -55,8 +55,10 @@ public class StudentTeamController {
     public String studentMyTeam(Model model,Long id){
         TeamVO tmp=teamService.getVOByTeamId(id);
         model.addAttribute("myTeam",tmp);
+        System.out.println("student id:"+student.getId());
+        System.out.println("course id:"+courseDetailVO.getId());
         model.addAttribute("studentList",studentService.getStudentNotInTeam(courseDetailVO.getId(),student.getId()));
-        if(student.getId()==tmp.getLeader().getId())
+        if(student.getId().equals(tmp.getLeader().getId()))
             return "student_myteam_leader";
         else
             return "studnet_myteam_member";
@@ -89,9 +91,10 @@ public class StudentTeamController {
     }
 
     //////student delete member-leader
-    @RequestMapping(value = "/delete",method=RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{studentNum}",method=RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity studentTeamDeleteMember(Long teamId,String studentNum){
+    public ResponseEntity studentTeamDeleteMember(@PathVariable String studentNum){
+        Long teamId=teamService.getMyTeam(courseDetailVO.getId(),student.getId()).getTeamId();
         teamService.deleteMember(student.getId(),teamId,studentNum);
         return new ResponseEntity(HttpStatus.OK);
     }

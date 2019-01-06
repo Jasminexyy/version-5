@@ -27,20 +27,20 @@
 			<div style="height:0.5rem;background-color:#e8e8e8"></div>
 			
 			<div class="sumbackgroudw">		
-			<!--²é¿´×Ô¼º×éµÄ³ÉÔ±-->
+			<!--æŸ¥çœ‹è‡ªå·±ç»„çš„æˆå‘˜-->
 				<font size="5" color="#9ACD32">${myTeam.teamNumber} ${myTeam.teamName}</font>
 				
 				<div style="border-style:none">
 				<table>
 				<tr>
-				<!--×é³¤×éÔ±¡¢Ñ§ºÅ¡¢Ãû×Ö¡¢¿Î³ÌÃû×Ö-->
-					<td class="fontgreen">×é³¤£º</td>
+				<!--ç»„é•¿ç»„å‘˜ã€å­¦å·ã€åå­—ã€è¯¾ç¨‹åå­—-->
+					<td class="fontgreen">ç»„é•¿ï¼š</td>
 					<td>${myTeam.leader.account}</td>
 					<td class="fontred">${myTeam.leader.name}</td>
 				</tr>
 					<#list myTeam.members as student>
 						<tr>
-							<td class="fontgreen">×éÔ±£º</td>
+							<td class="fontgreen">ç»„å‘˜ï¼š</td>
 							<td>${student.account}</td>
 							<td >${student.name}</td>
 
@@ -53,7 +53,7 @@
 			</div>
 
 			<div style="height:5rem;background-color:#e8e8e8;border-style:none;"></div>
-			<a href="cm/student/course/team/myteam/quit/${myTeam.teamId}"><input type="submit" value="ÍË×é" class="subr" />
+			<a href="cm/student/course/team/myteam/quit/${myTeam.teamId}"><input type="submit" value="é€€ç»„" class="subr" />
 		</center>
 
 
