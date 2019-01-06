@@ -50,7 +50,7 @@ public class ShareService {
                 result.add(shareCourseVO);
             }
         }
-        if (c.getSeminarMainCourseId() != null) {
+   /*     if (c.getSeminarMainCourseId() != null) {
             Course seminarMainCourse = courseDAO.getByCourseId(c.getSeminarMainCourseId());
             if (seminarMainCourse != null) {
                 ShareCourseVO shareCourseVO = new ShareCourseVO(1,
@@ -60,7 +60,7 @@ public class ShareService {
                         teacherDAO.getByCourseId(seminarMainCourse.getId()).getTeacherName());
                 result.add(shareCourseVO);
             }
-        }
+        }*/
         List<Course> courseListTeam= courseDAO.listByTeamMainCourseId(courseId);
         for (Course course:courseListTeam) {
             ShareCourseVO shareCourseVO = new ShareCourseVO(2,
@@ -83,14 +83,16 @@ public class ShareService {
         return result;
     }
 
-    public void createShareTeam(Long mainCourseId,Long subCourseId,Long subCourseTeacherId){
-
+    public void createShareTeam(Long mainCourseId,Long subCourseId){
+        Long subCourseTeacherId=courseDAO.getTeacherIdByCourseId(subCourseId);
         List<Team> sourceTeamList = teamDAO.listByCourseId(mainCourseId);
         for(Team tempTeam: sourceTeamList)
         {
+           // System.out.println(subCourseId);
             tempTeam.setCourseId(subCourseId);
             Long leaderId = tempTeam.getLeaderId();
             tempTeam.setKlassId(klassDAO.getKlassIdByStudentIdAndCourseId(leaderId,mainCourseId));
+
             teamDAO.createTeam(tempTeam);
         }
             Byte by = new Byte("1");

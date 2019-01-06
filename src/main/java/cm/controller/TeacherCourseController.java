@@ -32,6 +32,7 @@ public class TeacherCourseController {
     UserVO userVO=new UserVO();
     TeamNeedVO teamNeedVO;
 
+
     //课程管理
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
     public String teacherCourseManage(Model model, String account) {
@@ -100,13 +101,17 @@ public class TeacherCourseController {
         System.out.println("我进来了嘛？");
         System.out.println(userVO.getId());
         System.out.println(courseId);
+        courseDetailVO=courseService.getCourseById(courseId);
+
+        model.addAttribute("courseId",courseId);
         model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(userVO.getId(),courseId));
         return "teacher_share";
     }
 
     ///////////创建共享
     @RequestMapping(value = "/shareCreate",method = RequestMethod.GET)
-    public String teacherShareCreate(Model model){
+    public String teacherShareCreate(Model model,Long courseId){
+        model.addAttribute("courseId",courseId);
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_create_share";
     }
@@ -114,7 +119,10 @@ public class TeacherCourseController {
     @RequestMapping(value = "/shareCreate",method=RequestMethod.POST)
     @ResponseBody
     public ResponseEntity teacherShareCreateSubmit(Long shareCourseId){
-        courseService.createShare(shareCourseId,courseDetailVO.getId());
+        System.out.println("我进来了");
+        Long mainCourseId=courseDetailVO.getId();
+        System.out.println(mainCourseId);
+        shareService.createShareTeam(mainCourseId,shareCourseId);
         return new ResponseEntity(HttpStatus.OK);
     }
 

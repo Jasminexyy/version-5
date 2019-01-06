@@ -82,7 +82,7 @@ public interface TeamMapper {
      * @return int
      */
     @Insert("insert into team(klass_id,course_id,leader_id,team_name,team_serial,klass_serial,status)" +
-            " values(#{team.klassId},#{team.courseId},#{team.leaderId},#{team.teamName},#{team.teamSerial},#{team.klass_serial},#{team.status})")
+            " values(#{team.klassId},#{team.courseId},#{team.leaderId},#{team.teamName},#{team.teamSerial},#{team.klassSerial},#{team.status})")
     @Options(useGeneratedKeys = true, keyProperty = "team.id")
     int createTeam(@Param("team") Team team);
 
