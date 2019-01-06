@@ -37,6 +37,7 @@ public class TeacherCourseController {
         System.out.println("我的课程");
         userVO= teacherService.getUserVOByAccount(account);
         model.addAttribute("courseList", courseService.listCourseByTeacherId(userVO));
+//        model.addAttribute("teacherId",userVO);
         return "teacher_courseList";
     }
 
@@ -53,6 +54,7 @@ public class TeacherCourseController {
     ////////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.GET)
     public String teacherCourseCreate(Model model){
+        System.out.println("lalalal");
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
