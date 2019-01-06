@@ -73,10 +73,17 @@ public class TeacherSeminarController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    ///////////////////创建讨论课GET
+    @RequestMapping(value = "/create",method = RequestMethod.GET)
+    public String teacherSeminarCreate(String roundName,Model model){
+        model.addAttribute("roundName",roundName);
+        return "teacher_seminar_create";
+    }
+
     ////////////////////创建讨论课
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherSeminarCreate(@RequestBody SeminarInfoVO seminar){
+    public ResponseEntity teacherSeminarCreateSubmit(@RequestBody SeminarInfoVO seminar){
         seminarService.addSeminar(seminar,courseDetailVO);
         return new ResponseEntity(HttpStatus.OK);
     }
