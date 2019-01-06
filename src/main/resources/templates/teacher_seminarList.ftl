@@ -29,7 +29,7 @@
 </center>
 
 <center>
-    <div style="width:90%">
+    <div>
         <#list roundList as roundVO>
         <details>
             <!--所有轮次都在这里-->

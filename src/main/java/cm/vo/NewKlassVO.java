@@ -2,6 +2,7 @@ package cm.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,14 +12,12 @@ import java.util.List;
  * @Date: Created in 2018/12/21
  */
 @Data
-public class SeminarVO{
+public class NewKlassVO {
+    private Integer grade;
 
-    private Long seminarId;
+    private Byte klassSerial;
 
-    private String seminarTopic;
+    private String klassTime;
 
-    private Byte seminarOrder;
-
-    private List<KlassVO> klassVOList;
-
+    private String klassLocation;
 }

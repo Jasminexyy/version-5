@@ -29,12 +29,14 @@ public class StudentCourseController {
         student=studentService.getUserVOByAccount(account);
         Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
         model.addAttribute("courseAndKlassList",maps);
+        model.addAttribute("UserVO",student);
         return "studentCourse";
     }
 
     ///////student course info post
     @RequestMapping(value = "/info",method = RequestMethod.GET)
-    public String studentCourseInfo(long courseId,Model model){
+    public String studentCourseInfo(long klassId,Model model){
+        Long courseId=courseService.getCourseByKlassId(klassId).getId();
         int min;
         int max;
         TeamNeedVO teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
@@ -46,6 +48,9 @@ public class StudentCourseController {
                 max=teamAndStrategyVO.getMemberLimitStrategyVO().getMaxMember();
         model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseService.getCourseById(courseId));
+        Map<String, KlassVO> maps=courseService.listCourseAndKlassByStudentId(student.getId());
+        model.addAttribute("courseAndKlassList",maps);
+
         return "student_course_info";
     }
 
