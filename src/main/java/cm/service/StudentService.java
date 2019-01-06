@@ -110,7 +110,7 @@ public class StudentService {
     }
 
     public List<Student> getStudentNotInTeam(Long courseId,Long studentId) {
-        Long klassId=klassDAO.getKlassIdByCourseIdAndKlassSerial(courseId,studentId);
+        Long klassId=klassDAO.getKlassIdByStudentIdAndCourseId(studentId,courseId);
         return studentDAO.listNoTeamStudentByKlassId(klassId);//班级id
     }
 

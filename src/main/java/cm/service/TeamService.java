@@ -8,6 +8,7 @@ import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,6 +49,26 @@ public class TeamService {
 		return courseKlassVO;
 	}
 
+	TeamVO transferTeamToTeamVO(Team team)
+	{
+		TeamVO teamVO=new TeamVO();
+		teamVO.setCourseKlass(courseKlassToCourseKlassVO(team.getCourseId(),team.getKlassId()));
+		teamVO.setLeader(userToUserVO(studentDAO.getByStudentId(team.getLeaderId())));
+		teamVO.setTeamId(team.getId());
+		teamVO.setTeamName(team.getTeamName());
+		teamVO.setTeamNumber(klassDAO.getByKlassId(team.getKlassId()).getKlassSerial(),team.getTeamSerial());
+		teamVO.setValid(team.getStatus());
+
+		List<Student> studentList=team.getStudents();
+		List<UserVO> userVOList=new LinkedList<UserVO>();
+		for(int i=0;i<studentList.size();i++)
+		{
+			Student student=studentList.get(i);
+			userVOList.add(userToUserVO(student));
+		}
+		teamVO.setMembers(userVOList);
+		return teamVO;
+	}
 	TeamVO teamToTeamVO(Team team)
 	{
 		TeamVO teamVO=new TeamVO();
@@ -123,10 +144,12 @@ public class TeamService {
 
     public List<TeamVO> listTeamByCourseId(Long courseId) {
 		List<Team> teams=teamDAO.listByCourseId(courseId);
-		List<TeamVO> teamVOList=new LinkedList<TeamVO>();
+		System.out.println("TeamService:afterDAO listByCourseId");
+		List<TeamVO> teamVOList=new ArrayList<>();
+		System.out.println("new LinkedList");
 		for(int i=0;i<teams.size();i++)
 		{
-			teamVOList.add(teamToTeamVO(teams.get(i)));
+			teamVOList.add(transferTeamToTeamVO(teams.get(i)));
 		}
 		return teamVOList;
     }

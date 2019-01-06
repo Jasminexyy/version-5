@@ -16,8 +16,8 @@
 	            <span1>
 	                <b><li class="dao li1">+
 	                <ul class="sub sub1">
-						<a href="/cm/student/index"><li class="main">¸öÈËÒ³</li></a>
-						<a href="/cm/student/course/seminar"><li class="main">ÌÖÂÛ¿Î</li></a>
+						<a href="/cm/student/index"><li class="main">ä¸ªäººé¡µ</li></a>
+						<a href="/cm/student/course/seminar"><li class="main">è®¨è®ºè¯¾</li></a>
 				    </ul>
 					</li>               
 					</b>
@@ -35,8 +35,8 @@
 				<table>
 					<#list team.members as student>
 				<tr>
-				<!--×é³¤×éÔ±±êÊ¶¡¢Ñ§ºÅ¡¢Ãû×Ö¡¢¿Î³ÌÃû×Ö-->
-				<td class="fontgreen">×é³¤£º</td>
+				<!--ç»„é•¿ç»„å‘˜æ ‡è¯†ã€å­¦å·ã€åå­—ã€è¯¾ç¨‹åå­—-->
+				<td class="fontgreen">ç»„é•¿ï¼š</td>
 				<td>${student.account}</td>
 				<td>${student.name}</td>
 				</tr>
@@ -48,15 +48,15 @@
 				<div style="height:0.5rem;background-color:#e8e8e8"></div>
 				</#list>
 			</div>
-			<#if !myteam>
+			<#if myteam??>
 				<a href="/cm/student/course/team/create">
 			<div class="header" style="background-color:#9ACD32;color:#ffffff">
-				+´´½¨Ğ¡×é<span class="right">></span>
+				+åˆ›å»ºå°ç»„<span class="right">></span>
 			</div>
 			</a>
 				<br/>
 				<#else>
-					<a href="/cm/student/course/team/myteam/${myTeam.teamId}">
+					<a href="/cm/student/course/team/myteam?id=${myTeam.teamId}">
 					<div class="header" style="background-color:#9ACD32;color:#ffffff">
 						${myTeam.teamNumber} ${myTeam.teamName}
 						<span class="right">></span>

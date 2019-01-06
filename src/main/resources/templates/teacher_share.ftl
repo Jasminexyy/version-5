@@ -54,7 +54,7 @@
 		</#list>
 		<br/>
 		<br/>
-		<input class="green" value="新增共享" onclick="createShare();"/>
+		<a href="/cm/teacher/course/shareCreate?courseId=${courseId}"><button class="button1">新增共享</button></a>
 	</center>
 	</body>
 <script type="text/javascript">

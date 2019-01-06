@@ -185,6 +185,7 @@ public static KlassVO klassToKlassVO(Klass k)
         return true;
     }
 
+
     public void deleteKlassById(long klassId){
         klassDAO.deleteKlass(klassId);
     }

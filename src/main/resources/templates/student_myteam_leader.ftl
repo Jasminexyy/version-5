@@ -14,22 +14,10 @@
 				alert("申请提交成功");
 			}
 		}
-function del() { 
-        if (!confirm("将${student.name}移出小组？")) { 
+		function del() {
+        if (!confirm("确认将他移出小组？")) {
             window.event.returnValue = false; 
-        }else
-		{
-				jQuery.ajax({
-					type:"POST",
-					url:"/cm/student/course/team/delete",
-					processData:false,
-					data:{"studentid": ${student.id}},
-					dataType: 'json',
-					complete:function(data){
-						if(data.status==200)
-							window.location="cm/student/course/team/myteam";
-					}
-				});
+        }
 		}
     } 
 </script>		
@@ -65,13 +53,12 @@ function del() {
 				<td class="fontgreen">组长：</td>
 				<td>${myTeam.leader.account}</td>
 				<td class="fontred">我</td>
-
 				</tr>
-					<#list myTeam.students as student>
+					<#list myTeam.members as student>
 						<tr>
 							<td class="fontgreen">组员：</td>
 							<td>${student.account}</td>
-							<td onclick="del()">${student.studentName}</td>
+							<a href="/cm/student/course/team/myteam/${student.name}"><td onclick="del()">${student.name}</td></a>
 
 						</tr>
 					</#list>
@@ -85,7 +72,7 @@ function del() {
 			<font style="float:left;margin-left:10%;" class="fontgreen">添加成员：</font>
 			</div>
 			<!--未分组的人学号、名字、课程名字-->
-			<$list studentsNotInTeam as s>
+			<#list studentsNotInTeam as s>
 				<div>
 				<table>
 				<tr>
