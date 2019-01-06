@@ -5,7 +5,7 @@
           content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 
     <link href="/css/group.css" type="text/css" rel="stylesheet"/>
-    <title>Enter your title here</title>
+    <title>学生组队</title>
 </head>
 <body>
 <center>
@@ -39,7 +39,8 @@
             <details>
                 <summary class="sumbackgroundw">
                     <!--不合规矩的小组审核提交，其实一样，让它名字变红就好了-->
-                    <#if "${team.valid}"==0><font color="#ff0000"></#if>
+                    <#if "${team.valid}"=="0"><font co
+                                                    lor="#ff0000"></#if>
                         ${team.teamNumber} ${team.teamName}</font>
                 </summary>
                 <div style="border-style:none">
