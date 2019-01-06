@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head style="font-size:35px;">
-  <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
-
+  <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>
+		<script src="/js/jquery_min.js" type="text/javascript"></script>
 	<link href="/css/group.css" type="text/css" rel="stylesheet"/>
 		<title>Enter your title here</title>
 	</head>
 	<body>
 	<script type="text/javascript">
-
 	</script>
 		<center>		
 			<div id="header1" style="background-color:#ffffff;">
@@ -53,10 +52,8 @@
 			</div>
 
 			<div style="height:5rem;background-color:#e8e8e8;border-style:none;"></div>
-			<a href="cm/student/course/team/myteam/quit/${myTeam.teamId}"><input type="submit" value="退组" class="subr" />
+			<a href="/cm/student/course/team/myteam/quit?teamId=${myTeam.teamId}">
+				<input value="退组" class="subr" type="submit"/></a>
 		</center>
-
-
-
 	</body>
 </html>

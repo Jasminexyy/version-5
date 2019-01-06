@@ -55,7 +55,6 @@
 							<td>
 								<a href="/cm/student/course/team/delete?studentNum=${student.account}">${student.name}
 								</a></td>
-
 						</tr>
 					</#list>
 
@@ -68,14 +67,16 @@
 			<font style="float:left;margin-left:10%;" class="fontgreen">添加成员：</font>
 			</div>
 			<!--未分组的人学号、名字、课程名字-->
-			<#list studentList as s>
+
 				<div>
 				<table>
+					<#list studentList as s>
 				<tr>
-				<td><input name="stuname" type="checkbox" value="" />${s.account}</td>
-				<td>${s.studentName}</td>
+					<td>${s.account}</td>
+					<td><a href="/cm/student/course/team/add?account=${s.account}">
+						${s.studentName}</a></td>
 				</tr>
-			</#list>
+					</#list>
 				</table>
 				</div>
 <div style="height:3rem;background-color:#e8e8e8;border-style:none;"></div>
@@ -84,7 +85,6 @@
 			<br/>
 			</#if>
 			<a href="/cm/student/course/team/disband?teamId=${myTeam.teamId}"><input type="submit" value="解散小组" class="subr"/></a>
-			<input type="submit" value="添加" class="sub3"/>
 		</center>
 
 

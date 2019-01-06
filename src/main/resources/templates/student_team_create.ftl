@@ -1,4 +1,4 @@
-<!DOCTYPE html
+<!DOCTYPE html>
 <html>
 	<head style="font-size:35px;">
   <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
@@ -12,7 +12,7 @@
 	            <span>
 	                <b><</b>
 	            </span>
-	        OOAD 2016-(1)
+				${course.courseName} ${klass.klassName}
 	            <span1>
 	                <b><li class="dao li1">
 	                &nbsp;
@@ -25,32 +25,32 @@
 			</div>
 			
 			<div class="div1">
-			<font style="float:left;margin-left:10%;">Ğ¡×éÃû£º</font>
-			<input type="text" name="groupname" value="ÌîĞ´×éÃû">
+			<font style="float:left;margin-left:10%;">å°ç»„åï¼š</font>
+			<input type="text" name="groupname" value="å¡«å†™ç»„å">
 			</div>
 
 			<div class="div1">
-			<font style="float:left;margin-left:10%;">Ìí¼Ó³ÉÔ±£º</font>
+			<font style="float:left;margin-left:10%;">æ·»åŠ æˆå‘˜ï¼š</font>
 			</div>
 			
 				<div>
 				<table>
-				<#list >
+				<#list studentList as student>
 				<tr>
-				<!--Ñ§ºÅ¡¢Ãû×Ö¡¢¿Î³ÌÃû×Ö-->
-				<td><input name="stuname" type="checkbox" value="" />1111111111</td>
-				<td>Íõ¶ş</td>
+				<!--å­¦å·ã€åå­—ã€è¯¾ç¨‹åå­—-->
+				<td><input name="stuname" type="checkbox" value="" />${student.account}</td>
+				<td>${student.studentName}</td>
 				</tr>
 				</#list>
 				</table>
 				</div>
-				
-			<div style="height:3rem;background-color:#e8e8e8"></div>	
-			
+
+			<br/>
+
 			<div class="header" style="background-color:#9ACD32;color:#ffffff">
-		È·ÈÏÌá½»
-	    <br/>
-	</div>	
+		ç¡®è®¤æäº¤
+			</div>
+
 		</center>
 
 

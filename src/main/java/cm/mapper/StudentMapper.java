@@ -154,6 +154,14 @@ public interface StudentMapper {
     int deleteByStudentId(Long studentId);
 
     /**
+     * 删除学生小组表
+     * @param teamId
+     * @return int
+     */
+    @Delete("delete from team_student where team_id=#{teamId}")
+    int deletestudenteamByTeamId(Long teamId);
+
+    /**
      * 得到小组中的全部成员
      * @param teamId
      * @return java.util.List<cm.entity.Student>

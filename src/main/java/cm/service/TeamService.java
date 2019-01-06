@@ -33,6 +33,9 @@ public class TeamService {
 
 	public TeamVO getMyTeam(long courseId, long studentId){
 		Team team=teamDAO.getByCourseIdAndStudentId(courseId,studentId);
+		if(team==null)
+			return null;
+		else
 		return teamToTeamVO(team);
 	}
 
@@ -72,12 +75,17 @@ public class TeamService {
 	TeamVO teamToTeamVO(Team team)
 	{
 		TeamVO teamVO=new TeamVO();
+		if(courseKlassToCourseKlassVO(team.getCourseId(),team.getKlassId())==null)
+		{
+			return null;
+		}
 		teamVO.setCourseKlass(courseKlassToCourseKlassVO(team.getCourseId(),team.getKlassId()));
 		teamVO.setLeader(userToUserVO(studentDAO.getByStudentId(team.getLeaderId())));
 		teamVO.setTeamId(team.getId());
 		teamVO.setTeamName(team.getTeamName());
 		teamVO.setTeamNumber(klassDAO.getByKlassId(team.getKlassId()).getKlassSerial(),team.getTeamSerial());
 		strategyDAO.judgeTeamValid(team);
+
 		teamVO.setValid(team.getStatus());
 
 		List<Student> studentList=team.getStudents();
@@ -113,7 +121,7 @@ public class TeamService {
 		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
 
-	public void addMember(long studentId,long teamId,List<String> studentNum){
+	public void addMember(long studentId,long teamId){
 		teamDAO.addTeamMemberByTeamIdAndStudentId(teamId,studentId);
 		strategyDAO.judgeTeamValid(teamDAO.getByTeamId(teamId));
 	}
@@ -122,6 +130,7 @@ public class TeamService {
 		List<Attendance> attendanceList=attendanceDAO.listByTeamId(teamId);
 		for(int i=0;i<attendanceList.size();i++)
 		attendanceDAO.deleteAttendanceByAttendanceId(attendanceList.get(i).getId());
+		studentDAO.deletestudenteamByTeamId(teamId);
 		deleteTeam(teamId);
 	}
 

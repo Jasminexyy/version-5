@@ -12,7 +12,7 @@
 	            <span>
 	                <b><</b>
 	            </span>
-				${myTeam.courseKlass.courseName} ${myTeam.courseKlass.klassName}
+				${course.courseName} ${klass.klassName}
 	            <span1>
 	                <b><li class="dao li1">+
 	                <ul class="sub sub1">
@@ -54,21 +54,24 @@
 				<div style="height:0.5rem;background-color:#e8e8e8"></div>
 				</#list>
 			</div>
-			<#if myteam??>
-				<a href="/cm/student/course/team/create">
-			<div class="header" style="background-color:#9ACD32;color:#ffffff">
-				+创建小组<span class="right">></span>
-			</div>
-			</a>
-				<br/>
-				<#else>
-					<a href="/cm/student/course/team/myteam?id=${myTeam.teamId}">
+			<#if myTeam??>
+				<a href="/cm/student/course/team/myteam?id=${myTeam.teamId}">
 					<div class="header" style="background-color:#9ACD32;color:#ffffff">
 						${myTeam.teamNumber} ${myTeam.teamName}
 						<span class="right">></span>
 					</div>
-					</a>
-					<br/>
+				</a>
+				<br/>
+
+				<#else>
+					<div>
+						<a href="/cm/student/course/team/create">
+							<div class="header" style="background-color:#9ACD32;color:#ffffff">
+								+创建小组<span class="right">></span>
+							</div>
+						</a>
+						<br/>
+					</div>
 					</#if>
 		</center>
 	</body>

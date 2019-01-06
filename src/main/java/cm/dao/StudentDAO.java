@@ -43,6 +43,11 @@ public class StudentDAO {
         return studentMapper.getByAccount(nameOrAccount);
     }
 
+    public void deletestudenteamByTeamId(Long teamId)
+    {
+        studentMapper.deletestudenteamByTeamId(teamId);
+    }
+
     public Integer activateByStudentId(String passWord, String email, Long userId) {
         return studentMapper.activateByStudentId(passWord,email,userId);
     }
