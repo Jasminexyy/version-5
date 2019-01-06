@@ -28,7 +28,7 @@
 		<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.seminarName}</td></tr>
 		<tr><td class="c2">课次序号：</td><td class="c5">${seminarInfo.seminarSerial}</td><td class="c2"></td></tr>
 		<tr><td class="c10">要求：</td><td class="c4">${seminarInfo.introduction}</td></tr>
-		<tr><td class="c2">课程情况：</td><td class="c5">未开始</td><td class="c2"><a href="/cm/student/seminar/enrollList/${klassId}/${seminarInfo.seminarId}"><u class="u1">报名情况</u></a></td></tr>
+		<tr><td class="c2">课程情况：</td><td class="c5">未开始</td><td class="c2"><a href="/cm/student/seminar/enrollList?klassId=${klassId}&seminarId=${seminarInfo.seminarId}"><u class="u1">报名情况</u></a></td></tr>
 		<tr><td class="c10"></td><td class="c4"></td></tr>
 		<tr><td class="c8">报名开始时间：</td><td class="c9">${seminarInfo.enrollStartTime}</td></tr>
 		<tr><td class="c8">报名截止时间：</td><td class="c9">${seminarInfo.enrollEndTime}</td></tr>
@@ -40,7 +40,7 @@
 	<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.seminarName}</td></tr>
 	<tr><td class="c2">课次序号：</td><td class="c5">${seminarInfo.seminarSerial}</td><td class="c2"></td></tr>
 	<tr><td class="c10">要求：</td><td class="c4">${seminarInfo.introduction}</td></tr>
-	<tr><td class="c2">课程情况：</td><td class="c5">正在进行</td><td class="c2"><a href="/cm/student/seminar/enrollList"><u class="u1">报名情况</u></a></td></tr>
+	<tr><td class="c2">课程情况：</td><td class="c5">正在进行</td><td class="c2"><a href="/cm/student/seminar/enrollList?klassId=${klassId}&seminarId=${seminarInfo.seminarId}"><u class="u1">报名情况</u></a></td></tr>
 	<#if attendance??>
 		<tr><td class="c2">PPT：</td><td class="c5">
 				<#if attendance.pptName??>
@@ -62,7 +62,8 @@
 		<tr><td class="c10">主题：</td><td class="c4">${seminarInfo.SeminarName}</td></tr>
 		<tr><td class="c2">课次序号：</td><td class="c5">${seminarInfo.seminarSerial}</td><td class="c2"></td></tr>
 		<tr><td class="c10">要求：</td><td class="c4">${seminarInfo.introduction}</td></tr>
-		<tr><td class="c2">课程情况：</td><td class="c5">已结束</td><td class="c2"><a href="/cm/student/seminar/enrollList"><u class="u1">报名情况</u></a></td></tr>
+		<tr><td class="c2">课程情况：</td><td class="c5">已结束</td><td class="c2">
+                <a href="/cm/student/seminar/enrollList?klassId=${klassId}&seminarId=${seminarInfo.seminarId}"><u class="u1">报名情况</u></a></td></tr>
 		<#if attendance??>
 			<tr><td class="c2">PPT：</td><td class="c5">
 					<#if attendance.pptName??>

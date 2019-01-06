@@ -52,7 +52,8 @@ public class CourseDAO {
 
     public int updateCourse(Course course)
     {
-        return courseMapper.updateCourse(course);
+//        return courseMapper.updateCourse(course);
+        return 1;
     }
 
     public Long getTeacherIdByCourseId(Long courseId){

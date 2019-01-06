@@ -62,6 +62,7 @@ public class StudentSeminarController {
     ///////student seminar info
     @RequestMapping(value = "/info/{klassId}/{seminarId}",method = RequestMethod.GET)
     public String studentSeminarInfo(@PathVariable Long klassId,@PathVariable Long seminarId,Model model){
+        System.out.println("上一个页面的有吗"+klassId);
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         String courseName=courseService.getCourseById(courseId).getCourseName();
         model.addAttribute("courseName",courseName);
@@ -72,15 +73,14 @@ public class StudentSeminarController {
     }
 
     //////student enroll List
-    @RequestMapping(value = "/enrollList/{klassId}/{seminarId}",method = RequestMethod.GET)
-    public String studentSeminarEnrollList(Model model, @PathVariable Long klassId, @PathVariable Long seminarId){
-        System.out.println(klassId);
-        System.out.println(seminarId);
+    @RequestMapping(value = "/enrollList",method = RequestMethod.GET)
+    public String studentSeminarEnrollList(Model model,Long klassId,Long seminarId){
+        System.out.println(klassId+" "+seminarId);
         Long klassSeminarId=klassSeminarService.getKlassSeminarIdByEach(klassId,seminarId);
-        System.out.println("hhhh"+klassSeminarId);
         SeminarInfoVO seminarInfoVO=seminarService.getSeminarInfo(klassSeminarId);
         model.addAttribute("seminarInfo",seminarInfoVO);
-        model.addAttribute("team",teamService.getMyTeam(courseDetailVO.getId(),student.getId()));
+        Long courseId=courseService.getCourseByKlassId(klassId).getId();
+        model.addAttribute("team",teamService.getMyTeam(courseId,student.getId()));
         return "student_enrolling";
     }
 

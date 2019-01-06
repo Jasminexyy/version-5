@@ -184,11 +184,19 @@ public class SeminarService {
     public AttendanceListVO getAttendanceList(Long klassSeminarId) {
         List<AttendanceVO> attendanceVOS=new LinkedList<AttendanceVO>();
         List<Attendance> attendanceList=attendanceDAO.listByKlassSeminarId(klassSeminarId);
+        KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
         for(int i=0;i<attendanceList.size();i++)
         {
             Attendance attendance=attendanceList.get(i);
             AttendanceVO attendanceVO=new AttendanceVO();
             attendanceVO.setTeamOrder(attendance.getTeamOrder());
+            attendanceVO.setAttendanceId(attendance.getId());
+            attendanceVO.setIsPresent(attendance.getIsPresent());
+            Klass klass=klassDAO.getByKlassId(klassSeminar.getKlassId());
+            attendanceVO.setKlassName(klass.getGrade(),klass.getKlassSerial());
+            attendanceVO.setPptName(attendance.getPptName());
+            attendanceVO.setReportName(attendance.getReportName());
+            attendanceVO.setTeamName(klass.getKlassSerial(),teamDAO.getByTeamId(attendance.getTeamId()).getTeamSerial());
             attendanceVOS.add(attendanceVO);
         }
         AttendanceListVO attendanceListVO=new AttendanceListVO();
@@ -230,6 +238,7 @@ KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
         seminarInfoVO.setSeminarSerial(seminar.getSeminarSerial());
 seminarInfoVO.setCourseName(courseDAO.getByCourseId(klassDAO.getCourseIdByKlassId(klassSeminar.getKlassId())).getCourseName());
 seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
+seminarInfoVO.setSeminarId(klassSeminar.getSeminarId());
         seminarInfoVO.setAttendanceListVO(getAttendanceList(klassSeminarId));
         seminarInfoVO.setEnrollEndTime(seminar.getEnrollStartTime().toString());
         seminarInfoVO.setEnrollStartTime(seminar.getEnrollEndTime().toString());
