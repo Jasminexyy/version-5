@@ -136,6 +136,7 @@ public class TeacherCourseController {
     //////////创建班级
     @RequestMapping(value = "/klass/create",method = RequestMethod.GET)
     public String teacherKlassCreate(){
+        System.out.println("为什么会400");
         return "teacher_klass_create";
     }
 

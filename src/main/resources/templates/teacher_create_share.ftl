@@ -3,6 +3,7 @@
 	<head style="font-size:35px">
 	     <meta name="viewport" content="width=device-width,user-scale=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 	    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
+		<script src="/js/jquery_min.js" type="text/javascript"></script>
 		<title>新增共享</title>
 	</head>
 
@@ -11,11 +12,7 @@
 function send_courseId(){
 	var sel=document.getElementById("selected_course");
 	var index = sel.selectedIndex;
-	var selected_courseId;
-	for(var i=0;i<courseList.length;i++){
-		if(sel.options[index].value.equals(courseList[i].name+courseList[i].teacherName)
-			selected_courseId=courseList[i].id;
-	}
+	var selected_courseId=sel.option[index].value;
 
 		jQuery.ajax({
 			type:"POST",
@@ -53,7 +50,8 @@ function send_courseId(){
 	    
 	    <p>共享对象：<select id="selected_course" class="s1">
 				<#list courseList as courseVO>
-	    <option>${courseVO.name} ${courseVO.teacherName}</option>
+
+					<option value="${courseVO.id}">${courseVO.name} ${courseVO.teacherName}</option>
 				</#list>
 	    </select></p>
 	    </div>
