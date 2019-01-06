@@ -96,8 +96,11 @@ public class TeacherCourseController {
 
     ///////////共享情况
     @RequestMapping(value = "/share",method = RequestMethod.GET)
-    public String teacherShare(Model model){
-        model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(userVO.getId(),courseDetailVO.getId()));
+    public String teacherShare(Model model,Long courseId){
+        System.out.println("我进来了嘛？");
+        System.out.println(userVO.getId());
+        System.out.println(courseId);
+        model.addAttribute("shareCourseList",shareService.listByTeacherIdAndCourseId(userVO.getId(),courseId));
         return "teacher_share";
     }
 
