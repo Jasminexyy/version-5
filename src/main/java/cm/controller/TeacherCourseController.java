@@ -59,21 +59,14 @@ public class TeacherCourseController {
         model.addAttribute("courseList",courseService.listAllCourse());
         return "teacher_course_create";
     }
-////////////////////////////////创建课程
-//    @RequestMapping(value = "/create",method = RequestMethod.POST)
-//    @ResponseBody
-//    public ResponseEntity teacherCourseCreateSubmit(@RequestBody CourseDetailVO course){
-//        if(courseService.addCourse(course,userVO))
-//            return new ResponseEntity(HttpStatus.OK);
-//        else
-//            return new ResponseEntity(HttpStatus.CONFLICT);
-//    }
-
+//////////////////////////////创建课程
     @RequestMapping(value = "/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherCourseCreateSubmit(@RequestBody String courseName,@RequestBody String intro){
-        System.out.println("why not create");
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity teacherCourseCreateSubmit(@RequestBody CourseDetailVO course){
+        if(courseService.addCourse(course,userVO))
+            return new ResponseEntity(HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.CONFLICT);
     }
 
     //////////////////////////////删除课程
@@ -155,8 +148,8 @@ public class TeacherCourseController {
 
     @RequestMapping(value = "/klass/create",method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO){
-        if(klassService.addKlass(klassVO,courseDetailVO))
+    public ResponseEntity teacherKlassCreateSubmit(@RequestBody KlassVO klassVO,@RequestBody MultipartFile multipartFile){
+        if(klassService.addKlass(klassVO,courseDetailVO,multipartFile))
             return new ResponseEntity(HttpStatus.OK);
         else
             return new ResponseEntity(HttpStatus.CONFLICT);

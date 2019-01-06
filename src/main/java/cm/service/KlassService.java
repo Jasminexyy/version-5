@@ -43,6 +43,9 @@ public class KlassService {
     private KlassSeminarService klassSeminarService;
     @Autowired
     private TeamService teamService;
+
+    @Autowired
+    private
     /**
      * 根据KlassVO，CourseId与TeacherId创建Klass 用在CourseController 新建班级
      * @param klassVO
@@ -169,7 +172,7 @@ public static KlassVO klassToKlassVO(Klass k)
         return student;
     }
 
-    public boolean addKlass(KlassVO klassVO, CourseDetailVO courseDetailVO) {
+    public boolean addKlass(KlassVO klassVO, CourseDetailVO courseDetailVO,MultipartFile multipartFile) {
         Klass klass=new Klass();
         klass.setGrade(klassVO.getGrade());
         klass.setKlassLocation(klassVO.getKlassLocation());
@@ -183,6 +186,7 @@ public static KlassVO klassToKlassVO(Klass k)
         }
         klass.setStudents(students);
         klassDAO.createByCourseId(klass,courseDetailVO.getId());
+        listStudentByExcel(multipartFile);
         return true;
     }
 
