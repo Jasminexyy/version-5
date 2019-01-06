@@ -8,7 +8,6 @@ import cm.entity.*;
 import cm.utils.FileReadUtil;
 import cm.vo.CourseDetailVO;
 import cm.vo.KlassVO;
-import cm.vo.NewKlassVO;
 import cm.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,8 +44,8 @@ public class KlassService {
     @Autowired
     private TeamService teamService;
 
-    @Autowired
-    private FileReadUtil fileReadUtil;
+  //  @Autowired
+   // private
     /**
      * 根据KlassVO，CourseId与TeacherId创建Klass 用在CourseController 新建班级
      * @param klassVO
@@ -173,15 +172,21 @@ public static KlassVO klassToKlassVO(Klass k)
         return student;
     }
 
-    public boolean addKlass(NewKlassVO klassVO, CourseDetailVO courseDetailVO, MultipartFile multipartFile) {
+    public boolean addKlass(KlassVO klassVO, CourseDetailVO courseDetailVO,MultipartFile multipartFile) {
         Klass klass=new Klass();
         klass.setGrade(klassVO.getGrade());
         klass.setKlassLocation(klassVO.getKlassLocation());
         klass.setKlassSerial(klassVO.getKlassSerial());
         klass.setKlassTime(klassVO.getKlassTime());
+        List<UserVO> studentList=klassVO.getStudentVOList();
+        List<Student> students=new LinkedList<Student>();
+        for(int i=0;i<studentList.size();i++)
+        {
+            students.add(userVOTostudent(studentList.get(i)));
+        }
+        klass.setStudents(students);
         klassDAO.createByCourseId(klass,courseDetailVO.getId());
-        List<Student> students=fileReadUtil.listStudentByExcel(multipartFile);
-        studentDAO.createStudent(students);
+      //  listStudentByExcel(multipartFile);
         return true;
     }
 
