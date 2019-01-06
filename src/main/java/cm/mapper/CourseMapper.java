@@ -34,8 +34,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     List<Course> listAllCourse();
 
@@ -58,8 +58,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     List<Course> listByStudentId(@Param("studentId") Long studentId);
 
@@ -90,8 +90,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     List<Course> listByTeacherId(@Param("teacherId") Long teacherId);
 
@@ -113,8 +113,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     Course getByCourseId(@Param("courseId") Long courseId);
 
@@ -136,8 +136,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     List<Course> listByTeamMainCourseId(@Param("courseId") Long courseId);
 
@@ -159,8 +159,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     List<Course> listBySeminarMainCourseId(@Param("courseId") Long courseId);
 
@@ -183,8 +183,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     Course getByCourseIdAndTeacherId(@Param("courseId") Long courseId,
                                      @Param("teacherId") Long teacherId);
@@ -208,8 +208,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     Course getByKlassIdAndTeacherId(@Param("klassId") Long klassId,
                                     @Param("teacherId") Long teacherId);
@@ -233,8 +233,8 @@ public interface CourseMapper {
             @Result(property = "teamEndTime", column = "team_end_time"),
             @Result(property = "teamMainCourseId", column = "team_main_course_id"),
             @Result(property = "seminarMainCourseId", column = "seminar_main_course_id"),
-            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId", fetchType = FetchType.LAZY)),
-            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId", fetchType = FetchType.LAZY))
+            @Result(property = "rounds", column = "id", many = @Many(select = "cm.mapper.RoundMapper.listByCourseId")),
+            @Result(property = "klasses", column = "id", many = @Many(select = "cm.mapper.KlassMapper.listByCourseId"))
     })
     Course getByKlassId(@Param("klassId") Long klassId);
     /**
@@ -269,4 +269,23 @@ public interface CourseMapper {
     @Options(useGeneratedKeys = true, keyProperty = "course.id")
     int createCourse(@Param("teacherId") Long teacherId,
                      @Param("course") Course course);
+
+    /**
+     * 更新课程
+     * @param course
+     * @return
+     */
+    @Update("update course set teacher_id=#{course.teacherId}," +
+            "course_name=#{course.courseName}," +
+            "introduction=#{course.introduction}," +
+            "presentation_percentage=#{course.presentationPercentage}," +
+            "question_percentage=#{course.questionPercentage}," +
+            "report_percentage=#{course.reportPercentage}," +
+            "team_start_time=#{course.teamStartTime}," +
+            "team_end_time=#{course.teamEndTime}," +
+            "team_main_course_id=#{course.teamMainCourseId}," +
+            "seminar_main_course_id=#{course.seminarMainCourseId} where id = #{courseId}")
+    int updateCourse(@Param("course") Course course,
+                     @Param("courseId") Long courseId);
+
 }

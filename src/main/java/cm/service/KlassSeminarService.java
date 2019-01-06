@@ -15,4 +15,8 @@ public class KlassSeminarService {
     public void deleteByKlassSeminarId(long klassSeminarId){
         klassSeminarDAO.deleteByKlassSeminarId(klassSeminarId);
     }
+
+    public Long getKlassSeminarIdByEach(long klassId,long seminarId){
+        return klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId).getId();
+    }
 }

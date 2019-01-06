@@ -5,10 +5,12 @@ import cm.entity.*;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -37,19 +39,47 @@ public class SeminarService {
     private QuestionDAO questionDAO;
 
 
+
+
     public KlassSeminar findKlassSeminarById(Long klassId, Long seminarId){
         return klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId);
+    }
+
+    public Timestamp convert(String text){
+        SimpleDateFormat defaultDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Timestamp timestamp=null;
+        if(StringUtils.hasText(text)){
+            text = text.trim();
+            boolean isLong = true;
+            try {
+                long millisecond = Long.parseLong(text);
+                timestamp=new Timestamp(millisecond);
+            }catch(Exception e){
+                isLong = false;
+            }
+            if(!isLong) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String format = defaultDateFormat.format(sdf.parse(text));
+                    System.out.println(format);
+                } catch (ParseException var3) {
+                    throw new IllegalArgumentException("Could not parse date: " + var3.getMessage(), var3);
+                }
+            }
+        }
+        return timestamp;
     }
 
 
     public Seminar TransferSeminarInfoToSeminar(SeminarInfoVO seminarInfoVO,CourseDetailVO course){
         Seminar seminar=new Seminar();
-        Timestamp startTime=Timestamp.valueOf(seminarInfoVO.getEnrollStartTime());
-        Timestamp endTime=Timestamp.valueOf(seminarInfoVO.getEnrollEndTime());
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Timestamp startTime=convert(seminarInfoVO.getEnrollStartTime());
+//        Timestamp endTime=convert(seminarInfoVO.getEnrollEndTime());
         seminar.setCourseId(course.getId());
         seminar.setSeminarName(seminarInfoVO.getSeminarName());
-        seminar.setEnrollEndTime(endTime);
-        seminar.setEnrollStartTime(startTime);
+//        seminar.setEnrollEndTime(endTime);
+//        seminar.setEnrollStartTime(startTime);
         seminar.setIntroduction(seminarInfoVO.getIntroduction());
         seminar.setIsVisible(seminarInfoVO.getIsVisible());
         seminar.setMaxTeam(seminarInfoVO.getTeamNumLimit());
@@ -189,11 +219,12 @@ public class SeminarService {
     public SeminarInfoVO getSeminarInfo(Long klassSeminarId) {
         SeminarInfoVO seminarInfoVO=new SeminarInfoVO();
 KlassSeminar klassSeminar=klassSeminarDAO.getByKlassSeminarId(klassSeminarId);
-        seminarInfoVO.setSeminarId(klassSeminarId);
+        seminarInfoVO.setSeminarId(klassSeminar.getSeminarId());
         //通过seminarid找到seminar然后得到intro
         Seminar seminar=seminarDAO.getBySeminarId(klassSeminar.getSeminarId());
         Round round=roundDAO.getByRoundId(seminar.getRoundId());
         seminarInfoVO.setIntroduction(seminar.getIntroduction());
+        seminarInfoVO.setKlassId(klassSeminar.getKlassId());
         seminarInfoVO.setRoundSerial(round.getRoundSerial());
         seminarInfoVO.setSeminarName(seminar.getSeminarName());
         seminarInfoVO.setSeminarSerial(seminar.getSeminarSerial());
@@ -350,5 +381,11 @@ seminarInfoVO.setSeminarStatus(klassSeminar.getStatus());
                 Long teamId=questionDAO.getTeamIdByQuestionId(questionId);
                 seminarScoreDAO.updateSeminarScore(seminarScore,klassSeminarId,teamId);
         }
+    }
+
+    public void modifystatus(Long seminarId, Long klassId, byte status) {
+        Long k=klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId).getId();
+        System.out.println(k);
+       klassSeminarDAO.setKlassSeminarStatus(k,status);
     }
 }

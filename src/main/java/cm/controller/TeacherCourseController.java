@@ -87,12 +87,11 @@ public class TeacherCourseController {
 //    }
 
     //////////////学生组队
-    @RequestMapping(value="/teamList",method = RequestMethod.POST)
+    @RequestMapping(value="/teamList",method = RequestMethod.GET)
     public String teacherTeamList(Long courseId,Model model){
-        System.out.println(courseId);
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
-        return "teacher_teamList";
+        return "teacher_check_group";
     }
 
     ///////////共享情况

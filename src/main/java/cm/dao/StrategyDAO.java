@@ -39,6 +39,8 @@ public class StrategyDAO {
 
     @Autowired
     private TeamOrStrategyMapper teamOrStrategyMapper;
+    @Autowired
+    private CourseMapper courseMapper;
 
     /**
      * 总判断入口
@@ -118,8 +120,9 @@ public class StrategyDAO {
         Integer klassNum=0,klassTypeNum=0;
         for (ConflictCourseStrategy conflictCourseStrategy:conflictCourseStrategyList) {
             for (Student student:team.getStudents()) {
-                for (Long courseId:student.getCourseIdList()) {
-                    if (courseId.equals(conflictCourseStrategy.getCourseId())) {
+                List<Course> tmp=courseMapper.listByStudentId(student.getId());
+                for (Course course:tmp) {
+                    if (course.getId().equals(conflictCourseStrategy.getCourseId())) {
                         klassNum++;
                     }
                 }
@@ -149,10 +152,13 @@ public class StrategyDAO {
 
     private Boolean judgeByCourseMemberLimitStrategy(Long strategyId, Team team){
         CourseMemberLimitStrategy courseMemberLimitStrategy=courseMemberLimitStrategyMapper.getByStrategyId(strategyId);
+        System.out.println("StrategyDAO:judgeByCourseMemberLimitStrategy");
         Integer count=0;
         for (Student student:team.getStudents()) {
-            for (Long courseId:student.getCourseIdList()) {
-                if (courseId.equals(courseMemberLimitStrategy.getCourseId())) {
+                List<Course> tmp=courseMapper.listByStudentId(student.getId());
+            for (Course course:tmp) {
+                //System.out.println(courseMemberLimitStrategy.getCourseId());
+                if (course.getId().equals(courseMemberLimitStrategy.getCourseId())) {
                     count++;
                 }
             }

@@ -84,9 +84,7 @@
 <center>
     <div id="header1">
         <center>
-	            <span>
-	                <
-	            </span>
+	            <span><</span>
             ${seminarInfo.courseName}-讨论课
             <span1>
                 <li class="dao li1">+

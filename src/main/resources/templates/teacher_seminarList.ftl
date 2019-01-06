@@ -10,9 +10,7 @@
 <body>
 <center>
     <div id="header1">
-	            <span>
-	                <
-	            </span>
+	            <span><</span>
         ${courseName}
         <span1>
             <li class="dao li1">+
@@ -22,45 +20,39 @@
                     <li class="main">讨论课</li>
                 </ul>
             </li>
-
         </span1>
     </div>
     </div>
 </center>
-
 <center>
     <div>
         <#list roundList as roundVO>
-        <details>
+            <details>
             <!--所有轮次都在这里-->
             <summary  id="sumbackgroundw">第${roundVO.roundNumber}轮</summary>
-            <div  id="backcolor">
-                该轮轮次设置
-                <span class="right">></span>
-                <br/>
-            </div>
-<#list roundVO.seminarVOList as seminarVO>
-            <details>
+        <div  id="backcolor">
+            该轮轮次设置
+            <span class="right">></span>
+            <br/>
+        </div>
+            <#list roundVO.seminarVOList as seminarVO>
+                <details>
                 <!--每个轮次讨论课名字不一样-->
                 <summary id="sumbackgroundw-summary">${seminarVO.seminarTopic}</summary>
                 <#list klassList as klassVO>
-                <div  id="backcolor">
-                   ${klassVO.klassName}
-                    <a href="/cm/teacher/course/seminar/info?klassId=${klassVO.klassId}&seminarId=${seminarVO.seminarId}"><span class="right">></span></a>
+                    <div  id="backcolor">
+                    ${klassVO.klassName}
+                <a href="/cm/teacher/course/seminar/info?klassId=${klassVO.klassId}&seminarId=${seminarVO.seminarId}"><span class="right">></span></a>
                     <br/>
-                </div>
+                    </div>
                 </#list>
-
+                </details>
+            </#list>
+            <a style="color:lightgreen" href="/cm/teacher/course/seminar/create?roundName=${roundVO.roundNumber}">新建讨论课</a>
             </details>
-</#list>
-
-        </details>
         </#list>
     </div>
-
-    <a href="/cm/teacher/course/seminar/create"><button>+新建讨论课</button></a>
-
-
+    <a href=""><button>+新建轮次</button></a>
 </center>
 
 </body>

@@ -6,7 +6,7 @@
 scale=1.0,minimum-scale=1.0">
 
 	<link href="/css/newseminar.css" type="text/css" rel="stylesheet"/>
-	<title>Enter your title here</title>
+	<title>我的课程</title>
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 </head>
 <body>
@@ -50,7 +50,7 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-				<a href="/cm/student/course/team/teamList?account=${UserVO.account}&klassId=${courseAndKlassList[key].klassId}">
+				<a href="/cm/student/course/team/teamList?account=${account}&klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的组队
 						<span class="right">></span>

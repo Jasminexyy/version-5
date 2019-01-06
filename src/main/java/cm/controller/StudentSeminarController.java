@@ -5,6 +5,7 @@ import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,8 @@ public class StudentSeminarController {
     private TeamService teamService;
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private KlassSeminarService klassSeminarService;
 
     UserVO student;
 
@@ -62,19 +65,23 @@ public class StudentSeminarController {
         Long courseId=courseService.getCourseByKlassId(klassId).getId();
         String courseName=courseService.getCourseById(courseId).getCourseName();
         model.addAttribute("courseName",courseName);
+        model.addAttribute("klassId",klassId);
         model.addAttribute("seminarInfo",seminarService.getSeminarInfo(klassId,seminarId));
         model.addAttribute("attendance",seminarService.getAttendance(klassId,seminarId,student.getId()));
         return "student_seminar_info";
     }
 
     //////student enroll List
-    @RequestMapping(value = "/enrollList",method = RequestMethod.GET)
-    public String studentSeminarEnrollList(Model model,Long klassSeminarId){
+    @RequestMapping(value = "/enrollList/{klassId}/{seminarId}",method = RequestMethod.GET)
+    public String studentSeminarEnrollList(Model model, @PathVariable Long klassId, @PathVariable Long seminarId){
+        System.out.println(klassId);
+        System.out.println(seminarId);
+        Long klassSeminarId=klassSeminarService.getKlassSeminarIdByEach(klassId,seminarId);
+        System.out.println("hhhh"+klassSeminarId);
         SeminarInfoVO seminarInfoVO=seminarService.getSeminarInfo(klassSeminarId);
         model.addAttribute("seminarInfo",seminarInfoVO);
         model.addAttribute("team",teamService.getMyTeam(courseDetailVO.getId(),student.getId()));
-
-        return "student_seminar_enrollList";
+        return "student_enrolling";
     }
 
 
