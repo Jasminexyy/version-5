@@ -29,6 +29,7 @@ public class TeacherCourseController {
 
     CourseDetailVO courseDetailVO;
     UserVO userVO=new UserVO();
+    TeamNeedVO teamNeedVO;
 
     //课程管理
     @RequestMapping(value = "/courselist",method= RequestMethod.GET)
@@ -40,9 +41,11 @@ public class TeacherCourseController {
     }
 
     /////////////////////////////////////课程详情页
-    @RequestMapping(value="/info",method = RequestMethod.POST)
+    @RequestMapping(value="/info",method = RequestMethod.GET)
     public String teacherCourseInfo(Long courseId,Model model){
         courseDetailVO=courseService.getCourseById(courseId);
+        teamNeedVO=courseService.getTeamStrategyByCourseId(courseId);
+        model.addAttribute("teamNeedVO",teamNeedVO);
         model.addAttribute("curCourse",courseDetailVO);
         return "teacher_courseInfo";
     }
@@ -82,6 +85,7 @@ public class TeacherCourseController {
     //////////////学生组队
     @RequestMapping(value="/teamList",method = RequestMethod.POST)
     public String teacherTeamList(Long courseId,Model model){
+        System.out.println(courseId);
         courseDetailVO=courseService.getCourseById(courseId);
         model.addAttribute("teamList",teamService.listTeamByCourseId(courseId));
         return "teacher_teamList";
@@ -120,8 +124,9 @@ public class TeacherCourseController {
     }
 
     ////////班级管理
-    @RequestMapping(value="/klassList",method = RequestMethod.POST)
+    @RequestMapping(value="/klassList",method = RequestMethod.GET)
     public String teacherKlassManage(Long course_id,Model model){
+        System.out.println("进来了");
         courseDetailVO=courseService.getCourseById(course_id);
 
         model.addAttribute("klassList",klassService.listKlassByCourseId(course_id));

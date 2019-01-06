@@ -38,22 +38,22 @@
 	    <span class="right">></span>
 	    <br/>
 				</div>	</a>
-				<a href="/cm/teacher/course/teamList/${Course.id}"><div id="backcolor">
+				<a href="/cm/teacher/course/teamList?courseId=${Course.id}"><div id="backcolor">
 		学生组队
 	    <span class="right">></span>
 	    <br/>
 				</div>	
-	<a href="/cm/teacher/course/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/info?courseId=${Course.id}"><div id="backcolor">
 		课程信息
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	<a href="/cm/teacher/course/klassList/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/klassList?course_id=${Course.id}"><div id="backcolor">
 		班级信息
 	    <span class="right">></span>
 	    <br/>
 	</div>	</a>
-	<a href="/cm/teacher/course/seminar/${Course.id}"><div id="backcolor">
+	<a href="/cm/teacher/course/seminar/seminarList?courseId=${Course.id}"><div id="backcolor">
 		讨论课设置
 	    <span class="right">></span>
 	    <br/>

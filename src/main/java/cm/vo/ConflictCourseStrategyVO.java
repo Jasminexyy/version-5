@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class ConflictCourseStrategyVO {
+    private String teacherName;
     private Long id;
     private Long courseId;
     private String courseName;
