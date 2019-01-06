@@ -34,7 +34,6 @@
 	       <tr><td class="c10">第一组：</td><td class="c4">.....</td></tr>
 	        <tr><td class="c2">第二组：</td><td class="c5">......</td><td class="c2"></td></tr>
 	        <tr><td class="c10">第三组：</td><td class="c4">....</td></tr>
-	        
 	        <tr><td class="c2">第四组：</td><td class="c5">.....</td><td class="c2"></td></tr>
 	        <tr><td class="c10">第五组：</td><td class="c4">......</td></tr>
 	        <tr><td class="c2">第六组：</td><td class="c5">......</td><td class="c2"></td></tr>
