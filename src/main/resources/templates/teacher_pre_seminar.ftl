@@ -40,17 +40,17 @@
 				<#elseif Seminar.seminarStatus==0>
 					未开始
 				</#if>
-			</td><td class="c2"><a href="/cm/teacher/course/seminar/enrollList"><u class="u1">查看信息</u></a></td></tr>
+			</td><td class="c2"><u class="u1">查看信息</u></td></tr>
 	</table>
 </center>
 <center>
 	<#if Seminar.seminarStatus== 1>
-		<a href=cm/teacher/seminar/processing?seminarId=${Seminar.seminarId}"><button class="button1">进入讨论课</button></a></br>
+		<a href=cm/teacher/seminar/processing"><button class="button1">进入讨论课</button></a></br>
 	<#elseif Seminar.seminarStatus==2>
 		<a href=cm/teacher/seminar/finished"><button class="button1">书面报告</button></a></br>
 		<a href=cm/teacher/seminar/grade"><button class="button2">查看成绩</button></a></br>
 	<#elseif Seminar.seminarStatus==0>
-		<a href="/cm/teacher/course/seminar/progressing?seminarId=${Seminar.seminarId}&klassId=${Seminar.klassId}"><button class="button1">开始讨论课</button></a></br>
+		<a href=cm/teacher/seminar/processing"><button class="button1">开始讨论课</button></a></br>
 		<a href=cm/teacher/seminar/"><button class="button2">修改讨论课信息</button></a></br>
 	</#if>
 </center>

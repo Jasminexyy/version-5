@@ -5,10 +5,12 @@ import cm.entity.*;
 import cm.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -43,15 +45,41 @@ public class SeminarService {
         return klassSeminarDAO.getBySeminarIdAndKlassId(seminarId,klassId);
     }
 
+    public Timestamp convert(String text){
+        SimpleDateFormat defaultDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Timestamp timestamp=null;
+        if(StringUtils.hasText(text)){
+            text = text.trim();
+            boolean isLong = true;
+            try {
+                long millisecond = Long.parseLong(text);
+                timestamp=new Timestamp(millisecond);
+            }catch(Exception e){
+                isLong = false;
+            }
+            if(!isLong) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String format = defaultDateFormat.format(sdf.parse(text));
+                    System.out.println(format);
+                } catch (ParseException var3) {
+                    throw new IllegalArgumentException("Could not parse date: " + var3.getMessage(), var3);
+                }
+            }
+        }
+        return timestamp;
+    }
+
 
     public Seminar TransferSeminarInfoToSeminar(SeminarInfoVO seminarInfoVO,CourseDetailVO course){
         Seminar seminar=new Seminar();
-        Timestamp startTime=Timestamp.valueOf(seminarInfoVO.getEnrollStartTime());
-        Timestamp endTime=Timestamp.valueOf(seminarInfoVO.getEnrollEndTime());
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Timestamp startTime=convert(seminarInfoVO.getEnrollStartTime());
+//        Timestamp endTime=convert(seminarInfoVO.getEnrollEndTime());
         seminar.setCourseId(course.getId());
         seminar.setSeminarName(seminarInfoVO.getSeminarName());
-        seminar.setEnrollEndTime(endTime);
-        seminar.setEnrollStartTime(startTime);
+//        seminar.setEnrollEndTime(endTime);
+//        seminar.setEnrollStartTime(startTime);
         seminar.setIntroduction(seminarInfoVO.getIntroduction());
         seminar.setIsVisible(seminarInfoVO.getIsVisible());
         seminar.setMaxTeam(seminarInfoVO.getTeamNumLimit());

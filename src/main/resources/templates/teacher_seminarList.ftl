@@ -10,9 +10,7 @@
 <body>
 <center>
     <div id="header1">
-	            <span>
-	                <
-	            </span>
+	            <span><</span>
         ${courseName}
         <span1>
             <li class="dao li1">+
@@ -22,12 +20,10 @@
                     <li class="main">讨论课</li>
                 </ul>
             </li>
-
         </span1>
     </div>
     </div>
 </center>
-
 <center>
     <div>
         <#list roundList as roundVO>
@@ -50,18 +46,13 @@
                     <br/>
                     </div>
                 </#list>
-
                 </details>
-
             </#list>
             <a style="color:lightgreen" href="/cm/teacher/course/seminar/create?roundName=${roundVO.roundNumber}">新建讨论课</a>
             </details>
         </#list>
     </div>
-
     <a href=""><button>+新建轮次</button></a>
-
-
 </center>
 
 </body>

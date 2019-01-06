@@ -111,31 +111,20 @@
         }
         //冲突课程，一个List<List>,外与里或
         var ConflictCourseStrategyList=list_and;
-        function checkPost() {
-            if(courseName.value==''|presentationPercentage.value==''|questionPercentage.value==''|reportPercentage.value==''|
-                teamStartTime.value==''|teamEndTime.value==''|teamMaxNum==''|teamMinNum==''){
-                alert("有项目为空!");
-                return false;
-            }
-            else
-                return true;
-        }
         function publish() {
-            if(checkPost()){
-                jQuery.ajax({
-                    type:"PUT",
-                    url:"/cm/teacher/course/create",
-                    headers:{"contentType":"application/json"},
-                    processData:false,
-                    data:$('#addForm').serialize(),
-                    dataType:"json",
-                    complete:function(data){
-                        if(data.status==200)
-                confirm("创建成功！");
-                            window.location="/cm/teacher/course/teacher_courseList";
-                    }
-                })
-            }
+            jQuery.ajax({
+                type:"PUT",
+                url:"/cm/teacher/course/create",
+                headers:{"contentType":"application/json"},
+                processData:false,
+                data:$('#addForm').serialize(),
+                dataType:"json",
+                complete:function(data){
+                    if(data.status==200)
+                        confirm("创建成功！");
+                    window.location="/cm/teacher/course/teacher_courseList";
+                }
+            })
         }
     </script>
 </head>
