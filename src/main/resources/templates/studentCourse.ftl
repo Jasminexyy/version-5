@@ -50,7 +50,7 @@ scale=1.0,minimum-scale=1.0">
 						<br/>
 					</div>
 				</a>
-				<a herf="/cm/student/course/team?account=${UserVO.id}&klassId=${courseAndKlassList[key].klassId}">
+				<a href="/cm/student/course/team/teamList?account=${UserVO.account}&klassId=${courseAndKlassList[key].klassId}">
 					<div class="backcolor">
 						我的组队
 						<span class="right">></span>

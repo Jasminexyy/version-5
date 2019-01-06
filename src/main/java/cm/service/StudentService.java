@@ -22,7 +22,7 @@ public class StudentService {
     private KlassDAO klassDAO;
 
     public UserVO getUserVOByAccount(String account) {
-        Student s=studentDAO.getByStudentAccount(account);
+        Student s=studentDAO.getByNameOrAccount(account);
         UserVO student=new UserVO();
 
         student.setId(s.getId());
