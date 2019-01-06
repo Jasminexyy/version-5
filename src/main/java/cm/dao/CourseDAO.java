@@ -6,6 +6,7 @@ import cm.mapper.CourseMemberLimitStrategyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -47,6 +48,11 @@ public class CourseDAO {
 
     public Course getByKlassIdAndTeacherId(Long klassId, Long teacherId){
         return courseMapper.getByKlassIdAndTeacherId(klassId, teacherId);
+    }
+
+    public int updateCourse(Course course)
+    {
+        return courseMapper.updateCourse(course);
     }
 
     public Long getTeacherIdByCourseId(Long courseId){

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -269,4 +270,23 @@ public interface CourseMapper {
     @Options(useGeneratedKeys = true, keyProperty = "course.id")
     int createCourse(@Param("teacherId") Long teacherId,
                      @Param("course") Course course);
+
+
+    /**
+     * 更新课程
+     * @param course
+     * @return
+     */
+    @Update("update course set teacher_id=#{course.teacherId}," +
+            "course_name=#{course.courseName}," +
+            "introduction=#{course.introduction}," +
+            "presentation_percentage=#{course.presentationPercentage}," +
+            "question_percentage=#{course.questionPercentage}," +
+            "report_percentage=#{course.reportPercentage}," +
+            "team_start_time=#{course.teamStartTime}," +
+            "team_end_time=#{course.teamEndTime}," +
+            "team_main_courseId=#{course.teamMainCourseId}," +
+            "seminar_main_courseId=#{course.seminarMainCourseId}," +
+            "where id = #{course.id}")
+    int updateCourse(Course course);
 }

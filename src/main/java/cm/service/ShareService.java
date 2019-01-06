@@ -86,6 +86,7 @@ public class ShareService {
     public void createShareTeam(Long mainCourseId,Long subCourseId){
         Long subCourseTeacherId=courseDAO.getTeacherIdByCourseId(subCourseId);
         List<Team> sourceTeamList = teamDAO.listByCourseId(mainCourseId);
+        Course subCourse = courseDAO.getByCourseId(subCourseId);
         for(Team tempTeam: sourceTeamList)
         {
            // System.out.println(subCourseId);
@@ -95,8 +96,10 @@ public class ShareService {
 
             teamDAO.createTeam(tempTeam);
         }
-            Byte by = new Byte("1");
-            shareTeamDAO.createShareTeamApplication(mainCourseId,subCourseId,subCourseTeacherId,by);
+        Byte by = new Byte("1");
+        shareTeamDAO.createShareTeamApplication(mainCourseId,subCourseId,subCourseTeacherId,by);
+        subCourse.setTeamMainCourseId(mainCourseId);
+        courseDAO.updateCourse(subCourse);
     }
 
 }
