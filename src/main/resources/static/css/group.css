@@ -47,15 +47,13 @@ body {
      border-top:0.0625rem solid #e8e8e8;
 }
  input[type='text'] {
-     color:#e8e8e8;
+     color:#000000;
      border-style:none;
      width:50%;
      height:1.875rem;
      font-size:1rem;
      position: relative;
-    /*����position����*/
      top: 50%;
-    /*ƫ��*/
      transform: translateY(-60%);
 }
  select{
